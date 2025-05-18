@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import ServicesSection from "./components/ServicesSection";
-import Calendar from "./components/Calendar";
-import Contact from "./components/Contact";
+import ServicesSection from "../components/ServicesSection";
+import Calendar from "../components/Calendar";
+import Contact from "../components/Contact";
 import {
   ChevronRight,
   Clock,
@@ -20,9 +20,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css";
-import Testimonial from "./components/Testimonial";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import Testimonial from "../components/Testimonial";
 
 const instructors = [
   { id: 1, name: "Instructor 1", description: "Descrierea instructorului 1" },
@@ -37,55 +35,25 @@ const teamMembers = [
     title: "CHESS TRAINER",
     description: `Cu o carieră dedicată în totalitate șahului, Andrei Popescu este un instructor pasionat, cu peste un deceniu de experiență atât în competiții, cât și în activitatea de mentorat. Fost jucător de performanță, multiplu premiat la turnee naționale și internaționale, Andrei a ales să se concentreze pe formarea noilor generații de șahiști, având convingerea că șahul este mai mult decât un joc – este un instrument valoros pentru dezvoltarea personală și intelectuală.
 
-Metoda sa de predare se bazează pe o combinație echilibrată între teorie solidă, practică intensă și încurajarea gândirii strategice. Fiecare lecție este gândită astfel încât să fie adaptată nivelului elevului – de la începători care abia învață mutările de bază, până la avansați care se pregătesc pentru competiții de înalt nivel.
-
-Andrei lucrează atât cu copii, cât și cu adulți, individual sau în grupuri restrânse, și pune accent pe crearea unei atmosfere deschise și motivante. Elevii lui nu învață doar să câștige partide, ci și să gândească logic, să anticipeze consecințele deciziilor și să își gestioneze timpul și emoțiile – abilități esențiale în viața de zi cu zi.
-
-Printre temele abordate în cursurile sale se numără: deschiderile și principiile lor, planificarea în jocul de mijloc, tacticile clasice (furculițe, clavete, atacuri duble etc.), finalurile fundamentale, analiza partidelor proprii și celebrarea marilor campioni ai șahului, ca sursă de inspirație.
-
-Cu o atitudine caldă, răbdătoare și o dorință autentică de a vedea progresul fiecărui cursant, Andrei Popescu este mai mult decât un instructor – este un ghid de încredere pe tabla de șah și în afara ei.`,
+Metoda sa de predare se bazează pe o combinație echilibrată între teorie solidă, practică intensă și încurajarea gândirii strategice. Fiecare lecție este gândită astfel încât să fie adaptată nivelului elevului – de la începători care abia învață mutările.`,
     image: "images/team/vlad.jpg",
   },
   {
     name: "Georgiana Stanciu",
     title: "CO-FOUNDER & CHESS TRAINER",
-    description: `Cu o carieră dedicată în totalitate șahului, Andrei Popescu este un instructor pasionat, cu peste un deceniu de experiență atât în competiții, cât și în activitatea de mentorat. Fost jucător de performanță, multiplu premiat la turnee naționale și internaționale, Andrei a ales să se concentreze pe formarea noilor generații de șahiști, având convingerea că șahul este mai mult decât un joc – este un instrument valoros pentru dezvoltarea personală și intelectuală.
-
-    Metoda sa de predare se bazează pe o combinație echilibrată între teorie solidă, practică intensă și încurajarea gândirii strategice. Fiecare lecție este gândită astfel încât să fie adaptată nivelului elevului – de la începători care abia învață mutările de bază, până la avansați care se pregătesc pentru competiții de înalt nivel.
-    
-    Andrei lucrează atât cu copii, cât și cu adulți, individual sau în grupuri restrânse, și pune accent pe crearea unei atmosfere deschise și motivante. Elevii lui nu învață doar să câștige partide, ci și să gândească logic, să anticipeze consecințele deciziilor și să își gestioneze timpul și emoțiile – abilități esențiale în viața de zi cu zi.
-    
-    Printre temele abordate în cursurile sale se numără: deschiderile și principiile lor, planificarea în jocul de mijloc, tacticile clasice (furculițe, clavete, atacuri duble etc.), finalurile fundamentale, analiza partidelor proprii și celebrarea marilor campioni ai șahului, ca sursă de inspirație.
-    
-    Cu o atitudine caldă, răbdătoare și o dorință autentică de a vedea progresul fiecărui cursant, Andrei Popescu este mai mult decât un instructor – este un ghid de încredere pe tabla de șah și în afara ei.`,
-    image: "images/team/geo.jpg",
+    description: `Georgiana este o persoană caldă și foarte dedicată lecțiilor ei. Are o experiență de peste 28 ani, cu participare la competițiile naționale și internaționale. Este multiplă campioană națională la categoria ei de vârstă. De aseemenea, cele mai importante rezultate internaționale ale sale suntȘ locul 9 la Campionatul European de șah din Muntenegru 2009, locul 4 la Campionatele Mondiale școlare din Thailanda 2015 și locul 8 la Campionatul Mondial de șah din Rusia 2016. Elo-ul ei de vârf fide avut este 2054, iar categoria WNM (maestră națională).`,
+    image: "images/team/georgiana.jpg",
   },
   {
     name: "Cristiana Stanciu",
     title: "CO-FOUNDER & CHESS TRAINER",
-    description: `Cu o carieră dedicată în totalitate șahului, Andrei Popescu este un instructor pasionat, cu peste un deceniu de experiență atât în competiții, cât și în activitatea de mentorat. Fost jucător de performanță, multiplu premiat la turnee naționale și internaționale, Andrei a ales să se concentreze pe formarea noilor generații de șahiști, având convingerea că șahul este mai mult decât un joc – este un instrument valoros pentru dezvoltarea personală și intelectuală.
-
-    Metoda sa de predare se bazează pe o combinație echilibrată între teorie solidă, practică intensă și încurajarea gândirii strategice. Fiecare lecție este gândită astfel încât să fie adaptată nivelului elevului – de la începători care abia învață mutările de bază, până la avansați care se pregătesc pentru competiții de înalt nivel.
-    
-    Andrei lucrează atât cu copii, cât și cu adulți, individual sau în grupuri restrânse, și pune accent pe crearea unei atmosfere deschise și motivante. Elevii lui nu învață doar să câștige partide, ci și să gândească logic, să anticipeze consecințele deciziilor și să își gestioneze timpul și emoțiile – abilități esențiale în viața de zi cu zi.
-    
-    Printre temele abordate în cursurile sale se numără: deschiderile și principiile lor, planificarea în jocul de mijloc, tacticile clasice (furculițe, clavete, atacuri duble etc.), finalurile fundamentale, analiza partidelor proprii și celebrarea marilor campioni ai șahului, ca sursă de inspirație.
-    
-    Cu o atitudine caldă, răbdătoare și o dorință autentică de a vedea progresul fiecărui cursant, Andrei Popescu este mai mult decât un instructor – este un ghid de încredere pe tabla de șah și în afara ei.`,
-    image: "images/team/cris.jpg",
+    description: `Cristiana are experiență de șah și competiții de peste 9 ani, elo fide 1650 și categoria I. Pe lângă șah, are studii pedagogice și experiență de lucru cu copiii în club de șah, grădinițe, școlii și centre educaționale. Este pasionată de educație și dezvoltarea personală a copiilor, iar șahul este un instrument excelent pentru a-i ajuta să-și dezvolte abilitățile cognitive și sociale. Cristiana îmbină cunoștințele sale pedagogice cu pasiunea pentru șah, oferind lecții interactive și captivante care îi ajută pe elevi să învețe și să se dezvolte. Abordarea sa este adaptată nevoilor fiecărui elev, iar atmosfera pe care o creează în timpul lecțiilor este una prietenoasă și motivantă. Cristiana își propune să inspire și să încurajeze fiecare elev să-și atingă potențialul maxim prin intermediul șahului. Cristiana știe să facă lucrurile complexe din șah să pară mai simple și evidente. Este îndrăgită de copii și vine mereu cu idei interactive pentru a face experiența lecțiilor de șah mai plăcută.`,
+    image: "images/team/cris-chess.jpg",
   },
   {
     name: "Călin Gheorghiu",
     title: "CHESS TRAINER",
-    description: `Cu o carieră dedicată în totalitate șahului, Andrei Popescu este un instructor pasionat, cu peste un deceniu de experiență atât în competiții, cât și în activitatea de mentorat. Fost jucător de performanță, multiplu premiat la turnee naționale și internaționale, Andrei a ales să se concentreze pe formarea noilor generații de șahiști, având convingerea că șahul este mai mult decât un joc – este un instrument valoros pentru dezvoltarea personală și intelectuală.
-
-    Metoda sa de predare se bazează pe o combinație echilibrată între teorie solidă, practică intensă și încurajarea gândirii strategice. Fiecare lecție este gândită astfel încât să fie adaptată nivelului elevului – de la începători care abia învață mutările de bază, până la avansați care se pregătesc pentru competiții de înalt nivel.
-    
-    Andrei lucrează atât cu copii, cât și cu adulți, individual sau în grupuri restrânse, și pune accent pe crearea unei atmosfere deschise și motivante. Elevii lui nu învață doar să câștige partide, ci și să gândească logic, să anticipeze consecințele deciziilor și să își gestioneze timpul și emoțiile – abilități esențiale în viața de zi cu zi.
-    
-    Printre temele abordate în cursurile sale se numără: deschiderile și principiile lor, planificarea în jocul de mijloc, tacticile clasice (furculițe, clavete, atacuri duble etc.), finalurile fundamentale, analiza partidelor proprii și celebrarea marilor campioni ai șahului, ca sursă de inspirație.
-    
-    Cu o atitudine caldă, răbdătoare și o dorință autentică de a vedea progresul fiecărui cursant, Andrei Popescu este mai mult decât un instructor – este un ghid de încredere pe tabla de șah și în afara ei.`,
+    description: `Călin este Maestru FIDE de la vârsta de 16 ani, cu cel mai înalt rating fide de 2384 elo, iar pe chess.com 2757 elo. A fost multiplu campion național și a reprezentat România la campionatele mondiale de juniori din India. Are o carieră in IT, și este și instructor de șah cu 5 ani experiență. Vă asiguram că orele cu ell u vor fi doar plnde de idei și inspirație, ci memorabile. Călin este și stand up comedian, iar cursurile cu el te vor captiva din plin.`,
     image: "images/team/calin.jpg",
   },
   {
@@ -103,31 +71,34 @@ function App() {
   const [activeInstructor, setActiveInstructor] = useState(instructors[0]);
   const [selected, setSelected] = useState(teamMembers[0]);
 
-  
-
   const bannerImages = [
     {
       url: "/images/banner/theSquare.jpg",
-      title: "Master Your Game",
+      title: "Antrenează-te cu profesioniști",
       subtitle: "Professional chess instruction for all levels",
     },
     {
       url: "/images/banner/1.jpg",
-      title: "Learn from Champions",
+      title: "Depășește-ți limitele",
       subtitle: "Train with experienced grandmasters",
     },
     {
       url: "/images/banner/2.jpg",
-      title: "Join Our Community",
-      subtitle: "Be part of a thriving chess ecosystem",
+      title: "Mutările inspirate încep la clubul THE SQUARE",
     },
   ];
 
   const galleryImages = [
-    "/images/banner/theSquare.jpg",
-    "/images/banner/1.jpg",
+    "/images/gallery/square-room.jpg",
+    "/images/gallery/take-a-sit.jpg",
+    "/images/gallery/kids.jpg",
+    "/images/gallery/happy-people.jpg",
+    "/images/gallery/chess-camp-calin.jpg",
+    "/images/gallery/chess-camp-vlad.jpg",
     "/images/banner/2.jpg",
     "/images/banner/3.jpg",
+    "/images/gallery/simple-chess.jpg",
+    "/images/gallery/vlad-prize.jpg",
   ];
 
   useEffect(() => {
@@ -176,169 +147,168 @@ function App() {
   }
 
   return (
-  <div className="min-h-screen bg-[#001a00]">
-  <nav
-    className={`fixed w-full z-50 transition-all duration-300 relative ${
-      isScrolled ? "bg-[#233d36] shadow-lg" : "bg-transparent"
-    }`}
-  >
-    <div className="mx-auto px-4 sm:px-6">
-      <div className="flex justify-between items-center py-2">
-        {/* Logo */}
-        <div className="flex items-center space-x-2 pt-4">
-          <img
-            src="images/logo/square-logo.png"
-            alt="Logo"
-            className="w-[120px] sm:w-[150px] ml-[10px] sm:ml-[60px]" // Dimensiune mai mică pe telefon
-          />
+    <div className="min-h-screen bg-[#001a00]">
+      <nav
+        className={`fixed w-full z-50 transition-all duration-300 relative ${
+          isScrolled ? "bg-[#233d36] shadow-lg" : "bg-transparent"
+        }`}
+      >
+        <div className="mx-auto px-4 sm:px-6">
+          <div className="flex justify-between items-center py-2">
+            {/* Logo */}
+            <div className="flex items-center space-x-2 pt-4">
+              <img
+                src="images/logo/square-logo.png"
+                alt="Logo"
+                className="w-[120px] sm:w-[150px] ml-[10px] sm:ml-[60px]" // Dimensiune mai mică pe telefon
+              />
+            </div>
+
+            {/* Desktop menu */}
+            <div className="hidden md:flex space-x-4 ml-auto font-archivo tracking-[0.1em] text-[#badad5] text-right sm:pr-[40px]">
+              {[
+                "about",
+                "team",
+                "services",
+                "gallery",
+                "testimonials",
+                "contact",
+              ].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                    isScrolled
+                      ? "text-white hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                      : "text-[#a6b6e0] hover:bg-[#a6b6e0] hover:text-white"
+                  }`}
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile menu toggle */}
+            <div className="md:hidden">
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="text-[#a6b6e0] focus:outline-none"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  {mobileMenuOpen ? (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  )}
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
 
-        {/* Desktop menu */}
-        <div className="hidden md:flex space-x-4 ml-auto font-archivo tracking-[0.1em] text-[#badad5] text-right sm:pr-[40px]">
-          {["about", "team", "services", "gallery", "testimonials", "contact"].map(
-            (section) => (
+        {/* Mobile dropdown menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden fixed inset-0 bg-[#233d36] bg-opacity-90 z-50 px-4 py-2">
+            <div className="flex justify-end">
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-[#a6b6e0] focus:outline-none text-xl"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+            {[
+              "about",
+              "team",
+              "services",
+              "gallery",
+              "testimonials",
+              "contact",
+            ].map((section) => (
               <button
                 key={section}
-                onClick={() => scrollToSection(section)}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
-                  isScrolled
-                    ? "text-white hover:bg-[#a6b6e0] hover:text-[#233d36]"
-                    : "text-[#a6b6e0] hover:bg-[#a6b6e0] hover:text-white"
-                }`}
+                onClick={() => {
+                  scrollToSection(section);
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] hover:bg-[#a6b6e0] hover:text-[#233d36] transition"
               >
                 {section.charAt(0).toUpperCase() + section.slice(1)}
               </button>
-            )
-          )}
-        </div>
-
-        {/* Mobile menu toggle */}
-        <div className="md:hidden">
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="text-[#a6b6e0] focus:outline-none"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              {mobileMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    {/* Mobile dropdown menu */}
-    {mobileMenuOpen && (
-      <div className="md:hidden fixed inset-0 bg-[#233d36] bg-opacity-90 z-50 px-4 py-2">
-        <div className="flex justify-end">
-          <button
-            onClick={() => setMobileMenuOpen(false)}
-            className="text-[#a6b6e0] focus:outline-none text-xl"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-        </div>
-        {["about", "team", "services", "gallery", "testimonials", "contact"].map(
-          (section) => (
-            <button
-              key={section}
-              onClick={() => {
-                scrollToSection(section);
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] hover:bg-[#a6b6e0] hover:text-[#233d36] transition"
-            >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
-            </button>
-          )
+            ))}
+          </div>
         )}
-      </div>
-    )}
-  </nav>
-
-  
-
-
-
+      </nav>
 
       <header className="sm:container mx-auto relative flex items-center justify-center overflow-hidden font-archivo">
-  <div className="w-full pt-10 sm:pt-0 sm:pb-16 pb-8 px-4 sm:px-0">
-    <div className="relative h-[500px] sm:h-[638px] rounded-[24px] overflow-hidden shadow-xl">
-      {bannerImages.map((image, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
-            currentSlide === index ? 'opacity-100 z-20' : 'opacity-0 z-10'
-          }`}
-        >
-          <img
-            src={image.url}
-            alt={`Slide ${index + 1}`}
-            className="w-full h-full object-cover brightness-50 rounded-[24px]"
-          />
+        <div className="w-full pt-10 sm:pt-0 sm:pb-16 pb-8 px-4 sm:px-0">
+          <div className="relative h-[500px] sm:h-[638px] rounded-[24px] overflow-hidden shadow-xl">
+            {bannerImages.map((image, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+                  currentSlide === index ? "opacity-100 z-20" : "opacity-0 z-10"
+                }`}
+              >
+                <img
+                  src={image.url}
+                  alt={`Slide ${index + 1}`}
+                  className="w-full h-full object-cover brightness-50 rounded-[24px]"
+                />
 
-          {currentSlide === index && (
-            <div className="absolute inset-0 flex items-center justify-center text-center px-4 sm:px-8 z-30 animate-fade-in-up">
-              <div className="max-w-3xl">
-                <h1 className="text-2xl sm:text-4xl md:text-5xl font-semibold mb-4 tracking-wide text-[#a6b6e0] leading-snug">
-                  {image.title}
-                </h1>
-                <p className="text-base sm:text-lg md:text-xl mb-6 tracking-wide text-[#a6b6e0]">
-                  {image.subtitle}
-                </p>
-                <button
-                  onClick={() => scrollToSection('contact')}
-                  className="bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
-                >
-                  Join Our Chess Club
-                </button>
+                {currentSlide === index && (
+                  <div className="absolute inset-0 flex items-center justify-center text-center px-4 sm:px-8 z-30 animate-fade-in-up">
+                    <div className="max-w-3xl">
+                      <h1 className="text-2xl sm:text-4xl md:text-5xl font-semibold mb-4 tracking-wide text-[#a6b6e0] leading-snug">
+                        {image.title}
+                      </h1>
+                      <p className="text-base sm:text-lg md:text-xl mb-6 tracking-wide text-[#a6b6e0]">
+                        {image.subtitle}
+                      </p>
+                      <button
+                        onClick={() => scrollToSection("contact")}
+                        className="bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                      >
+                        Join Our Chess Club
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
-            </div>
-          )}
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-</header>
+      </header>
 
-
-
-
-
-
- 
       <section className="py-20 px-4  border-[#233d36] border-t-[1px] font-archivo">
         <div className="w-full relative bg-[#001a00]" id="about">
           <img
@@ -364,21 +334,30 @@ function App() {
               <div className="col-span-12 lg:col-span-8 flex flex-col items-start relative ml-[12px]">
                 <div>
                   <div className="absolute rounded-full  border-[1.5px] lg:border-3 border-[#D3B77B] z-[-1] h-[43px] w-[43px] sm:h-[123px] sm:w-[123px] absolute top-[-11px] sm:top-[25px] left-[-19px] sm:left-[-59px]"></div>
-                  <h4 className="font-archivo text-[#a6b6e0] text-[14px] tracking-[0.1em] sm:text-[24px] font-[400] leading-[15.39px] sm:leading-[26.38px] mb-[6px] sm:mb-[9px] sm:mt-[84px]">
-                    ABOUT US
+                  <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-[400] sm:tracking-[0.1em] sm:text-[52px] leading-[26.38px] sm:leading-[57px] mb-[20px] sm:mb-[40px]">
+                    About Us
                   </h4>
-                  <h4 className="font-archivo text-left text-[#a6b6e0] text-[24px] font-[400] sm:tracking-[0.1em] sm:text-[52px] leading-[26.38px] sm:leading-[57px] mb-[20px] sm:mb-[25px]">
-                    HOURLY BOOKING
-                  </h4>
-                  <p className="font-archivo text-[#a6b6e0] text-left font-outfit tracking-[1.4px] font-[500] sm:px-0 tracking-[1.2px] sm:tracking-[1.392px] leading-[15.12px] sm:leading-[17.64px] leading-[1.2] tracking-[1px] sm:tracking-[1px] font-[400] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[45px] text-[12px] sm:text-[14px] max-w-[289px] sm:max-w-[595px]">
-                    Our Hourly Booking Limousine Switzerland service gives you
-                    the freedom to travel on your terms. Whether you have
-                    multiple stops, an unpredictable schedule, or simply need a
-                    car at your disposal, our professional chauffeurs are ready
-                    to assist. Enjoy the convenience of a private ride that
-                    waits for you, adapts to your needs, and ensures a seamless,
-                    stress-free experience—hour by hour.
+                  <p className="font-archivo sm:text-[15px] text-[#a6b6e0] text-left font-[500] sm:px-0 tracking-[0.1em]  leading-[125%]  font-[400] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px] text-[12px] sm:text-[14px] max-w-[289px] sm:max-w-[595px]">
+                    Clubul de Șah THE SQUARE este spațiul în care pasiunea
+                    pentru șah capătă formă, indiferent de vârstă sau nivel de
+                    experiență. Fondat din dorința de a promova gândirea
+                    strategică, disciplina și spiritul de comunitate, clubul
+                    nostru a devenit un punct de întâlnire pentru toți cei care
+                    vor să se dezvolte prin șah. Suntem o echipă de antrenori
+                    dedicați, convinși de puterea șahului de a educa, motiva și
+                    aduce oamenii împreună. Organizăm cursuri pentru copii și
+                    adulți, competiții, pregătiri pentru turnee și evenimente
+                    interactive care încurajează învățarea și socializarea. Te
+                    ajutăm să îți setezi obiective și să le atingi într-un
+                    spațiu primitor și prietenos.
                   </p>
+
+                  <button
+                    onClick={() => scrollToSection("contact")}
+                    className="sm:mt-[40px] sm:ml-[150px] text-center bg-[#badad5] text-[#233d36] sm:ml-[0px] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                  >
+                    Înscrie-te la primul tău curs!
+                  </button>
                 </div>
               </div>
               <div className="col-span-12 lg:col-span-4 relative mb-[66px] sm:mb-[95px] rounded-[20px] mx-auto inline-block">
@@ -395,10 +374,7 @@ function App() {
         </div>
       </section>
 
-      
       <Calendar />
-
-    
 
       <section className="py-20 px-4  border-[#233d36] border-t-[1px] font-archivo">
         <div className="w-full relative bg-[#001a00]" id="about">
@@ -425,104 +401,112 @@ function App() {
               <div className="col-span-12 lg:col-span-8 flex flex-col items-start relative ml-[12px]">
                 <div>
                   <div className="absolute rounded-full  border-[1.5px] lg:border-3 border-[#D3B77B] z-[-1] h-[43px] w-[43px] sm:h-[123px] sm:w-[123px] absolute top-[-11px] sm:top-[25px] left-[-19px] sm:left-[-59px]"></div>
-                  <h4 className="font-archivo text-[#a6b6e0] text-[14px] tracking-[0.1em] sm:text-[24px] font-[400] leading-[15.39px] sm:leading-[26.38px] mb-[6px] sm:mb-[9px] sm:mt-[84px]">
-                    ABOUT US
+                  <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-[400] sm:tracking-[0.1em] sm:text-[52px] leading-[26.38px] sm:leading-[57px] mb-[20px] sm:mb-[40px]">
+                    Beneficiile Șahului
                   </h4>
-                  <h4 className="font-archivo text-left text-[#a6b6e0] text-[24px] font-[400] sm:tracking-[0.1em] sm:text-[52px] leading-[26.38px] sm:leading-[57px] mb-[20px] sm:mb-[25px]">
-                    HOURLY BOOKING
-                  </h4>
-                  <p className="font-archivo text-[#a6b6e0] text-left font-outfit tracking-[1.4px] font-[500] sm:px-0 tracking-[1.2px] sm:tracking-[1.392px] leading-[15.12px] sm:leading-[17.64px] leading-[1.2] tracking-[1px] sm:tracking-[1px] font-[400] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[45px] text-[12px] sm:text-[14px] max-w-[289px] sm:max-w-[595px]">
-                    Our Hourly Booking Limousine Switzerland service gives you
-                    the freedom to travel on your terms. Whether you have
-                    multiple stops, an unpredictable schedule, or simply need a
-                    car at your disposal, our professional chauffeurs are ready
-                    to assist. Enjoy the convenience of a private ride that
-                    waits for you, adapts to your needs, and ensures a seamless,
-                    stress-free experience—hour by hour.
-                  </p>
+                  <p className="font-archivo sm:text-[15px] text-[#a6b6e0] text-left font-[500] sm:px-0 tracking-[0.1em]  leading-[15.12px] sm:leading-[17.64px] leading-[1.2] font-[400] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px] text-[12px] sm:text-[14px] max-w-[289px] sm:max-w-[595px]">
+                    <p className="sm:text-[16px] font-archivo tracking-[0.1em] leading-[125%]">1. Concentrare și prezență! Fiecare partidă de șah este o
+                    oportunitate de a cultiva răbdarea. </p>
+                    <p className="sm:text-[16px] font-archivo  tracking-[0.1em] leading-[125%]">2. Gândire strategică! 
+                    Îți dezvolți capacitatea de a anticipa mutări și a lua
+                    decizii strategice atât pe tabla de șah, cât și în viață.</p>
+                    <p className="sm:text-[16px] font-archivo  tracking-[0.1em] leading-[125%]"> 3.
+                    Evoluezi continuu, în ritmul tău La THE SQUARE ne ghidează
+                    bucuria. Apreciem fiecare pas către progres. Crești cu
+                    răbdare, poți să te bucuri de proces și să îți cultivi
+                    încrederea în forțele proprii. </p>
+                    <p className="sm:text-[16px] font-archivo  tracking-[0.1em] leading-[125%]">4. Faci parte dintr-o
+                    comunitate prietenoasă, cu valori comune La THE SQUARE,
+                    jucători începători și avansați se întâlnesc, se provoacă,
+                    se susțin. Fie că vii pentru socializare, învățare sau
+                    competiție, lumea THE SQUARE îți este deschisă.
+                 </p></p>
+
+                  <button
+                    onClick={() => scrollToSection("contact")}
+                    className="sm:mt-[40px] sm:ml-[150px] text-center bg-[#badad5] text-[#233d36] sm:ml-[0px] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                  >
+                    Înscrie-te la primul tău curs!
+                  </button>
                 </div>
               </div>
               <div className="col-span-12 lg:col-span-4 relative mb-[66px] sm:mb-[95px] rounded-[20px] mx-auto inline-block">
                 <div className="relative w-full h-full shadow-[-10px_11px_35px_rgba(0,0,0,0.25)] rounded-[20px]">
                   <img
-                    src="/public/images/banner/3.jpg"
-                    className="hidden sm:block w-[322px] h-[338px] sm:w-[495px] sm:h-[469px] rounded-[20px] object-cover"
+                    src="/public/images/banner/theSquare.jpg"
+                    className="w-[322px] h-[338px] sm:w-[495px] sm:h-[469px] rounded-[20px] object-cover"
                   />
-                  <img
-                    src="images/landingpage/hourly-booking/zurich (5).jpg"
-                    className="sm:hidden w-[322px] h-[338px] sm:w-[495px] sm:h-[469px] rounded-[20px] object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/80  to-[#858585]/0 rounded-[17px] opacity-[0.8]"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/80 to-[#858585]/0 rounded-[17px] opacity-[0.8]"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-      
-      <section className="py-20  border-[#233d36] border-t-[1px] font-archivo bg-[#001a00]" id="team">
-  <div className="mx-4 sm:container sm:mx-auto">
-    {/* Slider cu Membri */}
-    <div className="relative">
-      <Swiper
-        spaceBetween={16}
-        slidesPerView={1}
-        centeredSlides={true}
-        navigation={{
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        }}
-        onSlideChange={handleSlideChange}
-        breakpoints={{
-          768: { slidesPerView: 1 },
-          1024: { slidesPerView: 1 },
-        }}
-        modules={[Navigation]}
+
+      <section
+        className="py-20  border-[#233d36] border-t-[1px] font-archivo bg-[#001a00]"
+        id="team"
       >
-        {teamMembers.map((member, index) => (
-          <SwiperSlide key={index}>
-            <div className="flex flex-col lg:flex-row items-center text-center lg:text-left  ">
-              {/* Imagine membru în stânga */}
-              <div className="lg:w-1/2 flex justify-center lg:justify-start mb-6 lg:mb-0 relative">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-[340px] h-[370px] sm:w-[380px] sm:h-[400px] lg:w-[495px] lg:h-[469px] rounded-[20px] object-cover"
-                />
+        <div className="mx-4 sm:container sm:mx-auto">
+          {/* Slider cu Membri */}
+          <div className="relative">
+            <Swiper
+              spaceBetween={16}
+              slidesPerView={1}
+              centeredSlides={true}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              onSlideChange={handleSlideChange}
+              breakpoints={{
+                768: { slidesPerView: 1 },
+                1024: { slidesPerView: 1 },
+              }}
+              modules={[Navigation]}
+            >
+              {teamMembers.map((member, index) => (
+                <SwiperSlide key={index}>
+                  <div className="flex flex-col lg:flex-row items-center text-center lg:text-left  ">
+                    {/* Imagine membru în stânga */}
+                    <div className="lg:w-1/2 flex justify-center lg:justify-start mb-6 lg:mb-0 relative">
+                      <img
+                        src={member.image}
+                        alt={member.name}
+                        className="w-[340px] h-[370px] sm:w-[380px] sm:h-[400px] lg:w-[495px] lg:h-[469px] rounded-[20px] object-cover"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/50  to-[#858585]/0 rounded-[17px] opacity-[0.8]"></div>
+
+                    {/* Textul membrului în dreapta */}
+                    <div className="lg:w-1/2 max-w-3xl mx-auto lg:pl-16 sm:ml-[360px] ">
+                      <p className="text-xs sm:text-sm uppercase tracking-wider text-[#a6b6e0] mb-2">
+                        {member.title}
+                      </p>
+                      <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[#a6b6e0] tracking-wide">
+                        {member.name}
+                      </h2>
+                      <p className="text-[#a6b6e0] mb-4 leading-relaxed text-sm sm:text-base">
+                        {member.description}
+                      </p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            <div className="absolute bottom-[-30px] left-1/2 transform -translate-x-1/2 z-10 flex gap-6">
+              <div className="swiper-button-prev text-[#a6b6e0] hover:text-[#badad5] transition">
+                <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/50  to-[#858585]/0 rounded-[17px] opacity-[0.8]"></div>
-              
-              {/* Textul membrului în dreapta */}
-              <div className="lg:w-1/2 max-w-3xl mx-auto lg:pl-16 sm:ml-[360px] ">
-                <p className="text-xs sm:text-sm uppercase tracking-wider text-[#a6b6e0] mb-2">
-                  {member.title}
-                </p>
-                <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[#a6b6e0] tracking-wide">
-                  {member.name}
-                </h2>
-                <p className="text-[#a6b6e0] mb-4 leading-relaxed text-sm sm:text-base">
-                  {member.description}
-                </p>
+              <div className="swiper-button-next text-[#a6b6e0] hover:text-[#badad5] transition">
+                <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
               </div>
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-
-     
-      <div className="absolute bottom-[-30px] left-1/2 transform -translate-x-1/2 z-10 flex gap-6">
-        <div className="swiper-button-prev text-[#a6b6e0] hover:text-[#badad5] transition">
-          <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
+          </div>
         </div>
-        <div className="swiper-button-next text-[#a6b6e0] hover:text-[#badad5] transition">
-          <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
+      </section>
 
       <div className="w-full sm:pt-[109px] border-[#233d36] border-t-[1px] pt-[62px] sm:pb-[172px] pb-[68px] relative overflow-hidden">
         <div className="container mx-auto">
@@ -600,70 +584,87 @@ function App() {
       <ServicesSection />
 
       <section
-  className="py-20 bg-[#001a00] border-t border-[#233d36]"
-  id="gallery"
->
-  <div className="sm:container mx-auto px-4">
-    <div className="max-w-[1420px] max-h-[800px] mx-auto">
-      <h2 className="text-2xl sm:text-3xl font-bold text-center mb-16 text-[#233d36]">
-        Gallery
-      </h2>
+        className="py-20 bg-[#001a00] border-t border-[#233d36]"
+        id="gallery"
+      >
+        <div className="sm:container mx-auto px-4">
+          <div className="max-w-[1420px] max-h-[1700px] mx-auto">
+            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-16 text-[#233d36]">
+              Gallery
+            </h2>
 
-      {/* Imagine + săgeți (responsive layout) */}
-      <div className="relative flex flex-col items-center justify-center">
-        {/* Imagine */}
-        <div className="w-full overflow-hidden rounded-lg shadow-xl relative">
-          <img
-            src={galleryImages[currentGalleryImage]}
-            alt={`Gallery image ${currentGalleryImage + 1}`}
-            className="w-full h-[400px] sm:h-[600px] object-cover transition-opacity duration-500 rounded-lg"
-          />
+            {/* Imagine + săgeți (responsive layout) */}
+            <div className="relative flex flex-col items-center justify-center">
+              {/* Imagine */}
+              <div className="w-full overflow-hidden rounded-lg shadow-xl relative">
+                <img
+                  src={galleryImages[currentGalleryImage]}
+                  alt={`Gallery image ${currentGalleryImage + 1}`}
+                  className="w-full h-[400px] sm:h-[600px] object-cover transition-opacity duration-500 rounded-lg"
+                />
+              </div>
+
+              {/* Arrows - sub imagine pe mobil, laterale pe desktop */}
+              <div className="flex justify-center gap-6 mt-4 sm:mt-0 sm:absolute sm:inset-0 sm:justify-between sm:px-6 sm:items-center">
+                <button
+                  onClick={prevGalleryImage}
+                  className="text-[#a6b6e0] hover:text-[#badad5] transition-colors duration-300 z-10 sm:relative sm:-left-14"
+                >
+                  <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8 stroke-[1.5]" />
+                </button>
+
+                <button
+                  onClick={nextGalleryImage}
+                  className="text-[#a6b6e0] hover:text-[#badad5] transition-colors duration-300 z-10 sm:relative sm:-right-14"
+                >
+                  <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 stroke-[1.5]" />
+                </button>
+              </div>
+            </div>
+
+            {/* Navigation dots */}
+            <div className="flex justify-center mt-6 space-x-2">
+              {galleryImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentGalleryImage(index)}
+                  className={`w-3 h-3 rounded-full transition-colors duration-300 ${
+                    currentGalleryImage === index
+                      ? "bg-[#233d36]"
+                      : "bg-[#a6b6e0]/50"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
         </div>
-
-        {/* Arrows - sub imagine pe mobil, laterale pe desktop */}
-        <div className="flex justify-center gap-6 mt-4 sm:mt-0 sm:absolute sm:inset-0 sm:justify-between sm:px-6 sm:items-center">
-          <button
-            onClick={prevGalleryImage}
-            className="text-[#a6b6e0] hover:text-[#badad5] transition-colors duration-300 z-10 sm:relative sm:-left-14"
-          >
-            <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8 stroke-[1.5]" />
-          </button>
-
-          <button
-            onClick={nextGalleryImage}
-            className="text-[#a6b6e0] hover:text-[#badad5] transition-colors duration-300 z-10 sm:relative sm:-right-14"
-          >
-            <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 stroke-[1.5]" />
-          </button>
-        </div>
-      </div>
-
-      {/* Navigation dots */}
-      <div className="flex justify-center mt-6 space-x-2">
-        {galleryImages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentGalleryImage(index)}
-            className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-              currentGalleryImage === index
-                ? "bg-[#233d36]"
-                : "bg-[#a6b6e0]/50"
-            }`}
-          />
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
       <Testimonial />
 
       <Contact />
 
-      <footer className="bg-[#001a00] border-t-[1px] border-[#233d36]">
-        <div className="sm:container mx-auto px-20 py-12 md:flex md:items-center md:justify-between lg:px-8">
-          <div className="flex justify-center gap-x-6 md:order-2">
-            <a href="#" className="text-gray-400 hover:text-gray-300">
+      <footer className="bg-[#001a00] border-t border-[#233d36]">
+        <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-10 lg:px-8">
+          <nav
+            className="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6 font-archivo tracking-wide "
+            aria-label="Footer"
+          >
+            <a href="#" className="text-[#a6b6e0] hover:text-white">
+              Privacy Policy
+            </a>
+            <a href="#" className="text-[#a6b6e0] hover:text-white">
+              Terms & Conditions
+            </a>
+            <a href="#" className="text-[#a6b6e0] hover:text-white">
+              Cookie Policy
+            </a>
+            <a href="#" className="text-[#a6b6e0] hover:text-white">
+              Contact
+            </a>
+          </nav>
+          <div className="mt-16 flex justify-center gap-x-10">
+            <a href="#" className="text-[#a6b6e0] hover:text-gray-300">
               <span className="sr-only">Facebook</span>
               <svg
                 className="size-6"
@@ -678,7 +679,7 @@ function App() {
                 />
               </svg>
             </a>
-            <a href="#" className="text-gray-400 hover:text-gray-300">
+            <a href="#" className="text-[#a6b6e0] hover:text-gray-300">
               <span className="sr-only">Instagram</span>
               <svg
                 className="size-6"
@@ -693,7 +694,7 @@ function App() {
                 />
               </svg>
             </a>
-            <a href="#" className="text-gray-400 hover:text-gray-300">
+            <a href="#" className="text-[#a6b6e0] hover:text-gray-300">
               <span className="sr-only">X</span>
               <svg
                 className="size-6"
@@ -704,7 +705,7 @@ function App() {
                 <path d="M13.6823 10.6218L20.2391 3H18.6854L12.9921 9.61788L8.44486 3H3.2002L10.0765 13.0074L3.2002 21H4.75404L10.7663 14.0113L15.5685 21H20.8131L13.6819 10.6218H13.6823ZM11.5541 13.0956L10.8574 12.0991L5.31391 4.16971H7.70053L12.1742 10.5689L12.8709 11.5655L18.6861 19.8835H16.2995L11.5541 13.096V13.0956Z" />
               </svg>
             </a>
-            <a href="#" className="text-gray-400 hover:text-gray-300">
+            <a href="#" className="text-[#a6b6e0] hover:text-gray-300">
               <span className="sr-only">GitHub</span>
               <svg
                 className="size-6"
@@ -719,7 +720,7 @@ function App() {
                 />
               </svg>
             </a>
-            <a href="#" className="text-gray-400 hover:text-gray-300">
+            <a href="#" className="text-[#a6b6e0] hover:text-gray-300">
               <span className="sr-only">YouTube</span>
               <svg
                 className="size-6"
@@ -735,11 +736,27 @@ function App() {
               </svg>
             </a>
           </div>
-          <p className="mt-8 text-center text-sm/6 text-gray-400 md:order-1 md:mt-0">
+          <p className="mt-10 text-center text-sm/6 text-gray-400">
             &copy; 2024 Your Company, Inc. All rights reserved.
           </p>
         </div>
       </footer>
+      <a
+        href="https://wa.me/40712345678" // Înlocuiește cu numărul tău
+        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg transition-all duration-300"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+          className="w-6 h-6"
+        >
+          <path d="M20.52 3.478a11.81 11.81 0 0 0-16.69 0 11.81 11.81 0 0 0-2.48 13.06L.34 23.49l7.14-1.88a11.81 11.81 0 0 0 5.55 1.42h.01c3.14 0 6.09-1.22 8.31-3.44a11.81 11.81 0 0 0 0-16.69zm-8.41 17.5a10.23 10.23 0 0 1-5.2-1.44l-.37-.22-4.25 1.12 1.13-4.14-.24-.38a10.3 10.3 0 0 1 1.52-12.57 10.28 10.28 0 0 1 14.53 0 10.27 10.27 0 0 1-7.12 17.63zm5.63-7.78c-.3-.15-1.77-.87-2.05-.97s-.48-.15-.68.15-.78.97-.96 1.18-.35.22-.65.07a8.32 8.32 0 0 1-2.47-1.53 9.33 9.33 0 0 1-1.7-2.12c-.17-.3-.02-.47.13-.62.13-.13.3-.35.45-.53s.2-.3.3-.5a.54.54 0 0 0-.02-.52c-.08-.15-.68-1.65-.93-2.27-.24-.57-.49-.5-.68-.5h-.58c-.2 0-.52.07-.8.35s-1.05 1.02-1.05 2.5 1.07 2.9 1.22 3.1a11.77 11.77 0 0 0 4.65 4.23c.65.28 1.17.45 1.57.57.66.21 1.25.18 1.72.1.53-.08 1.62-.66 1.85-1.3.23-.64.23-1.2.16-1.31-.06-.11-.26-.18-.55-.32z" />
+        </svg>
+      </a>
     </div>
   );
 }

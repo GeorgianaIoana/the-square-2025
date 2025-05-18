@@ -17,12 +17,15 @@ import {
   ChevronLeft,
 } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperRef } from "swiper";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css";
 import Testimonial from "./components/Testimonial";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import CookiePolicyPage from "./pages/CookiePolicyPage";
+import TermsAndConditions from "./pages/TermsAndConditions";
 
 const instructors = [
   { id: 1, name: "Instructor 1", description: "Descrierea instructorului 1" },
@@ -35,34 +38,48 @@ const teamMembers = [
   {
     name: "Vlad Ghiță",
     title: "CHESS TRAINER",
-    description: `Cu o carieră dedicată în totalitate șahului, Andrei Popescu este un instructor pasionat, cu peste un deceniu de experiență atât în competiții, cât și în activitatea de mentorat. Fost jucător de performanță, multiplu premiat la turnee naționale și internaționale, Andrei a ales să se concentreze pe formarea noilor generații de șahiști, având convingerea că șahul este mai mult decât un joc – este un instrument valoros pentru dezvoltarea personală și intelectuală.
-
-Metoda sa de predare se bazează pe o combinație echilibrată între teorie solidă, practică intensă și încurajarea gândirii strategice. Fiecare lecție este gândită astfel încât să fie adaptată nivelului elevului – de la începători care abia învață mutările.`,
+    description: `Cu o experiență de peste 17 ani în șahul de performanță, Vlad Ghiță este un pasionat al jocului care a disputat peste 800 de partide în turnee internaționale. Este Instructor Național FIDE din 2022 și Arbitru Național din 2025, statut care reflectă atât angajamentul său față de șah, cât și dorința de a contribui activ la formarea altor jucători.
+De-a lungul carierei, a obținut rezultate deosebite, printre care se numără: câștigarea premiului U2000 la Campionatul Național de Amatori al României (2025), victoria în Semifinala Campionatului Național al României (2021), locul I la categoria U1900 în cadrul turneului Mid-America Open (2017), precum și atingerea celui mai înalt rating FIDE personal, 2021.
+Este apreciat pentru abordarea sa structurată, formularea de planuri clare și stăpânirea finalurilor practice – în special cele de turnuri. În cadrul lecțiilor, pune accent pe înțelegerea principiilor strategice, recunoașterea pozițiilor-cheie și dezvoltarea gândirii autonome, astfel încât elevii să capete încredere în propriile decizii și să performeze în condiții reale de joc.
+În afara șahului, Vlad este pasionat de muzica clasică, tenisul de masă și descoperirea diversității culturale și gastronomice din întreaga lume – pasiuni care reflectă curiozitatea, echilibrul și profunzimea cu care abordează tot ceea ce face.`,
     image: "images/team/vlad.jpg",
   },
   {
     name: "Georgiana Stanciu",
     title: "CO-FOUNDER & CHESS TRAINER",
-    description: `Georgiana este o persoană caldă și foarte dedicată lecțiilor ei. Are o experiență de peste 28 ani, cu participare la competițiile naționale și internaționale. Este multiplă campioană națională la categoria ei de vârstă. De aseemenea, cele mai importante rezultate internaționale ale sale suntȘ locul 9 la Campionatul European de șah din Muntenegru 2009, locul 4 la Campionatele Mondiale școlare din Thailanda 2015 și locul 8 la Campionatul Mondial de șah din Rusia 2016. Elo-ul ei de vârf fide avut este 2054, iar categoria WNM (maestră națională).`,
+    description: `Georgiana a început șahul la vârsta de 6 ani, la clubul copiilor, unde sora ei participa adesea, alături de un antrenor foarte implicat în performanța copiilor. La doar 7 ani, devine campioană națională, iar copilaria ei își schimbă direcția într-o călătorie interesantă la campionatele europene și mondiale, plină de amintiri frumoase din țările străine, alături de colegi care reprezentau Romania. Șahul face parte din identitatea ei, căci a crescut pe cele 64 de pătrățele și îi este profund recunoscătoare acestui sport, care i-a șlefuit personalitatea. Astfel, la inițiativa Cristianei, dorește să îmbrățișeze Bucureștiul cu pasiunea ei și să ofere o platformă de instruire profesionistă pentru jucătorii de șah, la fel cum a beneficiat și ea ca junioară. A ocupat în fiecare an un loc pe podiumul național la șah clasic și rapid individual, însă locul 1 a fost obținut la categoriile fete sub 8 (2006, CN Predeal), fete sub 12 (2011, CN Voineasa), fete sub 18 ani (2016, CN Călimănești) și fete sub 20 ani (2018, CN Călimănești).
+
+Cele mai importante rezultate internaționale ale ei sunt: locul 9 la Campionatul European de șah clasic în Muntenegru 2009, locul 4 la Mondialele școlare din Thailanda 2015 si locul 8 la Campionatul Mondial de șah clasic din Rusia 2016. Elo-ul ei fide de vârf a fost 2054, la vârsta de 16 ani, iar titlul său în prezent este de WNM (maestră națională). Are 8 ani experiență de predarea șahului, iar din 2024 își investește mintea în programare ca Web Developer și Ux/Ui Designer. Locurile în grupa ei sunt adesea pline de cursanți și te așteaptă cu mult drag să îți rezervi locul. `,
     image: "images/team/georgiana.jpg",
   },
   {
     name: "Cristiana Stanciu",
     title: "CO-FOUNDER & CHESS TRAINER",
-    description: `Cristiana are experiență de șah și competiții de peste 9 ani, elo fide 1650 și categoria I. Pe lângă șah, are studii pedagogice și experiență de lucru cu copiii în club de șah, grădinițe, școlii și centre educaționale. Este pasionată de educație și dezvoltarea personală a copiilor, iar șahul este un instrument excelent pentru a-i ajuta să-și dezvolte abilitățile cognitive și sociale. Cristiana îmbină cunoștințele sale pedagogice cu pasiunea pentru șah, oferind lecții interactive și captivante care îi ajută pe elevi să învețe și să se dezvolte. Abordarea sa este adaptată nevoilor fiecărui elev, iar atmosfera pe care o creează în timpul lecțiilor este una prietenoasă și motivantă. Cristiana își propune să inspire și să încurajeze fiecare elev să-și atingă potențialul maxim prin intermediul șahului. Cristiana știe să facă lucrurile complexe din șah să pară mai simple și evidente. Este îndrăgită de copii și vine mereu cu idei interactive pentru a face experiența lecțiilor de șah mai plăcută.`,
+    description: `Cristiana a obținut multiple clasări pe podium la Campionatele Naționale de juniori pe echipe, alături de coechipierele ei de la CSM Craiova, și numeroase premii la turneele locale, atingând un rating FIDE de 1650 și categoria I.
+
+În urma studiilor sale, Cristiana a obținut certificatul pedagogic și a absolvit un Master în cadrul Royal College of Art din Londra, o experiență care i-a consolidat sensibilitatea artistică și capacitatea de a construi povești vizuale memorabile.
+
+Dar dincolo de realizările ei competiționale și academice, Cristiana are un talent secret: știe să scrie frumos despre orice, a scris numeroase poezii, pe care le-a citit pisicilor ei iubite. De aceea, ea se ocupă de imaginea clubului de șah și de interacțiunea cu publicul, fiind persoana care dă glas emoțiilor, ideilor și visurilor care definesc comunitatea noastră. Este amabilă, optimistă, sociabilă și are acel farmec natural de a crea un mediu cald și primitor în jurul ei.
+ Ca un pion care devine regină, Cristiana știe să se reinventeze și să creadă mereu în "mai bine".
+
+Este pasionată de educație și dezvoltare personală, iar șahul este pentru ea un instrument excelent prin care copiii își pot dezvolta gândirea, răbdarea și încrederea în sine. Cristiana știe cum să facă lucrurile complexe din șah să pară simple și distractive, iar acest dar se reflectă în entuziasmul și progresul copiilor care învață alături de ea – într-un mediu prietenos și creativ.`,
     image: "images/team/cris-chess.jpg",
   },
   {
     name: "Călin Gheorghiu",
     title: "CHESS TRAINER",
-    description: `Călin este Maestru FIDE de la vârsta de 16 ani, cu cel mai înalt rating fide de 2384 elo, iar pe chess.com 2757 elo. A fost multiplu campion național și a reprezentat România la campionatele mondiale de juniori din India. Are o carieră in IT, și este și instructor de șah cu 5 ani experiență. Vă asiguram că orele cu ell u vor fi doar plnde de idei și inspirație, ci memorabile. Călin este și stand up comedian, iar cursurile cu el te vor captiva din plin.`,
+    description: `Maestru FIDE încă de la vârsta de 16 ani, Călin a atins un vârf de 2384 Elo fide în clasamentul internațional și 2757 Elo pe platforma chess.com. Palmaresul său include multiple titluri de campion național, participarea la Campionatul Mondial de Juniori din India și participarea la Campionatul European din Muntenegru, reprezentând cu mândrie România.
+ Încă din copilărie, Călin a fost dedicat șahului și matematicii, domenii în care a excelat datorită conștiinciozității, inteligenței și creativității sale deosebite. A absolvit Facultatea de Matematică în Scoția, apoi a urmat un master în programare la Iași, pregătindu-se în prezent pentru a-și susține doctoratul. În paralel cu activitatea sa din domeniul IT, Călin are peste 5 ani de experiență ca instructor de șah, timp în care a format jucători cu rezultate remarcabile. Ceea ce îl diferențiază este stilul său interactiv și captivant de predare, influențat de pasiunea lui pentru stand-up comedy. Lecțiile cu el sunt atât instructive, cât și pline de energie și umor, creând un mediu de învățare prietenos, în care progresul devine o plăcere. Călin se bucură să contribuie la fericirea oamenilor: fie că progresează rapid la șah sau că râd la glumele sale, ca apoi să se retragă în liniște și să analizeze strategic cum ar fi putut face și mai bine ceea ce știe.
+Ești la început de drum sau un jucător avansat în căutare de un antrenor serios? alături de Călin vei descoperi șahul dintr-o perspectivă nouă – serioasă în competiție, dar relaxată în abordare.`,
     image: "images/team/calin.jpg",
   },
   {
-    name: "David Kim",
-    title: "Mentor",
-    description: `Guiding students one move at a time.`,
-    image: "https://randomuser.me/api/portraits/men/48.jpg",
+    name: "Mustafa Hamdan",
+    title: "CHESS TRAINER",
+    description: `Mustafa Hamdan este un instructor de șah pasionat, care vede fiecare partidă ca pe o lecție valoroasă de viață. El studiază atent fiecare mutare pentru a descoperi cum deciziile inspirate pot conduce la victorie, fiind influențat de partidele marilor maeștri, pe care le studiază zilnic. Mustafa este  ambițios, devotat și muncitor pentru a-și atinge obiectivele setate în performanța șahistă. Povestea lui a început ca student al cursurilor de grupă la The Square, la care participa activ si nu lipsea nicio ședință.
+La clubul de șah, a fost captivat de comunitatea prietenoasă, care l-a încurajat să își depășească limitele. Juca șah de plăcere online, iar în doar câteva luni a observat o dezvoltare remarcabilă alături de instructorii The Square. În doar două luni a atins un rating de 1700 pe Chess.com și își propune să participe la turneele locale și naționale. Abordarea sa didactică se bazează pe creativitate, deschideri și tactică, fiind dedicat să ajute fiecare copil să înțeleagă profund conceptele și să sprijine progresul lor înspre performanță. El poate să predea fluent în limba română, engleză și arabă, iar toți elevii săi participă cu drag și perseverează.
+`,
+    image: "images/team/mustafa.jpg",
   },
 ];
 
@@ -77,12 +94,13 @@ function App() {
     {
       url: "/images/banner/theSquare.jpg",
       title: "Antrenează-te cu profesioniști",
-      subtitle: "Professional chess instruction for all levels",
+      subtitle:
+        "Ești pasionat de șah? THE SQUARE este clubul ideal pentru tine!",
     },
     {
       url: "/images/banner/1.jpg",
       title: "Depășește-ți limitele",
-      subtitle: "Train with experienced grandmasters",
+      subtitle: "Setăm împreună obiectivele tale și le îndeplinim!",
     },
     {
       url: "/images/banner/2.jpg",
@@ -92,15 +110,12 @@ function App() {
 
   const galleryImages = [
     "/images/gallery/square-room.jpg",
-    "/images/gallery/take-a-sit.jpg",  
-      "/images/gallery/kids.jpg",   
-       "/images/gallery/happy-people.jpg",
+    "/images/gallery/kids.jpg",
+    "/images/gallery/happy-people.jpg",
     "/images/gallery/chess-camp-calin.jpg",
     "/images/gallery/chess-camp-vlad.jpg",
-   "/images/banner/2.jpg",
+    "/images/banner/2.jpg",
     "/images/banner/3.jpg",
-    "/images/gallery/simple-chess.jpg",
-    "/images/gallery/vlad-prize.jpg",
   ];
 
   useEffect(() => {
@@ -144,11 +159,11 @@ function App() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  function handleSlideChange(swiper: Swiper): void {
+  function handleSlideChange(swiper: SwiperRef): void {
     throw new Error("Function not implemented.");
   }
 
-  return (
+  const MainContent = () => (
     <div className="min-h-screen bg-[#001a00]">
       <nav
         className={`fixed w-full z-50 transition-all duration-300 relative ${
@@ -168,26 +183,54 @@ function App() {
 
             {/* Desktop menu */}
             <div className="hidden md:flex space-x-4 ml-auto font-archivo tracking-[0.1em] text-[#badad5] text-right sm:pr-[40px]">
-              {[
-                "about",
-                "team",
-                "services",
-                "gallery",
-                "testimonials",
-                "contact",
-              ].map((section) => (
-                <button
-                  key={section}
-                  onClick={() => scrollToSection(section)}
-                  className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
-                    isScrolled
-                      ? "text-white hover:bg-[#a6b6e0] hover:text-[#233d36]"
-                      : "text-[#a6b6e0] hover:bg-[#a6b6e0] hover:text-white"
-                  }`}
-                >
-                  {section.charAt(0).toUpperCase() + section.slice(1)}
-                </button>
-              ))}
+              <button
+                onClick={() => scrollToSection("about")}
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                  isScrolled ? "text-white" : "text-[#a6b6e0]"
+                }`}
+              >
+                Despre noi
+              </button>
+              <button
+                onClick={() => scrollToSection("team")}
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                  isScrolled ? "text-white" : "text-[#a6b6e0]"
+                }`}
+              >
+                Echipa
+              </button>
+              <button
+                onClick={() => scrollToSection("services")}
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                  isScrolled ? "text-white" : "text-[#a6b6e0]"
+                }`}
+              >
+                Cursuri de șah
+              </button>
+              <button
+                onClick={() => scrollToSection("gallery")}
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                  isScrolled ? "text-white" : "text-[#a6b6e0]"
+                }`}
+              >
+                Galerie
+              </button>
+              <button
+                onClick={() => scrollToSection("testimonials")}
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                  isScrolled ? "text-white" : "text-[#a6b6e0]"
+                }`}
+              >
+                Testimoniale
+              </button>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                  isScrolled ? "text-white" : "text-[#a6b6e0]"
+                }`}
+              >
+                Contact
+              </button>
             </div>
 
             {/* Mobile menu toggle */}
@@ -248,25 +291,60 @@ function App() {
                 </svg>
               </button>
             </div>
-            {[
-              "about",
-              "team",
-              "services",
-              "gallery",
-              "testimonials",
-              "contact",
-            ].map((section) => (
-              <button
-                key={section}
-                onClick={() => {
-                  scrollToSection(section);
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] hover:bg-[#a6b6e0] hover:text-[#233d36] transition"
-              >
-                {section.charAt(0).toUpperCase() + section.slice(1)}
-              </button>
-            ))}
+            <button
+              onClick={() => {
+                scrollToSection("about");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition"
+            >
+              Despre noi
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("team");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition"
+            >
+              Echipa
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("services");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition"
+            >
+              Cursuri de șah
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("gallery");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition"
+            >
+              Galerie
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("testimonials");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] hover:bg-[#a6b6e0] hover:text-[#233d36] transition"
+            >
+              Testimoniale
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("contact");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] hover:bg-[#a6b6e0] hover:text-[#233d36] transition"
+            >
+              Contact
+            </button>
           </div>
         )}
       </nav>
@@ -296,12 +374,14 @@ function App() {
                       <p className="text-base sm:text-lg md:text-xl mb-6 tracking-wide text-[#a6b6e0]">
                         {image.subtitle}
                       </p>
-                      <button
-                        onClick={() => scrollToSection("contact")}
-                        className="bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
-                      >
-                        Join Our Chess Club
-                      </button>
+                      <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
+                        <button
+                          onClick={() => scrollToSection("contact")}
+                          className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                        >
+                          Înscrie-te la primul tău curs!
+                        </button>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -336,10 +416,13 @@ function App() {
               <div className="col-span-12 lg:col-span-8 flex flex-col items-start relative ml-[12px]">
                 <div>
                   <div className="absolute rounded-full  border-[1.5px] lg:border-3 border-[#D3B77B] z-[-1] h-[43px] w-[43px] sm:h-[123px] sm:w-[123px] absolute top-[-11px] sm:top-[25px] left-[-19px] sm:left-[-59px]"></div>
-                  <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-[400] sm:tracking-[0.1em] sm:text-[52px] leading-[26.38px] sm:leading-[57px] mb-[20px] sm:mb-[40px]">
-                    About Us
+                  <span className="font-archivo text-center flex justify-center text-[#a6b6e0] text-[24px] font-[400] tracking-[0.1em] sm:text-[35px] leading-[125%]">
+                    Despre
+                  </span>
+                  <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-[400] tracking-[0.1em] sm:text-[45px]  mb-[20px] sm:mb-[40px] leading-[125%]">
+                    THE SQUARE
                   </h4>
-                  <p className="font-archivo sm:text-[15px] text-[#a6b6e0] text-left font-[500] sm:px-0 tracking-[0.1em]  leading-[15.12px] sm:leading-[17.64px] leading-[1.2] font-[400] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px] text-[12px] sm:text-[14px] max-w-[289px] sm:max-w-[595px]">
+                  <p className="font-archivo sm:text-[16px] text-[#a6b6e0] font-[500] sm:px-0 tracking-[0.1em] leading-[125%] font-[400] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px] text-[13px] max-w-[320px] sm:max-w-[665px]">
                     Clubul de Șah THE SQUARE este spațiul în care pasiunea
                     pentru șah capătă formă, indiferent de vârstă sau nivel de
                     experiență. Fondat din dorința de a promova gândirea
@@ -353,16 +436,15 @@ function App() {
                     ajutăm să îți setezi obiective și să le atingi într-un
                     spațiu primitor și prietenos.
                   </p>
-                  
-                  <button
-                        onClick={() => scrollToSection("contact")}
-                        className="sm:mt-[40px] sm:ml-[150px] text-center bg-[#badad5] text-[#233d36] sm:ml-[0px] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
-                      >
-                        Înscrie-te la primul tău curs!
-                      </button>
 
-
-
+                  <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
+                    <button
+                      onClick={() => scrollToSection("contact")}
+                      className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                    >
+                      Înscrie-te la primul tău curs!
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="col-span-12 lg:col-span-4 relative mb-[66px] sm:mb-[95px] rounded-[20px] mx-auto inline-block">
@@ -401,44 +483,54 @@ function App() {
             className="sm:hidden absolute opacity-100 sm:opacity-100 sm:right-[0px] bottom-[0%] sm:top-[140px] max-w-[190px] z-[-1]"
           />
 
-<div className="sm:container mx-auto">
+          <div className="sm:container mx-auto">
             <div className="grid grid-cols-12 gap-4 px-4 sm:px-0 mt-[46px] sm:mt-[75px]">
               <div className="col-span-12 lg:col-span-8 flex flex-col items-start relative ml-[12px]">
                 <div>
                   <div className="absolute rounded-full  border-[1.5px] lg:border-3 border-[#D3B77B] z-[-1] h-[43px] w-[43px] sm:h-[123px] sm:w-[123px] absolute top-[-11px] sm:top-[25px] left-[-19px] sm:left-[-59px]"></div>
-                  <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-[400] sm:tracking-[0.1em] sm:text-[52px] leading-[26.38px] sm:leading-[57px] mb-[20px] sm:mb-[40px]">
+                  <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-[400] sm:tracking-[0.1em] sm:text-[52px] leading-[125%] mb-[20px] sm:mb-[40px]">
                     Beneficiile Șahului
                   </h4>
-                  <p className="font-archivo sm:text-[15px] text-[#a6b6e0] text-left font-[500] sm:px-0 tracking-[0.1em]  leading-[15.12px] sm:leading-[17.64px] leading-[1.2] font-[400] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px] text-[12px] sm:text-[14px] max-w-[289px] sm:max-w-[595px]">
-                    Clubul de Șah THE SQUARE este spațiul în care pasiunea
-                    pentru șah capătă formă, indiferent de vârstă sau nivel de
-                    experiență. Fondat din dorința de a promova gândirea
-                    strategică, disciplina și spiritul de comunitate, clubul
-                    nostru a devenit un punct de întâlnire pentru toți cei care
-                    vor să se dezvolte prin șah. Suntem o echipă de antrenori
-                    dedicați, convinși de puterea șahului de a educa, motiva și
-                    aduce oamenii împreună. Organizăm cursuri pentru copii și
-                    adulți, competiții, pregătiri pentru turnee și evenimente
-                    interactive care încurajează învățarea și socializarea. Te
-                    ajutăm să îți setezi obiective și să le atingi într-un
-                    spațiu primitor și prietenos.
+                  <p className="font-archivo sm:text-[16px] text-[#a6b6e0] text-left font-[500] sm:px-0 tracking-[0.1em] leading-[125%] font-[400] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px] text-[12px] sm:text-[14px] max-w-[320px] sm:max-w-[665px]">
+                    <p className="sm:text-[16px] font-archivo tracking-[0.1em] leading-[125%]">
+                      I. Concentrare și prezență! Fiecare partidă de șah este o
+                      oportunitate de a cultiva răbdarea.{" "}
+                    </p>
+                    <p className="sm:text-[16px] font-archivo tracking-[0.1em] leading-[125%]">
+                      II. Gândire strategică! Îți dezvolți capacitatea de a
+                      anticipa mutări și a lua decizii strategice atât pe tabla
+                      de șah, cât și în viață.
+                    </p>
+                    <p className="sm:text-[16px] font-archivo tracking-[0.1em] leading-[125%]">
+                      {" "}
+                      III. Evoluezi continuu, în ritmul tău La THE SQUARE ne
+                      ghidează bucuria. Apreciem fiecare pas către progres.
+                      Crești cu răbdare, poți să te bucuri de proces și să îți
+                      cultivi încrederea în forțele proprii.{" "}
+                    </p>
+                    <p className="sm:text-[16px] font-archivo tracking-[0.1em] leading-[125%]">
+                      IV. Faci parte dintr-o comunitate prietenoasă, cu valori
+                      comune La THE SQUARE, jucători începători și avansați se
+                      întâlnesc, se provoacă, se susțin. Fie că vii pentru
+                      socializare, învățare sau competiție, lumea THE SQUARE îți
+                      este deschisă.
+                    </p>
                   </p>
-                  
-                  <button
-                        onClick={() => scrollToSection("contact")}
-                        className="sm:mt-[40px] sm:ml-[150px] text-center bg-[#badad5] text-[#233d36] sm:ml-[0px] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
-                      >
-                        Înscrie-te la primul tău curs!
-                      </button>
 
-
-
+                  <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
+                    <button
+                      onClick={() => scrollToSection("contact")}
+                      className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                    >
+                      Înscrie-te la primul tău curs!
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="col-span-12 lg:col-span-4 relative mb-[66px] sm:mb-[95px] rounded-[20px] mx-auto inline-block">
                 <div className="relative w-full h-full shadow-[-10px_11px_35px_rgba(0,0,0,0.25)] rounded-[20px]">
                   <img
-                    src="/public/images/banner/theSquare.jpg"
+                    src="/public/images/banner/chess-board.jpg"
                     className="w-[322px] h-[338px] sm:w-[495px] sm:h-[469px] rounded-[20px] object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/80 to-[#858585]/0 rounded-[17px] opacity-[0.8]"></div>
@@ -486,13 +578,13 @@ function App() {
 
                     {/* Textul membrului în dreapta */}
                     <div className="lg:w-1/2 max-w-3xl mx-auto lg:pl-16 sm:ml-[360px] ">
-                      <p className="text-xs sm:text-sm uppercase tracking-wider text-[#a6b6e0] mb-2">
+                      <p className="text-xs sm:text-sm uppercase tracking-wider text-[#a6b6e0] mb-2 font-archivo tracking-[0.1em]">
                         {member.title}
                       </p>
-                      <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[#a6b6e0] tracking-wide">
+                      <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[#a6b6e0] tracking-wide font-archivo tracking-[0.1em]">
                         {member.name}
                       </h2>
-                      <p className="text-[#a6b6e0] mb-4 leading-relaxed text-sm sm:text-base">
+                      <p className="text-[#a6b6e0] mb-4 leading-relaxed text-sm sm:text-base font-archivo tracking-[0.1em]">
                         {member.description}
                       </p>
                     </div>
@@ -515,75 +607,131 @@ function App() {
 
       <div className="w-full sm:pt-[109px] border-[#233d36] border-t-[1px] pt-[62px] sm:pb-[172px] pb-[68px] relative overflow-hidden">
         <div className="container mx-auto">
-          <h3 className="text-[10px] sm:text-[12px] text-[#badad5]  leading-[12.6px] sm:leading-[15.12px] tracking-[4px] sm:tracking-[4.96px] text-[#fff] font-outfit font-[500]  uppercase text-center">
-            THE THINGS WE OFFER
-          </h3>
           <h2 className="sm:text-[40px] text-[24px] leading-[125%] tracking-[0.1em] font-[400] font-archivo  text-[#a6b6e0] text-center sm:mt-[14px] mt-[7px] mx-auto">
-            WHAT WE STAND FOR
+            MISIUNEA NOASTRĂ
           </h2>
 
           <p className="text-[#a6b6e0] font-archivo  font-[400] leading-[125%] tracking-[0.1em] mx-auto max-w-[313px] sm:max-w-[544px] text-center sm:mt-[19px] mt-[21px]">
-            Whether you need a punctual ride, a dedicated driver for your stay,
-            or a service crafted around your schedule, we deliver with
-            unwavering dependability and effortless precision.
+            Ne dorim să contribuim la educația copiilor și adulților,
+            oferindu-le prin șah o unealtă valoroasă: capacitatea de a gândi
+            înainte să acționeze. Fiecare mutare pe tablă este o lecție despre
+            răbdare, strategie și responsabilitate. Ne ghidăm activitatea cu
+            integritate, punând mereu calitatea și respectul în centrul a tot
+            ceea ce facem.
           </p>
+          <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+            >
+              Sprijină educația!
+            </button>
+          </div>
 
           <div className="grid sm:grid-cols-3 grid-cols-1 mt-[60px] sm:mt-[112px] relative">
             <hr className="border-[#badad5] border-b-[1px] absolute w-[65%] mx-auto left-0 right-0 top-[28px] z-[-1] hidden sm:block" />
             <div className="text-left">
               <div className="text-center">
                 <img
-                  src="/images/banner/stars.svg"
+                  src="/images/banner/chess-king-purple.svg"
                   className="w-auto h-[48.43px] sm:h-[64.58px] mx-auto bg-custom-black-900 px-[43px] "
                 />
-                <h4 className="text-[#a6b6e0] font-archivo  font-[400] uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
-                  THE STANDARD
+                <h4 className="text-[#badad5] font-archivo  font-[400] uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
+                  EDUCAȚIE
                 </h4>
-                <h5 className="text-[10px] text-[#badad5]  sm:text-[12px] leading-[12.6px] sm:leading-[15.12px] tracking-[4px] sm:tracking-[4.96px] text-[#fff] font-outfit font-[500]  uppercase mt-[7px] sm:mt-[9.69px]">
-                  EXCELLENCE
-                </h5>
+                <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-center sm:mt-[36px] mt-[21px] text-[#a6b6e0] font-archivo font-[400] leading-[125%] tracking-[0.1em]">
+                  <p>
+                    Vă invităm să susțineți lecțiile și turneele de șah
+                    desfășurate la Clubul de Șah <strong>THE SQUARE</strong>{" "}
+                    astfel:
+                    <ul>
+                      <li>
+                        1. Prin încheierea unui{" "}
+                        <strong>contract de sponsorizare</strong> – dedicat
+                        persoanelor juridice, pe care îl puteți descărca{" "}
+                        <a
+                          href="https://static.anaf.ro/static/10/Anaf/formulare/177_OPANAF_1679_2022.pdf"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#badad5] hover:text-[#a6b6e0]"
+                        >
+                          <strong>aici.</strong>
+                        </a>
+                      </li>
+                      <li>
+                        2. Prin redirecționarea a{" "}
+                        <strong>3,5% din impozitul pe venit</strong> – opțiune
+                        valabilă pentru persoanele fizice
+                      </li>
+                    </ul>
+                    Sumele acestea sunt deduse direct din impozitul pe profit,
+                    pe care oricum îl datorați statului.
+                  </p>
+                </section>
               </div>
             </div>
-            <div className="sm:hidden block w-[1px] h-[50px] mb-[22.14px] mt-[17px] bg-[#2c2c2c] mx-auto"></div>
+            <div className="sm:hidden block w-[1px] h-[50px] mb-[22.14px] mt-[17px] bg-transparent mx-auto"></div>
             <div className="text-center">
               <div className="text-center">
                 <img
-                  src="/images/banner/stars.svg"
+                  src="/images/banner/chess-board-purple.svg"
                   className="w-auto h-[48.43px] sm:h-[64.58px] mx-auto bg-custom-black-900 px-[43px]"
                 />
-                <h4 className="text-[#a6b6e0] font-archivo  font-[400] uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
-                  DEPENDABILITY
+                <h4 className="text-[#badad5] font-archivo  font-[400] uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
+                  INTEGRITATE
                 </h4>
-                <h5 className="text-[10px] text-[#badad5]  sm:text-[12px] leading-[12.6px] sm:leading-[15.12px] tracking-[4px] sm:tracking-[4.96px] text-[#fff] font-outfit font-[500]  uppercase mt-[7px] sm:mt-[9.69px]">
-                  WITHOUT QUESTION
-                </h5>
+                <p className=" text-[#a6b6e0] font-archivo  font-[400] leading-[125%] tracking-[0.1em] mx-auto max-w-[313px] sm:max-w-[500px] text-center sm:mt-[19px] mt-[21px]">
+                  <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-center sm:mt-[19px] mt-[21px] sm:p-4 text-[#a6b6e0] font-archivo font-[400] leading-[125%] tracking-[0.1em]">
+                    <p>
+                      Fondurile obținute vor fi folosite pentru:
+                      <ul>
+                        <li>
+                          Participarea cursanților împreună cu antrenorii, la
+                          competițiile naționale și internaționale
+                        </li>
+                        <li>
+                          Achiziționarea de echipamente și materiale sportive
+                          necesare desfășurării activităților
+                        </li>
+                      </ul>
+                      Vă rugăm să ne trimiteți contractul semnat și ștampilat,
+                      în format pdf, la adresa de e-mail:{" "}
+                      <strong>contact@thesquarechess.com</strong>
+                    </p>
+                  </section>
+                </p>
               </div>
             </div>
-            <div className="sm:hidden block w-[1px] h-[50px] mb-[22.14px] mt-[17px] bg-[#2c2c2c] mx-auto"></div>
+            <div className="sm:hidden block w-[1px] h-[50px] mb-[22.14px] mt-[17px] bg-transparent mx-auto"></div>
             <div className="text-right">
               <div className="text-center">
                 <img
-                  src="/images/banner/stars.svg"
+                  src="/images/banner/chess-queen-purple.svg"
                   className="w-auto h-[48.43px] sm:h-[64.58px] mx-auto bg-custom-black-900 px-[43px]"
                 />
-                <h4 className="text-[#a6b6e0] font-archivo  font-[400] uppercase leading-[125%] tracking-[0.1em]text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
-                  EFFORTLESS
+                <h4 className="text-[#badad5] font-archivo  font-[400] uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
+                  COMUNITATE
                 </h4>
-                <h5 className="text-[10px] text-[#badad5] sm:text-[12px] leading-[12.6px] sm:leading-[15.12px] tracking-[4px] sm:tracking-[4.96px] text-[#fff] font-outfit font-[500]  uppercase mt-[7px] sm:mt-[9.69px]">
-                  SERVICE
-                </h5>
+                <div className="sm:p-4 text-[#a6b6e0] font-archivo font-[400] leading-[125%] tracking-[0.1em] mx-auto text-center sm:mt-[19px] mt-[21px]">
+                  <p>
+                    <strong>Pentru persoanele fizice</strong> — dacă dorești să
+                    redirecționezi 3,5% din impozitul tău anual pe venit
+                    <ul>
+                      <li>
+                        Completează formularul nostru de contact și vom reveni
+                        imediat către tine cu toate detaliile necesare.
+                      </li>
+                    </ul>
+                    În plus, poți contribui la organizarea workshop-urilor
+                    noastre și a tunreelor noastre, prin susținerea lor
+                    financiară, devenind astfel partener al acestor evenimente
+                    importante pentru comunitate.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <img
-          src="{{ asset('images/landingpage/wef/lightLeft.png') }}"
-          className="absolute left-0 top-[50%] max-w-[160px] z-[-1] sm:block hidden"
-        />
-        <img
-          src="{{ asset('images/landingpage/wef/lightRight.png') }}"
-          className="absolute right-0 top-[10%] max-w-[160px] z-[-1] sm:block hidden"
-        />
       </div>
 
       <ServicesSection />
@@ -652,24 +800,36 @@ function App() {
       <footer className="bg-[#001a00] border-t border-[#233d36]">
         <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-10 lg:px-8">
           <nav
-            className="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6 font-archivo tracking-wide "
+            className="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6 font-archivo tracking-wide"
             aria-label="Footer"
           >
-            <a href="#" className="text-[#a6b6e0] hover:text-white">
+            <Link
+              to="/privacy-policy"
+              className="text-[#a6b6e0] hover:text-[#badad5]"
+            >
               Privacy Policy
-            </a>
-            <a href="#" className="text-[#a6b6e0] hover:text-white">
+            </Link>
+            <Link
+              to="/terms-and-conditions"
+              className="text-[#a6b6e0] hover:text-[#badad5]"
+            >
               Terms & Conditions
-            </a>
-            <a href="#" className="text-[#a6b6e0] hover:text-white">
+            </Link>
+            <Link
+              to="/cookie-policy"
+              className="text-[#a6b6e0] hover:text-[#badad5]"
+            >
               Cookie Policy
-            </a>
-            <a href="#" className="text-[#a6b6e0] hover:text-white">
+            </Link>
+            <a href="#contact" className="text-[#a6b6e0] hover:text-[#badad5]">
               Contact
             </a>
           </nav>
           <div className="mt-16 flex justify-center gap-x-10">
-            <a href="#" className="text-[#a6b6e0] hover:text-gray-300">
+            <a
+              href="https://www.facebook.com/profile.php?id=61556605701740"
+              className="text-[#a6b6e0] hover:text-[#badad5]"
+            >
               <span className="sr-only">Facebook</span>
               <svg
                 className="size-6"
@@ -684,7 +844,10 @@ function App() {
                 />
               </svg>
             </a>
-            <a href="#" className="text-[#a6b6e0] hover:text-gray-300">
+            <a
+              href="https://www.instagram.com/thesquare_chess/"
+              className="text-[#a6b6e0] hover:text-[#badad5]"
+            >
               <span className="sr-only">Instagram</span>
               <svg
                 className="size-6"
@@ -699,55 +862,62 @@ function App() {
                 />
               </svg>
             </a>
-            <a href="#" className="text-[#a6b6e0] hover:text-gray-300">
-              <span className="sr-only">X</span>
+            <a
+              href="https://wa.me/0742898793"
+              className="text-[#a6b6e0] hover:text-[#badad5]"
+            >
+              <span className="sr-only">What'sApp</span>
               <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                viewBox="0 0 50 50"
                 className="size-6"
                 fill="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
               >
-                <path d="M13.6823 10.6218L20.2391 3H18.6854L12.9921 9.61788L8.44486 3H3.2002L10.0765 13.0074L3.2002 21H4.75404L10.7663 14.0113L15.5685 21H20.8131L13.6819 10.6218H13.6823ZM11.5541 13.0956L10.8574 12.0991L5.31391 4.16971H7.70053L12.1742 10.5689L12.8709 11.5655L18.6861 19.8835H16.2995L11.5541 13.096V13.0956Z" />
+                <path d="M 25 2 C 12.309534 2 2 12.309534 2 25 C 2 29.079097 3.1186875 32.88588 4.984375 36.208984 L 2.0371094 46.730469 A 1.0001 1.0001 0 0 0 3.2402344 47.970703 L 14.210938 45.251953 C 17.434629 46.972929 21.092591 48 25 48 C 37.690466 48 48 37.690466 48 25 C 48 12.309534 37.690466 2 25 2 z M 25 4 C 36.609534 4 46 13.390466 46 25 C 46 36.609534 36.609534 46 25 46 C 21.278025 46 17.792121 45.029635 14.761719 43.333984 A 1.0001 1.0001 0 0 0 14.033203 43.236328 L 4.4257812 45.617188 L 7.0019531 36.425781 A 1.0001 1.0001 0 0 0 6.9023438 35.646484 C 5.0606869 32.523592 4 28.890107 4 25 C 4 13.390466 13.390466 4 25 4 z M 16.642578 13 C 16.001539 13 15.086045 13.23849 14.333984 14.048828 C 13.882268 14.535548 12 16.369511 12 19.59375 C 12 22.955271 14.331391 25.855848 14.613281 26.228516 L 14.615234 26.228516 L 14.615234 26.230469 C 14.588494 26.195329 14.973031 26.752191 15.486328 27.419922 C 15.999626 28.087653 16.717405 28.96464 17.619141 29.914062 C 19.422612 31.812909 21.958282 34.007419 25.105469 35.349609 C 26.554789 35.966779 27.698179 36.339417 28.564453 36.611328 C 30.169845 37.115426 31.632073 37.038799 32.730469 36.876953 C 33.55263 36.755876 34.456878 36.361114 35.351562 35.794922 C 36.246248 35.22873 37.12309 34.524722 37.509766 33.455078 C 37.786772 32.688244 37.927591 31.979598 37.978516 31.396484 C 38.003976 31.104927 38.007211 30.847602 37.988281 30.609375 C 37.969311 30.371148 37.989581 30.188664 37.767578 29.824219 C 37.302009 29.059804 36.774753 29.039853 36.224609 28.767578 C 35.918939 28.616297 35.048661 28.191329 34.175781 27.775391 C 33.303883 27.35992 32.54892 26.991953 32.083984 26.826172 C 31.790239 26.720488 31.431556 26.568352 30.914062 26.626953 C 30.396569 26.685553 29.88546 27.058933 29.587891 27.5 C 29.305837 27.918069 28.170387 29.258349 27.824219 29.652344 C 27.819619 29.649544 27.849659 29.663383 27.712891 29.595703 C 27.284761 29.383815 26.761157 29.203652 25.986328 28.794922 C 25.2115 28.386192 24.242255 27.782635 23.181641 26.847656 L 23.181641 26.845703 C 21.603029 25.455949 20.497272 23.711106 20.148438 23.125 C 20.171937 23.09704 20.145643 23.130901 20.195312 23.082031 L 20.197266 23.080078 C 20.553781 22.728924 20.869739 22.309521 21.136719 22.001953 C 21.515257 21.565866 21.68231 21.181437 21.863281 20.822266 C 22.223954 20.10644 22.02313 19.318742 21.814453 18.904297 L 21.814453 18.902344 C 21.828863 18.931014 21.701572 18.650157 21.564453 18.326172 C 21.426943 18.001263 21.251663 17.580039 21.064453 17.130859 C 20.690033 16.232501 20.272027 15.224912 20.023438 14.634766 L 20.023438 14.632812 C 19.730591 13.937684 19.334395 13.436908 18.816406 13.195312 C 18.298417 12.953717 17.840778 13.022402 17.822266 13.021484 L 17.820312 13.021484 C 17.450668 13.004432 17.045038 13 16.642578 13 z M 16.642578 15 C 17.028118 15 17.408214 15.004701 17.726562 15.019531 C 18.054056 15.035851 18.033687 15.037192 17.970703 15.007812 C 17.906713 14.977972 17.993533 14.968282 18.179688 15.410156 C 18.423098 15.98801 18.84317 16.999249 19.21875 17.900391 C 19.40654 18.350961 19.582292 18.773816 19.722656 19.105469 C 19.863021 19.437122 19.939077 19.622295 20.027344 19.798828 L 20.027344 19.800781 L 20.029297 19.802734 C 20.115837 19.973483 20.108185 19.864164 20.078125 19.923828 C 19.867096 20.342656 19.838461 20.445493 19.625 20.691406 C 19.29998 21.065838 18.968453 21.483404 18.792969 21.65625 C 18.639439 21.80707 18.36242 22.042032 18.189453 22.501953 C 18.016221 22.962578 18.097073 23.59457 18.375 24.066406 C 18.745032 24.6946 19.964406 26.679307 21.859375 28.347656 C 23.05276 29.399678 24.164563 30.095933 25.052734 30.564453 C 25.940906 31.032973 26.664301 31.306607 26.826172 31.386719 C 27.210549 31.576953 27.630655 31.72467 28.119141 31.666016 C 28.607627 31.607366 29.02878 31.310979 29.296875 31.007812 L 29.298828 31.005859 C 29.655629 30.601347 30.715848 29.390728 31.224609 28.644531 C 31.246169 28.652131 31.239109 28.646231 31.408203 28.707031 L 31.408203 28.708984 L 31.410156 28.708984 C 31.487356 28.736474 32.454286 29.169267 33.316406 29.580078 C 34.178526 29.990889 35.053561 30.417875 35.337891 30.558594 C 35.748225 30.761674 35.942113 30.893881 35.992188 30.894531 C 35.995572 30.982516 35.998992 31.07786 35.986328 31.222656 C 35.951258 31.624292 35.8439 32.180225 35.628906 32.775391 C 35.523582 33.066746 34.975018 33.667661 34.283203 34.105469 C 33.591388 34.543277 32.749338 34.852514 32.4375 34.898438 C 31.499896 35.036591 30.386672 35.087027 29.164062 34.703125 C 28.316336 34.437036 27.259305 34.092596 25.890625 33.509766 C 23.114812 32.325956 20.755591 30.311513 19.070312 28.537109 C 18.227674 27.649908 17.552562 26.824019 17.072266 26.199219 C 16.592866 25.575584 16.383528 25.251054 16.208984 25.021484 L 16.207031 25.019531 C 15.897202 24.609805 14 21.970851 14 19.59375 C 14 17.077989 15.168497 16.091436 15.800781 15.410156 C 16.132721 15.052495 16.495617 15 16.642578 15 z"></path>
               </svg>
             </a>
-            <a href="#" className="text-[#a6b6e0] hover:text-gray-300">
-              <span className="sr-only">GitHub</span>
+
+            <a
+              href="https://www.linkedin.com/company/105457314/admin/dashboard/"
+              className="text-[#a6b6e0] hover:text-[#badad5]"
+            >
+              <span className="sr-only">Linkedin</span>
               <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
+                width="100"
+                height="100"
+                viewBox="0 0 50 50"
                 className="size-6"
                 fill="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                  clip-rule="evenodd"
-                />
+                <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z"></path>
               </svg>
             </a>
-            <a href="#" className="text-[#a6b6e0] hover:text-gray-300">
-              <span className="sr-only">YouTube</span>
+            <a href="#" className="text-[#a6b6e0] hover:text-[#badad5]">
+              <span className="sr-only">TikTok</span>
               <svg
+                xmlns="http://www.w3.org/2000/svg"
+                x="0px"
+                y="0px"
                 className="size-6"
                 fill="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+                viewBox="0 0 50 50"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z"
-                  clip-rule="evenodd"
-                />
+                <path d="M 9 4 C 6.2495759 4 4 6.2495759 4 9 L 4 41 C 4 43.750424 6.2495759 46 9 46 L 41 46 C 43.750424 46 46 43.750424 46 41 L 46 9 C 46 6.2495759 43.750424 4 41 4 L 9 4 z M 9 6 L 41 6 C 42.671576 6 44 7.3284241 44 9 L 44 41 C 44 42.671576 42.671576 44 41 44 L 9 44 C 7.3284241 44 6 42.671576 6 41 L 6 9 C 6 7.3284241 7.3284241 6 9 6 z M 26.042969 10 A 1.0001 1.0001 0 0 0 25.042969 10.998047 C 25.042969 10.998047 25.031984 15.873262 25.021484 20.759766 C 25.016184 23.203017 25.009799 25.64879 25.005859 27.490234 C 25.001922 29.331679 25 30.496833 25 30.59375 C 25 32.409009 23.351421 33.892578 21.472656 33.892578 C 19.608867 33.892578 18.121094 32.402853 18.121094 30.539062 C 18.121094 28.675273 19.608867 27.1875 21.472656 27.1875 C 21.535796 27.1875 21.663054 27.208245 21.880859 27.234375 A 1.0001 1.0001 0 0 0 23 26.240234 L 23 22.039062 A 1.0001 1.0001 0 0 0 22.0625 21.041016 C 21.906673 21.031216 21.710581 21.011719 21.472656 21.011719 C 16.223131 21.011719 11.945313 25.289537 11.945312 30.539062 C 11.945312 35.788589 16.223131 40.066406 21.472656 40.066406 C 26.72204 40.066409 31 35.788588 31 30.539062 L 31 21.490234 C 32.454611 22.653646 34.267517 23.390625 36.269531 23.390625 C 36.542588 23.390625 36.802305 23.374442 37.050781 23.351562 A 1.0001 1.0001 0 0 0 37.958984 22.355469 L 37.958984 17.685547 A 1.0001 1.0001 0 0 0 37.03125 16.6875 C 33.886609 16.461891 31.379838 14.012216 31.052734 10.896484 A 1.0001 1.0001 0 0 0 30.058594 10 L 26.042969 10 z M 27.041016 12 L 29.322266 12 C 30.049047 15.2987 32.626734 17.814404 35.958984 18.445312 L 35.958984 21.310547 C 33.820114 21.201935 31.941489 20.134948 30.835938 18.453125 A 1.0001 1.0001 0 0 0 29 19.003906 L 29 30.539062 C 29 34.707538 25.641273 38.066406 21.472656 38.066406 C 17.304181 38.066406 13.945312 34.707538 13.945312 30.539062 C 13.945312 26.538539 17.066083 23.363182 21 23.107422 L 21 25.283203 C 18.286416 25.535721 16.121094 27.762246 16.121094 30.539062 C 16.121094 33.483274 18.528445 35.892578 21.472656 35.892578 C 24.401892 35.892578 27 33.586491 27 30.59375 C 27 30.64267 27.001859 29.335571 27.005859 27.494141 C 27.009759 25.65271 27.016224 23.20692 27.021484 20.763672 C 27.030884 16.376775 27.039186 12.849206 27.041016 12 z"></path>
               </svg>
             </a>
           </div>
-          <p className="mt-10 text-center text-sm/6 text-gray-400">
-            &copy; 2024 Your Company, Inc. All rights reserved.
+          <p className="text-[#a6b6e0] hover:text-[#badad5] mt-10 text-center text-sm/6">
+            &copy; 2025 THE SQUARE, Inc. All rights reserved.
           </p>
         </div>
       </footer>
       <a
-        href="https://wa.me/40712345678" // Înlocuiește cu numărul tău
+        href="https://wa.me/0742898793"
         className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg transition-all duration-300"
         target="_blank"
         rel="noopener noreferrer"
@@ -763,6 +933,17 @@ function App() {
         </svg>
       </a>
     </div>
+  );
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        <Route path="/cookie-policy" element={<CookiePolicyPage />} />
+        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/" element={<MainContent />} />
+      </Routes>
+    </Router>
   );
 }
 

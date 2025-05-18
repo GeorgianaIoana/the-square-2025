@@ -18,9 +18,10 @@ const services = [
     price: "380 lei/lună",
     icon: <Book />,
     features: [
-      "4 sesiuni săptămânale",
+      "4 sesiuni săptămânale cu instructor",
       "6 ore de curs",
-      "teme și verificare exerciții",
+      "disponibil fizic și online",
+      "coach online pentru întrebări 24/7",
     ],
   },
   {
@@ -28,9 +29,10 @@ const services = [
     price: "260 lei/lună",
     icon: <Pen />,
     features: [
-      "4 sesiuni săptămânale",
+      "4 sesiuni săptămânale instructor",
       "4 ore de curs",
       "teme și verificare exerciții",
+      "activități distractive pentru copii",
     ],
   },
   {
@@ -38,20 +40,22 @@ const services = [
     price: "60lei",
     icon: <Trophy />,
     features: [
-      "Private 1-on-1 sessions",
-      "Grandmaster coaching",
-      "Competition training",
-      "Video analysis",
+      "5 runde de sah rapid (10+5)",
+      "prezența unui arbitru fide",
+      "șahuri și ceasuri profesioniste",
+      "premii pentru primii 3 clasați",
     ],
   },
   {
     title: "Tabără de șah",
+    price: "de la 1380 lei",
     icon: <Luggage />,
     features: [
-      "Full-day chess immersion",
-      "Fun & educational activities",
-      "Team tournaments",
-      "Free merchandise",
+      "10 ore intensive de șah",
+      "Activități recreative și distractive",
+      "Cazare și masă de vis",
+      "Concurs și premii",
+      "Petrecere",
     ],
   },
   {
@@ -59,10 +63,10 @@ const services = [
     price: "de la 90 lei",
     icon: <Pen />,
     features: [
-      "Zoom classes",
-      "Online resources",
-      "Interactive quizzes",
-      "Progress tracking",
+      "Atenție personalizată",
+      "Evoluție acelerată",
+      "Rezultate bune la competiții și școală",
+      "Disponibil fizic și online",
     ],
   },
   {
@@ -70,10 +74,10 @@ const services = [
     price: "de la 120 lei",
     icon: <Book />,
     features: [
-      "Top-level FIDE trainers",
-      "Preparation for championships",
-      "Weekly progress reports",
-      "Mental coaching",
+      "Atenție personalizată",
+      "Evoluție acelerată",
+      "Atingerea obiectivelor setate inițial",
+       "Disponibil fizic și online",
     ],
   },
 ];
@@ -125,11 +129,11 @@ export default function ServicesSection() {
                     className: "font-archivo tracking-[0.1em] w-full h-full text-[#233d36]",
                   })}
                 </div>
-                <h3 className="font-archivo tracking-[0.1em] text-2xl font-semibold text-[#233d36]">
+                <h3 className="font-archivo tracking-[0.1em] text-2xl font-black text-[#233d36]">
                   {service.title}
                 </h3>
               </div>
-              <p className="font-archivo tracking-[0.1em] text-3xl font-bold text-[#233d36] mb-6">
+              <p className="font-archivo  text-3xl font-black text-[#233d36] mb-6">
                 {service.price}
               </p>
               <ul className="font-archivo tracking-[0.1em] space-y-3 mb-6 text-base text-[#233d36]">
@@ -140,7 +144,7 @@ export default function ServicesSection() {
                   </li>
                 ))}
               </ul>
-              <button className="font-archivo tracking-[0.1em] w-full bg-[#233d36] text-white py-3 rounded-lg font-semibold hover:bg-[#a6b6e0] hover:text-[#233d36] transition">
+              <button className="font-archivo tracking-[0.1em] w-full bg-[#233d36] text-white py-3 rounded-lg font-semibold hover:bg-[#badad5] hover:text-[#233d36] transition">
                 Înscrie-te acum!
               </button> 
             </div>

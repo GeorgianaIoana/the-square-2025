@@ -85,14 +85,14 @@ const Calendar = () => {
         name: "Grupă adulți",
         startTime: "19:00",
         endTime: "20:20",
-        location:  "Corbeni 34, sector 2",
+        location: "Corbeni 34, sector 2",
       },
       {
         id: 3,
         name: "Grupă adulți online",
         startTime: "19:00",
         endTime: "20:20",
-        location:  "Corbeni 34, sector 2",
+        location: "Corbeni 34, sector 2",
       },
     ],
 
@@ -102,7 +102,7 @@ const Calendar = () => {
         name: "Grupa adulți incepători",
         startTime: "18:00",
         endTime: "19:00",
-        location:  "Corbeni 34, sector 2",
+        location: "Corbeni 34, sector 2",
       },
     ],
 
@@ -112,14 +112,14 @@ const Calendar = () => {
         name: "Grupă adulți",
         startTime: "20:00",
         endTime: "21:20",
-        location:  "Corbeni 34, sector 2",
+        location: "Corbeni 34, sector 2",
       },
       {
         id: 2,
         name: "Grupă adulți",
         startTime: "21:20",
         endTime: "22:40",
-        location:  "Corbeni 34, sector 2",
+        location: "Corbeni 34, sector 2",
       },
     ],
     friday: [
@@ -128,21 +128,21 @@ const Calendar = () => {
         name: "Grupă copii",
         startTime: "18:00",
         endTime: "19:20",
-        location:  "Corbeni 34, sector 2",
+        location: "Corbeni 34, sector 2",
       },
       {
         id: 2,
         name: "Grupă adulți începători",
         startTime: "19:00",
         endTime: "20:20",
-        location:  "Corbeni 34, sector 2",
+        location: "Corbeni 34, sector 2",
       },
       {
         id: 3,
         name: "Grupă adulți",
         startTime: "13:00",
         endTime: "14:30",
-        location:  "Corbeni 34, sector 2",
+        location: "Corbeni 34, sector 2",
       },
     ],
     saturday: [
@@ -151,35 +151,45 @@ const Calendar = () => {
         name: "Grupă copii",
         startTime: "10:00",
         endTime: "11:00",
-        location:  "Corbeni 34, sector 2",
+        location: "Corbeni 34, sector 2",
       },
       {
         id: 2,
         name: "Grupă copii",
         startTime: "11:00",
         endTime: "12:00",
-        location:  "Corbeni 34, sector 2",
+        location: "Corbeni 34, sector 2",
       },
       {
         id: 3,
         name: "Seara de șah rapdi 15|10",
         startTime: "15:00",
         endTime: "19:00",
-        location:  "Stamina Workshop",
+        location: "Stamina Workshop",
       },
     ],
   };
 
   const getDayKey = (day: number | undefined) => {
-    const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+    const date = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      day
+    );
     const dayOfWeek = date.getDay();
     switch (dayOfWeek) {
-      case 1: return 'monday';
-      case 2: return 'tuesday';
-      case 4: return 'thursday';
-      case 5: return 'friday';
-      case 6: return 'saturday';
-      default: return '';
+      case 1:
+        return "monday";
+      case 2:
+        return "tuesday";
+      case 4:
+        return "thursday";
+      case 5:
+        return "friday";
+      case 6:
+        return "saturday";
+      default:
+        return "";
     }
   };
 
@@ -194,10 +204,15 @@ const Calendar = () => {
             className="group flex items-center gap-6 rounded-xl p-5 transition-colors duration-200 hover:bg-[#233d36]/20"
           >
             <div className="flex-auto">
-              <p className="sm:text-[18px] text-[12px] text-[#a6b6e0] font-medium">{event.name}</p>
+              <p className="sm:text-[18px] text-[12px] text-[#a6b6e0] font-medium">
+                {event.name}
+              </p>
               <p className="mt-1 text-[#badad5]">
-                <time>{event.startTime}</time> - <time>{event.endTime}</time><br />
-                <span className="text-sm text-[#7ca6a0] italic">{event.location}</span>
+                <time>{event.startTime}</time> - <time>{event.endTime}</time>
+                <br />
+                <span className="text-sm text-[#7ca6a0] italic">
+                  {event.location}
+                </span>
               </p>
             </div>
           </li>
@@ -209,11 +224,11 @@ const Calendar = () => {
   return (
     <div className="w-full border-[#233d36] border-t-[1px]">
       <div className="sm:container mx-auto">
-        <div className="grid grid-cols-12 gap-4 px-4 sm:px-0 mt-[46px] mb-[46px] sm:mt-[75px] sm:mb-[75px]">
+        <div className="grid grid-cols-12 gap-4 px-4 sm:px-[0px] mt-[46px] mb-[46px] sm:mt-[75px] sm:mb-[75px]">
           {/* Right Column - Schedule (appears first on mobile, second on desktop) */}
-          <div className="col-span-12 lg:col-span-4 flex flex-col items-center relative ml-[12px] mb-6 sm:mb-0 order-first lg:order-last">
-            <h2 className="text-2xl font-semibold text-[#a6b6e0] mb-6 sm:mb-10 font-archivo">
-              Schedule for{" "}
+          <div className="col-span-12 lg:col-span-4 flex flex-col items-start lg:items-center relative mb-6 sm:mb-0 order-first lg:order-last">
+            <h2 className="px-4 max-w-[270px] sm:max-w-[500px] sm:px-0 text-2xl font-semibold text-[#a6b6e0] mb-6 sm:mb-10 font-archivo">
+              Programul pentru {" "}
               <time dateTime={selectedDate.toISOString()}>
                 {selectedDate.toLocaleDateString("en-US", {
                   month: "long",
@@ -222,11 +237,13 @@ const Calendar = () => {
                 })}
               </time>
             </h2>
-            {renderEventsForDay(selectedDate.getDate())}
+            <div className="w-full">
+              {renderEventsForDay(selectedDate.getDate())}
+            </div>
           </div>
 
           {/* Left Column - Calendar (appears second on mobile, first on desktop) */}
-          <div className="col-span-12 lg:col-span-8 flex flex-col items-start relative ml-[12px]">
+          <div className="col-span-12 lg:col-span-8 flex flex-col items-start relative ml-[12px] sm:ml-[0px]">
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-2xl font-semibold text-[#a6b6e0] font-archivo tracking-wide">
                 {monthNames[currentDate.getMonth()]} {currentDate.getFullYear()}
@@ -271,7 +288,7 @@ const Calendar = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-7 gap-3 sm:gap-8 mb-4">
+            <div className="grid grid-cols-7 gap-5 sm:gap-8 mb-4">
               {["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => (
                 <div
                   key={day}
@@ -286,13 +303,19 @@ const Calendar = () => {
               {days.map((day, index) => (
                 <div
                   key={index}
-                  className={`relative bg-[#001a00] p-3 sm:p-4 ${day ? "hover:bg-[#233d36]/20" : ""}`}
+                  className={`relative bg-[#001a00] p-3 sm:p-4 ${
+                    day ? "hover:bg-[#233d36]/20" : ""
+                  }`}
                 >
                   {day && (
                     <button
                       onClick={() =>
                         setSelectedDate(
-                          new Date(currentDate.getFullYear(), currentDate.getMonth(), day)
+                          new Date(
+                            currentDate.getFullYear(),
+                            currentDate.getMonth(),
+                            day
+                          )
                         )
                       }
                       className={`w-full h-full flex items-center justify-center rounded-full aspect-square text-lg sm:text-xl font-archivo tracking-wide ${
@@ -305,11 +328,9 @@ const Calendar = () => {
                     >
                       {day}
                     </button>
-                
                   )}
                 </div>
               ))}
-               
             </div>
           </div>
         </div>

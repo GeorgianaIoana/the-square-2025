@@ -8,40 +8,27 @@ import "swiper/css";
 const testimonials = [
   {
     quote:
-      "The structured approach to learning chess here has dramatically improved my game. The instructors are patient and knowledgeable.",
-    name: "David Chen",
-    title: "Student - 6 months",
-    image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80",
+      "Locul potrivit dacă ești în căutarea unei comunități faine în care să îți exersezi și să îți îmbunătățești abilitățile de șah. Vei avea ocazia să înveți de la profesori profesioniști și amabili, cu multă experiență.",
+    name: "Cătălin Manolache",
   },
   {
     quote:
-      "My daughter has grown so much in confidence since joining. The youth program is excellent and well-structured.",
-    name: "Emily Parker",
-    title: "Parent",
-    image:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80",
+      "Am avut o experiență grozavă în timpul turneelor de șah, deoarece mi-au amintit de cele dintr-un alt oraș, la care obișnuiam să particip, și îmi doream de mult timp ceva similar și în București. Pe lângă turnee, THE SQUARE oferă cursuri cu metode variate de predare, iar acest lucru se simte ca o gură de aer proaspăt pe piața cursurilor.",
+    name: "Bogdan Teslărașu",
   },
   {
     quote:
-      "The advanced course helped me achieve my first FIDE rating. The personalized coaching made all the difference.",
-    name: "Alex Thompson",
-    title: "Tournament Player",
-    image:
-      "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80",
+      "Am doar un singur mod de a descrie acest loc – este cel mai bun! Sunt din Londra și am petrecut o săptămână în București în octombrie 2024. Cursurile au fost grozave. Totul s-a desfășurat în engleză (cu explicații în română când era nevoie, astfel încât nimeni să nu fie exclus). Sper din suflet să am ocazia să revin cât mai curând!",
+    name: "Jenny",
   },
   {
     quote:
-      "Amazing coaching and mentorship. Helped me grow both on and off the board.",
-    name: "Sophia Lee",
-    title: "Club Member",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
+      "The Square este un loc cu mult farmec, în care simți că timpul are un alt ritm. Cu fiecare vizită și partidă de șah, simți că mintea ia o pauză de la stres și gânduri cotidiene, intră într-o stare de focus și creativitate, iar la final revine mai energizată și mai curată decât înainte.Recomand clubul pentru orice vârstă. Este un loc cosy, intim, cu o echipă de oameni faini și profesioniști.",
+    name: "Andrei Gîndac",
   },
   {
-    quote: "The team is so dedicated. Best chess school I've experienced.",
-    name: "Liam Johnson",
-    title: "Student",
-    image: "https://randomuser.me/api/portraits/men/33.jpg",
+    quote: "Un mediu extraordinar pentru copii. Profesioniști, răbdători, predarea se face pe înțelesul fiecăruia. Locația este excelentă, pe o străduță liniștită din centru.",
+    name: "Diana Chiriacescu",
   },
 ];
 
@@ -110,7 +97,6 @@ export default function Testimonials() {
                   <h4 className="font-semibold text-[#233d36] text-base">
                     {testimonial.name}
                   </h4>
-                  <p className="text-sm text-gray-700">{testimonial.title}</p>
                 </div>
               </motion.div>
             </SwiperSlide>
