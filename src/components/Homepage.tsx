@@ -405,22 +405,30 @@ function App() {
                     Beneficiile Șahului
                   </h4>
                   <p className="font-archivo sm:text-[15px] text-[#a6b6e0] text-left font-[500] sm:px-0 tracking-[0.1em]  leading-[15.12px] sm:leading-[17.64px] leading-[1.2] font-[400] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px] text-[12px] sm:text-[14px] max-w-[289px] sm:max-w-[595px]">
-                    <p className="sm:text-[16px] font-archivo tracking-[0.1em] leading-[125%]">1. Concentrare și prezență! Fiecare partidă de șah este o
-                    oportunitate de a cultiva răbdarea. </p>
-                    <p className="sm:text-[16px] font-archivo  tracking-[0.1em] leading-[125%]">2. Gândire strategică! 
-                    Îți dezvolți capacitatea de a anticipa mutări și a lua
-                    decizii strategice atât pe tabla de șah, cât și în viață.</p>
-                    <p className="sm:text-[16px] font-archivo  tracking-[0.1em] leading-[125%]"> 3.
-                    Evoluezi continuu, în ritmul tău La THE SQUARE ne ghidează
-                    bucuria. Apreciem fiecare pas către progres. Crești cu
-                    răbdare, poți să te bucuri de proces și să îți cultivi
-                    încrederea în forțele proprii. </p>
-                    <p className="sm:text-[16px] font-archivo  tracking-[0.1em] leading-[125%]">4. Faci parte dintr-o
-                    comunitate prietenoasă, cu valori comune La THE SQUARE,
-                    jucători începători și avansați se întâlnesc, se provoacă,
-                    se susțin. Fie că vii pentru socializare, învățare sau
-                    competiție, lumea THE SQUARE îți este deschisă.
-                 </p></p>
+                    <p className="sm:text-[16px] font-archivo tracking-[0.1em] leading-[125%]">
+                      1. Concentrare și prezență! Fiecare partidă de șah este o
+                      oportunitate de a cultiva răbdarea.{" "}
+                    </p>
+                    <p className="sm:text-[16px] font-archivo  tracking-[0.1em] leading-[125%]">
+                      2. Gândire strategică! Îți dezvolți capacitatea de a
+                      anticipa mutări și a lua decizii strategice atât pe tabla
+                      de șah, cât și în viață.
+                    </p>
+                    <p className="sm:text-[16px] font-archivo  tracking-[0.1em] leading-[125%]">
+                      {" "}
+                      3. Evoluezi continuu, în ritmul tău La THE SQUARE ne
+                      ghidează bucuria. Apreciem fiecare pas către progres.
+                      Crești cu răbdare, poți să te bucuri de proces și să îți
+                      cultivi încrederea în forțele proprii.{" "}
+                    </p>
+                    <p className="sm:text-[16px] font-archivo  tracking-[0.1em] leading-[125%]">
+                      4. Faci parte dintr-o comunitate prietenoasă, cu valori
+                      comune La THE SQUARE, jucători începători și avansați se
+                      întâlnesc, se provoacă, se susțin. Fie că vii pentru
+                      socializare, învățare sau competiție, lumea THE SQUARE îți
+                      este deschisă.
+                    </p>
+                  </p>
 
                   <button
                     onClick={() => scrollToSection("contact")}

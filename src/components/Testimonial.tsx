@@ -27,7 +27,8 @@ const testimonials = [
     name: "Andrei Gîndac",
   },
   {
-    quote: "Un mediu extraordinar pentru copii. Profesioniști, răbdători, predarea se face pe înțelesul fiecăruia. Locația este excelentă, pe o străduță liniștită din centru.",
+    quote:
+      "Un mediu extraordinar pentru copii. Profesioniști, răbdători, predarea se face pe înțelesul fiecăruia. Locația este excelentă, pe o străduță liniștită din centru.",
     name: "Diana Chiriacescu",
   },
 ];
@@ -83,7 +84,7 @@ export default function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <SwiperSlide key={index}>
               <motion.div
-                className="bg-[#badad5] w-full max-w-[380px] h-[350px] p-8 rounded-lg shadow-lg mx-auto flex flex-col justify-between hover:scale-105 transition-transform duration-300 transform transition-all duration-300 hover:bg-[#a6b6e0]"
+                className="bg-[#badad5] w-full max-w-[380px] h-[350px] px-[16px] sm:px-10 py-8 rounded-lg shadow-lg mx-auto flex flex-col justify-between hover:scale-105 transition-transform duration-300 transform transition-all duration-300 hover:bg-[#a6b6e0]"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}

@@ -90,6 +90,19 @@ function App() {
   const [activeInstructor, setActiveInstructor] = useState(instructors[0]);
   const [selected, setSelected] = useState(teamMembers[0]);
 
+  const MAX_CHARACTERS = 900; // aproximativ 15 rânduri
+
+  const [expandedDescriptions, setExpandedDescriptions] = useState<{
+    [key: string]: boolean;
+  }>({});
+
+  const toggleDescription = (key: string) => {
+    setExpandedDescriptions((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
   const bannerImages = [
     {
       url: "/images/banner/theSquare.jpg",
@@ -109,7 +122,7 @@ function App() {
   ];
 
   const galleryImages = [
-    "/images/gallery/square-room.jpg",
+    // "/images/gallery/square-room.jpg",
     "/images/gallery/kids.jpg",
     "/images/gallery/happy-people.jpg",
     "/images/gallery/chess-camp-calin.jpg",
@@ -231,6 +244,14 @@ function App() {
               >
                 Contact
               </button>
+              <button
+                onClick={() => scrollToSection("mission")}
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                  isScrolled ? "text-white" : "text-[#a6b6e0]"
+                }`}
+              >
+                Sponsorizare
+              </button>
             </div>
 
             {/* Mobile menu toggle */}
@@ -344,6 +365,15 @@ function App() {
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] hover:bg-[#a6b6e0] hover:text-[#233d36] transition"
             >
               Contact
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("mission");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] hover:bg-[#a6b6e0] hover:text-[#233d36] transition"
+            >
+              Sponsorizare
             </button>
           </div>
         )}
@@ -584,9 +614,25 @@ function App() {
                       <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[#a6b6e0] tracking-wide font-archivo tracking-[0.1em]">
                         {member.name}
                       </h2>
-                      <p className="text-[#a6b6e0] mb-4 leading-relaxed text-sm sm:text-base font-archivo tracking-[0.1em]">
-                        {member.description}
-                      </p>
+                      <div className="text-[#a6b6e0] mb-4 leading-[125%] text-sm sm:text-base font-archivo tracking-[0.1em]">
+                        {expandedDescriptions[member.name] ||
+                        member.description.length <= MAX_CHARACTERS
+                          ? member.description
+                          : `${member.description.slice(0, MAX_CHARACTERS)}...`}
+
+                        {member.description.length > MAX_CHARACTERS && (
+                          <div className="flex justify-center mt-4">
+                            <button
+                              onClick={() => toggleDescription(member.name)}
+                              className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                            >
+                              {expandedDescriptions[member.name]
+                                ? "Înapoi"
+                                : "Citește mai mult"}
+                            </button>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -605,19 +651,22 @@ function App() {
         </div>
       </section>
 
-      <div className="w-full sm:pt-[109px] border-[#233d36] border-t-[1px] pt-[62px] sm:pb-[172px] pb-[68px] relative overflow-hidden">
+      <div
+        className="w-full sm:pt-[109px] border-[#233d36] border-t-[1px] pt-[62px] sm:pb-[172px] pb-[68px] relative overflow-hidden"
+        id="mission"
+      >
         <div className="container mx-auto">
           <h2 className="sm:text-[40px] text-[24px] leading-[125%] tracking-[0.1em] font-[400] font-archivo  text-[#a6b6e0] text-center sm:mt-[14px] mt-[7px] mx-auto">
-            MISIUNEA NOASTRĂ
+            SPRIJINĂ MISIUNEA NOASTRĂ
           </h2>
 
           <p className="text-[#a6b6e0] font-archivo  font-[400] leading-[125%] tracking-[0.1em] mx-auto max-w-[313px] sm:max-w-[544px] text-center sm:mt-[19px] mt-[21px]">
-            Ne dorim să contribuim la educația copiilor și adulților,
-            oferindu-le prin șah o unealtă valoroasă: capacitatea de a gândi
-            înainte să acționeze. Fiecare mutare pe tablă este o lecție despre
-            răbdare, strategie și responsabilitate. Ne ghidăm activitatea cu
-            integritate, punând mereu calitatea și respectul în centrul a tot
-            ceea ce facem.
+            Într-o lume a impulsurilor, tot mai digitală, care se mișcă în pas
+            alert, THE SQUARE dorește să ofere prin șah un context în care
+            timpul încetinește și tace pentru câteva momente, un spațiu care
+            aduce împreună adulți și copii pasionați pe care caută să-i dezvolte
+            și să-i educe cu empatie la un nivel înalt, un loc unde răbdarea se
+            cultivă mutare cu mutare, alături de antrenori dedicați
           </p>
           <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
             <button
