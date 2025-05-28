@@ -10,7 +10,7 @@ const Map: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <iframe
             title="Locație Corbeni 34, București"
-            src="https://www.openstreetmap.org/export/embed.html?bbox=26.143507%2C44.455848%2C26.147507%2C44.457848&layer=mapnik&marker=44.456848%2C26.145507"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=26.144507%2C44.456348%2C26.146507%2C44.457348&layer=mapnik&marker=color:red%7C44.456848%2C26.145507"
             width="100%"
             height="400"
             style={{ border: 0, borderRadius: "8px" }}

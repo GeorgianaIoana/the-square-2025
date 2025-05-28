@@ -109,7 +109,7 @@ export default function ServicesSection() {
 
   return (
     <section
-      className="py-20 bg-[#001a00] border-t border-[#233d36]"
+      className="py-24 sm:py-20 bg-[#001a00] border-t border-[#233d36]"
       id="services"
     >
       <div ref={sectionRef} className="sm:container mx-auto px-4">

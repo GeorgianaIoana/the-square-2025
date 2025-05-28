@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import ServicesSection from "./components/ServicesSection";
 import Calendar from "./components/Calendar";
 import Contact from "./components/Contact";
+import Team from "./components/Team";
 import {
   ChevronRight,
   Clock,
@@ -45,11 +46,10 @@ Este apreciat pentru abordarea sa structurată, formularea de planuri clare și 
     image: "images/team/vlad.jpg",
   },
   {
-    name: "Georgiana Stanciu",
+    name: "WNM Georgiana Stanciu",
     title: "CO-FOUNDER & CHESS TRAINER",
-    description: `Georgiana a început șahul la vârsta de 6 ani, la clubul copiilor, unde sora ei participa adesea, alături de un antrenor foarte implicat în performanța copiilor. La doar 7 ani, devine campioană națională, iar copilaria ei își schimbă direcția într-o călătorie interesantă la campionatele europene și mondiale, plină de amintiri frumoase din țările străine, alături de colegi care reprezentau Romania. Șahul face parte din identitatea ei, căci a crescut pe cele 64 de pătrățele și îi este profund recunoscătoare acestui sport, care i-a șlefuit personalitatea. Astfel, la inițiativa Cristianei, dorește să îmbrățișeze Bucureștiul cu pasiunea ei și să ofere o platformă de instruire profesionistă pentru jucătorii de șah, la fel cum a beneficiat și ea ca junioară. A ocupat în fiecare an un loc pe podiumul național la șah clasic și rapid individual, însă locul 1 a fost obținut la categoriile fete sub 8 (2006, CN Predeal), fete sub 12 (2011, CN Voineasa), fete sub 18 ani (2016, CN Călimănești) și fete sub 20 ani (2018, CN Călimănești).
-
-Cele mai importante rezultate internaționale ale ei sunt: locul 9 la Campionatul European de șah clasic în Muntenegru 2009, locul 4 la Mondialele școlare din Thailanda 2015 si locul 8 la Campionatul Mondial de șah clasic din Rusia 2016. Elo-ul ei fide de vârf a fost 2054, la vârsta de 16 ani, iar titlul său în prezent este de WNM (maestră națională). Are 8 ani experiență de predarea șahului, iar din 2024 își investește mintea în programare ca Web Developer și Ux/Ui Designer. Locurile în grupa ei sunt adesea pline de cursanți și te așteaptă cu mult drag să îți rezervi locul. `,
+    description: `Cele mai importante rezultate internaționale ale ei sunt: locul 9 la Campionatul European de șah clasic în Muntenegru 2009, locul 4 la Mondialele școlare din Thailanda 2015 si locul 8 la Campionatul Mondial de șah clasic din Rusia 2016. Elo-ul ei fide de vârf a fost 2054, la vârsta de 16 ani, iar titlul său în prezent este de WNM (maestră națională). Are 8 ani experiență de predarea șahului, iar din 2024 își investește mintea în programare ca Web Developer și Ux/Ui Designer. Georgiana a început șahul la vârsta de 6 ani, la clubul copiilor, unde sora ei participa adesea, alături de un antrenor foarte implicat în performanța copiilor. La doar 7 ani, devine campioană națională, iar copilaria ei își schimbă direcția într-o călătorie interesantă la campionatele europene și mondiale, plină de amintiri frumoase din țările străine, alături de colegi care reprezentau Romania. Șahul face parte din identitatea ei, căci a crescut pe cele 64 de pătrățele și îi este profund recunoscătoare acestui sport, care i-a șlefuit personalitatea. Astfel, la inițiativa Cristianei, dorește să îmbrățișeze Bucureștiul cu pasiunea ei și să ofere o platformă de instruire profesionistă pentru jucătorii de șah, la fel cum a beneficiat și ea ca junioară. A ocupat în fiecare an un loc pe podiumul național la șah clasic și rapid individual, însă locul 1 a fost obținut la categoriile fete sub 8 (2006, CN Predeal), fete sub 12 (2011, CN Voineasa), fete sub 18 ani (2016, CN Călimănești) și fete sub 20 ani (2018, CN Călimănești).
+ `,
     image: "images/team/georgiana.jpg",
   },
   {
@@ -66,7 +66,7 @@ Este pasionată de educație și dezvoltare personală, iar șahul este pentru e
     image: "images/team/cris-chess.jpg",
   },
   {
-    name: "Călin Gheorghiu",
+    name: "FM Călin Gheorghiu",
     title: "CHESS TRAINER",
     description: `Maestru FIDE încă de la vârsta de 16 ani, Călin a atins un vârf de 2384 Elo fide în clasamentul internațional și 2757 Elo pe platforma chess.com. Palmaresul său include multiple titluri de campion național, participarea la Campionatul Mondial de Juniori din India și participarea la Campionatul European din Muntenegru, reprezentând cu mândrie România.
  Încă din copilărie, Călin a fost dedicat șahului și matematicii, domenii în care a excelat datorită conștiinciozității, inteligenței și creativității sale deosebite. A absolvit Facultatea de Matematică în Scoția, apoi a urmat un master în programare la Iași, pregătindu-se în prezent pentru a-și susține doctoratul. În paralel cu activitatea sa din domeniul IT, Călin are peste 5 ani de experiență ca instructor de șah, timp în care a format jucători cu rezultate remarcabile. Ceea ce îl diferențiază este stilul său interactiv și captivant de predare, influențat de pasiunea lui pentru stand-up comedy. Lecțiile cu el sunt atât instructive, cât și pline de energie și umor, creând un mediu de învățare prietenos, în care progresul devine o plăcere. Călin se bucură să contribuie la fericirea oamenilor: fie că progresează rapid la șah sau că râd la glumele sale, ca apoi să se retragă în liniște și să analizeze strategic cum ar fi putut face și mai bine ceea ce știe.
@@ -87,21 +87,18 @@ function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentGalleryImage, setCurrentGalleryImage] = useState(0);
-  const [activeInstructor, setActiveInstructor] = useState(instructors[0]);
-  const [selected, setSelected] = useState(teamMembers[0]);
+  const [expandedDescriptions, setExpandedDescriptions] = useState<
+    Record<string, boolean>
+  >({});
 
-  const MAX_CHARACTERS = 900; // aproximativ 15 rânduri
-
-  const [expandedDescriptions, setExpandedDescriptions] = useState<{
-    [key: string]: boolean;
-  }>({});
-
-  const toggleDescription = (key: string) => {
+  const toggleDescription = useCallback((name: string) => {
     setExpandedDescriptions((prev) => ({
       ...prev,
-      [key]: !prev[key],
+      [name]: !prev[name],
     }));
-  };
+  }, []);
+
+  const MAX_CHARACTERS = 900; // aproximativ 15 rânduri
 
   const bannerImages = [
     {
@@ -176,6 +173,8 @@ function App() {
     throw new Error("Function not implemented.");
   }
 
+  const [teamSlide, setTeamSlide] = useState(0);
+
   const MainContent = () => (
     <div className="min-h-screen bg-[#001a00]">
       <nav
@@ -243,14 +242,6 @@ function App() {
                 }`}
               >
                 Contact
-              </button>
-              <button
-                onClick={() => scrollToSection("mission")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
-                  isScrolled ? "text-white" : "text-[#a6b6e0]"
-                }`}
-              >
-                Sponsorizare
               </button>
             </div>
 
@@ -366,15 +357,6 @@ function App() {
             >
               Contact
             </button>
-            <button
-              onClick={() => {
-                scrollToSection("mission");
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] hover:bg-[#a6b6e0] hover:text-[#233d36] transition"
-            >
-              Sponsorizare
-            </button>
           </div>
         )}
       </nav>
@@ -407,7 +389,7 @@ function App() {
                       <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
                         <button
                           onClick={() => scrollToSection("contact")}
-                          className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                          className="sm:mt-[0px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
                         >
                           Înscrie-te la primul tău curs!
                         </button>
@@ -452,7 +434,7 @@ function App() {
                   <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-[400] tracking-[0.1em] sm:text-[45px]  mb-[20px] sm:mb-[40px] leading-[125%]">
                     THE SQUARE
                   </h4>
-                  <p className="font-archivo sm:text-[16px] text-[#a6b6e0] font-[500] sm:px-0 tracking-[0.1em] leading-[125%] font-[400] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px] text-[13px] max-w-[320px] sm:max-w-[665px]">
+                  <p className="font-archivo text-sm sm:text-[16px] text-[#a6b6e0] font-[500] sm:px-0 tracking-[0.1em] leading-[125%] font-[400] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px]  max-w-[320px] sm:max-w-[665px]">
                     Clubul de Șah THE SQUARE este spațiul în care pasiunea
                     pentru șah capătă formă, indiferent de vârstă sau nivel de
                     experiență. Fondat din dorința de a promova gândirea
@@ -490,10 +472,9 @@ function App() {
           </div>
         </div>
       </section>
-
       <Calendar />
 
-      <section className="py-20 px-4  border-[#233d36] border-t-[1px] font-archivo">
+      <section className="py-10 sm:py-20 px-4  border-[#233d36] border-t-[1px] font-archivo">
         <div className="w-full relative bg-[#001a00]" id="about">
           <img
             src="/public/images/banner/TheLight.png"
@@ -522,24 +503,24 @@ function App() {
                     Beneficiile Șahului
                   </h4>
                   <p className="font-archivo sm:text-[16px] text-[#a6b6e0] text-left font-[500] sm:px-0 tracking-[0.1em] leading-[125%] font-[400] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px] text-[12px] sm:text-[14px] max-w-[320px] sm:max-w-[665px]">
-                    <p className="sm:text-[16px] font-archivo tracking-[0.1em] leading-[125%]">
-                      I. Concentrare și prezență! Fiecare partidă de șah este o
+                    <p className="sm:text-[16px] text-sm font-archivo tracking-[0.1em] leading-[125%]">
+                      ■ Concentrare și prezență! Fiecare partidă de șah este o
                       oportunitate de a cultiva răbdarea.{" "}
                     </p>
-                    <p className="sm:text-[16px] font-archivo tracking-[0.1em] leading-[125%]">
-                      II. Gândire strategică! Îți dezvolți capacitatea de a
+                    <p className="sm:text-[16px] text-sm font-archivo tracking-[0.1em] leading-[125%]">
+                      ■ Gândire strategică! Îți dezvolți capacitatea de a
                       anticipa mutări și a lua decizii strategice atât pe tabla
                       de șah, cât și în viață.
                     </p>
-                    <p className="sm:text-[16px] font-archivo tracking-[0.1em] leading-[125%]">
+                    <p className="sm:text-[16px] text-sm font-archivo tracking-[0.1em] leading-[125%]">
                       {" "}
-                      III. Evoluezi continuu, în ritmul tău La THE SQUARE ne
+                      ■ Evoluezi continuu, în ritmul tău La THE SQUARE ne
                       ghidează bucuria. Apreciem fiecare pas către progres.
                       Crești cu răbdare, poți să te bucuri de proces și să îți
                       cultivi încrederea în forțele proprii.{" "}
                     </p>
-                    <p className="sm:text-[16px] font-archivo tracking-[0.1em] leading-[125%]">
-                      IV. Faci parte dintr-o comunitate prietenoasă, cu valori
+                    <p className="sm:text-[16px] text-sm font-archivo tracking-[0.1em] leading-[125%]">
+                      ■ Faci parte dintr-o comunitate prietenoasă, cu valori
                       comune La THE SQUARE, jucători începători și avansați se
                       întâlnesc, se provoacă, se susțin. Fie că vii pentru
                       socializare, învățare sau competiție, lumea THE SQUARE îți
@@ -571,85 +552,12 @@ function App() {
         </div>
       </section>
 
-      <section
-        className="py-20  border-[#233d36] border-t-[1px] font-archivo bg-[#001a00]"
-        id="team"
-      >
-        <div className="mx-4 sm:container sm:mx-auto">
-          {/* Slider cu Membri */}
-          <div className="relative">
-            <Swiper
-              spaceBetween={16}
-              slidesPerView={1}
-              centeredSlides={true}
-              navigation={{
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-              }}
-              onSlideChange={handleSlideChange}
-              breakpoints={{
-                768: { slidesPerView: 1 },
-                1024: { slidesPerView: 1 },
-              }}
-              modules={[Navigation]}
-            >
-              {teamMembers.map((member, index) => (
-                <SwiperSlide key={index}>
-                  <div className="flex flex-col lg:flex-row items-center text-center lg:text-left  ">
-                    {/* Imagine membru în stânga */}
-                    <div className="lg:w-1/2 flex justify-center lg:justify-start mb-6 lg:mb-0 relative">
-                      <img
-                        src={member.image}
-                        alt={member.name}
-                        className="w-[340px] h-[370px] sm:w-[380px] sm:h-[400px] lg:w-[495px] lg:h-[469px] rounded-[20px] object-cover"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/50  to-[#858585]/0 rounded-[17px] opacity-[0.8]"></div>
-
-                    {/* Textul membrului în dreapta */}
-                    <div className="lg:w-1/2 max-w-3xl mx-auto lg:pl-16 sm:ml-[360px] ">
-                      <p className="text-xs sm:text-sm uppercase tracking-wider text-[#a6b6e0] mb-2 font-archivo tracking-[0.1em]">
-                        {member.title}
-                      </p>
-                      <h2 className="text-2xl sm:text-3xl font-bold mb-4 text-[#a6b6e0] tracking-wide font-archivo tracking-[0.1em]">
-                        {member.name}
-                      </h2>
-                      <div className="text-[#a6b6e0] mb-4 leading-[125%] text-sm sm:text-base font-archivo tracking-[0.1em]">
-                        {expandedDescriptions[member.name] ||
-                        member.description.length <= MAX_CHARACTERS
-                          ? member.description
-                          : `${member.description.slice(0, MAX_CHARACTERS)}...`}
-
-                        {member.description.length > MAX_CHARACTERS && (
-                          <div className="flex justify-center mt-4">
-                            <button
-                              onClick={() => toggleDescription(member.name)}
-                              className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
-                            >
-                              {expandedDescriptions[member.name]
-                                ? "Înapoi"
-                                : "Citește mai mult"}
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-
-            <div className="absolute bottom-[-30px] left-1/2 transform -translate-x-1/2 z-10 flex gap-6">
-              <div className="swiper-button-prev text-[#a6b6e0] hover:text-[#badad5] transition">
-                <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
-              </div>
-              <div className="swiper-button-next text-[#a6b6e0] hover:text-[#badad5] transition">
-                <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Team
+        currentSlide={teamSlide}
+        setCurrentSlide={setTeamSlide}
+        expandedDescriptions={expandedDescriptions}
+        toggleDescription={toggleDescription}
+      />
 
       <div
         className="w-full sm:pt-[109px] border-[#233d36] border-t-[1px] pt-[62px] sm:pb-[172px] pb-[68px] relative overflow-hidden"
@@ -657,7 +565,7 @@ function App() {
       >
         <div className="container mx-auto">
           <h2 className="sm:text-[40px] text-[24px] leading-[125%] tracking-[0.1em] font-[400] font-archivo  text-[#a6b6e0] text-center sm:mt-[14px] mt-[7px] mx-auto">
-            SPRIJINĂ MISIUNEA NOASTRĂ
+            MISIUNEA NOASTRĂ
           </h2>
 
           <p className="text-[#a6b6e0] font-archivo  font-[400] leading-[125%] tracking-[0.1em] mx-auto max-w-[313px] sm:max-w-[544px] text-center sm:mt-[19px] mt-[21px]">
@@ -673,7 +581,7 @@ function App() {
               onClick={() => scrollToSection("contact")}
               className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
             >
-              Sprijină educația!
+              Alege educația!
             </button>
           </div>
 
@@ -690,6 +598,17 @@ function App() {
                 </h4>
                 <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-center sm:mt-[36px] mt-[21px] text-[#a6b6e0] font-archivo font-[400] leading-[125%] tracking-[0.1em]">
                   <p>
+                    {" "}
+                    La The Square, fiecare lecție începe cu teorie solidă: 30-50
+                    de minute dedicate deschiderilor, unde cursanții învață să
+                    construiască planuri clare și capătă încredere în jocul de
+                    mijloc. Urmează exerciții tactice sau finaluri explicate pas
+                    cu pas, care dezvoltă gândirea logică și calculul matematic.
+                    Apoi, în cele 30 de minute de practică, aplică noțiunile
+                    învățate în partide reale, antrenându-și concentrarea și
+                    inteligența emoțională.
+                  </p>{" "}
+                  {/* <p>
                     Vă invităm să susțineți lecțiile și turneele de șah
                     desfășurate la Clubul de Șah <strong>THE SQUARE</strong>{" "}
                     astfel:
@@ -715,7 +634,7 @@ function App() {
                     </ul>
                     Sumele acestea sunt deduse direct din impozitul pe profit,
                     pe care oricum îl datorați statului.
-                  </p>
+                  </p> */}
                 </section>
               </div>
             </div>
@@ -731,7 +650,7 @@ function App() {
                 </h4>
                 <p className=" text-[#a6b6e0] font-archivo  font-[400] leading-[125%] tracking-[0.1em] mx-auto max-w-[313px] sm:max-w-[500px] text-center sm:mt-[19px] mt-[21px]">
                   <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-center sm:mt-[19px] mt-[21px] sm:p-4 text-[#a6b6e0] font-archivo font-[400] leading-[125%] tracking-[0.1em]">
-                    <p>
+                    {/* <p>
                       Fondurile obținute vor fi folosite pentru:
                       <ul>
                         <li>
@@ -746,6 +665,14 @@ function App() {
                       Vă rugăm să ne trimiteți contractul semnat și ștampilat,
                       în format pdf, la adresa de e-mail:{" "}
                       <strong>contact@thesquarechess.com</strong>
+                    </p> */}
+                    <p>
+                      Integritatea este fundamentul fiecărei decizii pe tabla de
+                      șah și în viață. Într-un mediu în care onestitatea,
+                      respectul pentru reguli și fair-play-ul sunt valori de
+                      bază. A câștiga cu demnitate și a pierde cu grație sunt
+                      lecții esențiale care se deprind din practica fiecarei
+                      partide de șah.
                     </p>
                   </section>
                 </p>
@@ -761,8 +688,8 @@ function App() {
                 <h4 className="text-[#badad5] font-archivo  font-[400] uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
                   COMUNITATE
                 </h4>
-                <div className="sm:p-4 text-[#a6b6e0] font-archivo font-[400] leading-[125%] tracking-[0.1em] mx-auto text-center sm:mt-[19px] mt-[21px]">
-                  <p>
+                <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-center sm:mt-[36px] mt-[21px] text-[#a6b6e0] font-archivo font-[400] leading-[125%] tracking-[0.1em]">
+                  {/* <p>
                     <strong>Pentru persoanele fizice</strong> — dacă dorești să
                     redirecționezi 3,5% din impozitul tău anual pe venit
                     <ul>
@@ -775,8 +702,17 @@ function App() {
                     noastre și a tunreelor noastre, prin susținerea lor
                     financiară, devenind astfel partener al acestor evenimente
                     importante pentru comunitate.
+                  </p> */}
+                  <p>
+                    Comunitatea The Square reunește pasionații de șah în
+                    evenimente cu intrare liberă, unde jocul, socializarea și
+                    momentele plăcute sunt adesea însoțite de ceai. Suntem
+                    deschiși să primim voluntari pasionați, dornici să
+                    contribuie la inițiative caritabile, să ofere seturi de șah
+                    copiilor și să susțină workshop-uri educative. Astfel, prin
+                    educație strategică, contribuim împreună la o lume mai bună.
                   </p>
-                </div>
+                </section>
               </div>
             </div>
           </div>
@@ -791,8 +727,8 @@ function App() {
       >
         <div className="sm:container mx-auto px-4">
           <div className="max-w-[1420px] max-h-[1700px] mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-center mb-16 text-[#233d36]">
-              Gallery
+            <h2 className="text-3xl sm:text-5xl font-bold text-center mb-16 text-[#badad5]">
+              Galerie
             </h2>
 
             {/* Imagine + săgeți (responsive layout) */}
@@ -856,19 +792,19 @@ function App() {
               to="/privacy-policy"
               className="text-[#a6b6e0] hover:text-[#badad5]"
             >
-              Privacy Policy
+              Politica de Confidențialitate
             </Link>
             <Link
               to="/terms-and-conditions"
               className="text-[#a6b6e0] hover:text-[#badad5]"
             >
-              Terms & Conditions
+              Termeni și Condiții
             </Link>
             <Link
               to="/cookie-policy"
               className="text-[#a6b6e0] hover:text-[#badad5]"
             >
-              Cookie Policy
+              Politica Cookie
             </Link>
             <a href="#contact" className="text-[#a6b6e0] hover:text-[#badad5]">
               Contact
@@ -960,8 +896,8 @@ function App() {
               </svg>
             </a>
           </div>
-          <p className="text-[#a6b6e0] hover:text-[#badad5] mt-10 text-center text-sm/6">
-            &copy; 2025 THE SQUARE, Inc. All rights reserved.
+          <p className="text-[#a6b6e0] tracking-[0.1em] font-arhivo text-xs hover:text-[#badad5] mt-10 text-center sm:text-sm/6">
+            &copy; 2025 THE SQUARE. Developed by THE SQUARE.
           </p>
         </div>
       </footer>

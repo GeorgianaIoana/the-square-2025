@@ -19,8 +19,8 @@ export default function PrivacyPolicy() {
               <strong>Date de contact:</strong><br/>
               Denumire: ACS The Square<br/>
               Adresă: Strada Coreni 34, București, Sector 2, România<br/>
-              Email: info@masterchess.com<br/>
-              Telefon: (555) 123-4567
+              Email: contact@thesquarechess.com<br/>
+              Telefon: +40742898793
             </p>
           </section>
 
@@ -95,7 +95,7 @@ export default function PrivacyPolicy() {
               Putem actualiza această politică periodic. Vă recomandăm să verificați pagina pentru eventuale modificări.
             </p>
             <p className="mt-2">
-              Ultima actualizare: Aprilie 2025
+              Ultima actualizare: Mai 2025
             </p>
           </section>
         </div>

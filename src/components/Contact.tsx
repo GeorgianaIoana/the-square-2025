@@ -69,7 +69,7 @@ export default function ContactSection() {
             <div className="w-full aspect-[4/3] rounded-xl overflow-hidden shadow-lg font-archivo tracking-[0.1em]">
               <iframe
                 title="Locație Corbeni 34, București"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.0272974536827!2d26.14550747681926!3d44.45684807107302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff4bc8086df3%3A0xe545af59f7a5f5df!2sStrada%20Coreni%2034%2C%20Bucure%C8%99ti%20023025!5e0!3m2!1sro!2sro!4v1712411561872!5m2!1sro!2sro&markers=color:red%7Clabel:T%7C44.456848,26.145507"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.0272974536827!2d26.14550747681926!3d44.45684807107302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff4bc8086df3%3A0xe545af59f7a5f5df!2sStrada%20Corbeni%2034%2C%20Bucure%C8%99ti%20023025!5e0!3m2!1sro!2sro!4v1712411561872!5m2!1sro!2sro&zoom=17&markers=color:green%7C44.456848,26.145507"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -81,7 +81,7 @@ export default function ContactSection() {
           </div>
 
           {/* Coloana 2: Formular */}
-          <div className="w-full max-w-xl bg-[#a6b6e0] rounded-xl shadow-xl px-6 sm:px-10 py-0 sm:py-16 mx-auto">
+          <div className="w-full max-w-xl bg-[#a6b6e0] rounded-xl shadow-xl px-6 sm:px-10 py-8 sm:py-16 mx-auto">
             <form className="space-y-6" onSubmit={handleSubmit}>
               {/* Hidden input pentru access_key */}
               <input
@@ -171,9 +171,9 @@ export default function ContactSection() {
               <div className="text-center pt-2 sm:pt-4 sm:pb-0 pb-6-6">
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-[#233d36] text-white font-semibold rounded-lg hover:bg#a6b6e0] transition-colors duration-300"
+                  className="px-6 py-3 bg-[#233d36] text-[#badad5] font-semibold rounded-lg hover:bg#a6b6e0] transition-colors duration-300"
                 >
-                  Contact Us
+                  Trimite
                 </button>
               </div>
 

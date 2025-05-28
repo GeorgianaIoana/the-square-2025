@@ -48,8 +48,8 @@ export default function TermsAndConditions() {
             <h2 className="text-2xl font-semibold mb-4">6. Contact</h2>
             <p>
               Pentru orice întrebări sau sesizări, ne puteți contacta la:<br/>
-              <strong>Email:</strong> info@masterchess.com<br/>
-              <strong>Telefon:</strong> (555) 123-4567
+              <strong>Email:</strong> contact@thesquarechess.com<br/>
+              <strong>Telefon:</strong> +40742898793
             </p>
           </section>
         </div>

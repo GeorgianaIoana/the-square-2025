@@ -13,19 +13,19 @@ const Footer: React.FC = () => {
             to="/privacy-policy"
             className="text-[#a6b6e0] hover:text-[#badad5]"
           >
-            Privacy Policy
+            Politica de Confidențialitate
           </Link>
           <Link
             to="/terms-and-conditions"
             className="text-[#a6b6e0] hover:text-[#badad5]"
           >
-            Terms & Conditions
+            Termeni și Condiții
           </Link>
           <Link
             to="/cookie-policy"
             className="text-[#a6b6e0] hover:text-[#badad5]"
           >
-            Cookie Policy
+            Politica Cookie
           </Link>
           <a href="#contact" className="text-[#a6b6e0] hover:text-[#badad5]">
             Contact
@@ -69,7 +69,7 @@ const Footer: React.FC = () => {
           </a>
         </div>
         <p className="text-[#a6b6e0] hover:text-[#badad5] mt-10 text-center text-sm/6">
-          &copy; 2025 THE SQUARE, Inc. All rights reserved.
+          &copy; 2025 THE SQUARE. Developed by Geo.
         </p>
       </div>
     </footer>

@@ -204,13 +204,13 @@ const Calendar = () => {
             className="group flex items-center gap-6 rounded-xl p-5 transition-colors duration-200 hover:bg-[#233d36]/20"
           >
             <div className="flex-auto">
-              <p className="sm:text-[18px] text-[12px] text-[#a6b6e0] font-medium">
+              <p className="sm:text-[18px] text-[16px] text-[#a6b6e0] font-medium">
                 {event.name}
               </p>
-              <p className="mt-1 text-[#badad5]">
+              <p className="mt-1 text-[#badad5] sm:text-[18px] text-[16px]">
                 <time>{event.startTime}</time> - <time>{event.endTime}</time>
                 <br />
-                <span className="text-sm text-[#7ca6a0] italic">
+                <span className="text-sm text-[#7ca6a0] italic sm:text-[18px] text-sm">
                   {event.location}
                 </span>
               </p>
@@ -224,11 +224,11 @@ const Calendar = () => {
   return (
     <div className="w-full border-[#233d36] border-t-[1px]">
       <div className="sm:container mx-auto">
-        <div className="grid grid-cols-12 gap-4 px-4 sm:px-[0px] mt-[46px] mb-[46px] sm:mt-[75px] sm:mb-[75px]">
+        <div className="grid grid-cols-12 gap-4 px-8 sm:px-[0px] mt-[90px] mb-[90px] sm:mt-[75px] sm:mb-[75px]">
           {/* Right Column - Schedule (appears first on mobile, second on desktop) */}
           <div className="col-span-12 lg:col-span-4 flex flex-col items-start lg:items-center relative mb-6 sm:mb-0 order-first lg:order-last">
             <h2 className="px-4 max-w-[270px] sm:max-w-[500px] sm:px-0 text-2xl font-semibold text-[#a6b6e0] mb-6 sm:mb-10 font-archivo">
-              Programul pentru {" "}
+              Programul pentru{" "}
               <time dateTime={selectedDate.toISOString()}>
                 {selectedDate.toLocaleDateString("en-US", {
                   month: "long",
