@@ -7,7 +7,7 @@ import {
   Star,
   Book,
   Pen,
-  Luggage
+  Luggage,
 } from "lucide-react";
 import React from "react";
 import { useEffect, useRef, useState } from "react";
@@ -77,7 +77,7 @@ const services = [
       "Atenție personalizată",
       "Evoluție acelerată",
       "Atingerea obiectivelor setate inițial",
-       "Disponibil fizic și online",
+      "Disponibil fizic și online",
     ],
   },
 ];
@@ -126,7 +126,8 @@ export default function ServicesSection() {
               <div className="flex items-center mb-4">
                 <div className="w-8 h-8 text-[#233d36] mr-3">
                   {React.cloneElement(service.icon, {
-                    className: "font-archivo tracking-[0.1em] w-full h-full text-[#233d36]",
+                    className:
+                      "font-archivo tracking-[0.1em] w-full h-full text-[#233d36]",
                   })}
                 </div>
                 <h3 className="font-archivo tracking-[0.1em] text-2xl font-black text-[#233d36]">
@@ -144,9 +145,17 @@ export default function ServicesSection() {
                   </li>
                 ))}
               </ul>
-              <button className="font-archivo tracking-[0.1em] w-full bg-[#233d36] text-white py-3 rounded-lg font-semibold hover:bg-[#badad5] hover:text-[#233d36] transition">
+              <button
+                className="font-archivo tracking-[0.1em] w-full bg-[#233d36] text-white py-3 rounded-lg font-semibold hover:bg-[#badad5] hover:text-[#233d36] transition"
+                onClick={() => {
+                  const contactSection = document.getElementById("contact");
+                  if (contactSection) {
+                    contactSection.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
+              >
                 Înscrie-te acum!
-              </button> 
+              </button>
             </div>
           ))}
         </div>
@@ -159,11 +168,13 @@ export default function ServicesSection() {
             >
               {showAll ? (
                 <>
-                   Inapoi <ChevronUp className="font-archivo tracking-[0.1em] ml-2 w-5 h-5" />
+                  Inapoi{" "}
+                  <ChevronUp className="font-archivo tracking-[0.1em] ml-2 w-5 h-5" />
                 </>
               ) : (
                 <>
-                  Mai mult <ChevronDown className="font-archivo tracking-[0.1em] ml-2 w-5 h-5" />
+                  Mai mult{" "}
+                  <ChevronDown className="font-archivo tracking-[0.1em] ml-2 w-5 h-5" />
                 </>
               )}
             </button>
