@@ -59,7 +59,7 @@ Este apreciat pentru abordarea sa structurată, formularea de planuri clare și 
 
 În urma studiilor sale, Cristiana a obținut certificatul pedagogic și a absolvit un Master în cadrul Royal College of Art din Londra, o experiență care i-a consolidat sensibilitatea artistică și capacitatea de a construi povești vizuale memorabile.
 
-Dar dincolo de realizările ei competiționale și academice, Cristiana are un talent secret: știe să scrie frumos despre orice, a scris numeroase poezii, pe care le-a citit pisicilor ei iubite. De aceea, ea se ocupă de imaginea clubului de șah și de interacțiunea cu publicul, fiind persoana care dă glas emoțiilor, ideilor și visurilor care definesc comunitatea noastră. Este amabilă, optimistă, sociabilă și are acel farmec natural de a crea un mediu cald și primitor în jurul ei.
+Dar dincolo de realizările ei competiționale și academice, Cristiana are un talent secret: știe să scrie frumos despre orice, a scris numeroase poezii. Astfel, ea se ocupă de imaginea clubului de șah și de interacțiunea cu publicul, fiind persoana care dă glas emoțiilor, ideilor și visurilor care definesc comunitatea noastră. Este amabilă, optimistă, sociabilă și are acel farmec natural de a crea un mediu cald și primitor în jurul ei.
  Ca un pion care devine regină, Cristiana știe să se reinventeze și să creadă mereu în "mai bine".
 
 Este pasionată de educație și dezvoltare personală, iar șahul este pentru ea un instrument excelent prin care copiii își pot dezvolta gândirea, răbdarea și încrederea în sine. Cristiana știe cum să facă lucrurile complexe din șah să pară simple și distractive, iar acest dar se reflectă în entuziasmul și progresul copiilor care învață alături de ea – într-un mediu prietenos și creativ.`,
@@ -104,8 +104,7 @@ function App() {
     {
       url: "/images/banner/theSquare.jpg",
       title: "Antrenează-te cu profesioniști",
-      subtitle:
-        "Ești pasionat de șah? THE SQUARE este clubul ideal pentru tine!",
+      subtitle: "Optimizează fiecare lecție!",
     },
     {
       url: "/images/banner/1.jpg",
@@ -197,7 +196,7 @@ function App() {
             <div className="hidden md:flex space-x-4 ml-auto font-archivo tracking-[0.1em] text-[#badad5] text-right sm:pr-[40px]">
               <button
                 onClick={() => scrollToSection("about")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -205,7 +204,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("team")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -213,7 +212,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("services")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -221,7 +220,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("gallery")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -229,7 +228,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("testimonials")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -237,7 +236,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 transform hover:scale-105 ${
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -308,7 +307,7 @@ function App() {
                 scrollToSection("about");
                 setMobileMenuOpen(false);
               }}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition"
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
               Despre noi
             </button>
@@ -317,7 +316,7 @@ function App() {
                 scrollToSection("team");
                 setMobileMenuOpen(false);
               }}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition"
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
               Echipa
             </button>
@@ -326,7 +325,7 @@ function App() {
                 scrollToSection("services");
                 setMobileMenuOpen(false);
               }}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition"
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
               Cursuri de șah
             </button>
@@ -335,7 +334,7 @@ function App() {
                 scrollToSection("gallery");
                 setMobileMenuOpen(false);
               }}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition"
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
               Galerie
             </button>
@@ -344,7 +343,7 @@ function App() {
                 scrollToSection("testimonials");
                 setMobileMenuOpen(false);
               }}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] hover:bg-[#a6b6e0] hover:text-[#233d36] transition"
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
               Testimoniale
             </button>
@@ -353,10 +352,21 @@ function App() {
                 scrollToSection("contact");
                 setMobileMenuOpen(false);
               }}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] hover:bg-[#a6b6e0] hover:text-[#233d36] transition"
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
               Contact
             </button>
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={() => {
+                  scrollToSection("contact");
+                  setMobileMenuOpen(false);
+                }}
+                className="bg-[#badad5] text-[#233d36] px-8 py-3 rounded-full font-archivo font-semibold text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] shadow-lg"
+              >
+                Înscrie-te la primul tău curs!
+              </button>
+            </div>
           </div>
         )}
       </nav>
@@ -380,16 +390,16 @@ function App() {
                 {currentSlide === index && (
                   <div className="absolute inset-0 flex items-center justify-center text-center px-4 sm:px-8 z-30 animate-fade-in-up">
                     <div className="max-w-3xl">
-                      <h1 className="text-2xl sm:text-4xl md:text-5xl font-semibold mb-4 tracking-wide text-[#a6b6e0] leading-snug">
+                      <h1 className="text-2xl sm:text-4xl md:text-5xl font-semibold mb-4 tracking-wide text-[#a6b6e0] leading-snug font-archivo">
                         {image.title}
                       </h1>
-                      <p className="text-base sm:text-lg md:text-xl mb-6 tracking-wide text-[#a6b6e0]">
+                      <p className="text-base sm:text-lg md:text-xl mb-6 tracking-wide text-[#a6b6e0] font-archivo">
                         {image.subtitle}
                       </p>
                       <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
                         <button
                           onClick={() => scrollToSection("contact")}
-                          className="sm:mt-[0px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                          className="sm:mt-[0px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
                         >
                           Înscrie-te la primul tău curs!
                         </button>
@@ -428,13 +438,13 @@ function App() {
               <div className="col-span-12 lg:col-span-8 flex flex-col items-start relative ml-[12px]">
                 <div>
                   <div className="absolute rounded-full  border-[1.5px] lg:border-3 border-[#D3B77B] z-[-1] h-[43px] w-[43px] sm:h-[123px] sm:w-[123px] absolute top-[-11px] sm:top-[25px] left-[-19px] sm:left-[-59px]"></div>
-                  <span className="font-archivo text-center flex justify-center text-[#a6b6e0] text-[24px] font-[400] tracking-[0.1em] sm:text-[35px] leading-[125%]">
+                  <span className="font-archivo text-center flex justify-center text-[#a6b6e0] text-[24px] font-medium tracking-[0.1em] sm:text-[35px] leading-[125%]">
                     Despre
                   </span>
-                  <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-[400] tracking-[0.1em] sm:text-[45px]  mb-[20px] sm:mb-[40px] leading-[125%]">
+                  <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-medium tracking-[0.1em] sm:text-[45px]  mb-[20px] sm:mb-[40px] leading-[125%]">
                     THE SQUARE
                   </h4>
-                  <p className="font-archivo text-sm sm:text-[16px] text-[#a6b6e0] font-[500] sm:px-0 tracking-[0.1em] leading-[125%] font-[400] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px]  max-w-[320px] sm:max-w-[665px]">
+                  <p className="font-archivo text-sm sm:text-[16px] text-[#a6b6e0] font-medium sm:px-0 tracking-[0.1em] leading-[125%] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px]  max-w-[320px] sm:max-w-[665px]">
                     Clubul de Șah THE SQUARE este spațiul în care pasiunea
                     pentru șah capătă formă, indiferent de vârstă sau nivel de
                     experiență. Fondat din dorința de a promova gândirea
@@ -452,7 +462,7 @@ function App() {
                   <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
                     <button
                       onClick={() => scrollToSection("contact")}
-                      className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                      className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
                     >
                       Înscrie-te la primul tău curs!
                     </button>
@@ -499,29 +509,29 @@ function App() {
               <div className="col-span-12 lg:col-span-8 flex flex-col items-start relative ml-[12px]">
                 <div>
                   <div className="absolute rounded-full  border-[1.5px] lg:border-3 border-[#D3B77B] z-[-1] h-[43px] w-[43px] sm:h-[123px] sm:w-[123px] absolute top-[-11px] sm:top-[25px] left-[-19px] sm:left-[-59px]"></div>
-                  <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-[400] sm:tracking-[0.1em] sm:text-[52px] leading-[125%] mb-[20px] sm:mb-[40px]">
+                  <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-medium sm:tracking-[0.1em] sm:text-[52px] leading-[125%] mb-[20px] sm:mb-[40px]">
                     Beneficiile Șahului
                   </h4>
-                  <p className="font-archivo sm:text-[16px] text-[#a6b6e0] text-left font-[500] sm:px-0 tracking-[0.1em] leading-[125%] font-[400] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px] text-[12px] sm:text-[14px] max-w-[320px] sm:max-w-[665px]">
+                  <p className="font-archivo sm:text-[16px] text-[#a6b6e0] text-left font-medium sm:px-0 tracking-[0.1em] leading-[125%] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px] text-[12px] sm:text-[14px] max-w-[320px] sm:max-w-[665px]">
                     <p className="sm:text-[16px] text-sm font-archivo tracking-[0.1em] leading-[125%]">
-                      ■ Concentrare și prezență! Fiecare partidă de șah este o
+                      ■ Concentrare și prezență. Fiecare partidă de șah este o
                       oportunitate de a cultiva răbdarea.{" "}
                     </p>
                     <p className="sm:text-[16px] text-sm font-archivo tracking-[0.1em] leading-[125%]">
-                      ■ Gândire strategică! Îți dezvolți capacitatea de a
+                      ■ Gândire strategică. Îți dezvolți capacitatea de a
                       anticipa mutări și a lua decizii strategice atât pe tabla
                       de șah, cât și în viață.
                     </p>
                     <p className="sm:text-[16px] text-sm font-archivo tracking-[0.1em] leading-[125%]">
                       {" "}
-                      ■ Evoluezi continuu, în ritmul tău La THE SQUARE ne
+                      ■ Evoluezi continuu, în ritmul tău. La THE SQUARE ne
                       ghidează bucuria. Apreciem fiecare pas către progres.
                       Crești cu răbdare, poți să te bucuri de proces și să îți
                       cultivi încrederea în forțele proprii.{" "}
                     </p>
                     <p className="sm:text-[16px] text-sm font-archivo tracking-[0.1em] leading-[125%]">
                       ■ Faci parte dintr-o comunitate prietenoasă, cu valori
-                      comune La THE SQUARE, jucători începători și avansați se
+                      comune. La THE SQUARE, jucători începători și avansați se
                       întâlnesc, se provoacă, se susțin. Fie că vii pentru
                       socializare, învățare sau competiție, lumea THE SQUARE îți
                       este deschisă.
@@ -531,7 +541,7 @@ function App() {
                   <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
                     <button
                       onClick={() => scrollToSection("contact")}
-                      className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                      className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
                     >
                       Înscrie-te la primul tău curs!
                     </button>
@@ -564,22 +574,20 @@ function App() {
         id="mission"
       >
         <div className="container mx-auto">
-          <h2 className="sm:text-[40px] text-[24px] leading-[125%] tracking-[0.1em] font-[400] font-archivo  text-[#a6b6e0] text-center sm:mt-[14px] mt-[7px] mx-auto">
+          <h2 className="sm:text-[40px] text-[24px] leading-[125%] tracking-[0.1em] font-medium font-archivo  text-[#a6b6e0] text-center sm:mt-[14px] mt-[7px] mx-auto">
             MISIUNEA NOASTRĂ
           </h2>
 
-          <p className="text-[#a6b6e0] font-archivo  font-[400] leading-[125%] tracking-[0.1em] mx-auto max-w-[313px] sm:max-w-[544px] text-center sm:mt-[19px] mt-[21px]">
-            Într-o lume a impulsurilor, tot mai digitală, care se mișcă în pas
-            alert, THE SQUARE dorește să ofere prin șah un context în care
-            timpul încetinește și tace pentru câteva momente, un spațiu care
-            aduce împreună adulți și copii pasionați pe care caută să-i dezvolte
-            și să-i educe cu empatie la un nivel înalt, un loc unde răbdarea se
-            cultivă mutare cu mutare, alături de antrenori dedicați
+          <p className="text-[#a6b6e0] font-archivo font-medium leading-[125%] tracking-[0.1em] mx-auto max-w-[313px] sm:max-w-[544px] text-left sm:text-center sm:mt-[19px] mt-[21px]">
+            Într-o lume tot mai digitală, care se mișcă în pas alert, THE SQUARE
+            dorește să ofere prin șah un context în care timpul încetinește
+            pentru câteva momente, un loc în care răbdarea și strategia se
+            cultivă mutare cu mutare, alături de antrenori dedicați.
           </p>
           <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
             <button
               onClick={() => scrollToSection("contact")}
-              className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+              className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
             >
               Alege educația!
             </button>
@@ -593,13 +601,13 @@ function App() {
                   src="/images/banner/chess-king-purple.svg"
                   className="w-auto h-[48.43px] sm:h-[64.58px] mx-auto bg-custom-black-900 px-[43px] "
                 />
-                <h4 className="text-[#badad5] font-archivo  font-[400] uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
+                <h4 className="text-[#badad5] font-archivo font-medium uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
                   EDUCAȚIE
                 </h4>
-                <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-center sm:mt-[36px] mt-[21px] text-[#a6b6e0] font-archivo font-[400] leading-[125%] tracking-[0.1em]">
+                <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-left sm:text-center sm:mt-[36px] mt-[21px] text-[#a6b6e0] font-archivo font-medium leading-[125%] tracking-[0.1em]">
                   <p>
                     {" "}
-                    La The Square, fiecare lecție începe cu teorie solidă: 30-50
+                    La THE SQUARE, fiecare lecție începe cu teorie solidă: 30-50
                     de minute dedicate deschiderilor, unde cursanții învață să
                     construiască planuri clare și capătă încredere în jocul de
                     mijloc. Urmează exerciții tactice sau finaluri explicate pas
@@ -645,11 +653,11 @@ function App() {
                   src="/images/banner/chess-board-purple.svg"
                   className="w-auto h-[48.43px] sm:h-[64.58px] mx-auto bg-custom-black-900 px-[43px]"
                 />
-                <h4 className="text-[#badad5] font-archivo  font-[400] uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
+                <h4 className="text-[#badad5] font-archivo font-medium uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
                   INTEGRITATE
                 </h4>
-                <p className=" text-[#a6b6e0] font-archivo  font-[400] leading-[125%] tracking-[0.1em] mx-auto max-w-[313px] sm:max-w-[500px] text-center sm:mt-[19px] mt-[21px]">
-                  <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-center sm:mt-[19px] mt-[21px] sm:p-4 text-[#a6b6e0] font-archivo font-[400] leading-[125%] tracking-[0.1em]">
+                <p className="text-[#a6b6e0] font-archivo font-medium leading-[125%] tracking-[0.1em] mx-auto max-w-[313px] sm:max-w-[500px] text-left sm:text-center sm:mt-[19px] mt-[21px]">
+                  <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-left sm:text-center sm:mt-[19px] mt-[21px] sm:p-4 text-[#a6b6e0] font-archivo font-medium leading-[125%] tracking-[0.1em]">
                     {/* <p>
                       Fondurile obținute vor fi folosite pentru:
                       <ul>
@@ -685,10 +693,10 @@ function App() {
                   src="/images/banner/chess-queen-purple.svg"
                   className="w-auto h-[48.43px] sm:h-[64.58px] mx-auto bg-custom-black-900 px-[43px]"
                 />
-                <h4 className="text-[#badad5] font-archivo  font-[400] uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
+                <h4 className="text-[#badad5] font-archivo font-medium uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
                   COMUNITATE
                 </h4>
-                <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-center sm:mt-[36px] mt-[21px] text-[#a6b6e0] font-archivo font-[400] leading-[125%] tracking-[0.1em]">
+                <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-left sm:text-center sm:mt-[36px] mt-[21px] text-[#a6b6e0] font-archivo font-medium leading-[125%] tracking-[0.1em]">
                   {/* <p>
                     <strong>Pentru persoanele fizice</strong> — dacă dorești să
                     redirecționezi 3,5% din impozitul tău anual pe venit
@@ -704,13 +712,13 @@ function App() {
                     importante pentru comunitate.
                   </p> */}
                   <p>
-                    Comunitatea The Square reunește pasionații de șah în
-                    evenimente cu intrare liberă, unde jocul, socializarea și
-                    momentele plăcute sunt adesea însoțite de ceai. Suntem
-                    deschiși să primim voluntari pasionați, dornici să
-                    contribuie la inițiative caritabile, să ofere seturi de șah
-                    copiilor și să susțină workshop-uri educative. Astfel, prin
-                    educație strategică, contribuim împreună la o lume mai bună.
+                    Comunitatea THE SQUARE reunește pasionații de șah în
+                    evenimente unde jocul, socializarea și momentele plăcute
+                    sunt adesea însoțite de ceai. Suntem deschiși să primim
+                    voluntari pasionați, dornici să contribuie la inițiative
+                    caritabile sau să susțină workshop-uri educative. Astfel,
+                    prin educație strategică, contribuim împreună la o lume mai
+                    bună.
                   </p>
                 </section>
               </div>
@@ -727,7 +735,7 @@ function App() {
       >
         <div className="sm:container mx-auto px-4">
           <div className="max-w-[1420px] max-h-[1700px] mx-auto">
-            <h2 className="text-3xl sm:text-5xl font-bold text-center mb-16 text-[#badad5]">
+            <h2 className="text-3xl sm:text-5xl font-bold text-center mb-16 text-[#badad5] font-archivo">
               Galerie
             </h2>
 
@@ -896,14 +904,14 @@ function App() {
               </svg>
             </a>
           </div>
-          <p className="text-[#a6b6e0] tracking-[0.1em] font-arhivo text-xs hover:text-[#badad5] mt-10 text-center sm:text-sm/6">
+          <p className="text-[#a6b6e0] tracking-[0.1em] font-archivo text-xs hover:text-[#badad5] mt-10 text-center sm:text-sm/6">
             &copy; 2025 THE SQUARE. Developed by THE SQUARE.
           </p>
         </div>
       </footer>
       <a
         href="https://wa.me/0742898793"
-        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg transition-all duration-300"
+        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-[0_4px_12px_rgba(0,0,0,0.3)] border-2 border-white/20 hover:border-white/40 transition-all duration-300"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
@@ -912,7 +920,7 @@ function App() {
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
           viewBox="0 0 24 24"
-          className="w-6 h-6"
+          className="w-6 h-6 drop-shadow-sm"
         >
           <path d="M20.52 3.478a11.81 11.81 0 0 0-16.69 0 11.81 11.81 0 0 0-2.48 13.06L.34 23.49l7.14-1.88a11.81 11.81 0 0 0 5.55 1.42h.01c3.14 0 6.09-1.22 8.31-3.44a11.81 11.81 0 0 0 0-16.69zm-8.41 17.5a10.23 10.23 0 0 1-5.2-1.44l-.37-.22-4.25 1.12 1.13-4.14-.24-.38a10.3 10.3 0 0 1 1.52-12.57 10.28 10.28 0 0 1 14.53 0 10.27 10.27 0 0 1-7.12 17.63zm5.63-7.78c-.3-.15-1.77-.87-2.05-.97s-.48-.15-.68.15-.78.97-.96 1.18-.35.22-.65.07a8.32 8.32 0 0 1-2.47-1.53 9.33 9.33 0 0 1-1.7-2.12c-.17-.3-.02-.47.13-.62.13-.13.3-.35.45-.53s.2-.3.3-.5a.54.54 0 0 0-.02-.52c-.08-.15-.68-1.65-.93-2.27-.24-.57-.49-.5-.68-.5h-.58c-.2 0-.52.07-.8.35s-1.05 1.02-1.05 2.5 1.07 2.9 1.22 3.1a11.77 11.77 0 0 0 4.65 4.23c.65.28 1.17.45 1.57.57.66.21 1.25.18 1.72.1.53-.08 1.62-.66 1.85-1.3.23-.64.23-1.2.16-1.31-.06-.11-.26-.18-.55-.32z" />
         </svg>

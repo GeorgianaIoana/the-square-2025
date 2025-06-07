@@ -23,7 +23,7 @@ Ești la început de drum sau un jucător avansat în căutare de un antrenor se
  `,
     image: "images/team/georgiana.jpg",
   },
-  
+
   {
     name: "Vlad Ghiță",
     title: "CHESS TRAINER",
@@ -33,7 +33,7 @@ Este apreciat pentru abordarea sa structurată, formularea de planuri clare și 
 În afara șahului, Vlad este pasionat de muzica clasică, tenisul de masă și descoperirea diversității culturale și gastronomice din întreaga lume – pasiuni care reflectă curiozitatea, echilibrul și profunzimea cu care abordează tot ceea ce face.`,
     image: "images/team/vlad.jpg",
   },
-  
+
   {
     name: "Cristiana Stanciu",
     title: "CO-FOUNDER & CHESS TRAINER",
@@ -47,7 +47,7 @@ Dar dincolo de realizările ei competiționale și academice, Cristiana are un t
 Este pasionată de educație și dezvoltare personală, iar șahul este pentru ea un instrument excelent prin care copiii își pot dezvolta gândirea, răbdarea și încrederea în sine. Cristiana știe cum să facă lucrurile complexe din șah să pară simple și distractive, iar acest dar se reflectă în entuziasmul și progresul copiilor care învață alături de ea – într-un mediu prietenos și creativ.`,
     image: "images/team/cris-chess.jpg",
   },
- 
+
   {
     name: "Mustafa Hamdan",
     title: "CHESS TRAINER",
@@ -103,14 +103,14 @@ const Team: React.FC<TeamProps> = ({
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/50 to-[#858585]/0 rounded-[17px] opacity-[0.8]" />
             </div>
-            <div className="order-first lg:order-last lg:w-1/2 max-w-3xl mx-auto lg:pl-16 sm:ml-[360px] text-center flex flex-col items-center justify-center">
-              <h2 className="text-2xl sm:text-[40px] font-bold mb-2 text-[#a6b6e0] tracking-wide font-archivo tracking-[0.1em] text-center">
+            <div className="order-first lg:order-last lg:w-1/2 max-w-3xl mx-auto px-4 lg:pl-16 sm:ml-[360px] text-left flex flex-col items-center justify-center">
+              <h2 className="text-2xl sm:text-[40px] font-bold mb-2 text-[#a6b6e0] tracking-wide font-archivo tracking-[0.1em] text-left">
                 {currentMember.name}
               </h2>
-              <p className="text-xs sm:text-[15px] sm:py-[10px] font-bold uppercase tracking-wider text-[#a6b6e0] mb-4 font-archivo tracking-[0.1em] text-center">
+              <p className="text-xs sm:text-[15px] sm:py-[10px] font-bold uppercase tracking-wider text-[#a6b6e0] mb-4 font-archivo tracking-[0.1em] text-left">
                 {currentMember.title}
               </p>
-              <div className="text-[#a6b6e0] mb-4 leading-[125%] text-sm sm:text-base font-archivo tracking-[0.1em]">
+              <div className="text-[#a6b6e0] mb-4 leading-[125%] text-sm sm:text-base font-archivo tracking-[0.1em] text-left">
                 {expandedDescriptions[currentMember.name]
                   ? currentMember.description
                   : currentMember.description.slice(0, 650) +

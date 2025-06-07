@@ -109,7 +109,7 @@ export default function ServicesSection() {
 
   return (
     <section
-      className="py-24 sm:py-20 bg-[#001a00] border-t border-[#233d36]"
+      className="py-24 sm:py-20 bg-[#001a00] border-t border-[#233d36] overflow-hidden sm:overflow-visible font-archivo"
       id="services"
     >
       <div ref={sectionRef} className="sm:container mx-auto px-4">
@@ -126,22 +126,21 @@ export default function ServicesSection() {
               <div className="flex items-center mb-4">
                 <div className="w-8 h-8 text-[#233d36] mr-3">
                   {React.cloneElement(service.icon, {
-                    className:
-                      "font-archivo tracking-[0.1em] w-full h-full text-[#233d36]",
+                    className: "w-full h-full text-[#233d36]",
                   })}
                 </div>
                 <h3 className="font-archivo tracking-[0.1em] text-2xl font-black text-[#233d36]">
                   {service.title}
                 </h3>
               </div>
-              <p className="font-archivo  text-3xl font-black text-[#233d36] mb-6">
+              <p className="font-archivo tracking-[0.1em] text-3xl font-black text-[#233d36] mb-6">
                 {service.price}
               </p>
               <ul className="font-archivo tracking-[0.1em] space-y-3 mb-6 text-base text-[#233d36]">
                 {service.features.map((feature, i) => (
-                  <li key={i} className="flex items-center">
+                  <li key={i} className="flex items-center font-archivo">
                     <Star className="w-5 h-5 mr-2 text-[#233d36]" />
-                    <span>{feature}</span>
+                    <span className="font-archivo">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -168,13 +167,11 @@ export default function ServicesSection() {
             >
               {showAll ? (
                 <>
-                  Inapoi{" "}
-                  <ChevronUp className="font-archivo tracking-[0.1em] ml-2 w-5 h-5" />
+                  Inapoi <ChevronUp className="ml-2 w-5 h-5" />
                 </>
               ) : (
                 <>
-                  Mai mult{" "}
-                  <ChevronDown className="font-archivo tracking-[0.1em] ml-2 w-5 h-5" />
+                  Mai mult <ChevronDown className="ml-2 w-5 h-5" />
                 </>
               )}
             </button>
