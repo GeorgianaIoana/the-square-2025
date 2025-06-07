@@ -64,7 +64,7 @@ const services = [
     icon: <Pen />,
     features: [
       "Atenție personalizată",
-      "Evoluție acelerată",
+      "Evoluție accelerată",
       "Rezultate bune la competiții și școală",
       "Disponibil fizic și online",
     ],
@@ -75,7 +75,7 @@ const services = [
     icon: <Book />,
     features: [
       "Atenție personalizată",
-      "Evoluție acelerată",
+      "Evoluție accelerată",
       "Atingerea obiectivelor setate inițial",
       "Disponibil fizic și online",
     ],
@@ -111,17 +111,18 @@ export default function ServicesSection() {
     <section
       className="py-24 sm:py-20 bg-[#001a00] border-t border-[#233d36] overflow-hidden sm:overflow-visible font-archivo"
       id="services"
+      ref={sectionRef}
     >
-      <div ref={sectionRef} className="sm:container mx-auto px-4">
+      <div className="container mx-auto px-4">
         <h2 className="font-archivo tracking-[0.1em] text-3xl font-bold text-center mb-16 text-[#badad5]">
           Abonamente și servicii
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10 justify-items-center">
           {displayedServices.map((service, index) => (
             <div
               key={index}
-              className="font-archivo tracking-[0.1em] bg-[#badad5] w-full max-w-[400px] rounded-lg p-8 shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-[#a6b6e0]"
+              className="font-archivo tracking-[0.1em] bg-[#badad5] w-full max-w-[400px] rounded-lg p-6 sm:p-8 shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-[#a6b6e0]"
             >
               <div className="flex items-center mb-4">
                 <div className="w-8 h-8 text-[#233d36] mr-3">
@@ -129,23 +130,23 @@ export default function ServicesSection() {
                     className: "w-full h-full text-[#233d36]",
                   })}
                 </div>
-                <h3 className="font-archivo tracking-[0.1em] text-2xl font-black text-[#233d36]">
+                <h3 className="font-archivo tracking-[0.1em] text-xl sm:text-2xl font-black text-[#233d36]">
                   {service.title}
                 </h3>
               </div>
-              <p className="font-archivo tracking-[0.1em] text-3xl font-black text-[#233d36] mb-6">
+              <p className="font-archivo tracking-[0.1em] text-2xl sm:text-3xl font-black text-[#233d36] mb-6">
                 {service.price}
               </p>
-              <ul className="font-archivo tracking-[0.1em] space-y-3 mb-6 text-base text-[#233d36]">
+              <ul className="font-archivo tracking-[0.1em] space-y-3 mb-6 text-sm sm:text-base text-[#233d36]">
                 {service.features.map((feature, i) => (
                   <li key={i} className="flex items-center font-archivo">
-                    <Star className="w-5 h-5 mr-2 text-[#233d36]" />
+                    <Star className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-[#233d36] flex-shrink-0" />
                     <span className="font-archivo">{feature}</span>
                   </li>
                 ))}
               </ul>
               <button
-                className="font-archivo tracking-[0.1em] w-full bg-[#233d36] text-white py-3 rounded-lg font-semibold hover:bg-[#badad5] hover:text-[#233d36] transition"
+                className="font-archivo tracking-[0.1em] w-full bg-[#233d36] text-white py-3 rounded-lg font-semibold hover:bg-[#badad5] hover:text-[#233d36] transition-colors duration-300 active:scale-95"
                 onClick={() => {
                   const contactSection = document.getElementById("contact");
                   if (contactSection) {
@@ -160,14 +161,14 @@ export default function ServicesSection() {
         </div>
 
         {services.length > 3 && (
-          <div className="text-center mt-10">
+          <div className="text-center mt-8 sm:mt-10">
             <button
               onClick={handleToggle}
-              className="font-archivo tracking-[0.1em] inline-flex items-center bg-[#233d36] text-white px-6 py-3 rounded-full hover:bg-[#a6b6e0] hover:text-[#233d36] transition text-sm font-medium"
+              className="font-archivo tracking-[0.1em] inline-flex items-center bg-[#233d36] text-white px-6 py-3 rounded-full hover:bg-[#a6b6e0] hover:text-[#233d36] transition-colors duration-300 text-sm font-medium active:scale-95"
             >
               {showAll ? (
                 <>
-                  Inapoi <ChevronUp className="ml-2 w-5 h-5" />
+                  Înapoi <ChevronUp className="ml-2 w-5 h-5" />
                 </>
               ) : (
                 <>

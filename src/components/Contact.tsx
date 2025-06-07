@@ -171,7 +171,7 @@ export default function ContactSection() {
               <div className="text-center pt-2 sm:pt-4 sm:pb-0 pb-6-6">
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-[#233d36] text-[#badad5] font-semibold rounded-lg hover:bg#a6b6e0] transition-colors duration-300"
+                  className="px-6 py-3 bg-[#233d36] text-[#badad5] font-semibold rounded-lg hover:bg-[#a6b6e0] transition-colors duration-300"
                 >
                   Trimite
                 </button>

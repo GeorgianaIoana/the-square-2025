@@ -28,6 +28,8 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import CookiePolicyPage from "./pages/CookiePolicyPage";
 import TermsAndConditions from "./pages/TermsAndConditions";
 
+<link rel="icon" type="/images/banner/chess-queen-purple.svg" />;
+
 const instructors = [
   { id: 1, name: "Instructor 1", description: "Descrierea instructorului 1" },
   { id: 2, name: "Instructor 2", description: "Descrierea instructorului 2" },
@@ -104,7 +106,8 @@ function App() {
     {
       url: "/images/banner/theSquare.jpg",
       title: "Antrenează-te cu profesioniști",
-      subtitle: "Optimizează fiecare lecție!",
+      subtitle:
+        "Șahul este viața în miniatură. Șahul este o luptă, o bătălie. - Garry Kasparov",
     },
     {
       url: "/images/banner/1.jpg",
@@ -196,7 +199,7 @@ function App() {
             <div className="hidden md:flex space-x-4 ml-auto font-archivo tracking-[0.1em] text-[#badad5] text-right sm:pr-[40px]">
               <button
                 onClick={() => scrollToSection("about")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] ${
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -204,7 +207,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("team")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] ${
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -212,7 +215,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("services")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] ${
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -220,7 +223,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("gallery")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] ${
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -228,7 +231,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("testimonials")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] ${
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -236,7 +239,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] ${
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -399,7 +402,7 @@ function App() {
                       <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
                         <button
                           onClick={() => scrollToSection("contact")}
-                          className="sm:mt-[0px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
+                          className="sm:mt-[0px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
                         >
                           Înscrie-te la primul tău curs!
                         </button>
@@ -455,14 +458,14 @@ function App() {
                     aduce oamenii împreună. Organizăm cursuri pentru copii și
                     adulți, competiții, pregătiri pentru turnee și evenimente
                     interactive care încurajează învățarea și socializarea. Te
-                    ajutăm să îți setezi obiective și să le atingi într-un
+                    ajutăm să îți setezi obiective și să le împlinești într-un
                     spațiu primitor și prietenos.
                   </p>
 
                   <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
                     <button
                       onClick={() => scrollToSection("contact")}
-                      className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
+                      className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
                     >
                       Înscrie-te la primul tău curs!
                     </button>
@@ -509,8 +512,8 @@ function App() {
               <div className="col-span-12 lg:col-span-8 flex flex-col items-start relative ml-[12px]">
                 <div>
                   <div className="absolute rounded-full  border-[1.5px] lg:border-3 border-[#D3B77B] z-[-1] h-[43px] w-[43px] sm:h-[123px] sm:w-[123px] absolute top-[-11px] sm:top-[25px] left-[-19px] sm:left-[-59px]"></div>
-                  <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-medium sm:tracking-[0.1em] sm:text-[52px] leading-[125%] mb-[20px] sm:mb-[40px]">
-                    Beneficiile Șahului
+                  <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-medium tracking-wide sm:text-[52px] leading-[125%] mb-[20px] sm:mb-[40px]">
+                    De ce, sportul minții?
                   </h4>
                   <p className="font-archivo sm:text-[16px] text-[#a6b6e0] text-left font-medium sm:px-0 tracking-[0.1em] leading-[125%] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px] text-[12px] sm:text-[14px] max-w-[320px] sm:max-w-[665px]">
                     <p className="sm:text-[16px] text-sm font-archivo tracking-[0.1em] leading-[125%]">
@@ -541,7 +544,7 @@ function App() {
                   <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
                     <button
                       onClick={() => scrollToSection("contact")}
-                      className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
+                      className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
                     >
                       Înscrie-te la primul tău curs!
                     </button>
@@ -587,7 +590,7 @@ function App() {
           <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
             <button
               onClick={() => scrollToSection("contact")}
-              className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
+              className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
             >
               Alege educația!
             </button>
@@ -881,8 +884,8 @@ function App() {
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
                 y="0px"
-                width="100"
-                height="100"
+                width="30"
+                height="30"
                 viewBox="0 0 50 50"
                 className="size-6"
                 fill="currentColor"
@@ -917,12 +920,37 @@ function App() {
         aria-label="Chat on WhatsApp"
       >
         <svg
+          height="20px"
+          width="20px"
+          version="1.1"
+          id="Layer_1"
           xmlns="http://www.w3.org/2000/svg"
-          fill="currentColor"
-          viewBox="0 0 24 24"
-          className="w-6 h-6 drop-shadow-sm"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 512 512"
+          xmlSpace="preserve"
+          fill="#000000"
         >
-          <path d="M20.52 3.478a11.81 11.81 0 0 0-16.69 0 11.81 11.81 0 0 0-2.48 13.06L.34 23.49l7.14-1.88a11.81 11.81 0 0 0 5.55 1.42h.01c3.14 0 6.09-1.22 8.31-3.44a11.81 11.81 0 0 0 0-16.69zm-8.41 17.5a10.23 10.23 0 0 1-5.2-1.44l-.37-.22-4.25 1.12 1.13-4.14-.24-.38a10.3 10.3 0 0 1 1.52-12.57 10.28 10.28 0 0 1 14.53 0 10.27 10.27 0 0 1-7.12 17.63zm5.63-7.78c-.3-.15-1.77-.87-2.05-.97s-.48-.15-.68.15-.78.97-.96 1.18-.35.22-.65.07a8.32 8.32 0 0 1-2.47-1.53 9.33 9.33 0 0 1-1.7-2.12c-.17-.3-.02-.47.13-.62.13-.13.3-.35.45-.53s.2-.3.3-.5a.54.54 0 0 0-.02-.52c-.08-.15-.68-1.65-.93-2.27-.24-.57-.49-.5-.68-.5h-.58c-.2 0-.52.07-.8.35s-1.05 1.02-1.05 2.5 1.07 2.9 1.22 3.1a11.77 11.77 0 0 0 4.65 4.23c.65.28 1.17.45 1.57.57.66.21 1.25.18 1.72.1.53-.08 1.62-.66 1.85-1.3.23-.64.23-1.2.16-1.31-.06-.11-.26-.18-.55-.32z" />
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g
+            id="SVGRepo_tracerCarrier"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></g>
+          <g id="SVGRepo_iconCarrier">
+            {" "}
+            <path
+              style={{ fill: "#EDEDED" }}
+              d="M0,512l35.31-128C12.359,344.276,0,300.138,0,254.234C0,114.759,114.759,0,255.117,0 S512,114.759,512,254.234S395.476,512,255.117,512c-44.138,0-86.51-14.124-124.469-35.31L0,512z"
+            ></path>{" "}
+            <path
+              style={{ fill: "#55CD6C" }}
+              d="M137.71,430.786l7.945,4.414c32.662,20.303,70.621,32.662,110.345,32.662 c115.641,0,211.862-96.221,211.862-213.628S371.641,44.138,255.117,44.138S44.138,137.71,44.138,254.234 c0,40.607,11.476,80.331,32.662,113.876l5.297,7.945l-20.303,74.152L137.71,430.786z"
+            ></path>{" "}
+            <path
+              style={{ fill: "#FEFEFE" }}
+              d="M187.145,135.945l-16.772-0.883c-5.297,0-10.593,1.766-14.124,5.297 c-7.945,7.062-21.186,20.303-24.717,37.959c-6.179,26.483,3.531,58.262,26.483,90.041s67.09,82.979,144.772,105.048 c24.717,7.062,44.138,2.648,60.028-7.062c12.359-7.945,20.303-20.303,22.952-33.545l2.648-12.359 c0.883-3.531-0.883-7.945-4.414-9.71l-55.614-25.6c-3.531-1.766-7.945-0.883-10.593,2.648l-22.069,28.248 c-1.766,1.766-4.414,2.648-7.062,1.766c-15.007-5.297-65.324-26.483-92.69-79.448c-0.883-2.648-0.883-5.297,0.883-7.062 l21.186-23.834c1.766-2.648,2.648-6.179,1.766-8.828l-25.6-57.379C193.324,138.593,190.676,135.945,187.145,135.945"
+            ></path>{" "}
+          </g>
         </svg>
       </a>
     </div>

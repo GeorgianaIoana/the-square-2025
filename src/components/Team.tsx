@@ -120,7 +120,7 @@ const Team: React.FC<TeamProps> = ({
                 <div className="flex justify-center pb-5 sm:pb-0 sm:mt-0">
                   <button
                     onClick={() => toggleDescription(currentMember.name)}
-                    className="sm:mt-[10px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-medium text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                    className="sm:mt-[10px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
                   >
                     {expandedDescriptions[currentMember.name]
                       ? "Înapoi"
@@ -135,14 +135,14 @@ const Team: React.FC<TeamProps> = ({
             <button
               onClick={goPrev}
               disabled={currentSlide === 0}
-              className="swiper-button-prev text-[#a6b6e0] hover:text-[#badad5] transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="swiper-button-prev text-[#a6b6e0] hover:text-[#badad5] transition disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
             >
               <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
             </button>
             <button
               onClick={goNext}
               disabled={currentSlide === teamMembers.length - 1}
-              className="swiper-button-next text-[#a6b6e0] hover:text-[#badad5] transition disabled:opacity-50 disabled:cursor-not-allowed"
+              className="swiper-button-next text-[#a6b6e0] hover:text-[#badad5] transition disabled:opacity-50 disabled:cursor-not-allowed font-semibold"
             >
               <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
             </button>

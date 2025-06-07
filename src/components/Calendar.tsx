@@ -160,17 +160,35 @@ const Calendar = () => {
         endTime: "12:00",
         location: "Corbeni 34, sector 2",
       },
+    ],
+    "28": [
       {
-        id: 3,
-        name: "Seara de șah rapdi 15|10",
-        startTime: "15:00",
-        endTime: "19:00",
-        location: "Stamina Workshop",
+        id: 1,
+        name: "Masterclass despre Repertoriul e4 cu Vlad Ghiță",
+        startTime: "10:00 ",
+        endTime: "15:00",
+        location: "Corbeni 34, sector 2",
+      },
+    ],
+    "29": [
+      {
+        id: 1,
+        name: "Masterclass despre Repertoriul e4 cu Vlad Ghiță",
+        startTime: "10:00",
+        endTime: "15:00",
+        location: "Corbeni 34, sector 2",
       },
     ],
   };
 
   const getDayKey = (day: number | undefined) => {
+    if (!day) return "";
+
+    // Verifică dacă există un eveniment specific pentru această zi
+    if (events[day.toString() as keyof typeof events]) {
+      return day.toString();
+    }
+
     const date = new Date(
       currentDate.getFullYear(),
       currentDate.getMonth(),
@@ -252,7 +270,7 @@ const Calendar = () => {
                 <button
                   type="button"
                   onClick={previousMonth}
-                  className="p-3 rounded-full text-[#a6b6e0] hover:bg-[#233d36] transition-colors duration-200"
+                  className="p-3 rounded-full text-[#a6b6e0] hover:bg-[#233d36] transition-colors duration-200 font-semibold"
                 >
                   <span className="sr-only">Previous month</span>
                   <svg
@@ -270,7 +288,7 @@ const Calendar = () => {
                 <button
                   type="button"
                   onClick={nextMonth}
-                  className="p-3 rounded-full text-[#a6b6e0] hover:bg-[#233d36] transition-colors duration-200"
+                  className="p-3 rounded-full text-[#a6b6e0] hover:bg-[#233d36] transition-colors duration-200 font-semibold"
                 >
                   <span className="sr-only">Next month</span>
                   <svg
@@ -318,9 +336,9 @@ const Calendar = () => {
                           )
                         )
                       }
-                      className={`w-full h-full flex items-center justify-center rounded-full aspect-square text-lg sm:text-xl font-archivo tracking-wide ${
+                      className={`w-full h-full flex items-center justify-center rounded-full aspect-square text-lg sm:text-xl font-archivo tracking-wide font-semibold ${
                         isToday(day)
-                          ? "bg-[#a6b6e0] text-[#001a00] font-semibold"
+                          ? "bg-[#a6b6e0] text-[#001a00]"
                           : isSelected(day)
                           ? "bg-[#233d36] text-white"
                           : "text-[#a6b6e0] hover:bg-[#233d36] hover:text-white"
