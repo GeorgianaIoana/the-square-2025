@@ -66,7 +66,7 @@ export default function Testimonials() {
     >
       <div className="sm:container mx-auto">
         <h2 className="text-2xl sm:text-3xl font-bold text-center mb-16 text-[#badad5]">
-          What Our Students Say
+          Experiența cursanților noștri
         </h2>
 
         <Swiper

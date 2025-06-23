@@ -52,7 +52,7 @@ export default function ContactSection() {
               <div className="space-y-4 text-sm sm:text-base sm:mb-28">
                 <p className="flex items-center text-[#a6b6e0] font-archivo tracking-[0.1em] ">
                   <Mail className="w-5 h-5 mr-2" />
-                  contact@thesquarechess.com
+                  contact@thesquarechessclub.com
                 </p>
                 <p className="flex items-center text-[#a6b6e0] font-archivo tracking-[0.1em] ">
                   <Phone className="w-5 h-5 mr-2" />

@@ -513,7 +513,7 @@ function App() {
                 <div>
                   <div className="absolute rounded-full  border-[1.5px] lg:border-3 border-[#D3B77B] z-[-1] h-[43px] w-[43px] sm:h-[123px] sm:w-[123px] absolute top-[-11px] sm:top-[25px] left-[-19px] sm:left-[-59px]"></div>
                   <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-medium tracking-wide sm:text-[52px] leading-[125%] mb-[20px] sm:mb-[40px]">
-                    De ce, sportul minții?
+                    De ce este șahul sportul minții?
                   </h4>
                   <p className="font-archivo sm:text-[16px] text-[#a6b6e0] text-left font-medium sm:px-0 tracking-[0.1em] leading-[125%] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px] text-[12px] sm:text-[14px] max-w-[320px] sm:max-w-[665px]">
                     <p className="sm:text-[16px] text-sm font-archivo tracking-[0.1em] leading-[125%]">

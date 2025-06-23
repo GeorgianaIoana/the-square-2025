@@ -18,7 +18,7 @@ const services = [
     price: "380 lei/lună",
     icon: <Book />,
     features: [
-      "4 sesiuni săptămânale cu instructor",
+      "4 sesiuni lunare cu instructor",
       "6 ore de curs",
       "disponibil fizic și online",
       "coach online pentru întrebări 24/7",
@@ -29,18 +29,18 @@ const services = [
     price: "260 lei/lună",
     icon: <Pen />,
     features: [
-      "4 sesiuni săptămânale instructor",
+      "4 sesiuni lunare cu instructor",
       "4 ore de curs",
       "teme și verificare exerciții",
       "activități distractive pentru copii",
     ],
   },
   {
-    title: "Seara de șah",
+    title: "Concurs de șah",
     price: "60lei",
     icon: <Trophy />,
     features: [
-      "5 runde de sah rapid (10+5)",
+      "5 runde de sah rapid (15+10sec/mutare)",
       "prezența unui arbitru fide",
       "șahuri și ceasuri profesioniste",
       "premii pentru primii 3 clasați",

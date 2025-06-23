@@ -83,7 +83,7 @@ export default function CookiePolicy() {
             <p>
               Pentru orice întrebări sau sesizări, ne puteți contacta la:
               <br />
-              <strong>Email:</strong> contact@thesquarechess.com
+              <strong>Email:</strong> contact@thesquarechessclub.com
               <br />
               <strong>Telefon:</strong> +40742898793
             </p>

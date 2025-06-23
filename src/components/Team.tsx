@@ -41,7 +41,7 @@ Este apreciat pentru abordarea sa structurată, formularea de planuri clare și 
 
 În urma studiilor sale, Cristiana a obținut certificatul pedagogic și a absolvit un Master în cadrul Royal College of Art din Londra, o experiență care i-a consolidat sensibilitatea artistică și capacitatea de a construi povești vizuale memorabile.
 
-Dar dincolo de realizările ei competiționale și academice, Cristiana are un talent secret: știe să scrie frumos despre orice, a scris numeroase poezii, alături de pisicile ei iubite. De aceea, ea se ocupă de imaginea clubului de șah și de interacțiunea cu publicul, fiind persoana care dă glas emoțiilor, ideilor și visurilor care definesc comunitatea noastră. Este amabilă, optimistă, sociabilă și are acel farmec natural de a crea un mediu cald și primitor în jurul ei.
+Dar dincolo de realizările ei competiționale și academice, Cristiana are un talent secret: știe să scrie frumos despre orice și a compus numeroase poezii. De aceea, ea se ocupă de imaginea clubului de șah și de interacțiunea cu publicul, fiind persoana care dă glas emoțiilor, ideilor și visurilor care definesc comunitatea noastră. Este amabilă, optimistă, sociabilă și are acel farmec natural de a crea un mediu cald și primitor în jurul ei.
  Ca un pion care devine regină, Cristiana știe să se reinventeze și să creadă mereu în "mai bine".
 
 Este pasionată de educație și dezvoltare personală, iar șahul este pentru ea un instrument excelent prin care copiii își pot dezvolta gândirea, răbdarea și încrederea în sine. Cristiana știe cum să facă lucrurile complexe din șah să pară simple și distractive, iar acest dar se reflectă în entuziasmul și progresul copiilor care învață alături de ea – într-un mediu prietenos și creativ.`,

@@ -164,10 +164,10 @@ const Calendar = () => {
     "28": [
       {
         id: 1,
-        name: "Masterclass despre Repertoriul e4 cu Vlad Ghiță",
-        startTime: "10:00 ",
-        endTime: "15:00",
-        location: "Corbeni 34, sector 2",
+        name: "Concurs de șah",
+        startTime: "15:00 ",
+        endTime: "18:00",
+        location: "Stamina Workspace, Constantin Mille 18",
       },
     ],
     "29": [
