@@ -59,6 +59,34 @@
       content="Antrenează-te cu profesioniști și depășește-ți limitele. Cursuri de șah pentru copii și adulți, masterclass-uri și evenimente speciale."
     />
     <meta property="twitter:image" content="/images/banner/theSquare.jpg" />
+
+    <!-- Preload critical images -->
+    <link rel="preload" as="image" href="/images/logo/square-logo.png" />
+    <link rel="preload" as="image" href="/images/banner/theSquare.jpg" />
+
+    <!-- Preload critical fonts -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&display=swap"
+    /></noscript>
+
+    <!-- Performance optimizations -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#001a00" />
+    <meta name="msapplication-TileColor" content="#001a00" />
+
+    <!-- Resource hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->

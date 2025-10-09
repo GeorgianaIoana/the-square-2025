@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useCallback,
-  useMemo,
-  useRef,
-  useEffect,
-} from "react";
+import React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const teamMembersData = [
@@ -65,25 +59,25 @@ interface TeamProps {
   toggleDescription: (name: string) => void;
 }
 
-const Team: React.FC<TeamProps> = ({
+const Team = ({
   currentSlide,
   setCurrentSlide,
   expandedDescriptions,
   toggleDescription,
-}) => {
-  const teamMembers = useMemo(() => teamMembersData, []);
+}: TeamProps) => {
+  const teamMembers = teamMembersData;
 
-  const goPrev = useCallback(() => {
+  const goPrev = () => {
     setCurrentSlide(currentSlide - 1 >= 0 ? currentSlide - 1 : 0);
-  }, [currentSlide, setCurrentSlide]);
+  };
 
-  const goNext = useCallback(() => {
+  const goNext = () => {
     setCurrentSlide(
       currentSlide + 1 < teamMembers.length
         ? currentSlide + 1
         : teamMembers.length - 1
     );
-  }, [currentSlide, setCurrentSlide, teamMembers.length]);
+  };
 
   const currentMember = teamMembers[currentSlide];
 
@@ -100,6 +94,8 @@ const Team: React.FC<TeamProps> = ({
                 src={currentMember.image}
                 alt={currentMember.name}
                 className="w-[340px] h-[370px] sm:w-[380px] sm:h-[400px] lg:w-[495px] lg:h-[469px] rounded-[20px] object-cover"
+                loading="lazy"
+                decoding="async"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/50 to-[#858585]/0 rounded-[17px] opacity-[0.8]" />
             </div>

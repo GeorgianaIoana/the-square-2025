@@ -2,15 +2,15 @@ import React from "react";
 import { CheckCircle, ArrowLeft, Mail, Phone, MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
 
-const ThankYouPage: React.FC = () => {
+const ThankYouPage = () => {
   return (
-    <div className="min-h-screen bg-[#001a00] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#001a00] flex items-center justify-center px-4 pt-8 md:pt-16">
       <div className="max-w-2xl w-full">
         {/* Card principal */}
-        <div className="bg-[#a6b6e0] rounded-2xl shadow-2xl p-8 md:p-12 text-center">
+        <div className="bg-[#a6b6e0] rounded-2xl shadow-2xl p-6 md:p-8 text-center">
           {/* Icona de succes */}
           <div className="flex justify-center mb-8">
-            <div className="bg-[#233d36] rounded-full p-6">
+            <div className="bg-[#233d36] rounded-full md:p-6 p-4">
               <CheckCircle className="w-16 h-16 text-[#badad5]" />
             </div>
           </div>
@@ -84,16 +84,10 @@ const ThankYouPage: React.FC = () => {
         </div>
 
         {/* Footer cu informații suplimentare */}
-        <div className="text-center mt-8">
-          <p className="text-[#a6b6e0] font-archivo tracking-[0.05em] text-sm">
-            Clubul de șah THE SQUARE - Antrenează-te cu profesioniști și
-            depășește-ți limitele
-          </p>
-        </div>
+        <div className="text-center mt-8"></div>
       </div>
     </div>
   );
 };
 
 export default ThankYouPage;
-

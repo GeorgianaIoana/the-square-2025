@@ -1,14 +1,14 @@
-import { useState } from "react";
+import React from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export default function ContactSection() {
-  const [result, setResult] = useState("");
+  let result = "";
   const navigate = useNavigate();
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: any) => {
     event.preventDefault();
-    setResult("Sending...");
+    result = "Sending...";
     const formData = new FormData(event.target as HTMLFormElement);
 
     formData.append("access_key", "9e26e303-368c-44fc-86ac-7e427470a472");
@@ -26,7 +26,7 @@ export default function ContactSection() {
       }, 1500);
     } else {
       console.error("Error", data);
-      setResult("❌ Something went wrong. Try again later.");
+      result = "❌ Something went wrong. Try again later.";
     }
   };
 
@@ -65,18 +65,31 @@ export default function ContactSection() {
               </div>
             </div>
 
-            {/* Harta responsive */}
-            <div className="w-full aspect-[4/3] rounded-xl overflow-hidden shadow-lg font-archivo tracking-[0.1em]">
+            {/* Harta Google Maps stabilizată */}
+            <div className="w-full aspect-[4/3] rounded-xl overflow-hidden shadow-lg font-archivo tracking-[0.1em] relative bg-[#233d36]">
               <iframe
                 title="Locație THE SQUARE Chess Club - Str. Corbeni 34, Sector 2, București"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2851.234567890123!2d26.1147312!3d44.4394113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff0048fa6941%3A0x152bced0c3995902!2sClubul%20Sportiv%20de%20%C8%98ah%20ACS%20THE%20SQUARE!5e0!3m2!1sro!2sro!4v1234567890123!5m2!1sro!2sro"
                 width="100%"
                 height="100%"
-                style={{ border: 0 }}
+                style={{
+                  border: 0,
+                  opacity: 1,
+                  transition: "opacity 0.3s ease-in-out",
+                }}
                 allowFullScreen
-                loading="lazy"
+                loading="eager"
                 referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+                onLoad={() => {
+                  // Asigură că harta rămâne vizibilă după încărcare
+                  const iframe = document.querySelector(
+                    'iframe[title*="THE SQUARE"]'
+                  ) as HTMLIFrameElement;
+                  if (iframe) {
+                    iframe.style.opacity = "1";
+                  }
+                }}
+              />
             </div>
           </div>
 
@@ -176,13 +189,6 @@ export default function ContactSection() {
                   Trimite
                 </button>
               </div>
-
-              {/* Feedback result */}
-              {result && (
-                <p className="text-center text-sm text-green-700 pt-4">
-                  {result}
-                </p>
-              )}
             </form>
           </div>
         </div>

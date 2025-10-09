@@ -180,6 +180,8 @@ function App() {
                 src="images/logo/square-logo.png"
                 alt="Logo"
                 className="w-[120px] sm:w-[150px] ml-[10px] sm:ml-[60px]" // Dimensiune mai mică pe telefon
+                loading="eager"
+                decoding="async"
               />
             </div>
 
@@ -376,6 +378,8 @@ function App() {
                   src={image.url}
                   alt={`Slide ${index + 1}`}
                   className="w-full h-full object-cover brightness-50 rounded-[24px]"
+                  loading={currentSlide === index ? "eager" : "lazy"}
+                  decoding="async"
                 />
 
                 {currentSlide === index && (
@@ -409,10 +413,14 @@ function App() {
           <img
             src="/images/banner/TheLight.png"
             className="hidden sm:block absolute opacity-50 sm:opacity-100 left-0 top-[44%] sm:top-[80px] max-w-[190px] z-[-1]"
+            loading="lazy"
+            decoding="async"
           />
           <img
             src="/images/banner/RightLight.png"
             className="hidden sm:block absolute opacity-100 sm:opacity-100 sm:right-[0px] bottom-[0%] sm:top-[140px] max-w-[190px] z-[-1]"
+            loading="lazy"
+            decoding="async"
           />
 
           <img
@@ -465,6 +473,8 @@ function App() {
                   <img
                     src="/images/banner/theSquare.jpg"
                     className="w-[322px] h-[338px] sm:w-[495px] sm:h-[469px] rounded-[20px] object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/80 to-[#858585]/0 rounded-[17px] opacity-[0.8]"></div>
                 </div>
@@ -544,6 +554,8 @@ function App() {
                   <img
                     src="/images/banner/chess-board.jpg"
                     className="w-[322px] h-[338px] sm:w-[495px] sm:h-[469px] rounded-[20px] object-cover"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/80 to-[#858585]/0 rounded-[17px] opacity-[0.8]"></div>
                 </div>
@@ -591,6 +603,8 @@ function App() {
                 <img
                   src="/images/banner/chess-king-purple.svg"
                   className="w-auto h-[48.43px] sm:h-[64.58px] mx-auto bg-custom-black-900 px-[43px] "
+                  loading="lazy"
+                  decoding="async"
                 />
                 <h4 className="text-[#badad5] font-archivo font-medium uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
                   EDUCAȚIE
@@ -643,6 +657,8 @@ function App() {
                 <img
                   src="/images/banner/chess-board-purple.svg"
                   className="w-auto h-[48.43px] sm:h-[64.58px] mx-auto bg-custom-black-900 px-[43px]"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <h4 className="text-[#badad5] font-archivo font-medium uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
                   INTEGRITATE
@@ -683,6 +699,8 @@ function App() {
                 <img
                   src="/images/banner/chess-queen-purple.svg"
                   className="w-auto h-[48.43px] sm:h-[64.58px] mx-auto bg-custom-black-900 px-[43px]"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <h4 className="text-[#badad5] font-archivo font-medium uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
                   COMUNITATE
@@ -740,6 +758,8 @@ function App() {
                   src={galleryImages[currentGalleryImage]}
                   alt={`Gallery image ${currentGalleryImage + 1}`}
                   className="w-full h-[400px] sm:h-[600px] object-cover transition-opacity duration-500 rounded-lg"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
 
