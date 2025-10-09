@@ -1,5 +1,3 @@
-"use client"; // Dacă folosești Next.js 13+ cu app/
-
 import { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";

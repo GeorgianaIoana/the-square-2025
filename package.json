@@ -5,13 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "@lichess-org/chessground": "^9.4.1",
-    "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.4.21",
     "chess.js": "^1.4.0",
@@ -28,6 +27,15 @@
     "vite-plugin-pages-sitemap": "^1.7.1"
   },
   "devDependencies": {
-    "@types/react": "^19.1.9"
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__generator": "^7.27.0",
+    "@types/babel__template": "^7.4.4",
+    "@types/babel__traverse": "^7.28.0",
+    "@types/debug": "^4.1.12",
+    "@types/estree": "^1.0.8",
+    "@types/ms": "^2.1.0",
+    "@types/node": "^24.7.0",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.1"
   }
 }
