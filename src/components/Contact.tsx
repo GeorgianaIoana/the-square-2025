@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function ContactSection() {
   const [result, setResult] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,10 +22,10 @@ export default function ContactSection() {
     const data = await response.json();
 
     if (data.success) {
-      setResult("✅ Form submitted successfully!");
-      if (event.target) {
-        (event.target as HTMLFormElement).reset();
-      }
+      // Redirect to thank you page after successful submission
+      setTimeout(() => {
+        navigate("/thank-you");
+      }, 1500);
     } else {
       console.error("Error", data);
       setResult("❌ Something went wrong. Try again later.");
@@ -68,8 +70,8 @@ export default function ContactSection() {
             {/* Harta responsive */}
             <div className="w-full aspect-[4/3] rounded-xl overflow-hidden shadow-lg font-archivo tracking-[0.1em]">
               <iframe
-                title="Locație Corbeni 34, București"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.0272974536827!2d26.14550747681926!3d44.45684807107302!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff4bc8086df3%3A0xe545af59f7a5f5df!2sStrada%20Corbeni%2034%2C%20Bucure%C8%99ti%20023025!5e0!3m2!1sro!2sro!4v1712411561872!5m2!1sro!2sro&zoom=17&markers=color:green%7C44.456848,26.145507"
+                title="Locație THE SQUARE Chess Club - Str. Corbeni 34, Sector 2, București"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2851.234567890123!2d26.1147312!3d44.4394113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff0048fa6941%3A0x152bced0c3995902!2sClubul%20Sportiv%20de%20%C8%98ah%20ACS%20THE%20SQUARE!5e0!3m2!1sro!2sro!4v1234567890123!5m2!1sro!2sro"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

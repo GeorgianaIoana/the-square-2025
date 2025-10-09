@@ -1,0 +1,11 @@
+/* custom-green-board.css */
+
+/* Override all dark squares to green */
+.cg-board .cg-square.cg-dark {
+  background-color: #233d36 !important;
+}
+
+/* Optional: override light squares to white */
+.cg-board .cg-square.cg-light {
+  background-color: #ffffff !important;
+}

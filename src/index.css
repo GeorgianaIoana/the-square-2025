@@ -2,3 +2,118 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom styles for the chess club */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: "Archivo", sans-serif;
+  }
+}
+
+@layer components {
+  .font-archivo {
+    font-family: "Archivo", sans-serif;
+  }
+
+  .bg-custom-black-900 {
+    background-color: #001a00;
+  }
+
+  .text-custom-green {
+    color: #badad5;
+  }
+
+  .text-custom-blue {
+    color: #a6b6e0;
+  }
+
+  .border-custom-green {
+    border-color: #1a2a1a;
+  }
+
+  .bg-custom-green {
+    background-color: #badad5;
+  }
+
+  .hover\:bg-custom-green:hover {
+    background-color: #a6b6e0;
+  }
+
+  .text-custom-dark {
+    color: #1a2a1a;
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #001a00;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #233d36;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #badad5;
+}
+
+/* Chess board customization */
+.cg-wrap {
+  background-color: #1a2a1a;
+}
+
+.cg-wrap .cg-board {
+  background-color: #1a2a1a;
+}
+
+/* Dark squares - make them dark green */
+.cg-wrap .cg-board square.dark {
+  background-color: #1a2a1a !important;
+}
+
+.cg-wrap .cg-board square.light {
+  background-color: #badad5 !important;
+}
+
+/* Hover effects */
+.cg-wrap .cg-board square:hover {
+  background-color: #a6b6e0 !important;
+}
+
+/* Selected square */
+.cg-wrap .cg-board square.selected {
+  background-color: #1a2a1a !important;
+}
+
+/* Move indicators */
+.cg-wrap .cg-board square.move-dest {
+  background-color: #1a2a1a !important;
+}
+
+.cg-wrap .cg-board square.premove-dest {
+  background-color: #1a2a1a !important;
+}

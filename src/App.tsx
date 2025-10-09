@@ -1,33 +1,20 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ServicesSection from "./components/ServicesSection";
 import Calendar from "./components/Calendar";
 import Contact from "./components/Contact";
 import Team from "./components/Team";
 import WhatsAppButton from "./components/WhatsAppButton";
-import {
-  ChevronRight,
-  Clock,
-  MapPin,
-  Trophy,
-  Users,
-  Parentheses,
-  Brain,
-  Mail,
-  Phone,
-  Star,
-  Quote,
-  ChevronLeft,
-} from "lucide-react";
+import DailyPuzzle from "./components/DailyPuzzle";
+import { ChevronRight, ChevronLeft } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { Swiper as SwiperRef } from "swiper";
-import { Navigation } from "swiper/modules";
-import "swiper/css";
 import "swiper/css";
 import Testimonial from "./components/Testimonial";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import CookiePolicyPage from "./pages/CookiePolicyPage";
 import TermsAndConditions from "./pages/TermsAndConditions";
+import ThankYouPage from "./components/ThankYouPage";
 
 <link rel="icon" type="/images/banner/chess-queen-purple.svg" />;
 
@@ -733,6 +720,8 @@ function App() {
 
       <ServicesSection />
 
+      <DailyPuzzle />
+
       <section
         className="py-20 bg-[#001a00] border-t border-[#233d36]"
         id="gallery"
@@ -923,6 +912,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
         <Route path="/cookie-policy" element={<CookiePolicyPage />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="/thank-you" element={<ThankYouPage />} />
         <Route path="/" element={<MainContent />} />
       </Routes>
     </Router>
