@@ -1,32 +1,131 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import ContactMap from "./ContactMap";
+import type { ContactSubmission } from "../types/contact";
+
+const STORAGE_KEY = "contactFormDraft";
+const ACCESS_KEY = "9e26e303-368c-44fc-86ac-7e427470a472";
+
+const initialFormState: ContactSubmission = {
+  name: "",
+  phone: "",
+  email: "",
+  message: "",
+};
+
+const readDraft = (): ContactSubmission | null => {
+  if (typeof window === "undefined") return null;
+  const rawValue = window.sessionStorage.getItem(STORAGE_KEY);
+  if (!rawValue) return null;
+  try {
+    const parsed = JSON.parse(rawValue) as Partial<ContactSubmission>;
+    return {
+      name: parsed.name ?? "",
+      phone: parsed.phone ?? "",
+      email: parsed.email ?? "",
+      message: parsed.message ?? "",
+    };
+  } catch (error) {
+    console.warn("Failed to read contact draft", error);
+    window.sessionStorage.removeItem(STORAGE_KEY);
+    return null;
+  }
+};
+
+const persistDraft = (draft: ContactSubmission) => {
+  if (typeof window === "undefined") return;
+  try {
+    window.sessionStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
+  } catch (error) {
+    console.warn("Failed to persist contact draft", error);
+  }
+};
+
+const clearDraft = () => {
+  if (typeof window === "undefined") return;
+  window.sessionStorage.removeItem(STORAGE_KEY);
+};
 
 export default function ContactSection() {
-  let result = "";
+  const [formValues, setFormValues] = useState<ContactSubmission>(
+    () => readDraft() ?? initialFormState
+  );
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (event: any) => {
-    event.preventDefault();
-    result = "Sending...";
-    const formData = new FormData(event.target as HTMLFormElement);
+  const memoizedMap = useMemo(() => <ContactMap />, []);
 
-    formData.append("access_key", "9e26e303-368c-44fc-86ac-7e427470a472");
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: formData,
+  const handleChange = (
+    event:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) => {
+    const { name, value } = event.target;
+    setFormValues((prev) => {
+      const sanitizedValue =
+        name === "phone" ? value.replace(/\D/g, "") : value;
+      const next = { ...prev, [name]: sanitizedValue };
+      persistDraft(next);
+      return next;
     });
+  };
 
-    const data = await response.json();
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (isSubmitting) return;
 
-    if (data.success) {
-      // Redirect to thank you page after successful submission
-      setTimeout(() => {
-        navigate("/thank-you");
-      }, 1500);
-    } else {
-      console.error("Error", data);
-      result = "❌ Something went wrong. Try again later.";
+    setIsSubmitting(true);
+    setStatusMessage("Sending...");
+
+    const formElement = event.currentTarget;
+    const formData = new FormData(formElement);
+    formData.set("access_key", ACCESS_KEY);
+    formData.set("name", formValues.name.trim());
+    formData.set("phone", formValues.phone.trim());
+    formData.set("email", formValues.email.trim());
+    formData.set("message", formValues.message.trim());
+
+    const submission: ContactSubmission = {
+      name: String(formData.get("name") ?? ""),
+      phone: String(formData.get("phone") ?? ""),
+      email: String(formData.get("email") ?? ""),
+      message: String(formData.get("message") ?? ""),
+    };
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setStatusMessage("✅ Mulțumim! Mesajul a fost trimis cu succes.");
+
+        if (typeof window !== "undefined") {
+          window.sessionStorage.setItem(
+            "lastContactSubmission",
+            JSON.stringify(submission)
+          );
+        }
+
+        setTimeout(() => {
+          clearDraft();
+          setFormValues(initialFormState);
+          navigate("/thank-you", { state: { submission } });
+        }, 1500);
+      } else {
+        console.error("Error", data);
+        setStatusMessage("❌ Something went wrong. Try again later.");
+      }
+    } catch (error) {
+      console.error("Network error", error);
+      setStatusMessage("❌ A apărut o problemă de rețea. Încearcă din nou.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -35,14 +134,14 @@ export default function ContactSection() {
       className="bg-[#001a00] border-t border-[#233d36] py-20 px-4"
       id="contact"
     >
-      <div className="sm:container mx-auto">
+      <div className="container mx-auto">
         {/* Titlu */}
         <h2 className="font-archivo tracking-[0.1em] text-2xl sm:text-3xl font-bold text-center text-[#a6b6e0] mb-16">
           Contactează-ne
         </h2>
 
         {/* Grid adaptiv */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-[500px] items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           {/* Coloana 1: Contact Info + Harta */}
           <div className="flex flex-col gap-10">
             <div>
@@ -65,44 +164,12 @@ export default function ContactSection() {
               </div>
             </div>
 
-            {/* Harta Google Maps stabilizată */}
-            <div className="w-full aspect-[4/3] rounded-xl overflow-hidden shadow-lg font-archivo tracking-[0.1em] relative bg-[#233d36]">
-              <iframe
-                title="Locație THE SQUARE Chess Club - Str. Corbeni 34, Sector 2, București"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2851.234567890123!2d26.1147312!3d44.4394113!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff0048fa6941%3A0x152bced0c3995902!2sClubul%20Sportiv%20de%20%C8%98ah%20ACS%20THE%20SQUARE!5e0!3m2!1sro!2sro!4v1234567890123!5m2!1sro!2sro"
-                width="100%"
-                height="100%"
-                style={{
-                  border: 0,
-                  opacity: 1,
-                  transition: "opacity 0.3s ease-in-out",
-                }}
-                allowFullScreen
-                loading="eager"
-                referrerPolicy="no-referrer-when-downgrade"
-                onLoad={() => {
-                  // Asigură că harta rămâne vizibilă după încărcare
-                  const iframe = document.querySelector(
-                    'iframe[title*="THE SQUARE"]'
-                  ) as HTMLIFrameElement;
-                  if (iframe) {
-                    iframe.style.opacity = "1";
-                  }
-                }}
-              />
-            </div>
+            {memoizedMap}
           </div>
 
           {/* Coloana 2: Formular */}
-          <div className="w-full max-w-xl bg-[#a6b6e0] rounded-xl shadow-xl px-6 sm:px-10 py-8 sm:py-16 mx-auto">
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              {/* Hidden input pentru access_key */}
-              <input
-                type="hidden"
-                name="access_key"
-                value="9e26e303-368c-44fc-86ac-7e427470a472"
-              />
-
+          <div className="w-full max-w-lg lg:max-w-xl bg-[#a6b6e0] rounded-xl shadow-xl px-4 sm:px-6 lg:px-10 py-6 sm:py-8 lg:py-16 mx-auto mb-10 sm:mb-28">
+            <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
               <div className="text-center mb-6">
                 <h5 className="text-xl sm:text-2xl font-semibold text-[#233d36] font-archivo tracking-[0.1em]">
                   Formular de Contact
@@ -113,7 +180,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-[#233d36] mb-1"
+                  className="block text-sm sm:text-base font-medium text-[#233d36] mb-2"
                 >
                   Your Name <span className="text-red-500">*</span>
                 </label>
@@ -121,9 +188,11 @@ export default function ContactSection() {
                   type="text"
                   name="name"
                   id="name"
+                  value={formValues.name}
+                  onChange={handleChange}
                   required
                   placeholder="Your Name"
-                  className="w-full px-4 py-2 border border-[#badad5] rounded-lg bg-white/80 placeholder-[#badad5] focus:outline-none focus:ring-2 focus:ring-[#233d36]"
+                  className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
                 />
               </div>
 
@@ -131,7 +200,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-sm font-medium text-[#233d36] mb-1"
+                  className="block text-sm sm:text-base font-medium text-[#233d36] mb-2"
                 >
                   Phone Number <span className="text-red-500">*</span>
                 </label>
@@ -139,17 +208,20 @@ export default function ContactSection() {
                   type="tel"
                   name="phone"
                   id="phone"
-                  pattern="^[0-9-+\\s()]*$"
+                  pattern="^[0-9]*$"
+                  value={formValues.phone}
+                  onChange={handleChange}
                   required
                   placeholder="Phone Number"
-                  className="w-full px-4 py-2 border border-[#badad5] rounded-lg bg-white/80 placeholder-[#badad5] focus:outline-none focus:ring-2 focus:ring-[#233d36]"
+                  inputMode="numeric"
+                  className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-[#233d36] mb-1"
+                  className="block text-sm sm:text-base font-medium text-[#233d36] mb-2"
                 >
                   Email <span className="text-red-500">*</span>
                 </label>
@@ -157,9 +229,11 @@ export default function ContactSection() {
                   type="email"
                   name="email"
                   id="email"
+                  value={formValues.email}
+                  onChange={handleChange}
                   required
                   placeholder="Your Email"
-                  className="w-full px-4 py-2 border border-[#badad5] rounded-lg bg-white/80 placeholder-[#badad5] focus:outline-none focus:ring-2 focus:ring-[#233d36]"
+                  className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
                 />
               </div>
 
@@ -167,7 +241,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm font-medium text-[#233d36] mb-1"
+                  className="block text-sm sm:text-base font-medium text-[#233d36] mb-2"
                 >
                   Message
                 </label>
@@ -175,19 +249,31 @@ export default function ContactSection() {
                   name="message"
                   id="message"
                   rows={4}
+                  value={formValues.message}
+                  onChange={handleChange}
                   placeholder="Comment"
-                  className="w-full px-4 py-2 border border-[#badad5] rounded-lg bg-white/80 placeholder-[#badad5] focus:outline-none focus:ring-2 focus:ring-[#233d36]"
+                  className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
                 ></textarea>
               </div>
 
               {/* Buton submit */}
-              <div className="text-center pt-2 sm:pt-4 sm:pb-0 pb-6-6">
+              <div className="text-center pt-2 sm:pt-4 sm:pb-0 pb-6">
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-[#233d36] text-[#badad5] font-semibold rounded-lg hover:bg-[#a6b6e0] transition-colors duration-300"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-auto px-6 py-3 bg-[#233d36] text-[#badad5] font-semibold rounded-lg hover:bg-[#a6b6e0] hover:text-[#233d36] transition-colors duration-300 text-sm sm:text-base touch-manipulation disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Trimite
+                  {isSubmitting ? "Se trimite..." : "Trimite"}
                 </button>
+                {statusMessage && (
+                  <p
+                    className="mt-4 text-sm text-[#233d36]"
+                    aria-live="polite"
+                    role="status"
+                  >
+                    {statusMessage}
+                  </p>
+                )}
               </div>
             </form>
           </div>

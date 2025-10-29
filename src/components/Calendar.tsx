@@ -1,3 +1,4 @@
+import { SunDim } from "lucide-react";
 import React, { useState } from "react";
 
 const Calendar = () => {
@@ -82,13 +83,6 @@ const Calendar = () => {
       },
       {
         id: 2,
-        name: "Grupă adulți",
-        startTime: "19:00",
-        endTime: "20:20",
-        location: "Corbeni 34, sector 2",
-      },
-      {
-        id: 3,
         name: "Grupă adulți online",
         startTime: "19:00",
         endTime: "20:20",
@@ -108,35 +102,28 @@ const Calendar = () => {
 
     thursday: [
       {
+        id: 3,
+        name: "Premium chess lessons with Vajda Levente",
+        startTime: "16:30",
+        endTime: "17:30",
+        location: "Corbeni 34, sector 2",
+      },
+      {
         id: 1,
+        name: "Grupă adulți",
+        startTime: "18:30",
+        endTime: "19:50",
+        location: "Corbeni 34, sector 2",
+      },
+      {
+        id: 2,
         name: "Grupă adulți",
         startTime: "20:00",
         endTime: "21:20",
         location: "Corbeni 34, sector 2",
       },
-      {
-        id: 2,
-        name: "Grupă adulți",
-        startTime: "21:20",
-        endTime: "22:40",
-        location: "Corbeni 34, sector 2",
-      },
     ],
     friday: [
-      {
-        id: 1,
-        name: "Grupă copii",
-        startTime: "18:00",
-        endTime: "19:20",
-        location: "Corbeni 34, sector 2",
-      },
-      {
-        id: 2,
-        name: "Grupă adulți începători",
-        startTime: "19:00",
-        endTime: "20:20",
-        location: "Corbeni 34, sector 2",
-      },
       {
         id: 3,
         name: "Grupă adulți",
@@ -144,8 +131,23 @@ const Calendar = () => {
         endTime: "14:30",
         location: "Corbeni 34, sector 2",
       },
+  
+      {
+        id: 4,
+        name: "Premium chess lessons with Vajda Levente",
+        startTime: "18:00",
+        endTime: "19:30",
+        location: "Corbeni 34, sector 2",
+      },
     ],
     saturday: [
+      {
+        id: 1,
+        name: "Te invităm să urmărești evenimentele și competițiile noastre pe pagina de Instagram / Facebook",
+        startTime: "15:00 ",
+        endTime: "18:00",
+        location: "Stamina Workspace, Constantin Mille 18",
+      },
       {
         id: 1,
         name: "Grupă copii",
@@ -161,24 +163,15 @@ const Calendar = () => {
         location: "Corbeni 34, sector 2",
       },
     ],
-    "28": [
-      {
-        id: 1,
-        name: "Concurs de șah",
-        startTime: "15:00 ",
-        endTime: "18:00",
-        location: "Stamina Workspace, Constantin Mille 18",
-      },
-    ],
-    "29": [
-      {
-        id: 1,
-        name: "Masterclass despre Repertoriul e4 cu Vlad Ghiță",
-        startTime: "10:00",
-        endTime: "15:00",
-        location: "Corbeni 34, sector 2",
-      },
-    ],
+
+    sunday: [  {
+      id: 1,
+      name: "Te invităm să urmărești evenimentele și competițiile noastre pe pagina de Instagram / Facebook",
+      startTime: "15:00 ",
+      endTime: "18:00",
+      location: "Stamina Workspace, Constantin Mille 18",
+    }
+    ]
   };
 
   const getDayKey = (day: number | undefined) => {
@@ -207,7 +200,7 @@ const Calendar = () => {
       case 6:
         return "saturday";
       default:
-        return "";
+        return "sunday";
     }
   };
 

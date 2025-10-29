@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Chessground } from "@lichess-org/chessground";
 import "@lichess-org/chessground/assets/chessground.base.css";
 import "@lichess-org/chessground/assets/chessground.brown.css";
@@ -6,13 +6,78 @@ import "@lichess-org/chessground/assets/chessground.cburnett.css";
 import "./custom-green-board.css";
 import { Chess } from "chess.js";
 
+const PUZZLE_STORAGE_KEY = "the-square-daily-puzzle";
+const PUZZLE_CACHE_DURATION_MS = 1000 * 60 * 60 * 12; // 12 hours
+const SUCCESS_MESSAGE =
+  "Felicitări! Ești pe drumul cel bun! Tocmai ai obținut o lecție gratuită la cursul nostru online. Te rog să ne trimiți poza cu acest mesaj pe WhatsApp sau pe mail. Mult succes la antrenament!";
+
+type LichessPuzzleResponse = {
+  puzzle: {
+    id: string;
+    initialPly: number;
+    solution: string[];
+  };
+  game: {
+    pgn: string;
+  };
+};
+
+const readCachedPuzzle = (): LichessPuzzleResponse | null => {
+  if (typeof window === "undefined") return null;
+  const rawValue = window.sessionStorage.getItem(PUZZLE_STORAGE_KEY);
+  if (!rawValue) return null;
+
+  try {
+    const parsed = JSON.parse(rawValue) as {
+      storedAt: number;
+      puzzle: LichessPuzzleResponse;
+    };
+
+    if (!parsed?.puzzle) return null;
+    const isExpired =
+      Date.now() - parsed.storedAt > PUZZLE_CACHE_DURATION_MS ||
+      !parsed.puzzle.puzzle?.id;
+
+    if (isExpired) {
+      window.sessionStorage.removeItem(PUZZLE_STORAGE_KEY);
+      return null;
+    }
+
+    return parsed.puzzle;
+  } catch (error) {
+    console.warn("Failed to read cached puzzle", error);
+    window.sessionStorage.removeItem(PUZZLE_STORAGE_KEY);
+    return null;
+  }
+};
+
+const storeCachedPuzzle = (data: LichessPuzzleResponse) => {
+  if (typeof window === "undefined") return;
+  try {
+    window.sessionStorage.setItem(
+      PUZZLE_STORAGE_KEY,
+      JSON.stringify({ storedAt: Date.now(), puzzle: data })
+    );
+  } catch (error) {
+    console.warn("Failed to cache puzzle", error);
+  }
+};
+
 const DailyPuzzle: React.FC = () => {
   const chessRef = useRef<Chess>(null);
   const groundRef = useRef<any>(null);
   const solutionMovesRef = useRef<string[]>([]);
   const currentSolutionIndexRef = useRef(0);
+  const initializedRef = useRef(false);
+  const [isSolved, setIsSolved] = useState(false);
+  const successTimeoutRef = useRef<number | null>(null);
 
   useEffect(() => {
+    if (initializedRef.current) {
+      return;
+    }
+    initializedRef.current = true;
+
     // Wait for DOM to be ready
     const initChessground = () => {
       // Determine which board element to use based on screen size
@@ -115,20 +180,28 @@ const DailyPuzzle: React.FC = () => {
         return dests;
       }
 
-      function showWinOverlay() {
-        const allSquares: string[] = [];
-        for (let file of "abcdefgh") {
-          for (let rank = 1; rank <= 8; rank++) {
-            allSquares.push(file + rank);
-          }
+      function showSuccessMessage() {
+        ground.set({
+          movable: {
+            free: false,
+            color: undefined,
+            dests: new Map(),
+            events: {},
+          },
+          draggable: {
+            enabled: false,
+          },
+        });
+
+        setIsSolved(true);
+
+        if (successTimeoutRef.current) {
+          window.clearTimeout(successTimeoutRef.current);
         }
-        ground.setShapes(
-          allSquares.map((sq) => ({
-            orig: sq as any,
-            brush: "green",
-            opacity: 0.3,
-          }))
-        );
+        successTimeoutRef.current = window.setTimeout(() => {
+          setIsSolved(false);
+          successTimeoutRef.current = null;
+        }, 10 * 60 * 1000);
       }
 
       function updateBoardState() {
@@ -171,7 +244,7 @@ const DailyPuzzle: React.FC = () => {
                     currentSolutionIndexRef.current >=
                     solutionMovesRef.current.length
                   ) {
-                    showWinOverlay();
+                    showSuccessMessage();
                     return;
                   }
 
@@ -195,14 +268,14 @@ const DailyPuzzle: React.FC = () => {
                         currentSolutionIndexRef.current++;
 
                         if (
-                          currentSolutionIndexRef.current >=
+                        currentSolutionIndexRef.current >=
                           solutionMovesRef.current.length
-                        ) {
-                          showWinOverlay();
-                          return;
-                        }
+                      ) {
+                        showSuccessMessage();
+                        return;
+                      }
 
-                        updateBoardState();
+                      updateBoardState();
                       }
                     }, 600);
                   }
@@ -219,29 +292,59 @@ const DailyPuzzle: React.FC = () => {
         });
       }
 
-      // Fetch puzzle
-      fetch("https://lichess.org/api/puzzle/daily")
-        .then((res) => res.json())
-        .then((data) => {
-          const pgn = data.game.pgn;
-          const initialPly = data.puzzle.initialPly;
-          solutionMovesRef.current = data.puzzle.solution;
-          currentSolutionIndexRef.current = 0;
+      const applyPuzzleData = (puzzleData: LichessPuzzleResponse) => {
+        const { puzzle, game } = puzzleData;
+        const { initialPly, solution } = puzzle;
+        const { pgn } = game;
 
-          chess.loadPgn(pgn);
-          const allMoves = chess.history();
-          chess.reset();
+        solutionMovesRef.current = [...solution];
+        currentSolutionIndexRef.current = 0;
 
-          for (let i = 0; i <= initialPly; i++) {
-            chess.move(allMoves[i]);
+        chess.loadPgn(pgn);
+        const allMoves = chess.history();
+        chess.reset();
+
+        for (let i = 0; i <= initialPly; i++) {
+          const move = allMoves[i];
+          if (move) {
+            chess.move(move);
           }
+        }
 
-          ground.set({ orientation: chess.turn() === "w" ? "white" : "black" });
-          updateBoardState();
-        })
-        .catch((err) => {
+        ground.set({ orientation: chess.turn() === "w" ? "white" : "black" });
+        updateBoardState();
+      };
+
+      const fetchPuzzle = async () => {
+        try {
+          const response = await fetch("https://lichess.org/api/puzzle/daily");
+          if (!response.ok) {
+            throw new Error(`Failed to fetch puzzle: ${response.status}`);
+          }
+          const payload = await response.json();
+          const puzzleData: LichessPuzzleResponse = {
+            puzzle: {
+              id: payload.puzzle.id,
+              initialPly: payload.puzzle.initialPly,
+              solution: payload.puzzle.solution,
+            },
+            game: {
+              pgn: payload.game.pgn,
+            },
+          };
+          storeCachedPuzzle(puzzleData);
+          applyPuzzleData(puzzleData);
+        } catch (err) {
           console.error("Error loading puzzle:", err);
-        });
+        }
+      };
+
+      const cachedPuzzle = readCachedPuzzle();
+      if (cachedPuzzle) {
+        applyPuzzleData(cachedPuzzle);
+      } else {
+        fetchPuzzle();
+      }
     };
 
     // Initialize Chessground
@@ -251,6 +354,12 @@ const DailyPuzzle: React.FC = () => {
       if (groundRef.current) {
         groundRef.current.destroy();
       }
+      initializedRef.current = false;
+      if (successTimeoutRef.current) {
+        window.clearTimeout(successTimeoutRef.current);
+        successTimeoutRef.current = null;
+      }
+      setIsSolved(false);
     };
   }, []);
 
@@ -304,6 +413,30 @@ const DailyPuzzle: React.FC = () => {
               />
             </div>
           </div>
+
+          {isSolved && (
+            <div className="bg-[#233d36] border border-[#badad5]/30 rounded-xl shadow-lg p-6 sm:p-8 text-center space-y-4">
+              <p className="text-[#b8d9d4] text-sm sm:text-base md:text-lg font-archivo leading-relaxed">
+                {SUCCESS_MESSAGE}
+              </p>
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 font-archivo">
+                <a
+                  href="https://wa.me/40742898793?text=Bună!%20Am%20rezolvat%20puzzle-ul%20zilnic%20și%20trimit%20dovada%20pentru%20lecția%20gratuită."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#badad5] text-[#233d36] font-semibold transition-transform duration-200 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#badad5]"
+                >
+                  <span>Trimite mesaj pe WhatsApp</span>
+                </a>
+                <a
+                  href="mailto:contact@thesquarechessclub.com?subject=Puzzle%20zilnic%20rezolvat&body=Bună!%20Am%20rezolvat%20puzzle-ul%20zilnic%20și%20trimit%20dovada%20pentru%20lecția%20gratuită."
+                  className="text-[#badad5] text-sm sm:text-base md:text-lg underline-offset-4 hover:underline"
+                >
+                  contact@thesquarechessclub.com
+                </a>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>

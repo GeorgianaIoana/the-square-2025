@@ -1,8 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { CheckCircle, ArrowLeft, Mail, Phone, MapPin } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import type { ContactSubmission } from "../types/contact";
+
+const getStoredSubmission = (): ContactSubmission | null => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+  const stored = window.sessionStorage.getItem("lastContactSubmission");
+  if (!stored) {
+    return null;
+  }
+  try {
+    return JSON.parse(stored) as ContactSubmission;
+  } catch (error) {
+    console.warn("Failed to parse stored contact submission", error);
+    return null;
+  }
+};
 
 const ThankYouPage = () => {
+  const location = useLocation();
+  const locationState = location.state as { submission?: ContactSubmission } | null;
+  const [submission, setSubmission] = useState<ContactSubmission | null>(
+    locationState?.submission ?? getStoredSubmission()
+  );
+
+  useEffect(() => {
+    if (locationState?.submission) {
+      setSubmission(locationState.submission);
+      if (typeof window !== "undefined") {
+        window.sessionStorage.setItem(
+          "lastContactSubmission",
+          JSON.stringify(locationState.submission)
+        );
+      }
+    } else if (!submission) {
+      setSubmission(getStoredSubmission());
+    }
+  }, [locationState, submission]);
+
   return (
     <div className="min-h-screen bg-[#001a00] flex items-center justify-center px-4 pt-8 md:pt-16">
       <div className="max-w-2xl w-full">

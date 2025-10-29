@@ -9,8 +9,7 @@ import {
   Pen,
   Luggage,
 } from "lucide-react";
-import React from "react";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const services = [
   {
@@ -94,11 +93,19 @@ export default function ServicesSection() {
     return () => window.removeEventListener("resize", updateIsMobile);
   }, []);
 
-  const handleToggle = () => {
+  const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    const newShowAll = !showAll;
+    setShowAll(newShowAll);
+    
+    // Only scroll if we're closing the expanded view
     if (showAll && sectionRef.current) {
-      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => {
+        sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
     }
-    setShowAll(!showAll);
   };
 
   const displayedServices = showAll
@@ -160,7 +167,7 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        {services.length > 3 && (
+        {services.length > (isMobile ? 1 : 3) && (
           <div className="text-center mt-8 sm:mt-10">
             <button
               onClick={handleToggle}
