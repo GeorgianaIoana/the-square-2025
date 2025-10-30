@@ -2,6 +2,10 @@
 
 declare module "react" {
   export * from "react";
+
+  export function memo(arg0: () => JSX.Element) {
+    throw new Error("Function not implemented.");
+  }
 }
 
 declare module "react-dom" {

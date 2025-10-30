@@ -7,7 +7,6 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import DailyPuzzle from "./components/DailyPuzzle";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import type { Swiper as SwiperRef } from "swiper";
 import "swiper/css";
 import Testimonial from "./components/Testimonial";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -15,15 +14,6 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import CookiePolicyPage from "./pages/CookiePolicyPage";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import ThankYouPage from "./components/ThankYouPage";
-
-<link rel="icon" type="/images/banner/chess-queen-purple.svg" />;
-
-const instructors = [
-  { id: 1, name: "Instructor 1", description: "Descrierea instructorului 1" },
-  { id: 2, name: "Instructor 2", description: "Descrierea instructorului 2" },
-  { id: 3, name: "Instructor 3", description: "Descrierea instructorului 3" },
-  { id: 4, name: "Instructor 4", description: "Descrierea instructorului 4" },
-];
 
 const teamMembers = [
   {
@@ -87,8 +77,6 @@ function App() {
       [name]: !prev[name],
     }));
   }, []);
-
-  const MAX_CHARACTERS = 900; // aproximativ 15 rânduri
 
   const bannerImages = [
     {
@@ -159,10 +147,6 @@ function App() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  function handleSlideChange(swiper: SwiperRef): void {
-    throw new Error("Function not implemented.");
-  }
-
   const [teamSlide, setTeamSlide] = useState(0);
 
   const MainContent = () => (
@@ -175,11 +159,11 @@ function App() {
         <div className="mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center py-2">
             {/* Logo */}
-            <div className="flex items-center space-x-2 pt-4">
+            <div className="flex items-center space-x-2 pt-4 pl-2 sm:pl-16">
               <img
                 src="images/logo/square-logo.png"
                 alt="Logo"
-                className="w-[120px] sm:w-[150px] ml-[10px] sm:ml-[60px]" // Dimensiune mai mică pe telefon
+                className="w-[110px] sm:w-[150px]"
                 loading="eager"
                 decoding="async"
               />
@@ -273,8 +257,8 @@ function App() {
 
         {/* Mobile dropdown menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden fixed inset-0 bg-[#233d36] bg-opacity-90 z-50 px-4 py-2">
-            <div className="flex justify-end">
+          <div className="md:hidden fixed inset-0 bg-[#233d36] bg-opacity-90 z-50 px-4 pt-24 pb-10">
+            <div className="flex justify-end mb-6">
               <button
                 onClick={() => setMobileMenuOpen(false)}
                 className="text-[#a6b6e0] focus:outline-none text-xl"
@@ -364,7 +348,7 @@ function App() {
         )}
       </nav>
 
-      <header className="sm:container mx-auto relative flex items-center justify-center overflow-hidden font-archivo">
+      <header className="mx-auto relative flex items-center justify-center overflow-hidden font-archivo px-4 sm:px-0 sm:container">
         <div className="w-full pt-10 sm:pt-0 sm:pb-16 pb-8 px-4 sm:px-0">
           <div className="relative h-[500px] sm:h-[638px] rounded-[24px] overflow-hidden shadow-xl">
             {bannerImages.map((image, index) => (
@@ -408,8 +392,8 @@ function App() {
         </div>
       </header>
 
-      <section className="py-20 px-4  border-[#233d36] border-t-[1px] font-archivo">
-        <div className="w-full relative bg-[#001a00]" id="about">
+      <section className="py-20 px-4 border-[#233d36] border-t-[1px] font-archivo overflow-hidden">
+        <div className="w-full relative bg-[#001a00] overflow-hidden" id="about">
           <img
             src="/images/banner/TheLight.png"
             className="hidden sm:block absolute opacity-50 sm:opacity-100 left-0 top-[44%] sm:top-[80px] max-w-[190px] z-[-1]"
@@ -433,17 +417,16 @@ function App() {
           />
 
           <div className="sm:container mx-auto">
-            <div className="grid grid-cols-12 gap-4 px-4 sm:px-0 mt-[46px] sm:mt-[75px]">
-              <div className="col-span-12 lg:col-span-8 flex flex-col items-start relative ml-[12px]">
-                <div>
-                  <div className="absolute rounded-full  border-[1.5px] lg:border-3 border-[#D3B77B] z-[-1] h-[43px] w-[43px] sm:h-[123px] sm:w-[123px] absolute top-[-11px] sm:top-[25px] left-[-19px] sm:left-[-59px]"></div>
-                  <span className="font-archivo text-center flex justify-center text-[#a6b6e0] text-[24px] font-medium tracking-[0.1em] sm:text-[35px] leading-[125%]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 px-2 sm:px-0 mt-12 sm:mt-[75px] items-center">
+              <div className="order-2 lg:order-1 lg:col-span-7 w-full">
+                <div className="relative w-full max-w-[680px] mx-auto lg:mx-0 text-center lg:text-left px-2 sm:px-0">
+                  <span className="font-archivo text-[#a6b6e0] text-[24px] sm:text-[35px] font-medium tracking-[0.1em] leading-[125%]">
                     Despre
                   </span>
-                  <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-medium tracking-[0.1em] sm:text-[45px]  mb-[20px] sm:mb-[40px] leading-[125%]">
+                  <h4 className="font-archivo text-[#a6b6e0] text-[28px] sm:text-[45px] font-medium tracking-[0.1em] mt-2 mb-6 sm:mb-10 leading-[125%]">
                     THE SQUARE
                   </h4>
-                  <p className="font-archivo text-sm sm:text-[16px] text-[#a6b6e0] font-medium sm:px-0 tracking-[0.1em] leading-[125%] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px]  max-w-[320px] sm:max-w-[665px]">
+                  <p className="font-archivo text-sm sm:text-base text-[#a6b6e0] font-medium tracking-[0.1em] leading-relaxed sm:leading-[160%] mt-4 sm:mt-6 mb-6 sm:mb-8">
                     Clubul de Șah THE SQUARE este spațiul în care pasiunea
                     pentru șah capătă formă, indiferent de vârstă sau nivel de
                     experiență. Fondat din dorința de a promova gândirea
@@ -458,7 +441,7 @@ function App() {
                     spațiu primitor și prietenos.
                   </p>
 
-                  <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
+                  <div className="flex justify-center lg:justify-start">
                     <button
                       onClick={() => scrollToSection("contact")}
                       className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
@@ -468,15 +451,19 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className="col-span-12 lg:col-span-4 relative mb-[66px] sm:mb-[95px] rounded-[20px] mx-auto inline-block">
-                <div className="relative w-full h-full shadow-[-10px_11px_35px_rgba(0,0,0,0.25)] rounded-[20px]">
+              <div className="order-1 lg:order-2 lg:col-span-5 w-full flex justify-center lg:justify-end">
+                <div
+                  className="relative w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[495px] rounded-[20px] overflow-hidden shadow-[-10px_11px_35px_rgba(0,0,0,0.25)]"
+                  style={{ aspectRatio: "4 / 4.4" }}
+                >
                   <img
                     src="/images/banner/theSquare.jpg"
-                    className="w-[322px] h-[338px] sm:w-[495px] sm:h-[469px] rounded-[20px] object-cover"
+                    alt="Interior THE SQUARE"
+                    className="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"
                     decoding="async"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/80 to-[#858585]/0 rounded-[17px] opacity-[0.8]"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/80 to-[#858585]/0 pointer-events-none"></div>
                 </div>
               </div>
             </div>
@@ -485,8 +472,8 @@ function App() {
       </section>
       <Calendar />
 
-      <section className="py-10 sm:py-20 px-4  border-[#233d36] border-t-[1px] font-archivo">
-        <div className="w-full relative bg-[#001a00]" id="about">
+      <section className="py-10 sm:py-20 px-4 border-[#233d36] border-t-[1px] font-archivo overflow-hidden">
+        <div className="w-full relative bg-[#001a00] overflow-hidden" id="about">
           <img
             src="/public/images/banner/TheLight.png"
             className="hidden sm:block absolute  left-[30px] top-[80px] max-w-[190px] z-[-1]"
@@ -506,40 +493,19 @@ function App() {
           />
 
           <div className="sm:container mx-auto">
-            <div className="grid grid-cols-12 gap-4 px-4 sm:px-0 mt-[46px] sm:mt-[75px]">
-              <div className="col-span-12 lg:col-span-8 flex flex-col items-start relative ml-[12px]">
-                <div>
-                  <div className="absolute rounded-full  border-[1.5px] lg:border-3 border-[#D3B77B] z-[-1] h-[43px] w-[43px] sm:h-[123px] sm:w-[123px] absolute top-[-11px] sm:top-[25px] left-[-19px] sm:left-[-59px]"></div>
-                  <h4 className="font-archivo text-center text-[#a6b6e0] text-[24px] font-medium tracking-wide sm:text-[52px] leading-[125%] mb-[20px] sm:mb-[40px]">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 px-2 sm:px-0 mt-12 sm:mt-[75px] items-center">
+              <div className="order-2 lg:order-1 lg:col-span-7 w-full">
+                <div className="relative w-full max-w-[700px] mx-auto lg:mx-0 text-center lg:text-left px-2 sm:px-0">
+                  <h4 className="font-archivo text-[#a6b6e0] text-[26px] sm:text-[52px] font-medium tracking-wide leading-[125%] mb-6 sm:mb-10">
                     De ce este șahul sportul minții?
                   </h4>
-                  <p className="font-archivo sm:text-[16px] text-[#a6b6e0] text-left font-medium sm:px-0 tracking-[0.1em] leading-[125%] mt-[13px] sm:mt-[24px] mb-[20px] sm:mb-[10px] text-[12px] sm:text-[14px] max-w-[320px] sm:max-w-[665px]">
-                    <p className="sm:text-[16px] text-sm font-archivo tracking-[0.1em] leading-[125%]">
-                      ■ Concentrare și prezență. Fiecare partidă de șah este o
-                      oportunitate de a cultiva răbdarea.{" "}
-                    </p>
-                    <p className="sm:text-[16px] text-sm font-archivo tracking-[0.1em] leading-[125%]">
-                      ■ Gândire strategică. Îți dezvolți capacitatea de a
-                      anticipa mutări și a lua decizii strategice atât pe tabla
-                      de șah, cât și în viață.
-                    </p>
-                    <p className="sm:text-[16px] text-sm font-archivo tracking-[0.1em] leading-[125%]">
-                      {" "}
-                      ■ Evoluezi continuu, în ritmul tău. La THE SQUARE ne
-                      ghidează bucuria. Apreciem fiecare pas către progres.
-                      Crești cu răbdare, poți să te bucuri de proces și să îți
-                      cultivi încrederea în forțele proprii.{" "}
-                    </p>
-                    <p className="sm:text-[16px] text-sm font-archivo tracking-[0.1em] leading-[125%]">
-                      ■ Faci parte dintr-o comunitate prietenoasă, cu valori
-                      comune. La THE SQUARE, jucători începători și avansați se
-                      întâlnesc, se provoacă, se susțin. Fie că vii pentru
-                      socializare, învățare sau competiție, lumea THE SQUARE îți
-                      este deschisă.
-                    </p>
-                  </p>
-
-                  <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
+                  <div className="font-archivo text-sm sm:text-base text-[#a6b6e0] font-medium tracking-[0.1em] leading-relaxed sm:leading-[160%] mt-4 sm:mt-6 mb-6 sm:mb-8 space-y-4 text-center lg:text-left">
+                    <p>■ Concentrare și prezență. Fiecare partidă de șah este o oportunitate de a cultiva răbdarea.</p>
+                    <p>■ Gândire strategică. Îți dezvolți capacitatea de a anticipa mutări și a lua decizii atât pe tabla de șah, cât și în viață.</p>
+                    <p>■ Evoluezi continuu, în ritmul tău. La THE SQUARE ne ghidează bucuria. Apreciem fiecare pas către progres. Crești cu răbdare, poți să te bucuri de proces și să îți cultivi încrederea în forțele proprii.</p>
+                    <p>■ Faci parte dintr-o comunitate prietenoasă, cu valori comune. La THE SQUARE, jucători începători și avansați se întâlnesc, se provoacă, se susțin. Fie că vii pentru socializare, învățare sau competiție, lumea THE SQUARE îți este deschisă.</p>
+                  </div>
+                  <div className="flex justify-center lg:justify-start">
                     <button
                       onClick={() => scrollToSection("contact")}
                       className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
@@ -549,15 +515,19 @@ function App() {
                   </div>
                 </div>
               </div>
-              <div className="col-span-12 lg:col-span-4 relative mb-[66px] sm:mb-[95px] rounded-[20px] mx-auto inline-block">
-                <div className="relative w-full h-full shadow-[-10px_11px_35px_rgba(0,0,0,0.25)] rounded-[20px]">
+              <div className="order-1 lg:order-2 lg:col-span-5 w-full flex justify-center lg:justify-end">
+                <div
+                  className="relative w-full max-w-[320px] sm:max-w-[420px] lg:max-w-[495px] rounded-[20px] overflow-hidden shadow-[-10px_11px_35px_rgba(0,0,0,0.25)]"
+                  style={{ aspectRatio: "4 / 4.4" }}
+                >
                   <img
                     src="/images/banner/chess-board.jpg"
-                    className="w-[322px] h-[338px] sm:w-[495px] sm:h-[469px] rounded-[20px] object-cover"
+                    alt="Tabla de șah la THE SQUARE"
+                    className="absolute inset-0 w-full h-full object-cover"
                     loading="lazy"
                     decoding="async"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/80 to-[#858585]/0 rounded-[17px] opacity-[0.8]"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/80 to-[#858585]/0 pointer-events-none"></div>
                 </div>
               </div>
             </div>

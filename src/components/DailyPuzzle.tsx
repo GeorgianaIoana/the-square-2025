@@ -10,6 +10,13 @@ const PUZZLE_STORAGE_KEY = "the-square-daily-puzzle";
 const PUZZLE_CACHE_DURATION_MS = 1000 * 60 * 60 * 12; // 12 hours
 const SUCCESS_MESSAGE =
   "Felicitări! Ești pe drumul cel bun! Tocmai ai obținut o lecție gratuită la cursul nostru online. Te rog să ne trimiți poza cu acest mesaj pe WhatsApp sau pe mail. Mult succes la antrenament!";
+const SUCCESS_STATE_STORAGE_KEY = "the-square-daily-puzzle-success";
+const SUCCESS_DURATION_MS = 60 * 60 * 1000; // 1 hour
+
+type PuzzleSuccessState = {
+  puzzleId: string;
+  expiresAt: number;
+};
 
 type LichessPuzzleResponse = {
   puzzle: {
@@ -63,12 +70,58 @@ const storeCachedPuzzle = (data: LichessPuzzleResponse) => {
   }
 };
 
+const readStoredSuccessState = (): PuzzleSuccessState | null => {
+  if (typeof window === "undefined") return null;
+  const rawValue = window.sessionStorage.getItem(SUCCESS_STATE_STORAGE_KEY);
+  if (!rawValue) return null;
+
+  try {
+    const parsed = JSON.parse(rawValue) as PuzzleSuccessState;
+    if (
+      !parsed ||
+      typeof parsed.puzzleId !== "string" ||
+      typeof parsed.expiresAt !== "number"
+    ) {
+      window.sessionStorage.removeItem(SUCCESS_STATE_STORAGE_KEY);
+      return null;
+    }
+    if (Date.now() >= parsed.expiresAt) {
+      window.sessionStorage.removeItem(SUCCESS_STATE_STORAGE_KEY);
+      return null;
+    }
+    return parsed;
+  } catch (error) {
+    console.warn("Failed to read success state", error);
+    window.sessionStorage.removeItem(SUCCESS_STATE_STORAGE_KEY);
+    return null;
+  }
+};
+
+const storeSuccessState = (state: PuzzleSuccessState) => {
+  if (typeof window === "undefined") return;
+  try {
+    window.sessionStorage.setItem(
+      SUCCESS_STATE_STORAGE_KEY,
+      JSON.stringify(state)
+    );
+  } catch (error) {
+    console.warn("Failed to persist success state", error);
+  }
+};
+
+const clearStoredSuccessState = () => {
+  if (typeof window === "undefined") return;
+  window.sessionStorage.removeItem(SUCCESS_STATE_STORAGE_KEY);
+};
+
 const DailyPuzzle: React.FC = () => {
-  const chessRef = useRef<Chess>(null);
+  const chessRef = useRef<Chess | null>(null);
   const groundRef = useRef<any>(null);
   const solutionMovesRef = useRef<string[]>([]);
   const currentSolutionIndexRef = useRef(0);
   const initializedRef = useRef(false);
+  const puzzleIdRef = useRef<string | null>(null);
+  const successStateAppliedRef = useRef(false);
   const [isSolved, setIsSolved] = useState(false);
   const successTimeoutRef = useRef<number | null>(null);
 
@@ -180,7 +233,7 @@ const DailyPuzzle: React.FC = () => {
         return dests;
       }
 
-      function showSuccessMessage() {
+      const lockBoard = () => {
         ground.set({
           movable: {
             free: false,
@@ -192,16 +245,54 @@ const DailyPuzzle: React.FC = () => {
             enabled: false,
           },
         });
+      };
 
-        setIsSolved(true);
-
+      const scheduleSuccessReset = (durationMs: number) => {
         if (successTimeoutRef.current) {
           window.clearTimeout(successTimeoutRef.current);
         }
         successTimeoutRef.current = window.setTimeout(() => {
           setIsSolved(false);
+          successStateAppliedRef.current = false;
           successTimeoutRef.current = null;
-        }, 10 * 60 * 1000);
+          clearStoredSuccessState();
+          updateBoardState();
+        }, durationMs);
+      };
+
+      const restoreSuccessStateIfNeeded = () => {
+        if (successStateAppliedRef.current) return;
+        const stored = readStoredSuccessState();
+        if (!stored) return;
+        if (puzzleIdRef.current !== stored.puzzleId) {
+          clearStoredSuccessState();
+          return;
+        }
+        const remaining = stored.expiresAt - Date.now();
+        if (remaining <= 0) {
+          clearStoredSuccessState();
+          return;
+        }
+        lockBoard();
+        setIsSolved(true);
+        successStateAppliedRef.current = true;
+        scheduleSuccessReset(remaining);
+      };
+
+      function showSuccessMessage() {
+        lockBoard();
+        setIsSolved(true);
+        successStateAppliedRef.current = true;
+
+        const puzzleId = puzzleIdRef.current;
+        if (puzzleId) {
+          storeSuccessState({
+            puzzleId,
+            expiresAt: Date.now() + SUCCESS_DURATION_MS,
+          });
+        }
+
+        scheduleSuccessReset(SUCCESS_DURATION_MS);
       }
 
       function updateBoardState() {
@@ -297,6 +388,14 @@ const DailyPuzzle: React.FC = () => {
         const { initialPly, solution } = puzzle;
         const { pgn } = game;
 
+        puzzleIdRef.current = puzzle.id;
+        successStateAppliedRef.current = false;
+        setIsSolved(false);
+        if (successTimeoutRef.current) {
+          window.clearTimeout(successTimeoutRef.current);
+          successTimeoutRef.current = null;
+        }
+
         solutionMovesRef.current = [...solution];
         currentSolutionIndexRef.current = 0;
 
@@ -313,6 +412,7 @@ const DailyPuzzle: React.FC = () => {
 
         ground.set({ orientation: chess.turn() === "w" ? "white" : "black" });
         updateBoardState();
+        restoreSuccessStateIfNeeded();
       };
 
       const fetchPuzzle = async () => {

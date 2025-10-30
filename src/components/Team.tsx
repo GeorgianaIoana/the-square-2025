@@ -86,37 +86,42 @@ const Team = ({
       className="py-28 sm:py-20 border-[#233d36] border-t-[1px] font-archivo bg-[#001a00]"
       id="team"
     >
-      <div className="mx-4 sm:container sm:mx-auto">
+      <div className="px-4 sm:px-0 sm:container sm:mx-auto">
         <div className="relative">
-          <div className="flex flex-col lg:flex-row items-center text-center lg:text-left">
-            <div className="order-last lg:order-first lg:w-1/2 flex justify-center lg:justify-start mb-6 lg:mb-0 relative">
-              <img
-                src={currentMember.image}
-                alt={currentMember.name}
-                className="w-[340px] h-[370px] sm:w-[380px] sm:h-[400px] lg:w-[495px] lg:h-[469px] rounded-[20px] object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/50 to-[#858585]/0 rounded-[17px] opacity-[0.8]" />
+          <div className="flex flex-col lg:flex-row items-center gap-10 text-center lg:text-left">
+            <div className="order-1 lg:order-first w-full lg:w-1/2 flex justify-center lg:justify-start">
+              <div
+                className="relative w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[495px] rounded-[20px] overflow-hidden shadow-[-10px_11px_35px_rgba(0,0,0,0.25)]"
+                style={{ aspectRatio: "4 / 4.4" }}
+              >
+                <img
+                  src={currentMember.image}
+                  alt={currentMember.name}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/50 to-[#858585]/0 pointer-events-none" />
+              </div>
             </div>
-            <div className="order-first lg:order-last lg:w-1/2 max-w-3xl mx-auto px-4 lg:pl-16 sm:ml-[360px] text-left flex flex-col items-center justify-center">
-              <h2 className="text-2xl sm:text-[40px] font-bold mb-2 text-[#a6b6e0] tracking-wide font-archivo tracking-[0.1em] text-left">
+            <div className="order-2 lg:order-last w-full lg:w-1/2 max-w-3xl mx-auto px-4 lg:pl-20 lg:pr-12 text-center lg:text-left flex flex-col items-center lg:items-start justify-center">
+              <h2 className="text-2xl sm:text-[40px] font-bold mb-2 text-[#a6b6e0] tracking-[0.1em] font-archivo text-center lg:text-left">
                 {currentMember.name}
               </h2>
-              <p className="text-xs sm:text-[15px] sm:py-[10px] font-bold uppercase tracking-wider text-[#a6b6e0] mb-4 font-archivo tracking-[0.1em] text-left">
+              <p className="text-xs sm:text-[15px] sm:py-[10px] font-bold uppercase tracking-wider text-[#a6b6e0] mb-4 font-archivo tracking-[0.1em] text-center lg:text-left">
                 {currentMember.title}
               </p>
-              <div className="text-[#a6b6e0] mb-4 leading-[125%] text-sm sm:text-base font-archivo tracking-[0.1em] text-left">
+              <div className="text-[#a6b6e0] mb-4 leading-relaxed text-sm sm:text-base font-archivo tracking-[0.1em] text-center lg:text-left">
                 {expandedDescriptions[currentMember.name]
                   ? currentMember.description
                   : currentMember.description.slice(0, 650) +
                     (currentMember.description.length > 650 ? "..." : "")}
               </div>
               {currentMember.description.length > 650 && (
-                <div className="flex justify-center pb-5 sm:pb-0 sm:mt-0">
+                <div className="flex justify-center lg:justify-start pb-5 sm:pb-0">
                   <button
                     onClick={() => toggleDescription(currentMember.name)}
-                    className="sm:mt-[10px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                    className="mt-2 sm:mt-[10px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
                   >
                     {expandedDescriptions[currentMember.name]
                       ? "Înapoi"
@@ -127,7 +132,7 @@ const Team = ({
             </div>
           </div>
 
-          <div className="absolute bottom-[-30px] left-1/2 transform -translate-x-1/2 z-10 flex gap-6">
+          <div className="flex justify-center gap-6 mt-8 lg:mt-0 lg:absolute lg:bottom-[-30px] lg:left-1/2 lg:-translate-x-1/2 z-10">
             <button
               onClick={goPrev}
               disabled={currentSlide === 0}
