@@ -774,7 +774,7 @@ function App() {
       <Contact />
 
       <footer className="bg-[#001a00] border-t border-[#233d36]">
-        <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-10 lg:px-8">
+        <div className="mx-auto max-w-7xl overflow-hidden px-6 pt-20 pb-4 sm:py-10 lg:px-8">
           <nav
             className="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6 font-archivo tracking-wide"
             aria-label="Footer"
