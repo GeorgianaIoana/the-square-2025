@@ -85,9 +85,12 @@ export default function ServicesSection() {
   const [showAll, setShowAll] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const isTogglingRef = useRef(false);
 
   useEffect(() => {
-    const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
+    const updateIsMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
     updateIsMobile();
     window.addEventListener("resize", updateIsMobile);
     return () => window.removeEventListener("resize", updateIsMobile);
@@ -97,14 +100,25 @@ export default function ServicesSection() {
     e.preventDefault();
     e.stopPropagation();
     
-    const newShowAll = !showAll;
-    setShowAll(newShowAll);
+    if (isTogglingRef.current) return;
+    isTogglingRef.current = true;
     
-    if (showAll && sectionRef.current) {
-      setTimeout(() => {
-        sectionRef.current?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
-    }
+    setShowAll((prevShowAll) => {
+      const newShowAll = !prevShowAll;
+      
+      if (!newShowAll && sectionRef.current) {
+        setTimeout(() => {
+          sectionRef.current?.scrollIntoView({ behavior: "smooth" });
+          isTogglingRef.current = false;
+        }, 100);
+      } else {
+        setTimeout(() => {
+          isTogglingRef.current = false;
+        }, 50);
+      }
+      
+      return newShowAll;
+    });
   };
 
   const displayedServices = showAll
@@ -136,11 +150,11 @@ export default function ServicesSection() {
                     className: "w-full h-full text-[#233d36]",
                   })}
                 </div>
-                <h3 className="font-archivo tracking-[0.1em] text-xl sm:text-2xl font-black text-[#233d36]">
+                <h3 className="font-serif tracking-[0.05em] text-2xl sm:text-3xl text-[#233d36]">
                   {service.title}
                 </h3>
               </div>
-              <p className="font-archivo tracking-[0.1em] text-2xl sm:text-3xl font-black text-[#233d36] mb-6">
+              <p className="font-serif tracking-[0.05em] text-2xl sm:text-3xl text-[#233d36] mb-6">
                 {service.price}
               </p>
               <ul className="font-archivo tracking-[0.1em] space-y-3 mb-6 text-sm sm:text-base text-[#233d36]">
