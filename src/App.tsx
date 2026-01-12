@@ -4,7 +4,6 @@ import Calendar from "./components/Calendar";
 import Contact from "./components/Contact";
 import Team from "./components/Team";
 import WhatsAppButton from "./components/WhatsAppButton";
-// import DailyPuzzle from "./components/DailyPuzzle";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -97,7 +96,6 @@ function App() {
   ];
 
   const galleryImages = [
-    // "/images/gallery/square-room.jpg",
     "/images/gallery/kids.jpg",
     "/images/gallery/happy-people.jpg",
     "/images/gallery/chess-camp-calin.jpg",
@@ -158,7 +156,6 @@ function App() {
       >
         <div className="mx-auto px-4 sm:px-6">
           <div className="flex justify-between items-center py-2">
-            {/* Logo */}
             <div className="flex items-center space-x-2 pt-4 pl-2 sm:pl-16">
               <img
                 src="images/logo/square-logo.png"
@@ -169,7 +166,6 @@ function App() {
               />
             </div>
 
-            {/* Desktop menu */}
             <div className="hidden md:flex space-x-4 ml-auto font-archivo tracking-[0.1em] text-[#badad5] text-right sm:pr-[40px]">
               <button
                 onClick={() => scrollToSection("about")}
@@ -221,7 +217,6 @@ function App() {
               </button>
             </div>
 
-            {/* Mobile menu toggle */}
             <div className="md:hidden">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -255,7 +250,6 @@ function App() {
           </div>
         </div>
 
-        {/* Mobile dropdown menu */}
         {mobileMenuOpen && (
           <div className="md:hidden fixed inset-0 bg-[#233d36] bg-opacity-90 z-50 px-4 pt-24 pb-10">
             <div className="flex justify-end mb-6">
@@ -591,33 +585,6 @@ function App() {
                     învățate în partide reale, antrenându-și concentrarea și
                     inteligența emoțională.
                   </p>{" "}
-                  {/* <p>
-                    Vă invităm să susțineți lecțiile și turneele de șah
-                    desfășurate la Clubul de Șah <strong>THE SQUARE</strong>{" "}
-                    astfel:
-                    <ul>
-                      <li>
-                        1. Prin încheierea unui{" "}
-                        <strong>contract de sponsorizare</strong> – dedicat
-                        persoanelor juridice, pe care îl puteți descărca{" "}
-                        <a
-                          href="https://static.anaf.ro/static/10/Anaf/formulare/177_OPANAF_1679_2022.pdf"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[#badad5] hover:text-[#a6b6e0]"
-                        >
-                          <strong>aici.</strong>
-                        </a>
-                      </li>
-                      <li>
-                        2. Prin redirecționarea a{" "}
-                        <strong>3,5% din impozitul pe venit</strong> – opțiune
-                        valabilă pentru persoanele fizice
-                      </li>
-                    </ul>
-                    Sumele acestea sunt deduse direct din impozitul pe profit,
-                    pe care oricum îl datorați statului.
-                  </p> */}
                 </section>
               </div>
             </div>
@@ -635,22 +602,6 @@ function App() {
                 </h4>
                 <p className="text-[#a6b6e0] font-archivo font-medium leading-[125%] tracking-[0.1em] mx-auto max-w-[313px] sm:max-w-[500px] text-left sm:text-center sm:mt-[19px] mt-[21px]">
                   <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-left sm:text-center sm:mt-[19px] mt-[21px] sm:p-4 text-[#a6b6e0] font-archivo font-medium leading-[125%] tracking-[0.1em]">
-                    {/* <p>
-                      Fondurile obținute vor fi folosite pentru:
-                      <ul>
-                        <li>
-                          Participarea cursanților împreună cu antrenorii, la
-                          competițiile naționale și internaționale
-                        </li>
-                        <li>
-                          Achiziționarea de echipamente și materiale sportive
-                          necesare desfășurării activităților
-                        </li>
-                      </ul>
-                      Vă rugăm să ne trimiteți contractul semnat și ștampilat,
-                      în format pdf, la adresa de e-mail:{" "}
-                      <strong>contact@thesquarechess.com</strong>
-                    </p> */}
                     <p>
                       Integritatea este fundamentul fiecărei decizii pe tabla de
                       șah și în viață. Într-un mediu în care onestitatea,
@@ -676,20 +627,6 @@ function App() {
                   COMUNITATE
                 </h4>
                 <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-left sm:text-center sm:mt-[36px] mt-[21px] text-[#a6b6e0] font-archivo font-medium leading-[125%] tracking-[0.1em]">
-                  {/* <p>
-                    <strong>Pentru persoanele fizice</strong> — dacă dorești să
-                    redirecționezi 3,5% din impozitul tău anual pe venit
-                    <ul>
-                      <li>
-                        Completează formularul nostru de contact și vom reveni
-                        imediat către tine cu toate detaliile necesare.
-                      </li>
-                    </ul>
-                    În plus, poți contribui la organizarea workshop-urilor
-                    noastre și a tunreelor noastre, prin susținerea lor
-                    financiară, devenind astfel partener al acestor evenimente
-                    importante pentru comunitate.
-                  </p> */}
                   <p>
                     Comunitatea THE SQUARE reunește pasionații de șah în
                     evenimente unde jocul, socializarea și momentele plăcute
@@ -708,8 +645,6 @@ function App() {
 
       <ServicesSection />
 
-      {/* <DailyPuzzle /> */}
-
       <section
         className="py-20 bg-[#001a00] border-t border-[#233d36]"
         id="gallery"
@@ -720,9 +655,7 @@ function App() {
               Galerie
             </h2>
 
-            {/* Imagine + săgeți (responsive layout) */}
             <div className="relative flex flex-col items-center justify-center">
-              {/* Imagine */}
               <div className="w-full overflow-hidden rounded-lg shadow-xl relative">
                 <img
                   src={galleryImages[currentGalleryImage]}
@@ -733,7 +666,6 @@ function App() {
                 />
               </div>
 
-              {/* Arrows - sub imagine pe mobil, laterale pe desktop */}
               <div className="flex justify-center gap-6 mt-4 sm:mt-0 sm:absolute sm:inset-0 sm:justify-between sm:px-6 sm:items-center">
                 <button
                   onClick={prevGalleryImage}
@@ -751,7 +683,6 @@ function App() {
               </div>
             </div>
 
-            {/* Navigation dots */}
             <div className="flex justify-center mt-6 space-x-2">
               {galleryImages.map((_, index) => (
                 <button

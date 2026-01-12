@@ -263,7 +263,6 @@ const Calendar = () => {
   const getDayKey = (day: number | undefined) => {
     if (!day) return "";
 
-    // Verifică dacă există un eveniment specific pentru această zi
     if (events[day.toString() as keyof typeof events]) {
       return day.toString();
     }
@@ -336,7 +335,6 @@ const Calendar = () => {
     <div className="w-full border-[#233d36] border-t-[1px]">
       <div className="sm:container mx-auto">
         <div className="grid grid-cols-12 gap-6 px-4 sm:px-0 mt-[90px] mb-[90px] sm:mt-[75px] sm:mb-[75px]">
-          {/* Right Column - Schedule (appears first on mobile, second on desktop) */}
           <div className="col-span-12 lg:col-span-4 flex flex-col items-start lg:items-center relative mb-10 lg:mb-0 order-first lg:order-last">
             <h2 className="px-4 max-w-[270px] sm:max-w-[500px] sm:px-0 text-2xl font-semibold text-[#a6b6e0] mb-6 sm:mb-10 font-archivo">
               Programul pentru{" "}
@@ -353,7 +351,6 @@ const Calendar = () => {
             </div>
           </div>
 
-          {/* Left Column - Calendar (appears second on mobile, first on desktop) */}
           <div className="col-span-12 lg:col-span-8 flex flex-col items-start relative lg:pl-6">
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-2xl font-semibold text-[#a6b6e0] font-archivo tracking-wide">

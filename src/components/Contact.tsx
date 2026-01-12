@@ -135,14 +135,11 @@ export default function ContactSection() {
       id="contact"
     >
       <div className="container mx-auto">
-        {/* Titlu */}
         <h2 className="font-archivo tracking-[0.1em] text-2xl sm:text-3xl font-bold text-center text-[#a6b6e0] mb-16">
           Contactează-ne
         </h2>
 
-        {/* Grid adaptiv */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
-          {/* Coloana 1: Contact Info + Harta */}
           <div className="flex flex-col gap-10">
             <div>
               <h3 className="text-xl font-semibold mb-4 text-[#a6b6e0] font-archivo tracking-[0.1em] ">
@@ -167,7 +164,6 @@ export default function ContactSection() {
             {memoizedMap}
           </div>
 
-          {/* Coloana 2: Formular */}
           <div className="w-full max-w-lg lg:max-w-xl bg-[#a6b6e0] rounded-xl shadow-xl px-4 sm:px-6 lg:px-10 py-6 sm:py-8 lg:py-16 mx-auto mb-10 sm:mb-28">
             <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
               <div className="text-center mb-6">
@@ -176,7 +172,6 @@ export default function ContactSection() {
                 </h5>
               </div>
 
-              {/* Nume */}
               <div>
                 <label
                   htmlFor="name"
@@ -196,7 +191,6 @@ export default function ContactSection() {
                 />
               </div>
 
-              {/* Telefon */}
               <div>
                 <label
                   htmlFor="phone"
@@ -237,7 +231,6 @@ export default function ContactSection() {
                 />
               </div>
 
-              {/* Mesaj */}
               <div>
                 <label
                   htmlFor="message"
@@ -256,7 +249,6 @@ export default function ContactSection() {
                 ></textarea>
               </div>
 
-              {/* Buton submit */}
               <div className="text-center pt-2 sm:pt-4 sm:pb-0 pb-6">
                 <button
                   type="submit"

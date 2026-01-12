@@ -100,7 +100,6 @@ export default function ServicesSection() {
     const newShowAll = !showAll;
     setShowAll(newShowAll);
     
-    // Only scroll if we're closing the expanded view
     if (showAll && sectionRef.current) {
       setTimeout(() => {
         sectionRef.current?.scrollIntoView({ behavior: "smooth" });

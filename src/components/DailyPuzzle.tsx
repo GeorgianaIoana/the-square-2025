@@ -131,16 +131,13 @@ const DailyPuzzle: React.FC = () => {
     }
     initializedRef.current = true;
 
-    // Wait for DOM to be ready
     const initChessground = () => {
-      // Determine which board element to use based on screen size
-      const isDesktop = window.innerWidth >= 768; // md breakpoint
+      const isDesktop = window.innerWidth >= 768;
       const boardElement = isDesktop
         ? document.getElementById("board-desktop")
         : document.getElementById("board-mobile");
 
       if (!boardElement) {
-        // Retry after a short delay if element not found
         setTimeout(initChessground, 100);
         return;
       }
@@ -447,7 +444,6 @@ const DailyPuzzle: React.FC = () => {
       }
     };
 
-    // Initialize Chessground
     initChessground();
 
     return () => {
@@ -467,7 +463,6 @@ const DailyPuzzle: React.FC = () => {
     <section className="py-8 md:py-16 bg-[#001a00] border-[#233d36] border-t-[1px]">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
           <div className="text-center mb-6 md:mb-8">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#b8d9d4] font-archivo">
               Puzzle-ul tău zilnic
@@ -484,7 +479,6 @@ const DailyPuzzle: React.FC = () => {
             </p>
           </div>
 
-          {/* Chess Board - Mobile/Tablet */}
           <div className="bg-[#233d36] rounded-lg shadow-2xl border border-[#233d36] p-3 sm:p-4 mb-4 md:hidden">
             <div className="bg-[#233d36] rounded-lg p-3 sm:p-4 mb-4 flex justify-center">
               <div
@@ -499,7 +493,6 @@ const DailyPuzzle: React.FC = () => {
             </div>
           </div>
 
-          {/* Chess Board - Desktop */}
           <div className="hidden md:block bg-[#233d36] rounded-lg shadow-2xl border border-[#233d36] p-6 mb-6">
             <div className="bg-[#233d36] rounded-lg p-6 mb-6 flex justify-center">
               <div
