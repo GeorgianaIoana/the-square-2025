@@ -81,44 +81,105 @@ const services = [
   },
 ];
 
+const STORAGE_KEY = "services-show-all";
+const OPENED_AT_KEY = "services-opened-at";
+
 export default function ServicesSection() {
-  const [showAll, setShowAll] = useState(false);
+  const [showAll, setShowAll] = useState(() => {
+    if (typeof window !== "undefined") {
+      const stored = sessionStorage.getItem(STORAGE_KEY);
+      const openedAt = sessionStorage.getItem(OPENED_AT_KEY);
+      if (stored === "true" && openedAt) {
+        const timeSinceOpened = Date.now() - parseInt(openedAt, 10);
+        const MIN_OPEN_DURATION_MS = 5 * 60 * 1000;
+        if (timeSinceOpened < MIN_OPEN_DURATION_MS) {
+          return true;
+        }
+      }
+    }
+    return false;
+  });
   const [isMobile, setIsMobile] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   const isTogglingRef = useRef(false);
+  const showAllRef = useRef(false);
+  const openedAtRef = useRef<number | null>(null);
+  const MIN_OPEN_DURATION_MS = 5 * 60 * 1000;
 
   useEffect(() => {
     const updateIsMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
     updateIsMobile();
-    window.addEventListener("resize", updateIsMobile);
-    return () => window.removeEventListener("resize", updateIsMobile);
+    const handleResize = () => {
+      updateIsMobile();
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    showAllRef.current = showAll;
+    if (showAll) {
+      const now = Date.now();
+      openedAtRef.current = now;
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem(STORAGE_KEY, "true");
+        sessionStorage.setItem(OPENED_AT_KEY, now.toString());
+      }
+    } else {
+      openedAtRef.current = null;
+      if (typeof window !== "undefined") {
+        sessionStorage.removeItem(STORAGE_KEY);
+        sessionStorage.removeItem(OPENED_AT_KEY);
+      }
+    }
+  }, [showAll]);
 
   const handleToggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
+    e.nativeEvent.stopImmediatePropagation();
     
     if (isTogglingRef.current) return;
-    isTogglingRef.current = true;
     
-    setShowAll((prevShowAll) => {
-      const newShowAll = !prevShowAll;
+    const currentShowAll = showAllRef.current;
+    
+    if (currentShowAll) {
+      const storedOpenedAt = typeof window !== "undefined" 
+        ? sessionStorage.getItem(OPENED_AT_KEY) 
+        : null;
+      const openedAt = openedAtRef.current 
+        ? openedAtRef.current 
+        : (storedOpenedAt ? parseInt(storedOpenedAt, 10) : null);
       
-      if (!newShowAll && sectionRef.current) {
-        setTimeout(() => {
-          sectionRef.current?.scrollIntoView({ behavior: "smooth" });
-          isTogglingRef.current = false;
-        }, 100);
-      } else {
-        setTimeout(() => {
-          isTogglingRef.current = false;
-        }, 50);
+      if (openedAt) {
+        const timeSinceOpened = Date.now() - openedAt;
+        
+        if (timeSinceOpened < MIN_OPEN_DURATION_MS) {
+          return;
+        }
       }
-      
-      return newShowAll;
-    });
+    }
+    
+    const newShowAll = !currentShowAll;
+    
+    isTogglingRef.current = true;
+    showAllRef.current = newShowAll;
+    setShowAll(newShowAll);
+    
+    if (!newShowAll && sectionRef.current) {
+      setTimeout(() => {
+        if (sectionRef.current) {
+          sectionRef.current.scrollIntoView({ behavior: "smooth" });
+        }
+        isTogglingRef.current = false;
+      }, 300);
+    } else {
+      setTimeout(() => {
+        isTogglingRef.current = false;
+      }, 200);
+    }
   };
 
   const displayedServices = showAll
