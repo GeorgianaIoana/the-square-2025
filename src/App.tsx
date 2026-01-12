@@ -356,8 +356,9 @@ function App() {
                   src={image.url}
                   alt={`Slide ${index + 1}`}
                   className="w-full h-full object-cover brightness-50 rounded-[24px]"
-                  loading={currentSlide === index ? "eager" : "lazy"}
-                  decoding="async"
+                  loading={index === 0 ? "eager" : currentSlide === index ? "eager" : "lazy"}
+                  decoding={index === 0 ? "sync" : "async"}
+                  fetchPriority={index === 0 ? "high" : undefined}
                 />
 
                 {currentSlide === index && (
@@ -454,8 +455,9 @@ function App() {
                     src="/images/banner/theSquare.jpg"
                     alt="Interior THE SQUARE"
                     className="absolute inset-0 w-full h-full object-cover"
-                    loading="lazy"
+                    loading="eager"
                     decoding="async"
+                    fetchPriority="high"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/80 to-[#858585]/0 pointer-events-none"></div>
                 </div>
@@ -661,8 +663,9 @@ function App() {
                   src={galleryImages[currentGalleryImage]}
                   alt={`Gallery image ${currentGalleryImage + 1}`}
                   className="w-full h-[400px] sm:h-[600px] object-cover transition-opacity duration-500 rounded-lg"
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
+                  fetchPriority="high"
                 />
               </div>
 
