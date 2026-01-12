@@ -4,7 +4,7 @@ import Calendar from "./components/Calendar";
 import Contact from "./components/Contact";
 import Team from "./components/Team";
 import WhatsAppButton from "./components/WhatsAppButton";
-import DailyPuzzle from "./components/DailyPuzzle";
+// import DailyPuzzle from "./components/DailyPuzzle";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -708,7 +708,7 @@ function App() {
 
       <ServicesSection />
 
-      <DailyPuzzle />
+      {/* <DailyPuzzle /> */}
 
       <section
         className="py-20 bg-[#001a00] border-t border-[#233d36]"
