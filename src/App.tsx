@@ -13,6 +13,8 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import CookiePolicyPage from "./pages/CookiePolicyPage";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import ThankYouPage from "./components/ThankYouPage";
+import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
 
 const teamMembers = [
   {
@@ -207,6 +209,14 @@ function App() {
               >
                 Testimoniale
               </button>
+              <Link
+                to="/blog"
+                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
+                  isScrolled ? "text-white" : "text-[#a6b6e0]"
+                }`}
+              >
+                Blog
+              </Link>
               <button
                 onClick={() => scrollToSection("contact")}
                 className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
@@ -318,6 +328,13 @@ function App() {
             >
               Testimoniale
             </button>
+            <Link
+              to="/blog"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
+            >
+              Blog
+            </Link>
             <button
               onClick={() => {
                 scrollToSection("contact");
@@ -333,7 +350,7 @@ function App() {
                   scrollToSection("contact");
                   setMobileMenuOpen(false);
                 }}
-                className="bg-[#badad5] text-[#233d36] px-8 py-3 rounded-full font-archivo font-semibold text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] shadow-lg"
+                className="bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-8 py-3 rounded-xl font-archivo font-bold text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg"
               >
                 Înscrie-te la primul tău curs!
               </button>
@@ -373,7 +390,7 @@ function App() {
                       <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
                         <button
                           onClick={() => scrollToSection("contact")}
-                          className="sm:mt-[0px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
+                          className="sm:mt-[0px] text-center bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-6 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg font-archivo"
                         >
                           Înscrie-te la primul tău curs!
                         </button>
@@ -439,7 +456,7 @@ function App() {
                   <div className="flex justify-center lg:justify-start">
                     <button
                       onClick={() => scrollToSection("contact")}
-                      className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
+                      className="sm:mt-[40px] text-center bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-6 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg font-archivo"
                     >
                       Înscrie-te la primul tău curs!
                     </button>
@@ -504,7 +521,7 @@ function App() {
                   <div className="flex justify-center lg:justify-start">
                     <button
                       onClick={() => scrollToSection("contact")}
-                      className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
+                      className="sm:mt-[40px] text-center bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-6 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg font-archivo"
                     >
                       Înscrie-te la primul tău curs!
                     </button>
@@ -807,7 +824,12 @@ function App() {
                 <path d="M41,4H9C6.24,4,4,6.24,4,9v32c0,2.76,2.24,5,5,5h32c2.76,0,5-2.24,5-5V9C46,6.24,43.76,4,41,4z M17,20v19h-6V20H17z M11,14.47c0-1.4,1.2-2.47,3-2.47s2.93,1.07,3,2.47c0,1.4-1.12,2.53-3,2.53C12.2,17,11,15.87,11,14.47z M39,39h-6c0,0,0-9.26,0-10 c0-2-1-4-3.5-4.04h-0.08C27,24.96,26,27.02,26,29c0,0.91,0,10,0,10h-6V20h6v2.56c0,0,1.93-2.56,5.81-2.56 c3.97,0,7.19,2.73,7.19,8.26V39z"></path>
               </svg>
             </a>
-            <a href="#" className="text-[#a6b6e0] hover:text-[#badad5]">
+            <a
+              href="https://www.tiktok.com/@thesquarechessstudio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#a6b6e0] hover:text-[#badad5]"
+            >
               <span className="sr-only">TikTok</span>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -837,6 +859,8 @@ function App() {
         <Route path="/cookie-policy" element={<CookiePolicyPage />} />
         <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="/thank-you" element={<ThankYouPage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:id" element={<BlogPostPage />} />
         <Route path="/" element={<MainContent />} />
       </Routes>
     </Router>

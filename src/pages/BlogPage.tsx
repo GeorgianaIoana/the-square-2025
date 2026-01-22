@@ -1,0 +1,428 @@
+import { useState } from "react";
+import type { FormEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Calendar, User, ArrowRight, BookOpen } from "lucide-react";
+import Footer from "../components/Footer";
+import WhatsAppButton from "../components/WhatsAppButton";
+import { blogPosts } from "../data/blogPosts";
+
+const NEWSLETTER_ACCESS_KEY = "9e26e303-368c-44fc-86ac-7e427470a472";
+
+export default function BlogPage() {
+  const navigate = useNavigate();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [newsletterStatus, setNewsletterStatus] = useState<string | null>(null);
+  const [isSubmittingNewsletter, setIsSubmittingNewsletter] = useState(false);
+
+  const scrollToSection = (id: string) => {
+    navigate("/");
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        const headerOffset = 80;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition =
+          elementPosition + window.pageYOffset - headerOffset;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
+  };
+
+  const handleNewsletterSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (isSubmittingNewsletter || !newsletterEmail.trim()) return;
+
+    setIsSubmittingNewsletter(true);
+    setNewsletterStatus("Se trimite...");
+
+    const formData = new FormData();
+    formData.set("access_key", NEWSLETTER_ACCESS_KEY);
+    formData.set("email", newsletterEmail.trim());
+    formData.set("subject", "Abonare Newsletter - THE SQUARE Chess Club");
+    formData.set("from_name", "Newsletter Form");
+    formData.set("message", `Utilizatorul ${newsletterEmail.trim()} dorește să se aboneze la newsletter.`);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setNewsletterStatus("Ne bucurăm că îți plac articolele noastre. Așteptăm părerile tale despre ele. Mulțumim!");
+        setNewsletterEmail("");
+        setTimeout(() => {
+          setNewsletterStatus(null);
+        }, 8000);
+      } else {
+        console.error("Error", data);
+        setNewsletterStatus("A apărut o problemă. Încearcă din nou.");
+        setTimeout(() => {
+          setNewsletterStatus(null);
+        }, 5000);
+      }
+    } catch (error) {
+      console.error("Network error", error);
+      setNewsletterStatus("A apărut o problemă de rețea. Încearcă din nou.");
+      setTimeout(() => {
+        setNewsletterStatus(null);
+      }, 5000);
+    } finally {
+      setIsSubmittingNewsletter(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#001a00]">
+      <nav className="fixed w-full z-50 bg-[#233d36] shadow-lg">
+        <div className="mx-auto px-4 sm:px-6">
+          <div className="flex justify-between items-center py-2">
+            <Link to="/" className="flex items-center space-x-2 pt-4 pl-2 sm:pl-16">
+              <img
+                src="/images/logo/square-logo.png"
+                alt="Logo"
+                className="w-[110px] sm:w-[150px]"
+                loading="eager"
+                decoding="async"
+              />
+            </Link>
+
+            <div className="hidden md:flex space-x-4 ml-auto font-archivo tracking-[0.1em] text-[#badad5] text-right sm:pr-[40px]">
+              <button
+                onClick={() => scrollToSection("about")}
+                className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
+              >
+                Despre noi
+              </button>
+              <button
+                onClick={() => scrollToSection("team")}
+                className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
+              >
+                Echipa
+              </button>
+              <button
+                onClick={() => scrollToSection("services")}
+                className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
+              >
+                Cursuri de șah
+              </button>
+              <button
+                onClick={() => scrollToSection("gallery")}
+                className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
+              >
+                Galerie
+              </button>
+              <button
+                onClick={() => scrollToSection("testimonials")}
+                className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
+              >
+                Testimoniale
+              </button>
+              <Link
+                to="/blog"
+                className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white bg-[#badad5] text-[#233d36]"
+              >
+                Blog
+              </Link>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
+              >
+                Contact
+              </button>
+            </div>
+
+            <div className="md:hidden">
+              <button
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="text-[#a6b6e0] focus:outline-none"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  {mobileMenuOpen ? (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  )}
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {mobileMenuOpen && (
+          <div className="md:hidden fixed inset-0 bg-[#233d36] bg-opacity-90 z-50 px-4 pt-24 pb-10">
+            <div className="flex justify-end mb-6">
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-[#a6b6e0] focus:outline-none text-xl"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+            </div>
+            <button
+              onClick={() => {
+                scrollToSection("about");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
+            >
+              Despre noi
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("team");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
+            >
+              Echipa
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("services");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
+            >
+              Cursuri de șah
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("gallery");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
+            >
+              Galerie
+            </button>
+            <button
+              onClick={() => {
+                scrollToSection("testimonials");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
+            >
+              Testimoniale
+            </button>
+            <Link
+              to="/blog"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
+            >
+              Blog
+            </Link>
+            <button
+              onClick={() => {
+                scrollToSection("contact");
+                setMobileMenuOpen(false);
+              }}
+              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
+            >
+              Contact
+            </button>
+            <div className="flex justify-center mt-8">
+              <button
+                onClick={() => {
+                  scrollToSection("contact");
+                  setMobileMenuOpen(false);
+                }}
+                className="bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-8 py-3 rounded-xl font-archivo font-bold text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg"
+              >
+                Înscrie-te la primul tău curs!
+              </button>
+            </div>
+          </div>
+        )}
+      </nav>
+
+      <div className="pt-24 sm:pt-32 pb-16">
+        <div className="container mx-auto px-4 sm:px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16 animate-fade-in">
+              <div className="inline-block mb-6">
+                <span className="px-4 py-2 bg-[#badad5]/10 border border-[#badad5]/20 rounded-full text-[#badad5] text-sm font-archivo font-medium">
+                  Resurse educaționale
+                </span>
+              </div>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-[#badad5] font-archivo tracking-tight mb-6 leading-tight">
+                Blog THE SQUARE
+              </h1>
+              <p className="text-xl sm:text-2xl text-[#a6b6e0] font-archivo max-w-3xl mx-auto leading-relaxed">
+                Ghiduri, strategii și sfaturi pentru a-ți îmbunătăți jocul de șah
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+              {blogPosts.map((post, index) => (
+                <Link
+                  key={post.id}
+                  to={`/blog/${post.id}`}
+                  className={`group relative bg-gradient-to-br from-[#233d36]/90 to-[#1a2d28]/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl hover:shadow-[#badad5]/20 transition-all duration-500 border border-[#233d36] hover:border-[#badad5]/50 block ${
+                    index === 0 ? "lg:col-span-3 lg:grid lg:grid-cols-2" : ""
+                  }`}
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#badad5]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {index === 0 && (
+                    <div className="lg:col-span-1 relative h-64 lg:h-full min-h-[300px]">
+                      {post.image ? (
+                        <>
+                          <img
+                            src={post.image}
+                            alt={post.title}
+                            className="absolute inset-0 w-full h-full object-cover"
+                            loading="eager"
+                            decoding="async"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/80 via-transparent to-transparent"></div>
+                        </>
+                      ) : (
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#badad5]/20 to-[#233d36] flex items-center justify-center">
+                          <BookOpen className="w-24 h-24 text-[#badad5]/30" />
+                        </div>
+                      )}
+                      <div className="absolute top-4 left-4 z-10">
+                        <span className="inline-flex items-center gap-2 px-4 py-2 bg-[#badad5]/20 backdrop-blur-sm border border-[#badad5]/30 text-[#badad5] rounded-full text-xs font-semibold font-archivo">
+                          Featured
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className={`relative p-8 sm:p-10 flex flex-col min-h-0 ${index === 0 ? "lg:col-span-1" : ""}`}>
+                    <div className="mb-4 flex items-center justify-between flex-wrap gap-3">
+                      <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#badad5]/20 backdrop-blur-sm border border-[#badad5]/30 text-[#badad5] rounded-full text-xs font-semibold font-archivo">
+                        {post.category}
+                      </span>
+                      <span className="text-[#a6b6e0]/60 text-xs font-archivo flex items-center gap-1">
+                        <BookOpen className="w-3 h-3" />
+                        {post.readTime}
+                      </span>
+                    </div>
+
+                    <h2 className={`font-bold text-[#badad5] font-archivo mb-4 group-hover:text-[#badad5] transition-colors leading-tight ${
+                      index === 0 ? "text-3xl sm:text-4xl" : "text-2xl"
+                    }`}>
+                      {post.title}
+                    </h2>
+
+                    <p className={`text-[#a6b6e0] font-archivo mb-6 leading-relaxed ${
+                      index === 0 ? "text-base sm:text-lg" : "text-sm"
+                    }`}>
+                      {post.excerpt}
+                    </p>
+
+                    <div className="flex items-center justify-between text-xs text-[#a6b6e0] font-archivo mb-6 pb-6 border-b border-[#233d36]">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-[#badad5]/20 flex items-center justify-center">
+                          <User className="w-5 h-5 text-[#badad5]" />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-[#badad5]">{post.author}</p>
+                          <p className="text-[#a6b6e0]/70 flex items-center gap-1">
+                            <Calendar className="w-3 h-3" />
+                            {post.date}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-4">
+                      <div
+                        className="inline-flex items-center justify-between gap-3 w-full px-6 py-4 bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] rounded-xl font-archivo font-bold text-sm transition-all duration-300 shadow-lg relative z-10 pointer-events-none"
+                      >
+                        <span>Citește articolul</span>
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <div className="relative overflow-hidden rounded-3xl p-8 sm:p-16 text-center border border-[#badad5]/20 bg-gradient-to-br from-[#233d36]/90 to-[#1a2d28]/90 backdrop-blur-sm shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-[#badad5]/10 via-transparent to-transparent"></div>
+              <div className="relative z-10">
+                <div className="inline-block mb-6">
+                  <div className="w-16 h-16 rounded-2xl bg-[#badad5]/20 backdrop-blur-sm border border-[#badad5]/30 flex items-center justify-center mx-auto">
+                    <BookOpen className="w-8 h-8 text-[#badad5]" />
+                  </div>
+                </div>
+                <h3 className="text-3xl sm:text-4xl font-bold text-[#badad5] font-archivo mb-4">
+                  Abonează-te la newsletter
+                </h3>
+                <p className="text-lg text-[#a6b6e0] font-archivo mb-8 max-w-2xl mx-auto leading-relaxed">
+                  Primește cele mai recente articole, strategii și sfaturi despre șah direct în inbox-ul tău
+                </p>
+                <form onSubmit={handleNewsletterSubmit} className="max-w-lg mx-auto flex flex-col sm:flex-row gap-4">
+                  <input
+                    type="email"
+                    value={newsletterEmail}
+                    onChange={(e) => setNewsletterEmail(e.target.value)}
+                    placeholder="Adresa ta de email"
+                    required
+                    className="flex-1 px-6 py-4 bg-[#001a00]/80 backdrop-blur-sm border-2 border-[#233d36] rounded-xl text-[#badad5] placeholder-[#a6b6e0]/60 focus:outline-none focus:border-[#badad5] focus:ring-4 focus:ring-[#badad5]/20 transition-all font-archivo shadow-lg"
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSubmittingNewsletter}
+                    className="px-8 py-4 bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] rounded-xl font-bold font-archivo hover:shadow-xl hover:scale-105 transition-all duration-300 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  >
+                    {isSubmittingNewsletter ? "Se trimite..." : "Abonează-te"}
+                  </button>
+                </form>
+                {newsletterStatus && (
+                  <p className={`mt-4 text-sm font-archivo text-center ${
+                    newsletterStatus.includes("Ne bucurăm") 
+                      ? "text-[#badad5]" 
+                      : "text-red-400"
+                  }`}>
+                    {newsletterStatus}
+                  </p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+      <WhatsAppButton />
+    </div>
+  );
+}

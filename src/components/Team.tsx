@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const teamMembersData = [
+  {
+    name: "GM Levente Vajda",
+    title: "Mentor pentru Performanță",
+    description: `Mare Maestru Internațional cu un palmares de excepție, Levente Vajda este multiplu campion național și internațional, remarcându-se la cel mai înalt nivel prin titlul de Campion Mondial (U16) și prin reprezentarea României la nu mai puțin de șapte Olimpiade de Șah. Aceste distincții sunt dovada unei înțelegeri profunde a jocului, o experiență vastă pe care acum o pune cu generozitate la dispoziția tinerilor șahiști de performanță.
+
+Levente este un mentor care crede cu tărie în potențialul noii generații, lucrând cu o seriozitate rară pentru a îmbina rigoarea marilor competiții cu dorința sinceră de a vedea în ochii elevilor săi aceeași sclipire a succesului pe care el a trăit-o pe podiumurile lumii. Alegând să studieze cu el, copiii nu primesc doar lecții de șah, ci preiau disciplina și viziunea unui campion autentic, dedicat trup și suflet formării viitoarei elite.`,
+    image: "images/gallery/Vajda.png",
+  },
   {
     name: "FM Călin Gheorghiu",
     title: "CHESS TRAINER",
@@ -67,6 +75,13 @@ const Team = ({
 }: TeamProps) => {
   const teamMembers = teamMembersData;
 
+  useEffect(() => {
+    teamMembers.forEach((member) => {
+      const img = new Image();
+      img.src = `/${member.image}`;
+    });
+  }, []);
+
   const goPrev = () => {
     setCurrentSlide(currentSlide - 1 >= 0 ? currentSlide - 1 : 0);
   };
@@ -94,14 +109,20 @@ const Team = ({
                 className="relative w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[495px] rounded-[20px] overflow-hidden shadow-[-10px_11px_35px_rgba(0,0,0,0.25)]"
                 style={{ aspectRatio: "4 / 4.4" }}
               >
-                <img
-                  src={currentMember.image}
-                  alt={currentMember.name}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/50 to-[#858585]/0 pointer-events-none" />
+                {teamMembers.map((member, index) => (
+                  <img
+                    key={member.image}
+                    src={`/${member.image}`}
+                    alt={member.name}
+                    className={`absolute inset-0 w-full h-full object-cover scale-90 ${
+                      currentSlide === index ? "opacity-100 z-10" : "opacity-0 z-0"
+                    }`}
+                    loading="eager"
+                    decoding="async"
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                  />
+                ))}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#001a00]/50 to-[#858585]/0 pointer-events-none z-20" />
               </div>
             </div>
             <div className="order-2 lg:order-last w-full lg:w-1/2 max-w-3xl mx-auto px-4 lg:pl-20 lg:pr-12 text-center lg:text-left flex flex-col items-center lg:items-start justify-center">
@@ -121,7 +142,7 @@ const Team = ({
                 <div className="flex justify-center lg:justify-start pb-5 sm:pb-0">
                   <button
                     onClick={() => toggleDescription(currentMember.name)}
-                    className="mt-2 sm:mt-[10px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36]"
+                    className="mt-2 sm:mt-[10px] text-center bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-6 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg"
                   >
                     {expandedDescriptions[currentMember.name]
                       ? "Înapoi"

@@ -227,7 +227,7 @@ export default function ServicesSection() {
                 ))}
               </ul>
               <button
-                className="font-archivo tracking-[0.1em] w-full bg-[#233d36] text-white py-3 rounded-lg font-semibold hover:bg-[#badad5] hover:text-[#233d36] transition-colors duration-300 active:scale-95"
+                className="font-archivo tracking-[0.1em] w-full bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] py-3 rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all duration-300 shadow-lg active:scale-95"
                 onClick={() => {
                   const contactSection = document.getElementById("contact");
                   if (contactSection) {
@@ -245,7 +245,7 @@ export default function ServicesSection() {
           <div className="text-center mt-8 sm:mt-10">
             <button
               onClick={handleToggle}
-              className="font-archivo tracking-[0.1em] inline-flex items-center bg-[#233d36] text-white px-6 py-3 rounded-full hover:bg-[#a6b6e0] hover:text-[#233d36] transition-colors duration-300 text-sm font-medium active:scale-95"
+              className="font-archivo tracking-[0.1em] inline-flex items-center bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-6 py-3 rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all duration-300 text-sm shadow-lg active:scale-95"
             >
               {showAll ? (
                 <>
