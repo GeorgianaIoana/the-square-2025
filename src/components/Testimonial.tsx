@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import { motion } from "framer-motion";
 import "swiper/css";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const testimonials = [
   {
@@ -34,6 +35,7 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const { t } = useLanguage();
   const swiperRef = useRef<any>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -65,8 +67,8 @@ export default function Testimonials() {
       onClick={handleActivateCarousel}
     >
       <div className="sm:container mx-auto">
-        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-16 text-[#badad5]">
-          Experiența cursanților noștri
+        <h2 className="text-2xl sm:text-3xl font-bold text-center mb-16 text-[#badad5] font-archivo">
+          {t('testimonials.title')}
         </h2>
 
         <Swiper

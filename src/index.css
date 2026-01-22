@@ -96,6 +96,25 @@
   background: #badad5;
 }
 
+/* Tawk.to widget positioning - bottom right */
+#tawkchat-container,
+iframe[id*="tawk"],
+div[id*="tawk"],
+iframe[title*="chat"],
+div[data-tawk-to] {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: 9999 !important;
+}
+
+/* WhatsApp button positioning - bottom left */
+#shop_whatsapp_number {
+  z-index: 9998 !important;
+}
+
 /* Chess board customization */
 .cg-wrap {
   background-color: #1a2a1a;

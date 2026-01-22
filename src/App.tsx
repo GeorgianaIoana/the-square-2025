@@ -4,6 +4,7 @@ import Calendar from "./components/Calendar";
 import Contact from "./components/Contact";
 import Team from "./components/Team";
 import WhatsAppButton from "./components/WhatsAppButton";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -15,6 +16,7 @@ import TermsAndConditions from "./pages/TermsAndConditions";
 import ThankYouPage from "./components/ThankYouPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
+import { useLanguage } from "./contexts/LanguageContext";
 
 const teamMembers = [
   {
@@ -65,6 +67,7 @@ La clubul de șah, a fost captivat de comunitatea prietenoasă, care l-a încura
 ];
 
 function App() {
+  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [currentGalleryImage, setCurrentGalleryImage] = useState(0);
@@ -82,18 +85,17 @@ function App() {
   const bannerImages = [
     {
       url: "/images/banner/theSquare.jpg",
-      title: "Antrenează-te cu profesioniști",
-      subtitle:
-        "Șahul este viața în miniatură. Șahul este o luptă, o bătălie. - Garry Kasparov",
+      title: t('banner.title1'),
+      subtitle: t('banner.subtitle1'),
     },
     {
       url: "/images/banner/1.jpg",
-      title: "Depășește-ți limitele",
-      subtitle: "Setăm împreună obiectivele tale și le îndeplinim!",
+      title: t('banner.title2'),
+      subtitle: t('banner.subtitle2'),
     },
     {
       url: "/images/banner/2.jpg",
-      title: "Mutările inspirate încep la clubul THE SQUARE",
+      title: t('banner.title3'),
     },
   ];
 
@@ -160,7 +162,7 @@ function App() {
           <div className="flex justify-between items-center py-2">
             <div className="flex items-center space-x-2 pt-4 pl-2 sm:pl-16">
               <img
-                src="images/logo/square-logo.png"
+                src="/images/logo/square-logo.png"
                 alt="Logo"
                 className="w-[110px] sm:w-[150px]"
                 loading="eager"
@@ -168,14 +170,15 @@ function App() {
               />
             </div>
 
-            <div className="hidden md:flex space-x-4 ml-auto font-archivo tracking-[0.1em] text-[#badad5] text-right sm:pr-[40px]">
+            <div className="hidden md:flex items-center space-x-4 ml-auto font-archivo tracking-[0.1em] text-[#badad5] text-right sm:pr-[40px]">
+              <LanguageSwitcher />
               <button
                 onClick={() => scrollToSection("about")}
                 className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
-                Despre noi
+                {t('nav.about')}
               </button>
               <button
                 onClick={() => scrollToSection("team")}
@@ -183,7 +186,7 @@ function App() {
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
-                Echipa
+                {t('nav.team')}
               </button>
               <button
                 onClick={() => scrollToSection("services")}
@@ -191,7 +194,7 @@ function App() {
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
-                Cursuri de șah
+                {t('nav.services')}
               </button>
               <button
                 onClick={() => scrollToSection("gallery")}
@@ -199,7 +202,7 @@ function App() {
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
-                Galerie
+                {t('nav.gallery')}
               </button>
               <button
                 onClick={() => scrollToSection("testimonials")}
@@ -207,7 +210,7 @@ function App() {
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
-                Testimoniale
+                {t('nav.testimonials')}
               </button>
               <Link
                 to="/blog"
@@ -215,7 +218,7 @@ function App() {
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
-                Blog
+                {t('nav.blog')}
               </Link>
               <button
                 onClick={() => scrollToSection("contact")}
@@ -223,7 +226,7 @@ function App() {
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
-                Contact
+                {t('nav.contact')}
               </button>
             </div>
 
@@ -290,7 +293,7 @@ function App() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Despre noi
+              {t('nav.about')}
             </button>
             <button
               onClick={() => {
@@ -299,7 +302,7 @@ function App() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Echipa
+              {t('nav.team')}
             </button>
             <button
               onClick={() => {
@@ -308,7 +311,7 @@ function App() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Cursuri de șah
+              {t('nav.services')}
             </button>
             <button
               onClick={() => {
@@ -317,7 +320,7 @@ function App() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Galerie
+              {t('nav.gallery')}
             </button>
             <button
               onClick={() => {
@@ -326,14 +329,14 @@ function App() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Testimoniale
+              {t('nav.testimonials')}
             </button>
             <Link
               to="/blog"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Blog
+              {t('nav.blog')}
             </Link>
             <button
               onClick={() => {
@@ -342,8 +345,11 @@ function App() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Contact
+              {t('nav.contact')}
             </button>
+            <div className="flex justify-center items-center gap-4 mt-4">
+              <LanguageSwitcher />
+            </div>
             <div className="flex justify-center mt-8">
               <button
                 onClick={() => {
@@ -352,7 +358,7 @@ function App() {
                 }}
                 className="bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-8 py-3 rounded-xl font-archivo font-bold text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg"
               >
-                Înscrie-te la primul tău curs!
+                {t('nav.enroll')}
               </button>
             </div>
           </div>
@@ -392,7 +398,7 @@ function App() {
                           onClick={() => scrollToSection("contact")}
                           className="sm:mt-[0px] text-center bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-6 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg font-archivo"
                         >
-                          Înscrie-te la primul tău curs!
+                          {t('nav.enroll')}
                         </button>
                       </div>
                     </div>
@@ -433,24 +439,13 @@ function App() {
               <div className="order-2 lg:order-1 lg:col-span-7 w-full">
                 <div className="relative w-full max-w-[680px] mx-auto lg:mx-0 text-center lg:text-left px-2 sm:px-0">
                   <span className="font-archivo text-[#a6b6e0] text-[24px] sm:text-[35px] font-medium tracking-[0.1em] leading-[125%]">
-                    Despre
+                    {t('about.title')}
                   </span>
                   <h4 className="font-archivo text-[#a6b6e0] text-[28px] sm:text-[45px] font-medium tracking-[0.1em] mt-2 mb-6 sm:mb-10 leading-[125%]">
-                    THE SQUARE
+                    {t('about.subtitle')}
                   </h4>
                   <p className="font-archivo text-sm sm:text-base text-[#a6b6e0] font-medium tracking-[0.1em] leading-relaxed sm:leading-[160%] mt-4 sm:mt-6 mb-6 sm:mb-8">
-                    Clubul de Șah THE SQUARE este spațiul în care pasiunea
-                    pentru șah capătă formă, indiferent de vârstă sau nivel de
-                    experiență. Fondat din dorința de a promova gândirea
-                    strategică, disciplina și spiritul de comunitate, clubul
-                    nostru a devenit un punct de întâlnire pentru toți cei care
-                    vor să se dezvolte prin șah. Suntem o echipă de antrenori
-                    dedicați, convinși de puterea șahului de a educa, motiva și
-                    aduce oamenii împreună. Organizăm cursuri pentru copii și
-                    adulți, competiții, pregătiri pentru turnee și evenimente
-                    interactive care încurajează învățarea și socializarea. Te
-                    ajutăm să îți setezi obiective și să le împlinești într-un
-                    spațiu primitor și prietenos.
+                    {t('about.description')}
                   </p>
 
                   <div className="flex justify-center lg:justify-start">
@@ -458,7 +453,7 @@ function App() {
                       onClick={() => scrollToSection("contact")}
                       className="sm:mt-[40px] text-center bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-6 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg font-archivo"
                     >
-                      Înscrie-te la primul tău curs!
+                      {t('nav.enroll')}
                     </button>
                   </div>
                 </div>
@@ -488,12 +483,16 @@ function App() {
       <section className="py-10 sm:py-20 px-4 border-[#233d36] border-t-[1px] font-archivo overflow-hidden">
         <div className="w-full relative bg-[#001a00] overflow-hidden" id="about">
           <img
-            src="/public/images/banner/TheLight.png"
+            src="/images/banner/TheLight.png"
             className="hidden sm:block absolute  left-[30px] top-[80px] max-w-[190px] z-[-1]"
+            loading="lazy"
+            decoding="async"
           />
           <img
-            src="/public/images/banner/RightLight.png"
+            src="/images/banner/RightLight.png"
             className="hidden sm:block absolute opacity-100 sm:opacity-100 sm:right-[0px] bottom-[0%] sm:top-[140px] max-w-[190px] z-[-1]"
+            loading="lazy"
+            decoding="async"
           />
 
           <img
@@ -510,20 +509,20 @@ function App() {
               <div className="order-2 lg:order-1 lg:col-span-7 w-full">
                 <div className="relative w-full max-w-[700px] mx-auto lg:mx-0 text-center lg:text-left px-2 sm:px-0">
                   <h4 className="font-archivo text-[#a6b6e0] text-[26px] sm:text-[52px] font-medium tracking-wide leading-[125%] mb-6 sm:mb-10">
-                    De ce este șahul sportul minții?
+                    {t('about.whyChess.title')}
                   </h4>
                   <div className="font-archivo text-sm sm:text-base text-[#a6b6e0] font-medium tracking-[0.1em] leading-relaxed sm:leading-[160%] mt-4 sm:mt-6 mb-6 sm:mb-8 space-y-4 text-center lg:text-left">
-                    <p>■ Concentrare și prezență. Fiecare partidă de șah este o oportunitate de a cultiva răbdarea.</p>
-                    <p>■ Gândire strategică. Îți dezvolți capacitatea de a anticipa mutări și a lua decizii atât pe tabla de șah, cât și în viață.</p>
-                    <p>■ Evoluezi continuu, în ritmul tău. La THE SQUARE ne ghidează bucuria. Apreciem fiecare pas către progres. Crești cu răbdare, poți să te bucuri de proces și să îți cultivi încrederea în forțele proprii.</p>
-                    <p>■ Faci parte dintr-o comunitate prietenoasă, cu valori comune. La THE SQUARE, jucători începători și avansați se întâlnesc, se provoacă, se susțin. Fie că vii pentru socializare, învățare sau competiție, lumea THE SQUARE îți este deschisă.</p>
+                    <p>{t('about.whyChess.point1')}</p>
+                    <p>{t('about.whyChess.point2')}</p>
+                    <p>{t('about.whyChess.point3')}</p>
+                    <p>{t('about.whyChess.point4')}</p>
                   </div>
                   <div className="flex justify-center lg:justify-start">
                     <button
                       onClick={() => scrollToSection("contact")}
                       className="sm:mt-[40px] text-center bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-6 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg font-archivo"
                     >
-                      Înscrie-te la primul tău curs!
+                      {t('nav.enroll')}
                     </button>
                   </div>
                 </div>
@@ -561,21 +560,18 @@ function App() {
       >
         <div className="container mx-auto">
           <h2 className="sm:text-[40px] text-[24px] leading-[125%] tracking-[0.1em] font-medium font-archivo  text-[#a6b6e0] text-center sm:mt-[14px] mt-[7px] mx-auto">
-            MISIUNEA NOASTRĂ
+            {t('mission.title')}
           </h2>
 
           <p className="text-[#a6b6e0] font-archivo font-medium leading-[125%] tracking-[0.1em] mx-auto max-w-[313px] sm:max-w-[544px] text-left sm:text-center sm:mt-[19px] mt-[21px]">
-            Într-o lume tot mai digitală, care se mișcă în pas alert, THE SQUARE
-            dorește să ofere prin șah un context în care timpul încetinește
-            pentru câteva momente, un loc în care răbdarea și strategia se
-            cultivă mutare cu mutare, alături de antrenori dedicați.
+            {t('mission.description')}
           </p>
           <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
             <button
               onClick={() => scrollToSection("contact")}
               className="sm:mt-[40px] text-center bg-[#badad5] text-[#233d36] px-6 sm:px-8 py-3 rounded-full font-semibold text-sm sm:text-base tracking-wide transition-all duration-300 hover:bg-[#a6b6e0] hover:text-[#233d36] font-archivo"
             >
-              Alege educația!
+              {t('mission.chooseEducation')}
             </button>
           </div>
 
@@ -590,20 +586,12 @@ function App() {
                   decoding="async"
                 />
                 <h4 className="text-[#badad5] font-archivo font-medium uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
-                  EDUCAȚIE
+                  {t('mission.education.title')}
                 </h4>
                 <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-left sm:text-center sm:mt-[36px] mt-[21px] text-[#a6b6e0] font-archivo font-medium leading-[125%] tracking-[0.1em]">
                   <p>
-                    {" "}
-                    La THE SQUARE, fiecare lecție începe cu teorie solidă: 30-50
-                    de minute dedicate deschiderilor, unde cursanții învață să
-                    construiască planuri clare și capătă încredere în jocul de
-                    mijloc. Urmează exerciții tactice sau finaluri explicate pas
-                    cu pas, care dezvoltă gândirea logică și calculul matematic.
-                    Apoi, în cele 30 de minute de practică, aplică noțiunile
-                    învățate în partide reale, antrenându-și concentrarea și
-                    inteligența emoțională.
-                  </p>{" "}
+                    {t('mission.education.description')}
+                  </p>
                 </section>
               </div>
             </div>
@@ -617,17 +605,12 @@ function App() {
                   decoding="async"
                 />
                 <h4 className="text-[#badad5] font-archivo font-medium uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
-                  INTEGRITATE
+                  {t('mission.integrity.title')}
                 </h4>
                 <p className="text-[#a6b6e0] font-archivo font-medium leading-[125%] tracking-[0.1em] mx-auto max-w-[313px] sm:max-w-[500px] text-left sm:text-center sm:mt-[19px] mt-[21px]">
                   <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-left sm:text-center sm:mt-[19px] mt-[21px] sm:p-4 text-[#a6b6e0] font-archivo font-medium leading-[125%] tracking-[0.1em]">
                     <p>
-                      Integritatea este fundamentul fiecărei decizii pe tabla de
-                      șah și în viață. Într-un mediu în care onestitatea,
-                      respectul pentru reguli și fair-play-ul sunt valori de
-                      bază. A câștiga cu demnitate și a pierde cu grație sunt
-                      lecții esențiale care se deprind din practica fiecarei
-                      partide de șah.
+                      {t('mission.integrity.description')}
                     </p>
                   </section>
                 </p>
@@ -643,17 +626,11 @@ function App() {
                   decoding="async"
                 />
                 <h4 className="text-[#badad5] font-archivo font-medium uppercase leading-[125%] tracking-[0.1em] text-[24px] sm:text-[32px] mt-[18.57px] sm:mt-[24px]">
-                  COMUNITATE
+                  {t('mission.community.title')}
                 </h4>
                 <section className="mx-auto max-w-[313px] sm:max-w-[544px] text-left sm:text-center sm:mt-[36px] mt-[21px] text-[#a6b6e0] font-archivo font-medium leading-[125%] tracking-[0.1em]">
                   <p>
-                    Comunitatea THE SQUARE reunește pasionații de șah în
-                    evenimente unde jocul, socializarea și momentele plăcute
-                    sunt adesea însoțite de ceai. Suntem deschiși să primim
-                    voluntari pasionați, dornici să contribuie la inițiative
-                    caritabile sau să susțină workshop-uri educative. Astfel,
-                    prin educație strategică, contribuim împreună la o lume mai
-                    bună.
+                    {t('mission.community.description')}
                   </p>
                 </section>
               </div>
@@ -671,7 +648,7 @@ function App() {
         <div className="sm:container mx-auto px-4">
           <div className="max-w-[1420px] max-h-[1700px] mx-auto">
             <h2 className="text-3xl sm:text-5xl font-bold text-center mb-16 text-[#badad5] font-archivo">
-              Galerie
+              {t('gallery.title')}
             </h2>
 
             <div className="relative flex flex-col items-center justify-center">
@@ -734,22 +711,22 @@ function App() {
               to="/privacy-policy"
               className="text-[#a6b6e0] hover:text-[#badad5]"
             >
-              Politica de Confidențialitate
+              {t('footer.privacy')}
             </Link>
             <Link
               to="/terms-and-conditions"
               className="text-[#a6b6e0] hover:text-[#badad5]"
             >
-              Termeni și Condiții
+              {t('footer.terms')}
             </Link>
             <Link
               to="/cookie-policy"
               className="text-[#a6b6e0] hover:text-[#badad5]"
             >
-              Politica Cookie
+              {t('footer.cookies')}
             </Link>
             <a href="#contact" className="text-[#a6b6e0] hover:text-[#badad5]">
-              Contact
+              {t('nav.contact')}
             </a>
           </nav>
           <div className="mt-16 flex justify-center gap-x-10">
@@ -844,7 +821,7 @@ function App() {
             </a>
           </div>
           <p className="text-[#a6b6e0] tracking-[0.1em] font-archivo text-xs hover:text-[#badad5] mt-10 text-center sm:text-sm/6">
-            &copy; 2025 THE SQUARE. Developed by THE SQUARE.
+            {t('footer.copyright')}
           </p>
         </div>
       </footer>

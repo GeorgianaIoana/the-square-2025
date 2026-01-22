@@ -4,11 +4,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { Calendar, User, ArrowRight, BookOpen } from "lucide-react";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 import { blogPosts } from "../data/blogPosts";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const NEWSLETTER_ACCESS_KEY = "9e26e303-368c-44fc-86ac-7e427470a472";
 
 export default function BlogPage() {
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [newsletterEmail, setNewsletterEmail] = useState("");
@@ -37,7 +40,7 @@ export default function BlogPage() {
     if (isSubmittingNewsletter || !newsletterEmail.trim()) return;
 
     setIsSubmittingNewsletter(true);
-    setNewsletterStatus("Se trimite...");
+    setNewsletterStatus(t('blog.newsletter.submitting'));
 
     const formData = new FormData();
     formData.set("access_key", NEWSLETTER_ACCESS_KEY);
@@ -55,7 +58,7 @@ export default function BlogPage() {
       const data = await response.json();
 
       if (data.success) {
-        setNewsletterStatus("Ne bucurăm că îți plac articolele noastre. Așteptăm părerile tale despre ele. Mulțumim!");
+        setNewsletterStatus(t('blog.newsletter.success'));
         setNewsletterEmail("");
         setTimeout(() => {
           setNewsletterStatus(null);
@@ -93,48 +96,49 @@ export default function BlogPage() {
               />
             </Link>
 
-            <div className="hidden md:flex space-x-4 ml-auto font-archivo tracking-[0.1em] text-[#badad5] text-right sm:pr-[40px]">
+            <div className="hidden md:flex items-center space-x-4 ml-auto font-archivo tracking-[0.1em] text-[#badad5] text-right sm:pr-[40px]">
+              <LanguageSwitcher />
               <button
                 onClick={() => scrollToSection("about")}
                 className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
               >
-                Despre noi
+                {t('nav.about')}
               </button>
               <button
                 onClick={() => scrollToSection("team")}
                 className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
               >
-                Echipa
+                {t('nav.team')}
               </button>
               <button
                 onClick={() => scrollToSection("services")}
                 className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
               >
-                Cursuri de șah
+                {t('nav.services')}
               </button>
               <button
                 onClick={() => scrollToSection("gallery")}
                 className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
               >
-                Galerie
+                {t('nav.gallery')}
               </button>
               <button
                 onClick={() => scrollToSection("testimonials")}
                 className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
               >
-                Testimoniale
+                {t('nav.testimonials')}
               </button>
               <Link
                 to="/blog"
                 className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white bg-[#badad5] text-[#233d36]"
               >
-                Blog
+                {t('nav.blog')}
               </Link>
               <button
                 onClick={() => scrollToSection("contact")}
                 className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
               >
-                Contact
+                {t('nav.contact')}
               </button>
             </div>
 
@@ -201,7 +205,7 @@ export default function BlogPage() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Despre noi
+              {t('nav.about')}
             </button>
             <button
               onClick={() => {
@@ -210,7 +214,7 @@ export default function BlogPage() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Echipa
+              {t('nav.team')}
             </button>
             <button
               onClick={() => {
@@ -219,7 +223,7 @@ export default function BlogPage() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Cursuri de șah
+              {t('nav.services')}
             </button>
             <button
               onClick={() => {
@@ -228,7 +232,7 @@ export default function BlogPage() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Galerie
+              {t('nav.gallery')}
             </button>
             <button
               onClick={() => {
@@ -237,14 +241,14 @@ export default function BlogPage() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Testimoniale
+              {t('nav.testimonials')}
             </button>
             <Link
               to="/blog"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Blog
+              {t('nav.blog')}
             </Link>
             <button
               onClick={() => {
@@ -253,8 +257,11 @@ export default function BlogPage() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Contact
+              {t('nav.contact')}
             </button>
+            <div className="flex justify-center items-center gap-4 mt-4">
+              <LanguageSwitcher />
+            </div>
             <div className="flex justify-center mt-8">
               <button
                 onClick={() => {
@@ -263,7 +270,7 @@ export default function BlogPage() {
                 }}
                 className="bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-8 py-3 rounded-xl font-archivo font-bold text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg"
               >
-                Înscrie-te la primul tău curs!
+                {t('nav.enroll')}
               </button>
             </div>
           </div>
@@ -279,12 +286,9 @@ export default function BlogPage() {
                   Resurse educaționale
                 </span>
               </div>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-[#badad5] font-archivo tracking-tight mb-6 leading-tight">
-                Blog THE SQUARE
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[#badad5] font-archivo tracking-tight mb-6 leading-tight max-w-4xl mx-auto px-4 break-words">
+                Ghiduri și strategii pentru a-ți îmbunătăți jocul de șah
               </h1>
-              <p className="text-xl sm:text-2xl text-[#a6b6e0] font-archivo max-w-3xl mx-auto leading-relaxed">
-                Ghiduri, strategii și sfaturi pentru a-ți îmbunătăți jocul de șah
-              </p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
@@ -336,13 +340,13 @@ export default function BlogPage() {
                       </span>
                     </div>
 
-                    <h2 className={`font-bold text-[#badad5] font-archivo mb-4 group-hover:text-[#badad5] transition-colors leading-tight ${
+                    <h2 className={`font-bold text-[#badad5] font-archivo mb-4 group-hover:text-[#badad5] transition-colors leading-tight break-words ${
                       index === 0 ? "text-3xl sm:text-4xl" : "text-2xl"
                     }`}>
                       {post.title}
                     </h2>
 
-                    <p className={`text-[#a6b6e0] font-archivo mb-6 leading-relaxed ${
+                    <p className={`text-[#a6b6e0] font-archivo mb-6 leading-relaxed break-words ${
                       index === 0 ? "text-base sm:text-lg" : "text-sm"
                     }`}>
                       {post.excerpt}
@@ -367,7 +371,7 @@ export default function BlogPage() {
                       <div
                         className="inline-flex items-center justify-between gap-3 w-full px-6 py-4 bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] rounded-xl font-archivo font-bold text-sm transition-all duration-300 shadow-lg relative z-10 pointer-events-none"
                       >
-                        <span>Citește articolul</span>
+                        <span>{t('blog.readArticle')}</span>
                         <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
@@ -385,17 +389,17 @@ export default function BlogPage() {
                   </div>
                 </div>
                 <h3 className="text-3xl sm:text-4xl font-bold text-[#badad5] font-archivo mb-4">
-                  Abonează-te la newsletter
+                  {t('blog.newsletter.title')}
                 </h3>
                 <p className="text-lg text-[#a6b6e0] font-archivo mb-8 max-w-2xl mx-auto leading-relaxed">
-                  Primește cele mai recente articole, strategii și sfaturi despre șah direct în inbox-ul tău
+                  {t('blog.newsletter.description')}
                 </p>
                 <form onSubmit={handleNewsletterSubmit} className="max-w-lg mx-auto flex flex-col sm:flex-row gap-4">
                   <input
                     type="email"
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
-                    placeholder="Adresa ta de email"
+                    placeholder={t('blog.newsletter.placeholder')}
                     required
                     className="flex-1 px-6 py-4 bg-[#001a00]/80 backdrop-blur-sm border-2 border-[#233d36] rounded-xl text-[#badad5] placeholder-[#a6b6e0]/60 focus:outline-none focus:border-[#badad5] focus:ring-4 focus:ring-[#badad5]/20 transition-all font-archivo shadow-lg"
                   />
@@ -404,12 +408,12 @@ export default function BlogPage() {
                     disabled={isSubmittingNewsletter}
                     className="px-8 py-4 bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] rounded-xl font-bold font-archivo hover:shadow-xl hover:scale-105 transition-all duration-300 shadow-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
-                    {isSubmittingNewsletter ? "Se trimite..." : "Abonează-te"}
+                    {isSubmittingNewsletter ? t('blog.newsletter.submitting') : t('blog.newsletter.subscribe')}
                   </button>
                 </form>
                 {newsletterStatus && (
                   <p className={`mt-4 text-sm font-archivo text-center ${
-                    newsletterStatus.includes("Ne bucurăm") 
+                    newsletterStatus.includes(t('blog.newsletter.success').split('.')[0]) 
                       ? "text-[#badad5]" 
                       : "text-red-400"
                   }`}>

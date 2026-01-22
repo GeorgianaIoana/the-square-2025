@@ -3,6 +3,7 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ContactMap from "./ContactMap";
 import type { ContactSubmission } from "../types/contact";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const STORAGE_KEY = "contactFormDraft";
 const ACCESS_KEY = "9e26e303-368c-44fc-86ac-7e427470a472";
@@ -48,6 +49,7 @@ const clearDraft = () => {
 };
 
 export default function ContactSection() {
+  const { t } = useLanguage();
   const [formValues, setFormValues] = useState<ContactSubmission>(
     () => readDraft() ?? initialFormState
   );
@@ -77,7 +79,7 @@ export default function ContactSection() {
     if (isSubmitting) return;
 
     setIsSubmitting(true);
-    setStatusMessage("Sending...");
+    setStatusMessage(t('contact.submitting'));
 
     const formElement = event.currentTarget;
     const formData = new FormData(formElement);
@@ -103,7 +105,7 @@ export default function ContactSection() {
       const data = await response.json();
 
       if (data.success) {
-        setStatusMessage("✅ Mulțumim! Mesajul a fost trimis cu succes.");
+        setStatusMessage(t('contact.success'));
 
         if (typeof window !== "undefined") {
           window.sessionStorage.setItem(
@@ -119,11 +121,11 @@ export default function ContactSection() {
         }, 1500);
       } else {
         console.error("Error", data);
-        setStatusMessage("❌ Something went wrong. Try again later.");
+        setStatusMessage(t('contact.error'));
       }
     } catch (error) {
       console.error("Network error", error);
-      setStatusMessage("❌ A apărut o problemă de rețea. Încearcă din nou.");
+      setStatusMessage(t('contact.error'));
     } finally {
       setIsSubmitting(false);
     }
@@ -136,14 +138,14 @@ export default function ContactSection() {
     >
       <div className="container mx-auto">
         <h2 className="font-archivo tracking-[0.1em] text-2xl sm:text-3xl font-bold text-center text-[#a6b6e0] mb-16">
-          Contactează-ne
+          {t('contact.title')}
         </h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
           <div className="flex flex-col gap-10">
             <div>
               <h3 className="text-xl font-semibold mb-4 text-[#a6b6e0] font-archivo tracking-[0.1em] ">
-                Așteptăm mesajul tău!
+                {t('contact.subtitle')}
               </h3>
               <div className="space-y-4 text-sm sm:text-base sm:mb-28">
                 <p className="flex items-center text-[#a6b6e0] font-archivo tracking-[0.1em] ">
@@ -168,7 +170,7 @@ export default function ContactSection() {
             <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
               <div className="text-center mb-6">
                 <h5 className="text-xl sm:text-2xl font-semibold text-[#233d36] font-archivo tracking-[0.1em]">
-                  Formular de Contact
+                  {t('contact.formTitle')}
                 </h5>
               </div>
 
@@ -177,7 +179,7 @@ export default function ContactSection() {
                   htmlFor="name"
                   className="block text-sm sm:text-base font-medium text-[#233d36] mb-2"
                 >
-                  Your Name <span className="text-red-500">*</span>
+                  {t('contact.name')} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
@@ -186,7 +188,7 @@ export default function ContactSection() {
                   value={formValues.name}
                   onChange={handleChange}
                   required
-                  placeholder="Your Name"
+                  placeholder={t('contact.name')}
                   className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
                 />
               </div>
@@ -196,7 +198,7 @@ export default function ContactSection() {
                   htmlFor="phone"
                   className="block text-sm sm:text-base font-medium text-[#233d36] mb-2"
                 >
-                  Phone Number <span className="text-red-500">*</span>
+                  {t('contact.phone')} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="tel"
@@ -206,7 +208,7 @@ export default function ContactSection() {
                   value={formValues.phone}
                   onChange={handleChange}
                   required
-                  placeholder="Phone Number"
+                  placeholder={t('contact.phone')}
                   inputMode="numeric"
                   className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
                 />
@@ -217,7 +219,7 @@ export default function ContactSection() {
                   htmlFor="email"
                   className="block text-sm sm:text-base font-medium text-[#233d36] mb-2"
                 >
-                  Email <span className="text-red-500">*</span>
+                  {t('contact.email')} <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="email"
@@ -226,7 +228,7 @@ export default function ContactSection() {
                   value={formValues.email}
                   onChange={handleChange}
                   required
-                  placeholder="Your Email"
+                  placeholder={t('contact.email')}
                   className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
                 />
               </div>
@@ -236,7 +238,7 @@ export default function ContactSection() {
                   htmlFor="message"
                   className="block text-sm sm:text-base font-medium text-[#233d36] mb-2"
                 >
-                  Message
+                  {t('contact.message')}
                 </label>
                 <textarea
                   name="message"
@@ -244,7 +246,7 @@ export default function ContactSection() {
                   rows={4}
                   value={formValues.message}
                   onChange={handleChange}
-                  placeholder="Comment"
+                  placeholder={t('contact.message')}
                   className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
                 ></textarea>
               </div>
@@ -255,7 +257,7 @@ export default function ContactSection() {
                   disabled={isSubmitting}
                   className="w-full sm:w-auto px-6 py-3 bg-[#233d36] text-[#badad5] font-semibold rounded-lg hover:bg-[#a6b6e0] hover:text-[#233d36] transition-colors duration-300 text-sm sm:text-base touch-manipulation disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? "Se trimite..." : "Trimite"}
+                  {isSubmitting ? t('contact.submitting') : t('contact.submit')}
                 </button>
                 {statusMessage && (
                   <p

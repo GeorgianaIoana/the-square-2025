@@ -10,73 +10,74 @@ import {
   Luggage,
 } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
-const services = [
+const getServices = (t: (key: string) => string) => [
   {
-    title: "Grupă adulți",
-    price: "380 lei/lună",
+    title: t('services.adults.title'),
+    price: t('services.adults.price'),
     icon: <Book />,
     features: [
-      "4 sesiuni lunare cu instructor",
-      "6 ore de curs",
-      "disponibil fizic și online",
-      "coach online pentru întrebări 24/7",
+      t('services.adults.feature1'),
+      t('services.adults.feature2'),
+      t('services.adults.feature3'),
+      t('services.adults.feature4'),
     ],
   },
   {
-    title: "Grupă copii",
-    price: "260 lei/lună",
+    title: t('services.kids.title'),
+    price: t('services.kids.price'),
     icon: <Pen />,
     features: [
-      "4 sesiuni lunare cu instructor",
-      "4 ore de curs",
-      "teme și verificare exerciții",
-      "activități distractive pentru copii",
+      t('services.kids.feature1'),
+      t('services.kids.feature2'),
+      t('services.kids.feature3'),
+      t('services.kids.feature4'),
     ],
   },
   {
-    title: "Concurs de șah",
-    price: "60lei",
+    title: t('services.tournament.title'),
+    price: t('services.tournament.price'),
     icon: <Trophy />,
     features: [
-      "5 runde de sah rapid (15+10sec/mutare)",
-      "prezența unui arbitru fide",
-      "șahuri și ceasuri profesioniste",
-      "premii pentru primii 3 clasați",
+      t('services.tournament.feature1'),
+      t('services.tournament.feature2'),
+      t('services.tournament.feature3'),
+      t('services.tournament.feature4'),
     ],
   },
   {
-    title: "Tabără de șah",
-    price: "de la 1380 lei",
+    title: t('services.camp.title'),
+    price: t('services.camp.price'),
     icon: <Luggage />,
     features: [
-      "10 ore intensive de șah",
-      "Activități recreative și distractive",
-      "Cazare și masă de vis",
-      "Concurs și premii",
-      "Petrecere",
+      t('services.camp.feature1'),
+      t('services.camp.feature2'),
+      t('services.camp.feature3'),
+      t('services.camp.feature4'),
+      t('services.camp.feature5'),
     ],
   },
   {
-    title: "Curs individual copii",
-    price: "de la 90 lei",
+    title: t('services.individualKids.title'),
+    price: t('services.individualKids.price'),
     icon: <Pen />,
     features: [
-      "Atenție personalizată",
-      "Evoluție accelerată",
-      "Rezultate bune la competiții și școală",
-      "Disponibil fizic și online",
+      t('services.individualKids.feature1'),
+      t('services.individualKids.feature2'),
+      t('services.individualKids.feature3'),
+      t('services.individualKids.feature4'),
     ],
   },
   {
-    title: "Curs individual adulți",
-    price: "de la 120 lei",
+    title: t('services.individualAdults.title'),
+    price: t('services.individualAdults.price'),
     icon: <Book />,
     features: [
-      "Atenție personalizată",
-      "Evoluție accelerată",
-      "Atingerea obiectivelor setate inițial",
-      "Disponibil fizic și online",
+      t('services.individualAdults.feature1'),
+      t('services.individualAdults.feature2'),
+      t('services.individualAdults.feature3'),
+      t('services.individualAdults.feature4'),
     ],
   },
 ];
@@ -85,6 +86,8 @@ const STORAGE_KEY = "services-show-all";
 const OPENED_AT_KEY = "services-opened-at";
 
 export default function ServicesSection() {
+  const { t } = useLanguage();
+  const services = getServices(t);
   const [showAll, setShowAll] = useState(() => {
     if (typeof window !== "undefined") {
       const stored = sessionStorage.getItem(STORAGE_KEY);
@@ -196,7 +199,7 @@ export default function ServicesSection() {
     >
       <div className="container mx-auto px-4">
         <h2 className="font-archivo tracking-[0.1em] text-3xl font-bold text-center mb-16 text-[#badad5]">
-          Abonamente și servicii
+          {t('services.title')}
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10 justify-items-center">
@@ -235,7 +238,7 @@ export default function ServicesSection() {
                   }
                 }}
               >
-                Înscrie-te acum!
+                {t('services.enroll')}
               </button>
             </div>
           ))}
@@ -249,11 +252,11 @@ export default function ServicesSection() {
             >
               {showAll ? (
                 <>
-                  Înapoi <ChevronUp className="ml-2 w-5 h-5" />
+                  {t('team.back')} <ChevronUp className="ml-2 w-5 h-5" />
                 </>
               ) : (
                 <>
-                  Mai mult <ChevronDown className="ml-2 w-5 h-5" />
+                  {t('services.more')} <ChevronDown className="ml-2 w-5 h-5" />
                 </>
               )}
             </button>

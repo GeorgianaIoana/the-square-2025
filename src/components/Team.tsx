@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const teamMembersData = [
   {
@@ -73,6 +74,7 @@ const Team = ({
   expandedDescriptions,
   toggleDescription,
 }: TeamProps) => {
+  const { t } = useLanguage();
   const teamMembers = teamMembersData;
 
   useEffect(() => {
@@ -145,8 +147,8 @@ const Team = ({
                     className="mt-2 sm:mt-[10px] text-center bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-6 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg"
                   >
                     {expandedDescriptions[currentMember.name]
-                      ? "Înapoi"
-                      : "Citește mai mult"}
+                      ? t('team.back')
+                      : t('team.readMore')}
                   </button>
                 </div>
               )}

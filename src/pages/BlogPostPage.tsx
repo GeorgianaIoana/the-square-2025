@@ -3,9 +3,12 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { Calendar, User, ArrowLeft, BookOpen, Clock } from "lucide-react";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 import { blogPosts } from "../data/blogPosts";
+import { useLanguage } from "../contexts/LanguageContext";
 
 export default function BlogPostPage() {
+  const { t } = useLanguage();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -39,7 +42,7 @@ export default function BlogPostPage() {
             to="/blog"
             className="text-[#a6b6e0] hover:text-[#badad5] font-archivo"
           >
-            Înapoi la blog
+            {t('blog.backToBlogShort')}
           </Link>
         </div>
       </div>
@@ -229,48 +232,49 @@ export default function BlogPostPage() {
               />
             </Link>
 
-            <div className="hidden md:flex space-x-4 ml-auto font-archivo tracking-[0.1em] text-[#badad5] text-right sm:pr-[40px]">
+            <div className="hidden md:flex items-center space-x-4 ml-auto font-archivo tracking-[0.1em] text-[#badad5] text-right sm:pr-[40px]">
+              <LanguageSwitcher />
               <button
                 onClick={() => scrollToSection("about")}
                 className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
               >
-                Despre noi
+                {t('nav.about')}
               </button>
               <button
                 onClick={() => scrollToSection("team")}
                 className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
               >
-                Echipa
+                {t('nav.team')}
               </button>
               <button
                 onClick={() => scrollToSection("services")}
                 className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
               >
-                Cursuri de șah
+                {t('nav.services')}
               </button>
               <button
                 onClick={() => scrollToSection("gallery")}
                 className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
               >
-                Galerie
+                {t('nav.gallery')}
               </button>
               <button
                 onClick={() => scrollToSection("testimonials")}
                 className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
               >
-                Testimoniale
+                {t('nav.testimonials')}
               </button>
               <Link
                 to="/blog"
                 className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
               >
-                Blog
+                {t('nav.blog')}
               </Link>
               <button
                 onClick={() => scrollToSection("contact")}
                 className="px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold text-white"
               >
-                Contact
+                {t('nav.contact')}
               </button>
             </div>
 
@@ -337,7 +341,7 @@ export default function BlogPostPage() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Despre noi
+              {t('nav.about')}
             </button>
             <button
               onClick={() => {
@@ -346,7 +350,7 @@ export default function BlogPostPage() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Echipa
+              {t('nav.team')}
             </button>
             <button
               onClick={() => {
@@ -355,7 +359,7 @@ export default function BlogPostPage() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Cursuri de șah
+              {t('nav.services')}
             </button>
             <button
               onClick={() => {
@@ -364,7 +368,7 @@ export default function BlogPostPage() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Galerie
+              {t('nav.gallery')}
             </button>
             <button
               onClick={() => {
@@ -373,14 +377,14 @@ export default function BlogPostPage() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Testimoniale
+              {t('nav.testimonials')}
             </button>
             <Link
               to="/blog"
               onClick={() => setMobileMenuOpen(false)}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Blog
+              {t('nav.blog')}
             </Link>
             <button
               onClick={() => {
@@ -389,8 +393,11 @@ export default function BlogPostPage() {
               }}
               className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
             >
-              Contact
+              {t('nav.contact')}
             </button>
+            <div className="flex justify-center items-center gap-4 mt-4">
+              <LanguageSwitcher />
+            </div>
             <div className="flex justify-center mt-8">
               <button
                 onClick={() => {
@@ -399,7 +406,7 @@ export default function BlogPostPage() {
                 }}
                 className="bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-8 py-3 rounded-xl font-archivo font-bold text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg"
               >
-                Înscrie-te la primul tău curs!
+                {t('nav.enroll')}
               </button>
             </div>
           </div>
@@ -414,7 +421,7 @@ export default function BlogPostPage() {
               className="inline-flex items-center gap-2 text-[#a6b6e0] hover:text-[#badad5] font-archivo mb-8 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              Înapoi la blog
+              {t('blog.backToBlogShort')}
             </Link>
 
             <article className="bg-gradient-to-br from-[#233d36]/90 to-[#1a2d28]/90 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl border border-[#233d36]">
@@ -474,7 +481,7 @@ export default function BlogPostPage() {
                   className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] rounded-xl font-archivo font-bold transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg"
                 >
                   <ArrowLeft className="w-4 h-4" />
-                  Înapoi la toate articolele
+                  {t('blog.backToBlog')}
                 </Link>
               </div>
               </div>
