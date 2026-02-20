@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, lazy, Suspense } from "react";
 import ServicesSection from "./components/ServicesSection";
 import Calendar from "./components/Calendar";
 import Contact from "./components/Contact";
@@ -14,13 +14,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Testimonial from "./components/Testimonial";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
-import CookiePolicyPage from "./pages/CookiePolicyPage";
-import TermsAndConditions from "./pages/TermsAndConditions";
-import ThankYouPage from "./components/ThankYouPage";
-import BlogPage from "./pages/BlogPage";
-import BlogPostPage from "./pages/BlogPostPage";
 import { useLanguage } from "./contexts/LanguageContext";
+
+// Lazy load pages for better performance
+const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
+const CookiePolicyPage = lazy(() => import("./pages/CookiePolicyPage"));
+const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
+const ThankYouPage = lazy(() => import("./components/ThankYouPage"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
 
 declare global {
   interface Window {
@@ -878,17 +880,29 @@ function App() {
     </div>
   );
 
+  // Loading fallback for lazy loaded pages
+  const PageLoader = () => (
+    <div className="min-h-screen bg-[#001a00] flex items-center justify-center">
+      <div className="flex flex-col items-center gap-4">
+        <div className="w-12 h-12 border-4 border-[#badad5]/30 border-t-[#badad5] rounded-full animate-spin" />
+        <span className="text-[#badad5] font-archivo">Loading...</span>
+      </div>
+    </div>
+  );
+
   return (
     <Router>
-      <Routes>
-        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
-        <Route path="/cookie-policy" element={<CookiePolicyPage />} />
-        <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
-        <Route path="/thank-you" element={<ThankYouPage />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/:id" element={<BlogPostPage />} />
-        <Route path="/" element={<MainContent />} />
-      </Routes>
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/cookie-policy" element={<CookiePolicyPage />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/thank-you" element={<ThankYouPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogPostPage />} />
+          <Route path="/" element={<MainContent />} />
+        </Routes>
+      </Suspense>
     </Router>
   );
 }

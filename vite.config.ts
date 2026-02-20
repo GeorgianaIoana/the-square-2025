@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     Pages(),
     PagesSitemap({
-      hostname: "https://thesquarechessclub.com",
+      hostname: "https://thesquare.ro",
       readable: true,
       exclude: ["/404"],
       changefreq: "weekly",
@@ -18,6 +18,34 @@ export default defineConfig({
   ],
   optimizeDeps: {
     exclude: ["lucide-react"],
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          // Vendor chunks
+          if (id.includes('node_modules')) {
+            if (id.includes('react-dom') || id.includes('react-router')) {
+              return 'vendor-react';
+            }
+            if (id.includes('framer-motion')) {
+              return 'vendor-framer';
+            }
+            if (id.includes('swiper')) {
+              return 'vendor-swiper';
+            }
+            // Other vendor libs
+            return 'vendor';
+          }
+        },
+      },
+    },
+    // Increase chunk size warning limit
+    chunkSizeWarningLimit: 600,
+    // Enable minification with esbuild (built-in, faster)
+    minify: 'esbuild',
+    // Disable source maps for smaller production bundle
+    sourcemap: false,
   },
   server: {
     host: true,
