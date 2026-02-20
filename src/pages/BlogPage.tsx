@@ -371,7 +371,7 @@ export default function BlogPage() {
                             </span>
                             <span className="w-1 h-1 rounded-full bg-[#a6b6e0]/40" />
                             <span className="flex items-center gap-1.5">
-                              <Calendar className="w-4 h-4" />
+                              <CalendarIcon className="w-4 h-4" />
                               {post.date}
                             </span>
                           </div>
