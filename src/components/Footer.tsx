@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const Footer: React.FC = () => {
   return (
     <footer className="bg-[#001a00] border-t border-[#233d36]">
-      <div className="mx-auto max-w-7xl overflow-hidden px-6 pt-20 pb-4 sm:py-10 lg:px-8">
+      <div className="mx-auto max-w-7xl overflow-hidden px-4 sm:px-6 pt-12 sm:pt-16 pb-6 sm:pb-10 lg:px-8">
         <nav
-          className="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6 font-archivo tracking-wide"
+          className="-mb-6 flex flex-wrap justify-center gap-x-4 sm:gap-x-8 md:gap-x-12 gap-y-3 text-xs sm:text-sm font-archivo tracking-wide"
           aria-label="Footer"
         >
           <Link
@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
           </p>
         </div>
 
-        <div className="mt-10 flex justify-center gap-x-10">
+        <div className="mt-8 sm:mt-10 flex justify-center gap-x-6 sm:gap-x-8 md:gap-x-10">
           <a
             href="https://www.facebook.com/profile.php?id=61556605701740"
             className="text-[#a6b6e0] hover:text-[#badad5]"

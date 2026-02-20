@@ -277,13 +277,15 @@ function App() {
               </button>
             </div>
 
-            <div className="lg:hidden">
+            <div className="lg:hidden flex items-center gap-3 pr-2 sm:pr-4">
+              <LanguageSwitcher />
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-[#a6b6e0] focus:outline-none p-2"
+                className="text-[#badad5] focus:outline-none p-3 hover:bg-[#233d36]/50 rounded-xl transition-colors touch-manipulation"
+                aria-label="Toggle menu"
               >
                 <svg
-                  className="w-6 h-6"
+                  className="w-7 h-7"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -311,67 +313,68 @@ function App() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 bg-[#001a00]/98 backdrop-blur-sm z-50 flex flex-col">
+          <div className="lg:hidden fixed inset-0 bg-[#001a00] z-[100] flex flex-col overflow-hidden">
             {/* Header */}
-            <div className="flex justify-between items-center px-6 py-4 border-b border-[#233d36]">
+            <div className="flex justify-between items-center px-4 sm:px-6 py-4 border-b border-[#233d36] bg-[#001a00]">
               <img
                 src="/images/logo/square-logo.png"
                 alt="Logo"
-                className="w-[100px]"
+                className="w-[90px] sm:w-[110px]"
               />
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-[#badad5] p-2 hover:bg-[#233d36] rounded-lg transition-colors"
+                className="text-[#badad5] p-3 hover:bg-[#233d36] rounded-xl transition-colors touch-manipulation"
+                aria-label="Close menu"
               >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
 
             {/* Navigation Links */}
-            <nav className="flex-1 overflow-y-auto px-6 py-6">
-              <div className="space-y-1">
+            <nav className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6">
+              <div className="space-y-2 max-w-md mx-auto">
                 <button
                   onClick={() => { scrollToSection("about"); setMobileMenuOpen(false); }}
-                  className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium"
+                  className="w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
                 >
                   {t('nav.about')}
                 </button>
                 <button
                   onClick={() => { scrollToSection("team"); setMobileMenuOpen(false); }}
-                  className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium"
+                  className="w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
                 >
                   {t('nav.team')}
                 </button>
                 <button
                   onClick={() => { scrollToSection("services"); setMobileMenuOpen(false); }}
-                  className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium"
+                  className="w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
                 >
                   {t('nav.services')}
                 </button>
                 <button
                   onClick={() => { scrollToSection("gallery"); setMobileMenuOpen(false); }}
-                  className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium"
+                  className="w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
                 >
                   {t('nav.gallery')}
                 </button>
                 <button
                   onClick={() => { scrollToSection("testimonials"); setMobileMenuOpen(false); }}
-                  className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium"
+                  className="w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
                 >
                   {t('nav.testimonials')}
                 </button>
                 <Link
                   to="/blog"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium"
+                  className="block w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
                 >
                   {t('nav.blog')}
                 </Link>
                 <button
                   onClick={() => { scrollToSection("contact"); setMobileMenuOpen(false); }}
-                  className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium"
+                  className="w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
                 >
                   {t('nav.contact')}
                 </button>
@@ -379,28 +382,27 @@ function App() {
             </nav>
 
             {/* Footer */}
-            <div className="px-6 py-6 border-t border-[#233d36] space-y-4">
-              <div className="flex justify-center">
-                <LanguageSwitcher />
+            <div className="px-4 sm:px-6 py-5 sm:py-6 border-t border-[#233d36] bg-[#001a00]">
+              <div className="max-w-md mx-auto">
+                <button
+                  onClick={() => {
+                    window.Calendly?.initPopupWidget({ url: 'https://calendly.com/georgiana17stanciu/30min' });
+                    setMobileMenuOpen(false);
+                  }}
+                  className="w-full bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] py-4 rounded-xl font-archivo font-bold text-base transition-all duration-300 hover:shadow-xl shadow-lg flex items-center justify-center gap-2 touch-manipulation"
+                >
+                  <CalendarIcon className="w-5 h-5" />
+                  Programează-te
+                </button>
               </div>
-              <button
-                onClick={() => {
-                  window.Calendly?.initPopupWidget({ url: 'https://calendly.com/georgiana17stanciu/30min' });
-                  setMobileMenuOpen(false);
-                }}
-                className="w-full bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] py-4 rounded-xl font-archivo font-bold text-base transition-all duration-300 hover:shadow-xl shadow-lg flex items-center justify-center gap-2"
-              >
-                <CalendarIcon className="w-5 h-5" />
-                Programează-te
-              </button>
             </div>
           </div>
         )}
       </nav>
 
-      <header className="mx-auto relative flex items-center justify-center overflow-hidden font-archivo px-4 sm:px-0 sm:container">
-        <div className="w-full pt-10 sm:pt-0 sm:pb-16 pb-8 px-4 sm:px-0">
-          <div className="relative h-[500px] sm:h-[638px] rounded-[24px] overflow-hidden shadow-xl">
+      <header className="mx-auto relative flex items-center justify-center overflow-hidden font-archivo px-3 sm:px-4 md:px-6 lg:px-0 lg:container">
+        <div className="w-full pt-8 sm:pt-6 md:pt-4 lg:pt-0 pb-6 sm:pb-8 md:pb-12 lg:pb-16 px-0">
+          <div className="relative h-[420px] sm:h-[480px] md:h-[540px] lg:h-[638px] rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-xl">
             {bannerImages.map((image, index) => (
               <div
                 key={index}

@@ -111,7 +111,7 @@ export default function ServicesSection() {
 
   useEffect(() => {
     const updateIsMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 640); // sm breakpoint
     };
     updateIsMobile();
     const handleResize = () => {
@@ -185,10 +185,24 @@ export default function ServicesSection() {
     }
   };
 
+  const [isTablet, setIsTablet] = useState(false);
+
+  useEffect(() => {
+    const updateIsTablet = () => {
+      const width = window.innerWidth;
+      setIsTablet(width >= 640 && width < 1024); // sm to lg
+    };
+    updateIsTablet();
+    window.addEventListener("resize", updateIsTablet);
+    return () => window.removeEventListener("resize", updateIsTablet);
+  }, []);
+
   const displayedServices = showAll
     ? services
     : isMobile
     ? services.slice(0, 1)
+    : isTablet
+    ? services.slice(0, 2)
     : services.slice(0, 3);
 
   return (
@@ -202,7 +216,7 @@ export default function ServicesSection() {
           {t('services.title')}
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-10 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-10 justify-items-center">
           {displayedServices.map((service, index) => (
             <div
               key={index}
@@ -244,7 +258,7 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        {services.length > (isMobile ? 1 : 3) && (
+        {services.length > (isMobile ? 1 : isTablet ? 2 : 3) && (
           <div className="text-center mt-8 sm:mt-10">
             <button
               onClick={handleToggle}
