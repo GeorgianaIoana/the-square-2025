@@ -65,76 +65,81 @@ Un repertoriu eficient nu este o listă de variante memorate, ci rezultatul în�
   {
     id: 2,
     title: "Șahul și medicina sportivă: Cum îți antrenezi corpul pentru performanță mentală",
-    excerpt: "Șahul este o disciplină sportivă recunoscută internațional, care impune o solicitare fiziologică și psihologică comparabilă cu sporturile de anduranță. Un șahist poate arde până la 6.000 de calorii într-o singură zi de turneu.",
+    excerpt: `Șahul este o disciplină sportivă recunoscută internațional, care impune o solicitare fiziologică și psihologică comparabilă cu sporturile de anduranță.`,
     image: "images/team/dr-irina-tecioiu.jpg",
     content: `# Șahul și medicina sportivă: Cum îți antrenezi corpul pentru performanță mentală
 
 Șahul este o disciplină sportivă recunoscută internațional, care impune o solicitare fiziologică și psihologică comparabilă cu sporturile de anduranță. Medicina sportivă a început să acorde o atenție sporită șahului datorită impactului său asupra sistemului nervos central și a răspunsurilor metabolice complexe.
 
-## Consumul energetic în șah
-
 Contrar aparențelor, un jucător de șah de performanță consumă o cantitate enormă de energie în timpul unei partide lungi (care poate dura 4-6 ore).
 
-**Consum energetic:** Studiile indică faptul că un șahist poate arde până la 6.000 de calorii într-o singură zi de turneu, din cauza stresului mental intens și a creșterii ritmului cardiac. Studiile arată că un șahist poate arde între 200-600 de calorii pe partidă (comparabil cu o oră de tenis), iar în zile intense de turneu consumul total poate depăși semnificativ media zilnică. Acest consum crescut se datorează stresului mental, ritmului cardiac ridicat și tensiunii arteriale elevate.
+* **Consum energetic:** Studiile arată că un șahist poate arde între 200-600 de calorii pe partidă (comparabil cu o oră de tenis), iar în zile intense de turneu consumul total poate depăși semnificativ media zilnică. Acest consum crescut se datorează stresului mental, ritmului cardiac ridicat și tensiunii arteriale elevate.
 
-**Răspunsul cardiovascular:** În momentele critice ale partidei, ritmul cardiac poate atinge vârfuri de 150-180 bpm la jucătorii de elită (conform măsurătorilor de la turneele profesioniste). Media pe parcursul unei partide este de 80-130 bpm, cu creșteri semnificative în momentele decisive.
+* **Răspunsul cardiovascular:** În momentele critice ale partidei, ritmul cardiac poate atinge vârfuri de 150-180 bpm la jucătorii de elită (conform măsurătorilor de la turneele profesioniste). Media pe parcursul unei partide este de 80-130 bpm, cu creșteri semnificative în momentele decisive.
 
-**Glicogenul și oxigenul:** Creierul (care reprezintă aproximativ 2% din greutatea corpului) consumă în jur de 20% din oxigenul și glucoza organismului în timpul efortului intelectual intens, chiar și în repaus – acest consum rămâne relativ constant indiferent de nivelul de activitate mentală.
-
-## Pregătirea fizică pentru șahiști
+* **Glicogenul și oxigenul:** Creierul (care reprezintă aproximativ 2% din greutatea corpului) consumă în jur de 20% din oxigenul și glucoza organismului, chiar și în repaus – acest consum rămâne relativ constant indiferent de nivelul de activitate mentală.
 
 Pentru un șahist, pregătirea fizică nu are scopul de a dezvolta masa musculară, ci de a susține anduranța mentală, de a optimiza oxigenarea creierului și de a preveni durerile posturale.
 
 Iată un plan de exerciții recomandat pentru sportivi „ai minții":
 
-### 1. Antrenamentul Cardiovascular (Anduranță)
+## 1. Antrenamentul Cardiovascular (Anduranță)
 
 Inima trebuie să fie capabilă să pompeze sânge eficient către creier timp de mai multe ore, chiar și atunci când corpul este sub stres.
 
-- **Alergare ușoară sau Înot:** 30-40 de minute, de 3 ori pe săptămână. Menținerea unui ritm constant ajută la antrenarea sistemului respirator.
-- **Mersul alert:** Dacă alergarea este prea intensă, 5 km de mers rapid pe zi îmbunătățesc circulația periferică și reduc nivelul de cortizol (hormonul stresului).
+* **Alergare ușoară sau Înot:** 30-40 de minute, de 3 ori pe săptămână. Menținerea unui ritm constant ajută la antrenarea sistemului respirator.
 
-### 2. Exerciții Posturale (Prevenirea „Cifozei Șahistului")
+* **Mersul alert:** Dacă alergarea este prea intensă, 5 km de mers rapid pe zi îmbunătățesc circulația periferică și reduc nivelul de cortizol (hormonul stresului).
+
+## 2. Exerciții Posturale (Prevenirea „Cifozei Șahistului")
 
 Statul aplecat deasupra tablei ore în șir duce la dureri de spate și gât, care distrag atenția.
 
-- **„Superman":** Întins pe burtă, ridică simultan brațele și picioarele. Întărește mușchii erectori spinali.
+* **„Superman":** Întins pe burtă, ridică simultan brațele și picioarele. Întărește mușchii erectori spinali.
 
-![Exercițiu Superman](/images/blog/superman-exercise.png)
+![Superman Exercise](/images/blog/superman-exercise.png)
+*Photo from: https://www.coachweb.com/back-exercises/1726/how-to-do-the-superman-exercise*
 
-- **Retracții scapulare:** Strângerea omoplaților la spate (ca și cum ai vrea să ții un creion între ei). Corectează umerii aduși în față.
-- **Plank (Scândura):** 30-60 de secunde. Un „core" (abdomen și spate) puternic îți permite să stai drept pe scaun fără a obosi muscular.
+* **Retracții scapulare:** Strângerea omoplaților la spate (ca și cum ai vrea să ții un creion între ei). Corectează umerii aduși în față.
 
-![Exercițiu Plank](/images/blog/plank-exercise.png)
+* **Plank (Scândura):** 30-60 de secunde. Un „core" (abdomen și spate) puternic îți permite să stai drept pe scaun fără a obosi muscular.
 
-### 3. Exerciții pentru Ochi (Focus Vizual)
+![Plank Exercise](/images/blog/plank-exercise.png)
+*Photo from: https://www.vitacost.com/blog/what-muscles-do-planks-work/*
+
+## 3. Exerciții pentru Ochi (Focus Vizual)
 
 Oboseala oculară este una dintre principalele cauze ale pierderii concentrării.
 
-- **Regula 20-20-20:** La fiecare 20 de minute (sau după fiecare secvență intensă de calcul), privește un obiect aflat la 20 de picioare (aproximativ 6 metri) distanță, timp de 20 de secunde.
-- **„Opturi" vizuale:** Mișcă ochii desenând cifra 8 în aer, fără a mișca capul, pentru a relaxa mușchii oculomotori.
+* **Regula 20-20-20:** La fiecare 20 de minute (sau după fiecare secvență intensă de calcul), privește un obiect aflat la 20 de picioare (aproximativ 6 metri) distanță, timp de 20 de secunde.
 
-### 4. Tehnici de Respirație (Controlul Emoțiilor)
+* **„Opturi" vizuale:** Mișcă ochii desenând cifra 8 în aer, fără a mișca capul, pentru a relaxa mușchii oculomotori.
+
+## 4. Tehnici de Respirație (Controlul Emoțiilor)
 
 În momentele de criză de timp sau când adversarul face o mutare neașteptată, adrenalina crește.
 
-- **Respirația este foarte importantă** și tehnica **Box Breathing** ajută extrem de mult: Inspiră 4 secunde, menține 4 secunde, expiră 4 secunde, menține 4 secunde. Aceasta „păcălește" sistemul nervos să treacă din starea de „luptă sau fugă" în starea de calm și analiză.
-
-## Concluzie
-
-Șahul de performanță necesită o pregătire holistică care include atât antrenamentul mental, cât și cel fizic. Prin implementarea unui program regulat de exerciții cardiovasculare, posturale și de respirație, jucătorii pot îmbunătăți semnificativ rezistența la oboseală și capacitatea de concentrare pe durata partidelor lungi.
+* **Respirația este foarte importantă** și tehnica **Box Breathing** ajută extrem de mult: Inspiră 4 secunde, menține 4 secunde, expiră 4 secunde, menține 4 secunde. Aceasta „păcălește" sistemul nervos să treacă din starea de „luptă sau fugă" în starea de calm și analiză.
 
 ---
 
 ## Bibliografie
 
-1. Troubat, N., Fargeas-Gluck, M. A., Tulppo, M., & Dugué, B. (2009). The stress of chess players as a model to study the effects of psychological stimuli on physiological responses. *European Journal of Applied Physiology*, 105(3), 343-349.
+1. Troubat, N., Fargeas-Gluck, M. A., Tulppo, M., & Dugué, B. (2009). The stress of chess players as a model to study the effects of psychological stimuli on physiological responses: An example of substrate oxidation and heart rate variability in man. *European Journal of Applied Physiology*, 105(3), 343-349.
+
 2. Raichle, M. E., & Gusnard, D. A. (2002). Appraising the brain's energy budget. *Proceedings of the National Academy of Sciences*, 99(16), 10237-10239.
+
 3. Mergenthaler, P., Lindauer, U., Dienel, G. A., & Meisel, A. (2013). Sugar for the brain: the role of glucose in physiological and pathological brain function. *Trends in Neurosciences*, 36(10), 587-597.
-4. Fuentes-García, J. P., et al. (2019). Differences Between High vs. Low Performance Chess Players in Heart Rate Variability During Chess Problems. *Frontiers in Psychology*, 10, 409.
-5. Kumar, A. (2019). The grandmaster diet: How to lose weight while barely moving. ESPN.
-6. Chovatiya, J. (2023). Physiological factors that can significantly impact your game. ChessBase.
-7. Rodoplu, C., Arabacı, R., & Gorgulu, R. (2022). The Comparison of Heart Rate Variability and Energy Expenditure of Chess Players. *Baltic Journal of Health and Physical Activity*, 14(3).`,
+
+4. Fuentes-García, J. P., Villafaina, S., Collado-Mateo, D., de la Vega, R., Gusi, N., & Clemente-Suárez, V. J. (2019). Differences Between High vs. Low Performance Chess Players in Heart Rate Variability During Chess Problems. *Frontiers in Psychology*, 10, 409.
+
+5. Kumar, A. (2019). The grandmaster diet: How to lose weight while barely moving. *ESPN*. https://www.espn.com/espn/story/_/id/27593253/
+
+6. Chovatiya, J. (2023). Physiological factors that can significantly impact your game. *ChessBase*. https://en.chessbase.com/post/physiological-factors-that-can-significantly-impact-your-game
+
+7. Rodoplu, C., Arabacı, R., & Gorgulu, R. (2022). The Comparison of Heart Rate Variability and Energy Expenditure of Chess Players between a Chess Game and Physical Activity. *Baltic Journal of Health and Physical Activity*, 14(3).
+
+8. Strandberg, O. (2025). Chess Grandmasters Do Not Burn 6000 Calories Per Day. *Substack*. https://strandbergbio.substack.com/p/chess-grandmasters-do-not-burn-6000`,
     author: "Dr. Irina Tecioiu",
     authorImage: "/images/team/dr-irina-tecioiu.jpg",
     date: "20 februarie 2026",
