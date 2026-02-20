@@ -280,7 +280,7 @@ export default function BlogPage() {
         )}
       </nav>
 
-      <div className="pt-24 sm:pt-32 pb-16 relative overflow-hidden">
+      <div className="pt-20 sm:pt-24 pb-12 relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute top-0 left-0 w-96 h-96 bg-[#233d36]/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute top-1/3 right-0 w-80 h-80 bg-[#badad5]/10 rounded-full blur-3xl translate-x-1/2" />
@@ -290,7 +290,7 @@ export default function BlogPage() {
           <div className="max-w-7xl mx-auto">
             {/* Header */}
             <motion.div
-              className="text-center mb-20"
+              className="text-center mb-12"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -313,7 +313,7 @@ export default function BlogPage() {
             </motion.div>
 
             {/* Articles Grid */}
-            <div className="space-y-10 mb-20">
+            <div className="space-y-6 sm:space-y-8 mb-12">
               {currentBlogPosts.map((post, index) => (
                 <motion.div
                   key={post.id}
@@ -331,7 +331,7 @@ export default function BlogPage() {
 
                     <div className="grid grid-cols-1 lg:grid-cols-2">
                       {/* Image Section */}
-                      <div className="relative h-72 sm:h-80 lg:h-[420px] overflow-hidden">
+                      <div className="relative h-56 sm:h-64 lg:h-[340px] overflow-hidden">
                         {post.image ? (
                           <>
                             <img
@@ -359,7 +359,7 @@ export default function BlogPage() {
                       </div>
 
                       {/* Content Section */}
-                      <div className="relative p-8 sm:p-10 lg:p-12 flex flex-col justify-center bg-gradient-to-br from-[#1a2d28] to-[#001a00]">
+                      <div className="relative p-6 sm:p-8 lg:p-10 flex flex-col justify-center bg-gradient-to-br from-[#1a2d28] to-[#001a00]">
                         {/* Decorative corner */}
                         <div className="absolute top-0 right-0 w-32 h-32 bg-[#badad5]/5 rounded-bl-full" />
 
@@ -383,7 +383,7 @@ export default function BlogPage() {
                           </h2>
 
                           {/* Excerpt */}
-                          <p className="text-[#a6b6e0] font-archivo mb-8 leading-relaxed text-base lg:text-lg line-clamp-3">
+                          <p className="text-[#a6b6e0] font-archivo mb-5 leading-relaxed text-base lg:text-lg line-clamp-3">
                             {post.excerpt}
                           </p>
 
@@ -426,7 +426,7 @@ export default function BlogPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
               viewport={{ once: true }}
-              className="relative overflow-hidden rounded-3xl p-10 sm:p-16 text-center border border-[#badad5]/30 bg-gradient-to-br from-[#233d36] via-[#1a2d28] to-[#001a00] shadow-2xl"
+              className="relative overflow-hidden rounded-3xl p-8 sm:p-12 text-center border border-[#badad5]/30 bg-gradient-to-br from-[#233d36] via-[#1a2d28] to-[#001a00] shadow-2xl"
             >
               {/* Decorative elements */}
               <div className="absolute top-0 left-0 w-64 h-64 bg-[#badad5]/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
@@ -435,7 +435,7 @@ export default function BlogPage() {
 
               <div className="relative z-10">
                 <motion.div
-                  className="inline-block mb-8"
+                  className="inline-block mb-5"
                   initial={{ scale: 0.8, opacity: 0 }}
                   whileInView={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
@@ -445,10 +445,10 @@ export default function BlogPage() {
                     <BookOpen className="w-10 h-10 text-[#badad5]" />
                   </div>
                 </motion.div>
-                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#badad5] font-archivo mb-5">
+                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#badad5] font-archivo mb-4">
                   {t('blog.newsletter.title')}
                 </h3>
-                <p className="text-lg sm:text-xl text-[#a6b6e0] font-archivo mb-10 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-base sm:text-lg text-[#a6b6e0] font-archivo mb-6 max-w-2xl mx-auto leading-relaxed">
                   {t('blog.newsletter.description')}
                 </p>
                 <form onSubmit={handleNewsletterSubmit} className="max-w-xl mx-auto flex flex-col sm:flex-row gap-4">
