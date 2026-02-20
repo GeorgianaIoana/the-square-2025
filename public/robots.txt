@@ -7,10 +7,14 @@ Allow: /
 # Sitemap
 Sitemap: https://thesquare.ro/sitemap.xml
 
-# Disallow admin/private areas
+# Disallow admin/private areas and sensitive files
 Disallow: /api/
 Disallow: /admin/
 Disallow: /*.json$
+Disallow: /*.map$
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.env
 
 # Allow all major crawlers
 User-agent: Googlebot

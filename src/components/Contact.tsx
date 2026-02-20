@@ -168,6 +168,16 @@ export default function ContactSection() {
 
           <div className="w-full max-w-lg lg:max-w-xl bg-[#a6b6e0] rounded-xl shadow-xl px-4 sm:px-6 lg:px-10 py-6 sm:py-8 lg:py-16 mx-auto mb-10 sm:mb-28">
             <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
+              {/* Honeypot field for spam protection - hidden from users */}
+              <input
+                type="text"
+                name="botcheck"
+                className="hidden"
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+
               <div className="text-center mb-6">
                 <h5 className="text-xl sm:text-2xl font-semibold text-[#233d36] font-archivo tracking-[0.1em]">
                   {t('contact.formTitle')}
@@ -188,6 +198,7 @@ export default function ContactSection() {
                   value={formValues.name}
                   onChange={handleChange}
                   required
+                  maxLength={100}
                   placeholder={t('contact.name')}
                   className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
                 />
@@ -208,6 +219,7 @@ export default function ContactSection() {
                   value={formValues.phone}
                   onChange={handleChange}
                   required
+                  maxLength={15}
                   placeholder={t('contact.phone')}
                   inputMode="numeric"
                   className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
@@ -228,6 +240,7 @@ export default function ContactSection() {
                   value={formValues.email}
                   onChange={handleChange}
                   required
+                  maxLength={254}
                   placeholder={t('contact.email')}
                   className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
                 />
@@ -246,6 +259,7 @@ export default function ContactSection() {
                   rows={4}
                   value={formValues.message}
                   onChange={handleChange}
+                  maxLength={2000}
                   placeholder={t('contact.message')}
                   className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
                 ></textarea>

@@ -22,3 +22,38 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Security - Environment and secrets
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+*.pem
+*.key
+*.crt
+*.p12
+secrets/
+credentials/
+
+# Security - Sensitive files
+*.bak
+*.backup
+*.old
+*.orig
+*.tmp
+*~
+
+# Security - Debug and test data
+coverage/
+*.lcov
+.nyc_output/
+
+# Security - OS generated
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Security - Package locks (use one, not both)
+# yarn.lock
+# package-lock.json
