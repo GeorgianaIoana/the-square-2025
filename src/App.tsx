@@ -210,7 +210,7 @@ function App() {
             <div className="hidden lg:flex items-center gap-1 ml-auto font-archivo text-[#badad5] pr-4">
               <button
                 onClick={() => scrollToSection("about")}
-                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium ${
+                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-semibold tracking-wide ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -218,7 +218,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("team")}
-                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium ${
+                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-semibold tracking-wide ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -226,7 +226,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("services")}
-                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium ${
+                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-semibold tracking-wide ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -234,7 +234,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("gallery")}
-                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium ${
+                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-semibold tracking-wide ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -242,7 +242,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("testimonials")}
-                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium ${
+                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-semibold tracking-wide ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -250,7 +250,7 @@ function App() {
               </button>
               <Link
                 to="/blog"
-                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium ${
+                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-semibold tracking-wide ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -258,7 +258,7 @@ function App() {
               </Link>
               <button
                 onClick={() => scrollToSection("contact")}
-                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium ${
+                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-semibold tracking-wide ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
