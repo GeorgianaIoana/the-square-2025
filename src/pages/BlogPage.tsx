@@ -16,6 +16,7 @@ import WhatsAppButton from "../components/WhatsAppButton";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { blogPosts } from "../data/blogPosts";
 import { useLanguage } from "../contexts/LanguageContext";
+import SnowEffect from "../components/SnowEffect";
 
 const NEWSLETTER_ACCESS_KEY = "9e26e303-368c-44fc-86ac-7e427470a472";
 
@@ -487,6 +488,7 @@ export default function BlogPage() {
       </div>
       <Footer />
       <WhatsAppButton />
+      <SnowEffect />
     </div>
   );
 }

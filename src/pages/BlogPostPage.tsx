@@ -7,6 +7,7 @@ import WhatsAppButton from "../components/WhatsAppButton";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 import { blogPosts } from "../data/blogPosts";
 import { useLanguage } from "../contexts/LanguageContext";
+import SnowEffect from "../components/SnowEffect";
 
 declare global {
   interface Window {
@@ -689,6 +690,7 @@ export default function BlogPostPage() {
       </div>
       <Footer />
       <WhatsAppButton />
+      <SnowEffect />
     </div>
   );
 }
