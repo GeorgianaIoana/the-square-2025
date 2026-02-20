@@ -1,11 +1,15 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import ServicesSection from "./components/ServicesSection";
 import Calendar from "./components/Calendar";
 import Contact from "./components/Contact";
 import Team from "./components/Team";
 import WhatsAppButton from "./components/WhatsAppButton";
 import LanguageSwitcher from "./components/LanguageSwitcher";
-import { ChevronRight, ChevronLeft } from "lucide-react";
+import TawkToLanguage from "./components/TawkToLanguage";
+import TypeWriter from "./components/TypeWriter";
+import GlowCursor from "./components/GlowCursor";
+import SnowEffect from "./components/SnowEffect";
+import { ChevronRight, ChevronLeft, Calendar as CalendarIcon } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Testimonial from "./components/Testimonial";
@@ -17,6 +21,14 @@ import ThankYouPage from "./components/ThankYouPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import { useLanguage } from "./contexts/LanguageContext";
+
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (options: { url: string }) => void;
+    };
+  }
+}
 
 const teamMembers = [
   {
@@ -82,7 +94,7 @@ function App() {
     }));
   }, []);
 
-  const bannerImages = [
+  const bannerImages = useMemo(() => [
     {
       url: "/images/banner/theSquare.jpg",
       title: t('banner.title1'),
@@ -97,16 +109,16 @@ function App() {
       url: "/images/banner/2.jpg",
       title: t('banner.title3'),
     },
-  ];
+  ], [t]);
 
-  const galleryImages = [
+  const galleryImages = useMemo(() => [
     "/images/gallery/kids.jpg",
     "/images/gallery/happy-people.jpg",
     "/images/gallery/chess-camp-calin.jpg",
     "/images/gallery/chess-camp-vlad.jpg",
     "/images/banner/2.jpg",
     "/images/banner/3.jpg",
-  ];
+  ], []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -116,12 +128,35 @@ function App() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Preload all banner and gallery images on mount
   useEffect(() => {
+    const bannerUrls = [
+      "/images/banner/theSquare.jpg",
+      "/images/banner/1.jpg",
+      "/images/banner/2.jpg",
+    ];
+    const galleryUrls = [
+      "/images/gallery/kids.jpg",
+      "/images/gallery/happy-people.jpg",
+      "/images/gallery/chess-camp-calin.jpg",
+      "/images/gallery/chess-camp-vlad.jpg",
+      "/images/banner/2.jpg",
+      "/images/banner/3.jpg",
+    ];
+    const allImages = [...bannerUrls, ...galleryUrls];
+    allImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
+  useEffect(() => {
+    const numSlides = bannerImages.length;
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % bannerImages.length);
+      setCurrentSlide((prev) => (prev + 1) % numSlides);
     }, 10000);
     return () => clearInterval(timer);
-  }, []);
+  }, [bannerImages.length]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -170,11 +205,10 @@ function App() {
               />
             </div>
 
-            <div className="hidden md:flex items-center space-x-4 ml-auto font-archivo tracking-[0.1em] text-[#badad5] text-right sm:pr-[40px]">
-              <LanguageSwitcher />
+            <div className="hidden lg:flex items-center gap-1 ml-auto font-archivo text-[#badad5] pr-4">
               <button
                 onClick={() => scrollToSection("about")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
+                className={`px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -182,7 +216,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("team")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
+                className={`px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -190,7 +224,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("services")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
+                className={`px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -198,7 +232,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("gallery")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
+                className={`px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -206,7 +240,7 @@ function App() {
               </button>
               <button
                 onClick={() => scrollToSection("testimonials")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
+                className={`px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -214,7 +248,7 @@ function App() {
               </button>
               <Link
                 to="/blog"
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
+                className={`px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
@@ -222,18 +256,29 @@ function App() {
               </Link>
               <button
                 onClick={() => scrollToSection("contact")}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5] hover:text-[#233d36] font-semibold ${
+                className={`px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium ${
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
                 {t('nav.contact')}
               </button>
+
+              <div className="w-px h-5 bg-[#badad5]/30 mx-2" />
+
+              <LanguageSwitcher />
+
+              <button
+                onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/georgiana17stanciu/30min' })}
+                className="ml-2 px-4 py-1.5 text-[13px] rounded-lg bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
+              >
+                Programează-te
+              </button>
             </div>
 
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-[#a6b6e0] focus:outline-none"
+                className="text-[#a6b6e0] focus:outline-none p-2"
               >
                 <svg
                   className="w-6 h-6"
@@ -264,101 +309,87 @@ function App() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="md:hidden fixed inset-0 bg-[#233d36] bg-opacity-90 z-50 px-4 pt-24 pb-10">
-            <div className="flex justify-end mb-6">
+          <div className="lg:hidden fixed inset-0 bg-[#001a00]/98 backdrop-blur-sm z-50 flex flex-col">
+            {/* Header */}
+            <div className="flex justify-between items-center px-6 py-4 border-b border-[#233d36]">
+              <img
+                src="/images/logo/square-logo.png"
+                alt="Logo"
+                className="w-[100px]"
+              />
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-[#a6b6e0] focus:outline-none text-xl"
+                className="text-[#badad5] p-2 hover:bg-[#233d36] rounded-lg transition-colors"
               >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
             </div>
-            <button
-              onClick={() => {
-                scrollToSection("about");
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
-            >
-              {t('nav.about')}
-            </button>
-            <button
-              onClick={() => {
-                scrollToSection("team");
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
-            >
-              {t('nav.team')}
-            </button>
-            <button
-              onClick={() => {
-                scrollToSection("services");
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
-            >
-              {t('nav.services')}
-            </button>
-            <button
-              onClick={() => {
-                scrollToSection("gallery");
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
-            >
-              {t('nav.gallery')}
-            </button>
-            <button
-              onClick={() => {
-                scrollToSection("testimonials");
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
-            >
-              {t('nav.testimonials')}
-            </button>
-            <Link
-              to="/blog"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
-            >
-              {t('nav.blog')}
-            </Link>
-            <button
-              onClick={() => {
-                scrollToSection("contact");
-                setMobileMenuOpen(false);
-              }}
-              className="w-full text-left px-4 py-2 rounded-lg text-[#badad5] transition font-archivo tracking-wide font-bold"
-            >
-              {t('nav.contact')}
-            </button>
-            <div className="flex justify-center items-center gap-4 mt-4">
-              <LanguageSwitcher />
-            </div>
-            <div className="flex justify-center mt-8">
+
+            {/* Navigation Links */}
+            <nav className="flex-1 overflow-y-auto px-6 py-6">
+              <div className="space-y-1">
+                <button
+                  onClick={() => { scrollToSection("about"); setMobileMenuOpen(false); }}
+                  className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium"
+                >
+                  {t('nav.about')}
+                </button>
+                <button
+                  onClick={() => { scrollToSection("team"); setMobileMenuOpen(false); }}
+                  className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium"
+                >
+                  {t('nav.team')}
+                </button>
+                <button
+                  onClick={() => { scrollToSection("services"); setMobileMenuOpen(false); }}
+                  className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium"
+                >
+                  {t('nav.services')}
+                </button>
+                <button
+                  onClick={() => { scrollToSection("gallery"); setMobileMenuOpen(false); }}
+                  className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium"
+                >
+                  {t('nav.gallery')}
+                </button>
+                <button
+                  onClick={() => { scrollToSection("testimonials"); setMobileMenuOpen(false); }}
+                  className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium"
+                >
+                  {t('nav.testimonials')}
+                </button>
+                <Link
+                  to="/blog"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium"
+                >
+                  {t('nav.blog')}
+                </Link>
+                <button
+                  onClick={() => { scrollToSection("contact"); setMobileMenuOpen(false); }}
+                  className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium"
+                >
+                  {t('nav.contact')}
+                </button>
+              </div>
+            </nav>
+
+            {/* Footer */}
+            <div className="px-6 py-6 border-t border-[#233d36] space-y-4">
+              <div className="flex justify-center">
+                <LanguageSwitcher />
+              </div>
               <button
                 onClick={() => {
-                  scrollToSection("contact");
+                  window.Calendly?.initPopupWidget({ url: 'https://calendly.com/georgiana17stanciu/30min' });
                   setMobileMenuOpen(false);
                 }}
-                className="bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-8 py-3 rounded-xl font-archivo font-bold text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg"
+                className="w-full bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] py-4 rounded-xl font-archivo font-bold text-base transition-all duration-300 hover:shadow-xl shadow-lg flex items-center justify-center gap-2"
               >
-                {t('nav.enroll')}
+                <CalendarIcon className="w-5 h-5" />
+                Programează-te
               </button>
             </div>
           </div>
@@ -371,39 +402,42 @@ function App() {
             {bannerImages.map((image, index) => (
               <div
                 key={index}
-                className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out ${
+                className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out will-change-opacity ${
                   currentSlide === index ? "opacity-100 z-20" : "opacity-0 z-10"
                 }`}
+                style={{ backfaceVisibility: 'hidden' }}
               >
                 <img
                   src={image.url}
                   alt={`Slide ${index + 1}`}
                   className="w-full h-full object-cover brightness-50 rounded-[24px]"
-                  loading={index === 0 ? "eager" : currentSlide === index ? "eager" : "lazy"}
-                  decoding={index === 0 ? "sync" : "async"}
-                  fetchPriority={index === 0 ? "high" : undefined}
+                  loading="eager"
+                  decoding="async"
                 />
 
-                {currentSlide === index && (
-                  <div className="absolute inset-0 flex items-center justify-center text-center px-4 sm:px-8 z-30 animate-fade-in-up">
-                    <div className="max-w-3xl">
-                      <h1 className="text-2xl sm:text-4xl md:text-5xl font-semibold mb-4 tracking-wide text-[#a6b6e0] leading-snug font-archivo">
-                        {image.title}
-                      </h1>
-                      <p className="text-base sm:text-lg md:text-xl mb-6 tracking-wide text-[#a6b6e0] font-archivo">
-                        {image.subtitle}
-                      </p>
-                      <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
-                        <button
-                          onClick={() => scrollToSection("contact")}
-                          className="sm:mt-[0px] text-center bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-6 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg font-archivo"
-                        >
-                          {t('nav.enroll')}
-                        </button>
-                      </div>
+                <div
+                  className={`absolute inset-0 flex items-center justify-center text-center px-4 sm:px-8 z-30 transition-opacity duration-500 ${
+                    currentSlide === index ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  <div className="max-w-3xl">
+                    <h1 className="text-2xl sm:text-4xl md:text-5xl font-semibold mb-4 tracking-wide text-[#a6b6e0] leading-snug font-archivo">
+                      {image.title}
+                    </h1>
+                    <p className="text-base sm:text-lg md:text-xl mb-6 tracking-wide text-[#a6b6e0] font-archivo">
+                      {image.subtitle}
+                    </p>
+                    <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
+                      <button
+                        onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/georgiana17stanciu/30min' })}
+                        className="sm:mt-[0px] text-center bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-6 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg font-archivo inline-flex items-center gap-2"
+                      >
+                        <CalendarIcon className="w-5 h-5" />
+                        Programează-te
+                      </button>
                     </div>
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>
@@ -441,8 +475,12 @@ function App() {
                   <span className="font-archivo text-[#a6b6e0] text-[24px] sm:text-[35px] font-medium tracking-[0.1em] leading-[125%]">
                     {t('about.title')}
                   </span>
-                  <h4 className="font-archivo text-[#a6b6e0] text-[28px] sm:text-[45px] font-medium tracking-[0.1em] mt-2 mb-6 sm:mb-10 leading-[125%]">
-                    {t('about.subtitle')}
+                  <h4 className="font-archivo text-[#a6b6e0] text-[28px] sm:text-[45px] font-medium tracking-[0.1em] mt-2 mb-6 sm:mb-10 leading-[125%] min-h-[1.5em]">
+                    <TypeWriter
+                      texts={[t('about.subtitle')]}
+                      speed={50}
+                      loop={false}
+                    />
                   </h4>
                   <p className="font-archivo text-sm sm:text-base text-[#a6b6e0] font-medium tracking-[0.1em] leading-relaxed sm:leading-[160%] mt-4 sm:mt-6 mb-6 sm:mb-8">
                     {t('about.description')}
@@ -508,8 +546,12 @@ function App() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 px-2 sm:px-0 mt-12 sm:mt-[75px] items-center">
               <div className="order-2 lg:order-1 lg:col-span-7 w-full">
                 <div className="relative w-full max-w-[700px] mx-auto lg:mx-0 text-center lg:text-left px-2 sm:px-0">
-                  <h4 className="font-archivo text-[#a6b6e0] text-[26px] sm:text-[52px] font-medium tracking-wide leading-[125%] mb-6 sm:mb-10">
-                    {t('about.whyChess.title')}
+                  <h4 className="font-archivo text-[#a6b6e0] text-[26px] sm:text-[52px] font-medium tracking-wide leading-[125%] mb-6 sm:mb-10 min-h-[1.5em]">
+                    <TypeWriter
+                      texts={[t('about.whyChess.title')]}
+                      speed={50}
+                      loop={false}
+                    />
                   </h4>
                   <div className="font-archivo text-sm sm:text-base text-[#a6b6e0] font-medium tracking-[0.1em] leading-relaxed sm:leading-[160%] mt-4 sm:mt-6 mb-6 sm:mb-8 space-y-4 text-center lg:text-left">
                     <p>{t('about.whyChess.point1')}</p>
@@ -647,8 +689,12 @@ function App() {
       >
         <div className="sm:container mx-auto px-4">
           <div className="max-w-[1420px] max-h-[1700px] mx-auto">
-            <h2 className="text-3xl sm:text-5xl font-bold text-center mb-16 text-[#badad5] font-archivo">
-              {t('gallery.title')}
+            <h2 className="text-3xl sm:text-5xl font-bold text-center mb-16 text-[#badad5] font-archivo min-h-[1.5em]">
+              <TypeWriter
+                texts={[t('gallery.title')]}
+                speed={50}
+                loop={false}
+              />
             </h2>
 
             <div className="relative flex flex-col items-center justify-center">
@@ -826,6 +872,9 @@ function App() {
         </div>
       </footer>
       <WhatsAppButton />
+      <TawkToLanguage />
+      <GlowCursor />
+      <SnowEffect />
     </div>
   );
 

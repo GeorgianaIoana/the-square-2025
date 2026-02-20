@@ -126,6 +126,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       
       // Testimonials Section
       'testimonials.title': 'Experiența cursanților noștri',
+      'testimonials.subtitle': 'Ce spun cursanții noștri',
       
       // Contact Section
       'contact.title': 'Contactează-ne',
@@ -246,6 +247,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       
       // Testimonials Section
       'testimonials.title': 'Our Students\' Experience',
+      'testimonials.subtitle': 'What our students say',
       
       // Contact Section
       'contact.title': 'Contact Us',

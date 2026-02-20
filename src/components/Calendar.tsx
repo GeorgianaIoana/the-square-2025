@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CalendlyButton from "./CalendlyButton";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -348,6 +349,11 @@ const Calendar = () => {
             </h2>
             <div className="w-full">
               {renderEventsForDay(selectedDate.getDate())}
+            </div>
+
+            {/* Calendly CTA */}
+            <div className="w-full mt-10 pt-8 border-t border-[#233d36]">
+              <CalendlyButton variant="primary" size="md" />
             </div>
           </div>
 

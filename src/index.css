@@ -48,6 +48,38 @@
   }
 }
 
+/* Prevent image flicker and optimize rendering */
+img {
+  background-color: #233d36;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  image-rendering: -webkit-optimize-contrast;
+}
+
+/* Ensure images don't cause layout shifts */
+img[loading="eager"],
+img[loading="lazy"] {
+  content-visibility: auto;
+}
+
+/* GPU acceleration for smooth transitions */
+.will-change-opacity {
+  will-change: opacity;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Optimize canvas rendering for cursor */
+canvas {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  image-rendering: optimizeSpeed;
+}
+
 /* Custom animations */
 @keyframes fadeIn {
   from {
@@ -62,6 +94,20 @@
 
 .fade-in {
   animation: fadeIn 0.6s ease-out;
+}
+
+/* Typewriter cursor blink */
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s step-end infinite;
 }
 
 /* Shimmer animation for loading states */

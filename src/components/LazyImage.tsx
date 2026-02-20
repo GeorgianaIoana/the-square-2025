@@ -19,8 +19,9 @@ const LazyImage: React.FC<LazyImageProps> = ({
       src={shouldLoad ? src : placeholder}
       onLoad={handleLoad}
       style={{
-        opacity: isLoaded ? 1 : 0.7,
-        transition: "opacity 0.3s ease-in-out",
+        opacity: isLoaded ? 1 : 0,
+        transition: "opacity 0.5s ease-in-out",
+        backgroundColor: "#233d36",
       }}
       loading="lazy"
       decoding="async"
