@@ -31,7 +31,49 @@ const Footer: React.FC = () => {
             Contact
           </a>
         </nav>
-        <div className="mt-16 flex justify-center gap-x-10">
+
+        {/* ANPC Section */}
+        <div className="mt-10 flex flex-col items-center gap-4">
+          <div className="flex flex-wrap justify-center items-center gap-6">
+            <a
+              href="https://anpc.ro/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-[#a6b6e0] hover:text-[#badad5] text-sm font-archivo transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-5 h-5"
+              >
+                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+              </svg>
+              ANPC
+            </a>
+            <a
+              href="https://ec.europa.eu/consumers/odr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-[#a6b6e0] hover:text-[#badad5] text-sm font-archivo transition-colors"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-5 h-5"
+              >
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+              </svg>
+              SOL / ODR
+            </a>
+          </div>
+          <p className="text-[#a6b6e0]/70 text-xs font-archivo text-center max-w-md">
+            Soluționarea alternativă a litigiilor
+          </p>
+        </div>
+
+        <div className="mt-10 flex justify-center gap-x-10">
           <a
             href="https://www.facebook.com/profile.php?id=61556605701740"
             className="text-[#a6b6e0] hover:text-[#badad5]"
