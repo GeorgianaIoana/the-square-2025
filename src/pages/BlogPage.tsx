@@ -1,30 +1,19 @@
 import { useState, useEffect } from "react";
 import type { FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Calendar as CalendarIcon, User, ArrowRight, BookOpen, Clock, Sparkles } from "lucide-react";
-
-declare global {
-  interface Window {
-    Calendly?: {
-      initPopupWidget: (options: { url: string }) => void;
-    };
-  }
-}
 import { motion } from "framer-motion";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
-import LanguageSwitcher from "../components/LanguageSwitcher";
 import { blogPosts } from "../data/blogPosts";
 import { useLanguage } from "../contexts/LanguageContext";
-import SnowEffect from "../components/SnowEffect";
 
 const NEWSLETTER_ACCESS_KEY = "9e26e303-368c-44fc-86ac-7e427470a472";
 
 export default function BlogPage() {
   const { t, language } = useLanguage();
-  const navigate = useNavigate();
   const currentBlogPosts = [...(blogPosts[language] || blogPosts.ro)].sort((a, b) => a.id - b.id);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState<string | null>(null);
   const [isSubmittingNewsletter, setIsSubmittingNewsletter] = useState(false);
@@ -58,23 +47,6 @@ export default function BlogPage() {
       document.title = 'THE SQUARE - Cursuri de Șah București | Club Șah Copii și Adulți';
     };
   }, [language]);
-
-  const scrollToSection = (id: string) => {
-    navigate("/");
-    setTimeout(() => {
-      const element = document.getElementById(id);
-      if (element) {
-        const headerOffset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition =
-          elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
-    }, 100);
-  };
 
   const handleNewsletterSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -124,163 +96,9 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-[#001a00]">
-      <nav className="fixed w-full z-50 bg-[#233d36] shadow-lg">
-        <div className="mx-auto px-4 sm:px-6">
-          <div className="flex justify-between items-center py-2">
-            <Link to="/" className="flex items-center space-x-2 pt-4 pl-2 sm:pl-16">
-              <img
-                src="/images/logo/square-logo.png"
-                alt="Logo"
-                className="w-[110px] sm:w-[150px]"
-                loading="eager"
-                decoding="async"
-              />
-            </Link>
+      <Header />
 
-            <div className="hidden lg:flex items-center gap-1 ml-auto font-archivo text-[#badad5] pr-4">
-              <button
-                onClick={() => scrollToSection("about")}
-                className="px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium text-white"
-              >
-                {t('nav.about')}
-              </button>
-              <button
-                onClick={() => scrollToSection("team")}
-                className="px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium text-white"
-              >
-                {t('nav.team')}
-              </button>
-              <button
-                onClick={() => scrollToSection("services")}
-                className="px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium text-white"
-              >
-                {t('nav.services')}
-              </button>
-              <button
-                onClick={() => scrollToSection("gallery")}
-                className="px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium text-white"
-              >
-                {t('nav.gallery')}
-              </button>
-              <button
-                onClick={() => scrollToSection("testimonials")}
-                className="px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium text-white"
-              >
-                {t('nav.testimonials')}
-              </button>
-              <Link
-                to="/blog"
-                className="px-2.5 py-1.5 text-[13px] rounded-lg bg-[#badad5]/20 font-medium text-[#badad5]"
-              >
-                {t('nav.blog')}
-              </Link>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium text-white"
-              >
-                {t('nav.contact')}
-              </button>
-
-              <div className="w-px h-5 bg-[#badad5]/30 mx-2" />
-
-              <LanguageSwitcher />
-
-              <button
-                onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/georgiana17stanciu/30min' })}
-                className="ml-2 px-4 py-1.5 text-[13px] rounded-lg bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
-              >
-                Programează-te
-              </button>
-            </div>
-
-            <div className="lg:hidden">
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-[#a6b6e0] focus:outline-none"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {mobileMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  )}
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 bg-[#001a00]/98 backdrop-blur-sm z-50 flex flex-col">
-            <div className="flex justify-between items-center px-6 py-4 border-b border-[#233d36]">
-              <img src="/images/logo/square-logo.png" alt="Logo" className="w-[100px]" />
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-[#badad5] p-2 hover:bg-[#233d36] rounded-lg transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <nav className="flex-1 overflow-y-auto px-6 py-6">
-              <div className="space-y-1">
-                <button onClick={() => { scrollToSection("about"); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium">
-                  {t('nav.about')}
-                </button>
-                <button onClick={() => { scrollToSection("team"); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium">
-                  {t('nav.team')}
-                </button>
-                <button onClick={() => { scrollToSection("services"); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium">
-                  {t('nav.services')}
-                </button>
-                <button onClick={() => { scrollToSection("gallery"); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium">
-                  {t('nav.gallery')}
-                </button>
-                <button onClick={() => { scrollToSection("testimonials"); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium">
-                  {t('nav.testimonials')}
-                </button>
-                <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="block w-full text-left px-4 py-3 rounded-xl text-[#badad5] bg-[#233d36]/50 font-archivo text-lg font-medium">
-                  {t('nav.blog')}
-                </Link>
-                <button onClick={() => { scrollToSection("contact"); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium">
-                  {t('nav.contact')}
-                </button>
-              </div>
-            </nav>
-            <div className="px-6 py-6 border-t border-[#233d36] space-y-4">
-              <div className="flex justify-center">
-                <LanguageSwitcher />
-              </div>
-              <button
-                onClick={() => { window.Calendly?.initPopupWidget({ url: 'https://calendly.com/georgiana17stanciu/30min' }); setMobileMenuOpen(false); }}
-                className="w-full bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] py-4 rounded-xl font-archivo font-bold text-base transition-all duration-300 hover:shadow-xl shadow-lg flex items-center justify-center gap-2"
-              >
-                <CalendarIcon className="w-5 h-5" />
-                Programează-te
-              </button>
-            </div>
-          </div>
-        )}
-      </nav>
-
-      <div className="pt-20 sm:pt-24 pb-12 relative overflow-hidden">
+      <div className="pt-24 sm:pt-32 pb-20 relative overflow-hidden">
         {/* Background decorative elements */}
         <div className="absolute top-0 left-0 w-96 h-96 bg-[#233d36]/30 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
         <div className="absolute top-1/3 right-0 w-80 h-80 bg-[#badad5]/10 rounded-full blur-3xl translate-x-1/2" />
@@ -290,7 +108,7 @@ export default function BlogPage() {
           <div className="max-w-7xl mx-auto">
             {/* Header */}
             <motion.div
-              className="text-center mb-12"
+              className="text-center mb-16 sm:mb-20"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
@@ -313,14 +131,10 @@ export default function BlogPage() {
             </motion.div>
 
             {/* Articles Grid */}
-            <div className="space-y-6 sm:space-y-8 mb-12">
+            <div className="space-y-10 sm:space-y-14 mb-16">
               {currentBlogPosts.map((post, index) => (
-                <motion.div
+                <div
                   key={post.id}
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
-                  viewport={{ once: true }}
                 >
                   <Link
                     to={`/blog/${post.id}`}
@@ -337,7 +151,7 @@ export default function BlogPage() {
                             <img
                               src={post.image}
                               alt={post.title}
-                              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                              className="absolute inset-0 w-full h-full object-cover"
                               loading="eager"
                               decoding="async"
                             />
@@ -359,13 +173,13 @@ export default function BlogPage() {
                       </div>
 
                       {/* Content Section */}
-                      <div className="relative p-6 sm:p-8 lg:p-10 flex flex-col justify-center bg-gradient-to-br from-[#1a2d28] to-[#001a00]">
+                      <div className="relative p-8 sm:p-10 lg:p-12 flex flex-col justify-center bg-gradient-to-br from-[#1a2d28] to-[#001a00]">
                         {/* Decorative corner */}
                         <div className="absolute top-0 right-0 w-32 h-32 bg-[#badad5]/5 rounded-bl-full" />
 
                         <div className="relative z-10">
                           {/* Meta info */}
-                          <div className="flex items-center gap-4 mb-5 text-[#a6b6e0]/70 text-sm font-archivo">
+                          <div className="flex items-center gap-4 mb-6 text-[#a6b6e0]/70 text-sm font-archivo">
                             <span className="flex items-center gap-1.5">
                               <Clock className="w-4 h-4" />
                               {post.readTime}
@@ -378,12 +192,12 @@ export default function BlogPage() {
                           </div>
 
                           {/* Title */}
-                          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#badad5] font-archivo mb-5 leading-tight group-hover:text-white transition-colors duration-300">
+                          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#badad5] font-archivo mb-6 leading-tight group-hover:text-white transition-colors duration-300">
                             {post.title}
                           </h2>
 
                           {/* Excerpt */}
-                          <p className="text-[#a6b6e0] font-archivo mb-5 leading-relaxed text-base lg:text-lg line-clamp-3">
+                          <p className="text-[#a6b6e0] font-archivo mb-8 leading-relaxed text-base lg:text-lg line-clamp-3">
                             {post.excerpt}
                           </p>
 
@@ -416,7 +230,7 @@ export default function BlogPage() {
                       </div>
                     </div>
                   </Link>
-                </motion.div>
+                </div>
               ))}
             </div>
 
@@ -426,7 +240,7 @@ export default function BlogPage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
               viewport={{ once: true }}
-              className="relative overflow-hidden rounded-3xl p-8 sm:p-12 text-center border border-[#badad5]/30 bg-gradient-to-br from-[#233d36] via-[#1a2d28] to-[#001a00] shadow-2xl"
+              className="mt-8 relative overflow-hidden rounded-3xl p-8 sm:p-12 text-center border border-[#badad5]/30 bg-gradient-to-br from-[#233d36] via-[#1a2d28] to-[#001a00] shadow-2xl"
             >
               {/* Decorative elements */}
               <div className="absolute top-0 left-0 w-64 h-64 bg-[#badad5]/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
@@ -488,7 +302,6 @@ export default function BlogPage() {
       </div>
       <Footer />
       <WhatsAppButton />
-      <SnowEffect />
     </div>
   );
 }

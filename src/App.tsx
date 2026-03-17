@@ -7,8 +7,6 @@ import WhatsAppButton from "./components/WhatsAppButton";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import TawkToLanguage from "./components/TawkToLanguage";
 import TypeWriter from "./components/TypeWriter";
-import GlowCursor from "./components/GlowCursor";
-import SnowEffect from "./components/SnowEffect";
 import { ChevronRight, ChevronLeft, Calendar as CalendarIcon } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -199,7 +197,7 @@ function App() {
           <div className="flex justify-between items-center py-2">
             <div className="flex items-center space-x-2 pt-4 pl-2 sm:pl-16">
               <img
-                src="/images/logo/square-logo.png"
+                src="/images/logo/Logo-square.svg?v=2"
                 alt="Logo"
                 className="w-[110px] sm:w-[150px]"
                 loading="eager"
@@ -270,7 +268,7 @@ function App() {
               <LanguageSwitcher />
 
               <button
-                onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/georgiana17stanciu/30min' })}
+                onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/acsthesquarechessclub' })}
                 className="ml-2 px-5 py-2 text-sm rounded-lg bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
               >
                 Programează-te
@@ -317,7 +315,7 @@ function App() {
             {/* Header */}
             <div className="flex justify-between items-center px-4 sm:px-6 py-4 border-b border-[#233d36] bg-[#001a00]">
               <img
-                src="/images/logo/square-logo.png"
+                src="/images/logo/Logo-square.svg?v=2"
                 alt="Logo"
                 className="w-[90px] sm:w-[110px]"
               />
@@ -386,7 +384,7 @@ function App() {
               <div className="max-w-md mx-auto">
                 <button
                   onClick={() => {
-                    window.Calendly?.initPopupWidget({ url: 'https://calendly.com/georgiana17stanciu/30min' });
+                    window.Calendly?.initPopupWidget({ url: 'https://calendly.com/acsthesquarechessclub' });
                     setMobileMenuOpen(false);
                   }}
                   className="w-full bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] py-4 rounded-xl font-archivo font-bold text-base transition-all duration-300 hover:shadow-xl shadow-lg flex items-center justify-center gap-2 touch-manipulation"
@@ -433,7 +431,7 @@ function App() {
                     </p>
                     <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
                       <button
-                        onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/georgiana17stanciu/30min' })}
+                        onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/acsthesquarechessclub' })}
                         className="sm:mt-[0px] text-center bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-6 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg font-archivo inline-flex items-center gap-2"
                       >
                         <CalendarIcon className="w-5 h-5" />
@@ -693,12 +691,8 @@ function App() {
       >
         <div className="sm:container mx-auto px-4">
           <div className="max-w-[1420px] max-h-[1700px] mx-auto">
-            <h2 className="text-3xl sm:text-5xl font-bold text-center mb-16 text-[#badad5] font-archivo min-h-[1.5em]">
-              <TypeWriter
-                texts={[t('gallery.title')]}
-                speed={50}
-                loop={false}
-              />
+            <h2 className="text-3xl sm:text-5xl font-bold text-center mb-16 text-[#badad5] font-archivo">
+              {t('gallery.title')}
             </h2>
 
             <div className="relative flex flex-col items-center justify-center">
@@ -877,8 +871,6 @@ function App() {
       </footer>
       <WhatsAppButton />
       <TawkToLanguage />
-      <GlowCursor />
-      <SnowEffect />
     </div>
   );
 

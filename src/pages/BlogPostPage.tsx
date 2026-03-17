@@ -1,27 +1,16 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Calendar as CalendarIcon, User, ArrowLeft, BookOpen, Clock, Share2, Check, Link as LinkIcon, X } from "lucide-react";
 import { motion } from "framer-motion";
+import Header from "../components/Header";
 import Footer from "../components/Footer";
 import WhatsAppButton from "../components/WhatsAppButton";
-import LanguageSwitcher from "../components/LanguageSwitcher";
 import { blogPosts } from "../data/blogPosts";
 import { useLanguage } from "../contexts/LanguageContext";
-import SnowEffect from "../components/SnowEffect";
-
-declare global {
-  interface Window {
-    Calendly?: {
-      initPopupWidget: (options: { url: string }) => void;
-    };
-  }
-}
 
 export default function BlogPostPage() {
   const { t, language } = useLanguage();
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showShareMenu, setShowShareMenu] = useState(false);
   const currentBlogPosts = blogPosts[language] || blogPosts.ro;
@@ -93,7 +82,7 @@ export default function BlogPostPage() {
           "name": "THE SQUARE Chess Club",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://thesquare.ro/images/logo/square-logo.png"
+            "url": "https://thesquare.ro/images/logo/Logo-square.svg"
           }
         },
         "datePublished": post.date,
@@ -112,23 +101,6 @@ export default function BlogPostPage() {
       };
     }
   }, [post, language]);
-
-  const scrollToSection = (sectionId: string) => {
-    navigate("/");
-    setTimeout(() => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        const headerOffset = 80;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition =
-          elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: "smooth",
-        });
-      }
-    }, 100);
-  };
 
   if (!post) {
     return (
@@ -398,161 +370,7 @@ export default function BlogPostPage() {
 
   return (
     <div className="min-h-screen bg-[#001a00]">
-      <nav className="fixed top-0 left-0 right-0 w-full z-50 bg-[#233d36] shadow-lg">
-        <div className="mx-auto px-4 sm:px-6">
-          <div className="flex justify-between items-center py-2">
-            <Link to="/" className="flex items-center space-x-2 pt-4 pl-2 sm:pl-16">
-              <img
-                src="/images/logo/square-logo.png"
-                alt="Logo"
-                className="w-[110px] sm:w-[150px]"
-                loading="eager"
-                decoding="async"
-              />
-            </Link>
-
-            <div className="hidden lg:flex items-center gap-1 ml-auto font-archivo text-[#badad5] pr-4">
-              <button
-                onClick={() => scrollToSection("about")}
-                className="px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium text-white"
-              >
-                {t('nav.about')}
-              </button>
-              <button
-                onClick={() => scrollToSection("team")}
-                className="px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium text-white"
-              >
-                {t('nav.team')}
-              </button>
-              <button
-                onClick={() => scrollToSection("services")}
-                className="px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium text-white"
-              >
-                {t('nav.services')}
-              </button>
-              <button
-                onClick={() => scrollToSection("gallery")}
-                className="px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium text-white"
-              >
-                {t('nav.gallery')}
-              </button>
-              <button
-                onClick={() => scrollToSection("testimonials")}
-                className="px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium text-white"
-              >
-                {t('nav.testimonials')}
-              </button>
-              <Link
-                to="/blog"
-                className="px-2.5 py-1.5 text-[13px] rounded-lg bg-[#badad5]/20 font-medium text-[#badad5]"
-              >
-                {t('nav.blog')}
-              </Link>
-              <button
-                onClick={() => scrollToSection("contact")}
-                className="px-2.5 py-1.5 text-[13px] rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-medium text-white"
-              >
-                {t('nav.contact')}
-              </button>
-
-              <div className="w-px h-5 bg-[#badad5]/30 mx-2" />
-
-              <LanguageSwitcher />
-
-              <button
-                onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/georgiana17stanciu/30min' })}
-                className="ml-2 px-4 py-1.5 text-[13px] rounded-lg bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
-              >
-                Programează-te
-              </button>
-            </div>
-
-            <div className="lg:hidden">
-              <button
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-[#a6b6e0] focus:outline-none"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  {mobileMenuOpen ? (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  ) : (
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  )}
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {mobileMenuOpen && (
-          <div className="lg:hidden fixed inset-0 bg-[#001a00]/98 backdrop-blur-sm z-50 flex flex-col">
-            <div className="flex justify-between items-center px-6 py-4 border-b border-[#233d36]">
-              <img src="/images/logo/square-logo.png" alt="Logo" className="w-[100px]" />
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="text-[#badad5] p-2 hover:bg-[#233d36] rounded-lg transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-            <nav className="flex-1 overflow-y-auto px-6 py-6">
-              <div className="space-y-1">
-                <button onClick={() => { scrollToSection("about"); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium">
-                  {t('nav.about')}
-                </button>
-                <button onClick={() => { scrollToSection("team"); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium">
-                  {t('nav.team')}
-                </button>
-                <button onClick={() => { scrollToSection("services"); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium">
-                  {t('nav.services')}
-                </button>
-                <button onClick={() => { scrollToSection("gallery"); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium">
-                  {t('nav.gallery')}
-                </button>
-                <button onClick={() => { scrollToSection("testimonials"); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium">
-                  {t('nav.testimonials')}
-                </button>
-                <Link to="/blog" onClick={() => setMobileMenuOpen(false)} className="block w-full text-left px-4 py-3 rounded-xl text-[#badad5] bg-[#233d36]/50 font-archivo text-lg font-medium">
-                  {t('nav.blog')}
-                </Link>
-                <button onClick={() => { scrollToSection("contact"); setMobileMenuOpen(false); }} className="w-full text-left px-4 py-3 rounded-xl text-[#badad5] hover:bg-[#233d36]/50 transition-colors font-archivo text-lg font-medium">
-                  {t('nav.contact')}
-                </button>
-              </div>
-            </nav>
-            <div className="px-6 py-6 border-t border-[#233d36] space-y-4">
-              <div className="flex justify-center">
-                <LanguageSwitcher />
-              </div>
-              <button
-                onClick={() => { window.Calendly?.initPopupWidget({ url: 'https://calendly.com/georgiana17stanciu/30min' }); setMobileMenuOpen(false); }}
-                className="w-full bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] py-4 rounded-xl font-archivo font-bold text-base transition-all duration-300 hover:shadow-xl shadow-lg flex items-center justify-center gap-2"
-              >
-                <CalendarIcon className="w-5 h-5" />
-                Programează-te
-              </button>
-            </div>
-          </div>
-        )}
-      </nav>
+      <Header />
 
       <div className="pt-24 sm:pt-32 pb-16 relative overflow-hidden">
         {/* Background decorative elements */}
@@ -813,7 +631,6 @@ export default function BlogPostPage() {
       </div>
       <Footer />
       <WhatsAppButton />
-      <SnowEffect />
     </div>
   );
 }
