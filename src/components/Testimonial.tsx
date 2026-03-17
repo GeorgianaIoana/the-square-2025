@@ -134,13 +134,7 @@ export default function Testimonials() {
 
       <div className="sm:container mx-auto relative z-10">
         {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
+        <div className="text-center mb-16">
           <span className="text-[#badad5]/60 text-sm font-archivo tracking-[0.3em] uppercase mb-4 block">
             {t('testimonials.subtitle')}
           </span>
@@ -148,7 +142,7 @@ export default function Testimonials() {
             {t('testimonials.title')}
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[#badad5] to-[#a6b6e0] mx-auto rounded-full" />
-        </motion.div>
+        </div>
 
         <Swiper
           ref={swiperRef}

@@ -25,7 +25,7 @@ export default function CalendlyButton({
   const handleClick = () => {
     if (window.Calendly) {
       window.Calendly.initPopupWidget({
-        url: "https://calendly.com/georgiana17stanciu/30min",
+        url: "https://calendly.com/acsthesquarechessclub",
       });
     }
   };
