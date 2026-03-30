@@ -41,9 +41,12 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       // Navigation
       'nav.about': 'Despre noi',
       'nav.team': 'Echipa',
+      'nav.team.desc': 'Antrenorii noștri profesioniști',
       'nav.services': 'Cursuri de șah',
       'nav.gallery': 'Galerie',
+      'nav.gallery.desc': 'Momente din activitățile noastre',
       'nav.testimonials': 'Testimoniale',
+      'nav.testimonials.desc': 'Ce spun elevii și părinții',
       'nav.blog': 'Blog',
       'nav.contact': 'Contact',
       'nav.enroll': 'Înscrie-te la primul tău curs!',
@@ -140,6 +143,8 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       'contact.submitting': 'Se trimite...',
       'contact.success': '✅ Mulțumim! Mesajul a fost trimis cu succes.',
       'contact.error': '❌ A apărut o problemă de rețea. Încearcă din nou.',
+      'contact.consent': 'Am citit și sunt de acord cu prelucrarea datelor conform',
+      'contact.consentLink': 'Politicii de Confidențialitate',
       
       // Footer
       'footer.copyright': '© 2025 THE SQUARE. Developed by THE SQUARE.',
@@ -162,9 +167,12 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       // Navigation
       'nav.about': 'About Us',
       'nav.team': 'Our Team',
+      'nav.team.desc': 'Our professional coaches',
       'nav.services': 'Chess Courses',
       'nav.gallery': 'Gallery',
+      'nav.gallery.desc': 'Moments from our activities',
       'nav.testimonials': 'Testimonials',
+      'nav.testimonials.desc': 'What students & parents say',
       'nav.blog': 'Blog',
       'nav.contact': 'Contact',
       'nav.enroll': 'Join Your First Course!',
@@ -261,6 +269,8 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       'contact.submitting': 'Sending...',
       'contact.success': '✅ Thank you! Your message has been sent successfully.',
       'contact.error': '❌ Something went wrong. Please try again.',
+      'contact.consent': 'I have read and agree to the processing of my data in accordance with the',
+      'contact.consentLink': 'Privacy Policy',
 
       // Footer
       'footer.copyright': '© 2025 THE SQUARE. All rights reserved.',

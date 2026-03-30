@@ -116,7 +116,7 @@ const Team = ({
                     key={member.image}
                     src={`/${member.image}`}
                     alt={member.name}
-                    className={`absolute inset-0 w-full h-full object-cover scale-90 ${
+                    className={`absolute inset-0 w-full h-full object-cover scale-90 transition-opacity duration-700 ease-in-out ${
                       currentSlide === index ? "opacity-100 z-10" : "opacity-0 z-0"
                     }`}
                     loading="eager"

@@ -14,6 +14,31 @@ export interface BlogPost {
 export const blogPosts: Record<'ro' | 'en', BlogPost[]> = {
   ro: [
   {
+    id: 4,
+    title: "Redescoperirea șahului într-o lume digitală",
+    excerpt: "Să redescoperi șahul după mulți ani de pauză este asemenea mersului pe bicicletă: încă stăpânești bazele, dar nu poți spune că ai cel mai lin drum. Odată cu anul 2026, am descoperit TheSquare și serile sociale de șah organizate de aceștia.",
+    image: "images/gallery/chess-evenings.jpg",
+    content: `# Redescoperirea șahului într-o lume digitală
+
+Să redescoperi șahul după mulți ani de pauză este asemenea mersului pe bicicletă: încă stăpânești bazele, dar nu poți spune că ai cel mai lin drum. Părinții mei și domnul profesor de educație fizică din clasele primare sunt cei de la care am învățat care este mersul pieselor pe tablă. Totuși, abia mult mai târziu aveam să descopăr complexitatea acestui joc.
+
+## Întoarcerea la tablă
+
+Viața și-a urmat cursul. Facultatea și mutarea la București au făcut ca această pasiune să rămână undeva în amintirile copilăriei mele, cu mici momente ocazionale în care mai exploram șahul online. Odată cu anul 2026, din dorința de a mai evada din universul preponderent digital spre care ne îndreptăm, am descoperit TheSquare și serile sociale de șah organizate de aceștia. Încă de la primele întâlniri am redescoperit bucuria jocului față în față. Este o experiență diferită să ai în fața ta un partener cu care, la finalul partidei, poți discuta strategiile, analiza mutările, împărtăși sfaturi și chiar râde de propriile greșeli care, în acel moment, păreau o alegere bună. Mediul șahului online te privează adesea de astfel de interacțiuni.
+
+## Ce mă învață șahul
+
+Dacă m-ar întreba cineva de ce îmi place șahul în mod deosebit, nu aș ști exact ce să răspund, dar este cert faptul că acesta mă învață foarte multe lucruri. Mă învață să am răbdare și să nu iau decizii pripite, să îmi organizez gândurile, să anticipez, să mă adaptez la mișcările celuilalt jucător și să perseverez indiferent de care se prognozează a fi finalul. Una dintre intrigile acestui sport este că uneori o singură mișcare greșită poate costa întregul joc. În același timp, tocmai asta te învață să perseverezi și să duci partida până la capăt, indiferent de rezultat. De multe ori, cele mai interesante lecții le învăț din jocurile pe care le pierd, dar asta se datorează și oamenilor pe care îi întâlnesc, oameni care joacă șah din același motiv ca și mine: pentru că le aduce bucurie.
+
+## Un nou început
+
+Nu în ultimul rând, fiecare șah mat nu este decât un nou început, o nouă rundă în care poți lua totul de la capăt și face alegeri mai bune.`,
+    author: "Georgiana Horobeanu",
+    date: "30 martie 2026",
+    category: "Comunitate",
+    readTime: "4 min",
+  },
+  {
     id: 3,
     title: "Cum să înveți deschiderile corect: Renunță la memorarea oarbă a variantelor",
     excerpt: "În ultimii 17 ani am observat un punct comun în eșecurile multor jucători: mulți cred că învățarea deschiderilor înseamnă memorarea lor. Teoria are un rol important, însă devine utilă abia după ce înțelegi structurile, ideile și planurile specifice fiecărei poziții.",
@@ -250,6 +275,31 @@ Pentru mai multe detalii, cartea „The Rating Revolution" explorează soluții 
   },
   ],
   en: [
+  {
+    id: 4,
+    title: "The Rediscovery of Chess in a Digital World",
+    excerpt: "Rediscovering chess after many years of pause is like riding a bicycle: you still master the basics, but you can't say you have the smoothest ride. In 2026, I discovered TheSquare and their social chess evenings.",
+    image: "images/gallery/chess-evenings.jpg",
+    content: `# The Rediscovery of Chess in a Digital World
+
+Rediscovering chess after many years of pause is like riding a bicycle: you still master the basics, but you can't say you have the smoothest ride. My parents and my physical education teacher from primary school are the ones who taught me how the pieces move on the board. However, it was only much later that I would discover the complexity of this game.
+
+## Returning to the Board
+
+Life took its course. University and moving to Bucharest meant this passion remained somewhere in my childhood memories, with occasional moments when I would explore online chess. In 2026, driven by the desire to escape the predominantly digital world we are heading towards, I discovered TheSquare and their social chess evenings. From the very first meetups, I rediscovered the joy of playing face to face. It is a different experience to have a partner in front of you with whom, at the end of the game, you can discuss strategies, analyze moves, share advice, and even laugh at your own mistakes which, in that moment, seemed like a good choice. The online chess environment often deprives you of such interactions.
+
+## What Chess Teaches Me
+
+If someone asked me why I particularly enjoy chess, I wouldn't know exactly what to answer, but it is certain that it teaches me a great many things. It teaches me to be patient and not make hasty decisions, to organize my thoughts, to anticipate, to adapt to the other player's moves, and to persevere regardless of what the outcome is predicted to be. One of the intrigues of this sport is that sometimes a single wrong move can cost you the entire game. At the same time, that is precisely what teaches you to persevere and play the game through to the end, regardless of the result. Many times, the most interesting lessons come from the games I lose, but that is also thanks to the people I meet — people who play chess for the same reason as me: because it brings them joy.
+
+## A New Beginning
+
+Last but not least, every checkmate is nothing but a new beginning, a new round in which you can start all over again and make better choices.`,
+    author: "Georgiana Horobeanu",
+    date: "March 30, 2026",
+    category: "Community",
+    readTime: "4 min",
+  },
   {
     id: 3,
     title: "How to Learn Openings Correctly: Stop Blindly Memorizing Variations",

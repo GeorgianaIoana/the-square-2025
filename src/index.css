@@ -58,12 +58,6 @@ img {
   image-rendering: -webkit-optimize-contrast;
 }
 
-/* Ensure images don't cause layout shifts */
-img[loading="eager"],
-img[loading="lazy"] {
-  content-visibility: auto;
-}
-
 /* GPU acceleration for smooth transitions */
 .will-change-opacity {
   will-change: opacity;

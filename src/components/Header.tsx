@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Calendar as CalendarIcon } from "lucide-react";
+import { Calendar as CalendarIcon, ChevronDown, Users, Image as ImageIcon, MessageSquareQuote } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "../contexts/LanguageContext";
 
@@ -18,6 +18,9 @@ export default function Header() {
   const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
+  const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const isHomePage = location.pathname === "/";
 
@@ -62,76 +65,112 @@ export default function Header() {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled || !isHomePage ? "bg-[#233d36] shadow-lg" : "bg-transparent"
+      className={`fixed w-full z-50 transition-all duration-500 ${
+        isScrolled || !isHomePage ? "bg-[#233d36]/95 shadow-lg backdrop-blur-sm" : "bg-transparent"
       }`}
     >
       <div className="mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center py-2">
-          <Link to="/" className="flex items-center space-x-2 pt-4 pl-2 sm:pl-16">
+        <div className="flex justify-between items-center py-3">
+          <Link to="/" className="flex items-center pl-2 sm:pl-10 group">
             <img
               src="/images/logo/Logo-square.svg?v=2"
-              alt="Logo"
-              className="w-[110px] sm:w-[150px]"
+              alt="The Square Chess Club"
+              className="w-[120px] sm:w-[160px] drop-shadow-[0_0_8px_rgba(166,182,224,0.3)] group-hover:drop-shadow-[0_0_14px_rgba(186,218,213,0.5)] transition-all duration-500 group-hover:scale-105"
               loading="eager"
               decoding="async"
             />
           </Link>
 
           <div className="hidden lg:flex items-center gap-1 ml-auto font-archivo text-[#badad5] pr-4">
-            <button
-              onClick={() => scrollToSection("about")}
-              className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-semibold tracking-wide ${
-                isScrolled || !isHomePage ? "text-white" : "text-[#a6b6e0]"
-              }`}
+            {/* "Despre noi" dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => {
+                if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
+                setAboutDropdownOpen(true);
+              }}
+              onMouseLeave={() => {
+                dropdownTimeoutRef.current = setTimeout(() => setAboutDropdownOpen(false), 200);
+              }}
             >
-              {t('nav.about')}
-            </button>
-            <button
-              onClick={() => scrollToSection("team")}
-              className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-semibold tracking-wide ${
-                isScrolled || !isHomePage ? "text-white" : "text-[#a6b6e0]"
-              }`}
-            >
-              {t('nav.team')}
-            </button>
+              <button
+                onClick={() => scrollToSection("about")}
+                className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 font-semibold tracking-wide hover:text-[#badad5] inline-flex items-center gap-1.5 ${
+                  isScrolled || !isHomePage ? "text-white" : "text-[#a6b6e0]"
+                }`}
+              >
+                {t('nav.about')}
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-300 ${aboutDropdownOpen ? 'rotate-180' : ''}`}
+                />
+              </button>
+
+              <div
+                className={`absolute top-full left-1/2 -translate-x-1/2 pt-2.5 transition-all duration-200 ease-out ${
+                  aboutDropdownOpen
+                    ? 'opacity-100 translate-y-0 pointer-events-auto'
+                    : 'opacity-0 -translate-y-1 pointer-events-none'
+                }`}
+              >
+                <div className="bg-[#1a3530] border border-[#badad5]/10 rounded-xl shadow-xl shadow-black/30 overflow-hidden min-w-[190px]">
+                  <div className="py-1.5 px-1.5">
+                    <button
+                      onClick={() => { scrollToSection("team"); setAboutDropdownOpen(false); }}
+                      className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[#badad5]/80 hover:text-white hover:bg-white/[0.07] transition-colors duration-150"
+                    >
+                      <Users className="w-4 h-4 opacity-60" />
+                      <span className="text-[13px] font-medium">{t('nav.team')}</span>
+                    </button>
+                    <button
+                      onClick={() => { scrollToSection("gallery"); setAboutDropdownOpen(false); }}
+                      className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[#badad5]/80 hover:text-white hover:bg-white/[0.07] transition-colors duration-150"
+                    >
+                      <ImageIcon className="w-4 h-4 opacity-60" />
+                      <span className="text-[13px] font-medium">{t('nav.gallery')}</span>
+                    </button>
+                    <button
+                      onClick={() => { scrollToSection("testimonials"); setAboutDropdownOpen(false); }}
+                      className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[#badad5]/80 hover:text-white hover:bg-white/[0.07] transition-colors duration-150"
+                    >
+                      <MessageSquareQuote className="w-4 h-4 opacity-60" />
+                      <span className="text-[13px] font-medium">{t('nav.testimonials')}</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <button
               onClick={() => scrollToSection("services")}
-              className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-semibold tracking-wide ${
+              className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 font-semibold tracking-wide hover:text-[#badad5] ${
                 isScrolled || !isHomePage ? "text-white" : "text-[#a6b6e0]"
               }`}
             >
               {t('nav.services')}
             </button>
-            <button
-              onClick={() => scrollToSection("gallery")}
-              className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-semibold tracking-wide ${
-                isScrolled || !isHomePage ? "text-white" : "text-[#a6b6e0]"
-              }`}
-            >
-              {t('nav.gallery')}
-            </button>
-            <button
-              onClick={() => scrollToSection("testimonials")}
-              className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-semibold tracking-wide ${
-                isScrolled || !isHomePage ? "text-white" : "text-[#a6b6e0]"
-              }`}
-            >
-              {t('nav.testimonials')}
-            </button>
             <Link
               to="/blog"
               className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 font-semibold tracking-wide ${
                 isBlogPage
-                  ? "bg-[#badad5]/20 text-[#badad5]"
-                  : `hover:bg-[#badad5]/20 ${isScrolled || !isHomePage ? "text-white" : "text-[#a6b6e0]"}`
+                  ? "text-[#badad5]"
+                  : `hover:text-[#badad5] ${isScrolled || !isHomePage ? "text-white" : "text-[#a6b6e0]"}`
               }`}
             >
               {t('nav.blog')}
             </Link>
+            <a
+              href="https://www.openthesquare.ro/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 font-semibold tracking-wide hover:text-[#badad5] ${
+                isScrolled || !isHomePage ? "text-white" : "text-[#a6b6e0]"
+              }`}
+            >
+              Concurs
+            </a>
             <button
               onClick={() => scrollToSection("contact")}
-              className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 hover:bg-[#badad5]/20 font-semibold tracking-wide ${
+              className={`px-3 py-2 text-sm rounded-lg transition-all duration-300 font-semibold tracking-wide hover:text-[#badad5] ${
                 isScrolled || !isHomePage ? "text-white" : "text-[#a6b6e0]"
               }`}
             >
@@ -191,8 +230,8 @@ export default function Header() {
           <div className="flex justify-between items-center px-4 sm:px-6 py-4 border-b border-[#233d36] bg-[#001a00]">
             <img
               src="/images/logo/Logo-square.svg?v=2"
-              alt="Logo"
-              className="w-[90px] sm:w-[110px]"
+              alt="The Square Chess Club"
+              className="w-[100px] sm:w-[120px] drop-shadow-[0_0_8px_rgba(166,182,224,0.3)]"
             />
             <button
               onClick={() => setMobileMenuOpen(false)}
@@ -208,35 +247,63 @@ export default function Header() {
           {/* Navigation Links */}
           <nav className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 sm:py-6">
             <div className="space-y-2 max-w-md mx-auto">
-              <button
-                onClick={() => { scrollToSection("about"); setMobileMenuOpen(false); }}
-                className="w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
-              >
-                {t('nav.about')}
-              </button>
-              <button
-                onClick={() => { scrollToSection("team"); setMobileMenuOpen(false); }}
-                className="w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
-              >
-                {t('nav.team')}
-              </button>
+              {/* "Despre noi" with expandable sub-items */}
+              <div>
+                <div className="flex items-center">
+                  <button
+                    onClick={() => { scrollToSection("about"); setMobileMenuOpen(false); setMobileAboutOpen(false); }}
+                    className="flex-1 text-left px-5 py-4 rounded-l-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
+                  >
+                    {t('nav.about')}
+                  </button>
+                  <button
+                    onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
+                    className={`px-4 py-4 rounded-r-xl text-[#badad5] transition-colors touch-manipulation ${mobileAboutOpen ? 'bg-[#233d36]' : 'hover:bg-[#233d36] active:bg-[#233d36]'}`}
+                    aria-label="Toggle about submenu"
+                  >
+                    <ChevronDown
+                      className={`w-5 h-5 transition-transform duration-300 ${mobileAboutOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                </div>
+                <div
+                  className={`grid transition-all duration-300 ease-in-out ${
+                    mobileAboutOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div className="mt-1 ml-4 space-y-0.5 rounded-xl bg-[#233d36]/50 p-2">
+                      <button
+                        onClick={() => { scrollToSection("team"); setMobileMenuOpen(false); setMobileAboutOpen(false); }}
+                        className="w-full flex items-center gap-3 px-4 py-3.5 rounded-lg text-[#badad5]/70 hover:text-[#badad5] hover:bg-[#badad5]/8 active:bg-[#badad5]/10 transition-all font-archivo text-sm sm:text-base font-medium touch-manipulation"
+                      >
+                        <Users className="w-4 h-4 shrink-0" />
+                        {t('nav.team')}
+                      </button>
+                      <button
+                        onClick={() => { scrollToSection("gallery"); setMobileMenuOpen(false); setMobileAboutOpen(false); }}
+                        className="w-full flex items-center gap-3 px-4 py-3.5 rounded-lg text-[#badad5]/70 hover:text-[#badad5] hover:bg-[#badad5]/8 active:bg-[#badad5]/10 transition-all font-archivo text-sm sm:text-base font-medium touch-manipulation"
+                      >
+                        <ImageIcon className="w-4 h-4 shrink-0" />
+                        {t('nav.gallery')}
+                      </button>
+                      <button
+                        onClick={() => { scrollToSection("testimonials"); setMobileMenuOpen(false); setMobileAboutOpen(false); }}
+                        className="w-full flex items-center gap-3 px-4 py-3.5 rounded-lg text-[#badad5]/70 hover:text-[#badad5] hover:bg-[#badad5]/8 active:bg-[#badad5]/10 transition-all font-archivo text-sm sm:text-base font-medium touch-manipulation"
+                      >
+                        <MessageSquareQuote className="w-4 h-4 shrink-0" />
+                        {t('nav.testimonials')}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <button
                 onClick={() => { scrollToSection("services"); setMobileMenuOpen(false); }}
                 className="w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
               >
                 {t('nav.services')}
-              </button>
-              <button
-                onClick={() => { scrollToSection("gallery"); setMobileMenuOpen(false); }}
-                className="w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
-              >
-                {t('nav.gallery')}
-              </button>
-              <button
-                onClick={() => { scrollToSection("testimonials"); setMobileMenuOpen(false); }}
-                className="w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
-              >
-                {t('nav.testimonials')}
               </button>
               <Link
                 to="/blog"
@@ -247,6 +314,15 @@ export default function Header() {
               >
                 {t('nav.blog')}
               </Link>
+              <a
+                href="https://www.openthesquare.ro/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
+              >
+                Concurs
+              </a>
               <button
                 onClick={() => { scrollToSection("contact"); setMobileMenuOpen(false); }}
                 className="w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"

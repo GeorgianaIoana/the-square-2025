@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import ContactMap from "./ContactMap";
 import type { ContactSubmission } from "../types/contact";
 import { useLanguage } from "../contexts/LanguageContext";
@@ -55,6 +55,7 @@ export default function ContactSection() {
   );
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [consentChecked, setConsentChecked] = useState(false);
   const navigate = useNavigate();
 
   const memoizedMap = useMemo(() => <ContactMap />, []);
@@ -117,6 +118,7 @@ export default function ContactSection() {
         setTimeout(() => {
           clearDraft();
           setFormValues(initialFormState);
+          setConsentChecked(false);
           navigate("/thank-you", { state: { submission } });
         }, 1500);
       } else {
@@ -265,10 +267,64 @@ export default function ContactSection() {
                 ></textarea>
               </div>
 
+              <label
+                htmlFor="consent"
+                className="group flex items-start gap-3 sm:gap-3.5 cursor-pointer select-none rounded-lg border border-[#233d36]/15 bg-white/40 px-4 py-3.5 transition-all duration-200 hover:bg-white/60 hover:border-[#233d36]/25"
+              >
+                {/* Hidden native checkbox */}
+                <input
+                  type="checkbox"
+                  id="consent"
+                  name="consent"
+                  checked={consentChecked}
+                  onChange={(e) => setConsentChecked(e.target.checked)}
+                  className="sr-only peer"
+                />
+
+                {/* Custom checkbox visual */}
+                <span
+                  aria-hidden="true"
+                  className={`
+                    mt-0.5 flex h-[18px] w-[18px] shrink-0 items-center justify-center
+                    rounded border-2 transition-all duration-200
+                    ${consentChecked
+                      ? 'border-[#233d36] bg-[#233d36]'
+                      : 'border-[#233d36]/40 bg-white group-hover:border-[#233d36]/60'}
+                  `}
+                >
+                  <svg
+                    className={`h-3 w-3 text-white transition-all duration-200 ${consentChecked ? 'opacity-100 scale-100' : 'opacity-0 scale-75'}`}
+                    viewBox="0 0 12 12"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M2 6l3 3 5-5" />
+                  </svg>
+                </span>
+
+                {/* Label text */}
+                <span className="text-[13px] sm:text-sm leading-relaxed text-[#233d36]/80 font-archivo tracking-wide">
+                  {t('contact.consent')}{' '}
+                  <Link
+                    to="/privacy-policy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-[#233d36] underline decoration-[#233d36]/30 underline-offset-2 transition-all duration-200 hover:decoration-[#233d36]/70"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {t('contact.consentLink')}
+                  </Link>
+                  <span className="text-red-500 ml-0.5">*</span>
+                </span>
+              </label>
+
               <div className="text-center pt-2 sm:pt-4 sm:pb-0 pb-6">
                 <button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !consentChecked}
                   className="w-full sm:w-auto px-6 py-3 bg-[#233d36] text-[#badad5] font-semibold rounded-lg hover:bg-[#a6b6e0] hover:text-[#233d36] transition-colors duration-300 text-sm sm:text-base touch-manipulation disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? t('contact.submitting') : t('contact.submit')}

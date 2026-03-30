@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig, Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import Pages from 'vite-plugin-pages';
@@ -56,5 +57,11 @@ export default defineConfig({
     headers: {
       'Cache-Control': 'no-store',
     },
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: './src/test/setup.ts',
+    css: true,
   },
 });

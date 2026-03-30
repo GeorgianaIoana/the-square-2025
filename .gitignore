@@ -57,3 +57,5 @@ Desktop.ini
 # Security - Package locks (use one, not both)
 # yarn.lock
 # package-lock.json
+.vercel
+.env*.local

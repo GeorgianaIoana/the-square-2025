@@ -13,7 +13,7 @@ const NEWSLETTER_ACCESS_KEY = "9e26e303-368c-44fc-86ac-7e427470a472";
 
 export default function BlogPage() {
   const { t, language } = useLanguage();
-  const currentBlogPosts = [...(blogPosts[language] || blogPosts.ro)].sort((a, b) => a.id - b.id);
+  const currentBlogPosts = [...(blogPosts[language] || blogPosts.ro)].sort((a, b) => b.id - a.id);
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [newsletterStatus, setNewsletterStatus] = useState<string | null>(null);
   const [isSubmittingNewsletter, setIsSubmittingNewsletter] = useState(false);
