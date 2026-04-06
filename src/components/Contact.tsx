@@ -6,7 +6,7 @@ import type { ContactSubmission } from "../types/contact";
 import { useLanguage } from "../contexts/LanguageContext";
 
 const STORAGE_KEY = "contactFormDraft";
-const ACCESS_KEY = "9e26e303-368c-44fc-86ac-7e427470a472";
+const ACCESS_KEY = "3a3bc6f4-794b-4588-9dc4-b5ea1eb8be5b";
 
 const initialFormState: ContactSubmission = {
   name: "",
@@ -79,22 +79,38 @@ export default function ContactSection() {
     event.preventDefault();
     if (isSubmitting) return;
 
+    // Validate consent checkbox
+    if (!consentChecked) {
+      setStatusMessage(t('contact.consentRequired'));
+      return;
+    }
+
     setIsSubmitting(true);
     setStatusMessage(t('contact.submitting'));
 
-    const formElement = event.currentTarget;
-    const formData = new FormData(formElement);
-    formData.set("access_key", ACCESS_KEY);
-    formData.set("name", formValues.name.trim());
-    formData.set("phone", formValues.phone.trim());
-    formData.set("email", formValues.email.trim());
-    formData.set("message", formValues.message.trim());
+    // Create clean FormData with only necessary fields
+    const formData = new FormData();
+    formData.append("access_key", ACCESS_KEY);
+    formData.append("name", formValues.name.trim());
+    formData.append("phone", formValues.phone.trim());
+    formData.append("email", formValues.email.trim());
+    formData.append("message", formValues.message.trim());
+
+    // Add recipient email (where the form will be sent)
+    formData.append("from_name", formValues.name.trim());
+    formData.append("subject", `Mesaj nou de la ${formValues.name.trim()} - THE SQUARE Contact Form`);
+
+    // Add honeypot field (empty string for real users)
+    formData.append("botcheck", "");
+
+    // Add consent confirmation
+    formData.append("consent", "true");
 
     const submission: ContactSubmission = {
-      name: String(formData.get("name") ?? ""),
-      phone: String(formData.get("phone") ?? ""),
-      email: String(formData.get("email") ?? ""),
-      message: String(formData.get("message") ?? ""),
+      name: formValues.name.trim(),
+      phone: formValues.phone.trim(),
+      email: formValues.email.trim(),
+      message: formValues.message.trim(),
     };
 
     try {
@@ -105,7 +121,7 @@ export default function ContactSection() {
 
       const data = await response.json();
 
-      if (data.success) {
+      if (response.ok && data.success) {
         setStatusMessage(t('contact.success'));
 
         if (typeof window !== "undefined") {
@@ -122,11 +138,11 @@ export default function ContactSection() {
           navigate("/thank-you", { state: { submission } });
         }, 1500);
       } else {
-        console.error("Error", data);
-        setStatusMessage(t('contact.error'));
+        console.error("API Error:", data);
+        setStatusMessage(data.message || t('contact.error'));
       }
     } catch (error) {
-      console.error("Network error", error);
+      console.error("Network error:", error);
       setStatusMessage(t('contact.error'));
     } finally {
       setIsSubmitting(false);
@@ -189,7 +205,7 @@ export default function ContactSection() {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm sm:text-base font-medium text-[#233d36] mb-2"
+                  className="block text-sm sm:text-base font-medium text-[#233d36] mb-2 transition-colors duration-200"
                 >
                   {t('contact.name')} <span className="text-red-500">*</span>
                 </label>
@@ -202,14 +218,14 @@ export default function ContactSection() {
                   required
                   maxLength={100}
                   placeholder={t('contact.name')}
-                  className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
+                  className="w-full px-3 sm:px-4 py-3 sm:py-2 border-2 border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36]/20 focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-all duration-300 ease-in-out hover:border-[#233d36]/40"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="phone"
-                  className="block text-sm sm:text-base font-medium text-[#233d36] mb-2"
+                  className="block text-sm sm:text-base font-medium text-[#233d36] mb-2 transition-colors duration-200"
                 >
                   {t('contact.phone')} <span className="text-red-500">*</span>
                 </label>
@@ -224,14 +240,14 @@ export default function ContactSection() {
                   maxLength={15}
                   placeholder={t('contact.phone')}
                   inputMode="numeric"
-                  className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
+                  className="w-full px-3 sm:px-4 py-3 sm:py-2 border-2 border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36]/20 focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-all duration-300 ease-in-out hover:border-[#233d36]/40"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm sm:text-base font-medium text-[#233d36] mb-2"
+                  className="block text-sm sm:text-base font-medium text-[#233d36] mb-2 transition-colors duration-200"
                 >
                   {t('contact.email')} <span className="text-red-500">*</span>
                 </label>
@@ -244,14 +260,14 @@ export default function ContactSection() {
                   required
                   maxLength={254}
                   placeholder={t('contact.email')}
-                  className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
+                  className="w-full px-3 sm:px-4 py-3 sm:py-2 border-2 border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36]/20 focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-all duration-300 ease-in-out hover:border-[#233d36]/40"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="message"
-                  className="block text-sm sm:text-base font-medium text-[#233d36] mb-2"
+                  className="block text-sm sm:text-base font-medium text-[#233d36] mb-2 transition-colors duration-200"
                 >
                   {t('contact.message')}
                 </label>
@@ -263,13 +279,13 @@ export default function ContactSection() {
                   onChange={handleChange}
                   maxLength={2000}
                   placeholder={t('contact.message')}
-                  className="w-full px-3 sm:px-4 py-3 sm:py-2 border border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36] focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-colors duration-200"
+                  className="w-full px-3 sm:px-4 py-3 sm:py-2 border-2 border-[#badad5] rounded-lg bg-white placeholder-[#233d36]/60 focus:outline-none focus:ring-2 focus:ring-[#233d36]/20 focus:border-[#233d36] text-sm sm:text-base text-[#233d36] transition-all duration-300 ease-in-out hover:border-[#233d36]/40 resize-y min-h-[100px]"
                 ></textarea>
               </div>
 
               <label
                 htmlFor="consent"
-                className="group flex items-start gap-3 sm:gap-3.5 cursor-pointer select-none rounded-lg border border-[#233d36]/15 bg-white/40 px-4 py-3.5 transition-all duration-200 hover:bg-white/60 hover:border-[#233d36]/25"
+                className="group flex items-start gap-3 sm:gap-3.5 cursor-pointer select-none rounded-lg border-2 border-[#233d36]/15 bg-white/40 px-4 py-3.5 transition-all duration-300 ease-in-out hover:bg-white/80 hover:border-[#233d36]/40 hover:shadow-md focus-within:ring-2 focus-within:ring-[#233d36]/20 focus-within:border-[#233d36]"
               >
                 {/* Hidden native checkbox */}
                 <input
@@ -325,9 +341,19 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={isSubmitting || !consentChecked}
-                  className="w-full sm:w-auto px-6 py-3 bg-[#233d36] text-[#badad5] font-semibold rounded-lg hover:bg-[#a6b6e0] hover:text-[#233d36] transition-colors duration-300 text-sm sm:text-base touch-manipulation disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full sm:w-auto px-8 py-3.5 bg-[#233d36] text-[#badad5] font-semibold rounded-lg hover:bg-[#a6b6e0] hover:text-[#233d36] hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out text-sm sm:text-base touch-manipulation disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none active:scale-95"
                 >
-                  {isSubmitting ? t('contact.submitting') : t('contact.submit')}
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      {t('contact.submitting')}
+                    </span>
+                  ) : (
+                    t('contact.submit')
+                  )}
                 </button>
                 {statusMessage && (
                   <p

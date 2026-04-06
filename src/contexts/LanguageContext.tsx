@@ -145,6 +145,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       'contact.error': '❌ A apărut o problemă de rețea. Încearcă din nou.',
       'contact.consent': 'Am citit și sunt de acord cu prelucrarea datelor conform',
       'contact.consentLink': 'Politicii de Confidențialitate',
+      'contact.consentRequired': 'Te rugăm să accepți Politica de Confidențialitate.',
       
       // Footer
       'footer.copyright': '© 2025 THE SQUARE. Developed by THE SQUARE.',
@@ -271,6 +272,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       'contact.error': '❌ Something went wrong. Please try again.',
       'contact.consent': 'I have read and agree to the processing of my data in accordance with the',
       'contact.consentLink': 'Privacy Policy',
+      'contact.consentRequired': 'Please accept the Privacy Policy to continue.',
 
       // Footer
       'footer.copyright': '© 2025 THE SQUARE. All rights reserved.',

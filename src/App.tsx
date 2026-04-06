@@ -30,166 +30,72 @@ declare global {
   }
 }
 
-const teamMembers = [
-  {
-    name: "Vlad Ghiță",
-    title: "CHESS TRAINER",
-    description: `Cu o experiență de peste 17 ani în șahul de performanță, Vlad Ghiță este un pasionat al jocului care a disputat peste 800 de partide în turnee internaționale. Este Instructor Național FIDE din 2022 și Arbitru Național din 2025, statut care reflectă atât angajamentul său față de șah, cât și dorința de a contribui activ la formarea altor jucători.
-De-a lungul carierei, a obținut rezultate deosebite, printre care se numără: câștigarea premiului U2000 la Campionatul Național de Amatori al României (2025), victoria în Semifinala Campionatului Național al României (2021), locul I la categoria U1900 în cadrul turneului Mid-America Open (2017), precum și atingerea celui mai înalt rating FIDE personal, 2021.
-Este apreciat pentru abordarea sa structurată, formularea de planuri clare și stăpânirea finalurilor practice – în special cele de turnuri. În cadrul lecțiilor, pune accent pe înțelegerea principiilor strategice, recunoașterea pozițiilor-cheie și dezvoltarea gândirii autonome, astfel încât elevii să capete încredere în propriile decizii și să performeze în condiții reale de joc.
-În afara șahului, Vlad este pasionat de muzica clasică, tenisul de masă și descoperirea diversității culturale și gastronomice din întreaga lume – pasiuni care reflectă curiozitatea, echilibrul și profunzimea cu care abordează tot ceea ce face.`,
-    image: "images/team/vlad.jpg",
-  },
-  {
-    name: "WNM Georgiana Stanciu",
-    title: "CO-FOUNDER & CHESS TRAINER",
-    description: `Cele mai importante rezultate internaționale ale ei sunt: locul 9 la Campionatul European de șah clasic în Muntenegru 2009, locul 4 la Mondialele școlare din Thailanda 2015 si locul 8 la Campionatul Mondial de șah clasic din Rusia 2016. Elo-ul ei fide de vârf a fost 2054, la vârsta de 16 ani, iar titlul său în prezent este de WNM (maestră națională). Are 8 ani experiență de predarea șahului, iar din 2024 își investește mintea în programare ca Web Developer și Ux/Ui Designer. Georgiana a început șahul la vârsta de 6 ani, la clubul copiilor, unde sora ei participa adesea, alături de un antrenor foarte implicat în performanța copiilor. La doar 7 ani, devine campioană națională, iar copilaria ei își schimbă direcția într-o călătorie interesantă la campionatele europene și mondiale, plină de amintiri frumoase din țările străine, alături de colegi care reprezentau Romania. Șahul face parte din identitatea ei, căci a crescut pe cele 64 de pătrățele și îi este profund recunoscătoare acestui sport, care i-a șlefuit personalitatea. Astfel, la inițiativa Cristianei, dorește să îmbrățișeze Bucureștiul cu pasiunea ei și să ofere o platformă de instruire profesionistă pentru jucătorii de șah, la fel cum a beneficiat și ea ca junioară. A ocupat în fiecare an un loc pe podiumul național la șah clasic și rapid individual, însă locul 1 a fost obținut la categoriile fete sub 8 (2006, CN Predeal), fete sub 12 (2011, CN Voineasa), fete sub 18 ani (2016, CN Călimănești) și fete sub 20 ani (2018, CN Călimănești).
- `,
-    image: "images/team/georgiana.jpg",
-  },
-  {
-    name: "Cristiana Stanciu",
-    title: "CO-FOUNDER & CHESS TRAINER",
-    description: `Cristiana a obținut multiple clasări pe podium la Campionatele Naționale de juniori pe echipe, alături de coechipierele ei de la CSM Craiova, și numeroase premii la turneele locale, atingând un rating FIDE de 1650 și categoria I.
-
-În urma studiilor sale, Cristiana a obținut certificatul pedagogic și a absolvit un Master în cadrul Royal College of Art din Londra, o experiență care i-a consolidat sensibilitatea artistică și capacitatea de a construi povești vizuale memorabile.
-
-Dar dincolo de realizările ei competiționale și academice, Cristiana are un talent secret: știe să scrie frumos despre orice, a scris numeroase poezii. Astfel, ea se ocupă de imaginea clubului de șah și de interacțiunea cu publicul, fiind persoana care dă glas emoțiilor, ideilor și visurilor care definesc comunitatea noastră. Este amabilă, optimistă, sociabilă și are acel farmec natural de a crea un mediu cald și primitor în jurul ei.
- Ca un pion care devine regină, Cristiana știe să se reinventeze și să creadă mereu în "mai bine".
-
-Este pasionată de educație și dezvoltare personală, iar șahul este pentru ea un instrument excelent prin care copiii își pot dezvolta gândirea, răbdarea și încrederea în sine. Cristiana știe cum să facă lucrurile complexe din șah să pară simple și distractive, iar acest dar se reflectă în entuziasmul și progresul copiilor care învață alături de ea – într-un mediu prietenos și creativ.`,
-    image: "images/team/cris-chess.jpg",
-  },
-  {
-    name: "FM Călin Gheorghiu",
-    title: "CHESS TRAINER",
-    description: `Maestru FIDE încă de la vârsta de 16 ani, Călin a atins un vârf de 2384 Elo fide în clasamentul internațional și 2757 Elo pe platforma chess.com. Palmaresul său include multiple titluri de campion național, participarea la Campionatul Mondial de Juniori din India și participarea la Campionatul European din Muntenegru, reprezentând cu mândrie România.
- Încă din copilărie, Călin a fost dedicat șahului și matematicii, domenii în care a excelat datorită conștiinciozității, inteligenței și creativității sale deosebite. A absolvit Facultatea de Matematică în Scoția, apoi a urmat un master în programare la Iași, pregătindu-se în prezent pentru a-și susține doctoratul. În paralel cu activitatea sa din domeniul IT, Călin are peste 5 ani de experiență ca instructor de șah, timp în care a format jucători cu rezultate remarcabile. Ceea ce îl diferențiază este stilul său interactiv și captivant de predare, influențat de pasiunea lui pentru stand-up comedy. Lecțiile cu el sunt atât instructive, cât și pline de energie și umor, creând un mediu de învățare prietenos, în care progresul devine o plăcere. Călin se bucură să contribuie la fericirea oamenilor: fie că progresează rapid la șah sau că râd la glumele sale, ca apoi să se retragă în liniște și să analizeze strategic cum ar fi putut face și mai bine ceea ce știe.
-Ești la început de drum sau un jucător avansat în căutare de un antrenor serios? alături de Călin vei descoperi șahul dintr-o perspectivă nouă – serioasă în competiție, dar relaxată în abordare.`,
-    image: "images/team/calin.jpg",
-  },
-  {
-    name: "Mustafa Hamdan",
-    title: "CHESS TRAINER",
-    description: `Mustafa Hamdan este un instructor de șah pasionat, care vede fiecare partidă ca pe o lecție valoroasă de viață. El studiază atent fiecare mutare pentru a descoperi cum deciziile inspirate pot conduce la victorie, fiind influențat de partidele marilor maeștri, pe care le studiază zilnic. Mustafa este  ambițios, devotat și muncitor pentru a-și atinge obiectivele setate în performanța șahistă. Povestea lui a început ca student al cursurilor de grupă la The Square, la care participa activ si nu lipsea nicio ședință.
-La clubul de șah, a fost captivat de comunitatea prietenoasă, care l-a încurajat să își depășească limitele. Juca șah de plăcere online, iar în doar câteva luni a observat o dezvoltare remarcabilă alături de instructorii The Square. În doar două luni a atins un rating de 1700 pe Chess.com și își propune să participe la turneele locale și naționale. Abordarea sa didactică se bazează pe creativitate, deschideri și tactică, fiind dedicat să ajute fiecare copil să înțeleagă profund conceptele și să sprijine progresul lor înspre performanță. El poate să predea fluent în limba română, engleză și arabă, iar toți elevii săi participă cu drag și perseverează.
-`,
-    image: "images/team/mustafa.jpg",
-  },
+// Static data moved outside component to prevent recreation
+const BANNER_URLS = [
+  "/images/banner/theSquare.jpg",
+  "/images/banner/1.jpg",
+  "/images/banner/2.jpg",
 ];
 
-function App() {
+const GALLERY_URLS = [
+  "/images/gallery/kids.jpg",
+  "/images/gallery/happy-people.jpg",
+  "/images/gallery/chess-camp-calin.jpg",
+  "/images/gallery/chess-camp-vlad.jpg",
+  "/images/banner/2.jpg",
+  "/images/banner/3.jpg",
+];
+
+// MainContent as a separate component to prevent remounting on App state changes
+interface MainContentProps {
+  isScrolled: boolean;
+  currentSlide: number;
+  setCurrentSlide: (n: number) => void;
+  currentGalleryImage: number;
+  setCurrentGalleryImage: (n: number) => void;
+  expandedDescriptions: Record<string, boolean>;
+  toggleDescription: (name: string) => void;
+  mobileMenuOpen: boolean;
+  setMobileMenuOpen: (open: boolean) => void;
+  aboutDropdownOpen: boolean;
+  setAboutDropdownOpen: (open: boolean) => void;
+  mobileAboutOpen: boolean;
+  setMobileAboutOpen: (open: boolean) => void;
+  dropdownTimeoutRef: React.MutableRefObject<ReturnType<typeof setTimeout> | null>;
+  teamSlide: number;
+  setTeamSlide: (n: number) => void;
+  bannerImages: Array<{ url: string; title: string; subtitle?: string }>;
+  galleryImages: string[];
+  scrollToSection: (id: string) => void;
+  nextGalleryImage: () => void;
+  prevGalleryImage: () => void;
+}
+
+const MainContent: React.FC<MainContentProps> = ({
+  isScrolled,
+  currentSlide,
+  currentGalleryImage,
+  setCurrentGalleryImage,
+  expandedDescriptions,
+  toggleDescription,
+  mobileMenuOpen,
+  setMobileMenuOpen,
+  aboutDropdownOpen,
+  setAboutDropdownOpen,
+  mobileAboutOpen,
+  setMobileAboutOpen,
+  dropdownTimeoutRef,
+  teamSlide,
+  setTeamSlide,
+  bannerImages,
+  galleryImages,
+  scrollToSection,
+  nextGalleryImage,
+  prevGalleryImage,
+}) => {
   const { t } = useLanguage();
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [currentGalleryImage, setCurrentGalleryImage] = useState(0);
-  const [expandedDescriptions, setExpandedDescriptions] = useState<
-    Record<string, boolean>
-  >({});
 
-  const toggleDescription = useCallback((name: string) => {
-    setExpandedDescriptions((prev) => ({
-      ...prev,
-      [name]: !prev[name],
-    }));
-  }, []);
-
-  const bannerImages = useMemo(() => [
-    {
-      url: "/images/banner/theSquare.jpg",
-      title: t('banner.title1'),
-      subtitle: t('banner.subtitle1'),
-    },
-    {
-      url: "/images/banner/1.jpg",
-      title: t('banner.title2'),
-      subtitle: t('banner.subtitle2'),
-    },
-    {
-      url: "/images/banner/2.jpg",
-      title: t('banner.title3'),
-    },
-  ], [t]);
-
-  const galleryImages = useMemo(() => [
-    "/images/gallery/kids.jpg",
-    "/images/gallery/happy-people.jpg",
-    "/images/gallery/chess-camp-calin.jpg",
-    "/images/gallery/chess-camp-vlad.jpg",
-    "/images/banner/2.jpg",
-    "/images/banner/3.jpg",
-  ], []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Preload all banner and gallery images on mount
-  useEffect(() => {
-    const bannerUrls = [
-      "/images/banner/theSquare.jpg",
-      "/images/banner/1.jpg",
-      "/images/banner/2.jpg",
-    ];
-    const galleryUrls = [
-      "/images/gallery/kids.jpg",
-      "/images/gallery/happy-people.jpg",
-      "/images/gallery/chess-camp-calin.jpg",
-      "/images/gallery/chess-camp-vlad.jpg",
-      "/images/banner/2.jpg",
-      "/images/banner/3.jpg",
-    ];
-    const allImages = [...bannerUrls, ...galleryUrls];
-    allImages.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-  }, []);
-
-  useEffect(() => {
-    const numSlides = bannerImages.length;
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % numSlides);
-    }, 10000);
-    return () => clearInterval(timer);
-  }, [bannerImages.length]);
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      const headerOffset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition =
-        elementPosition + window.pageYOffset - headerOffset;
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth",
-      });
-    }
-  };
-
-  const nextGalleryImage = () => {
-    setCurrentGalleryImage((prev) => (prev + 1) % galleryImages.length);
-  };
-
-  const prevGalleryImage = () => {
-    setCurrentGalleryImage(
-      (prev) => (prev - 1 + galleryImages.length) % galleryImages.length
-    );
-  };
-
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
-  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
-  const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const [teamSlide, setTeamSlide] = useState(0);
-
-  const MainContent = () => (
+  return (
     <div className="min-h-screen bg-[#001a00]">
       <nav
         className={`w-full z-50 transition-all duration-500 relative ${
@@ -233,34 +139,46 @@ function App() {
                 </button>
 
                 <div
-                  className={`absolute top-full left-1/2 -translate-x-1/2 pt-2.5 transition-all duration-200 ease-out ${
+                  className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 transition-all duration-300 ease-out ${
                     aboutDropdownOpen
-                      ? 'opacity-100 translate-y-0 pointer-events-auto'
-                      : 'opacity-0 -translate-y-1 pointer-events-none'
+                      ? 'opacity-100 translate-y-0 pointer-events-auto scale-100'
+                      : 'opacity-0 -translate-y-2 pointer-events-none scale-95'
                   }`}
                 >
-                  <div className="bg-[#1a3530] border border-[#badad5]/10 rounded-xl shadow-xl shadow-black/30 overflow-hidden min-w-[190px]">
-                    <div className="py-1.5 px-1.5">
+                  {/* Arrow pointer */}
+                  <div className="absolute top-[6px] left-1/2 -translate-x-1/2 w-3 h-3 bg-gradient-to-br from-[#1a3530] to-[#162b27] rotate-45 border-l border-t border-[#badad5]/20" />
+
+                  <div className="relative bg-gradient-to-br from-[#1a3530] via-[#1a3530] to-[#162b27] backdrop-blur-xl border border-[#badad5]/15 rounded-2xl shadow-2xl shadow-black/40 overflow-hidden min-w-[220px]">
+                    {/* Subtle glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#badad5]/5 via-transparent to-[#a6b6e0]/5 pointer-events-none" />
+
+                    <div className="relative py-2 px-2">
                       <button
                         onClick={() => { scrollToSection("team"); setAboutDropdownOpen(false); }}
-                        className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[#badad5]/80 hover:text-white hover:bg-white/[0.07] transition-colors duration-150"
+                        className="group w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[#badad5]/70 hover:text-white hover:bg-gradient-to-r hover:from-[#badad5]/10 hover:to-transparent transition-all duration-200"
                       >
-                        <Users className="w-4 h-4 opacity-60" />
-                        <span className="text-[13px] font-medium">{t('nav.team')}</span>
+                        <div className="p-1.5 rounded-lg bg-[#badad5]/10 group-hover:bg-[#badad5]/20 group-hover:scale-110 transition-all duration-200">
+                          <Users className="w-4 h-4" />
+                        </div>
+                        <span className="text-sm font-medium tracking-wide">{t('nav.team')}</span>
                       </button>
                       <button
                         onClick={() => { scrollToSection("gallery"); setAboutDropdownOpen(false); }}
-                        className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[#badad5]/80 hover:text-white hover:bg-white/[0.07] transition-colors duration-150"
+                        className="group w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[#badad5]/70 hover:text-white hover:bg-gradient-to-r hover:from-[#badad5]/10 hover:to-transparent transition-all duration-200"
                       >
-                        <ImageIcon className="w-4 h-4 opacity-60" />
-                        <span className="text-[13px] font-medium">{t('nav.gallery')}</span>
+                        <div className="p-1.5 rounded-lg bg-[#badad5]/10 group-hover:bg-[#badad5]/20 group-hover:scale-110 transition-all duration-200">
+                          <ImageIcon className="w-4 h-4" />
+                        </div>
+                        <span className="text-sm font-medium tracking-wide">{t('nav.gallery')}</span>
                       </button>
                       <button
                         onClick={() => { scrollToSection("testimonials"); setAboutDropdownOpen(false); }}
-                        className="w-full flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-[#badad5]/80 hover:text-white hover:bg-white/[0.07] transition-colors duration-150"
+                        className="group w-full flex items-center gap-3 px-4 py-3 rounded-xl text-[#badad5]/70 hover:text-white hover:bg-gradient-to-r hover:from-[#badad5]/10 hover:to-transparent transition-all duration-200"
                       >
-                        <MessageSquareQuote className="w-4 h-4 opacity-60" />
-                        <span className="text-[13px] font-medium">{t('nav.testimonials')}</span>
+                        <div className="p-1.5 rounded-lg bg-[#badad5]/10 group-hover:bg-[#badad5]/20 group-hover:scale-110 transition-all duration-200">
+                          <MessageSquareQuote className="w-4 h-4" />
+                        </div>
+                        <span className="text-sm font-medium tracking-wide">{t('nav.testimonials')}</span>
                       </button>
                     </div>
                   </div>
@@ -479,7 +397,7 @@ function App() {
           <div className="relative h-[420px] sm:h-[480px] md:h-[540px] lg:h-[638px] rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-xl">
             {bannerImages.map((image, index) => (
               <div
-                key={index}
+                key={image.url}
                 className={`absolute inset-0 w-full h-full transition-opacity duration-1000 ease-in-out will-change-opacity ${
                   currentSlide === index ? "opacity-100 z-20" : "opacity-0 z-10"
                 }`}
@@ -954,6 +872,118 @@ function App() {
       <TawkToLanguage />
     </div>
   );
+};
+
+function App() {
+  const { t } = useLanguage();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentGalleryImage, setCurrentGalleryImage] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
+  const [teamSlide, setTeamSlide] = useState(0);
+  const [expandedDescriptions, setExpandedDescriptions] = useState<
+    Record<string, boolean>
+  >({});
+  const dropdownTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const toggleDescription = useCallback((name: string) => {
+    setExpandedDescriptions((prev) => ({
+      ...prev,
+      [name]: !prev[name],
+    }));
+  }, []);
+
+  // Memoize banner images to prevent recreation on every render
+  const bannerImages = useMemo(() => [
+    {
+      url: "/images/banner/theSquare.jpg",
+      title: t('banner.title1'),
+      subtitle: t('banner.subtitle1'),
+    },
+    {
+      url: "/images/banner/1.jpg",
+      title: t('banner.title2'),
+      subtitle: t('banner.subtitle2'),
+    },
+    {
+      url: "/images/banner/2.jpg",
+      title: t('banner.title3'),
+    },
+  ], [t]);
+
+  // Use static gallery images
+  const galleryImages = GALLERY_URLS;
+
+  // Preload all banner and gallery images on mount
+  useEffect(() => {
+    const allImages = [...BANNER_URLS, ...GALLERY_URLS];
+    allImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
+  // Auto-rotate banner
+  useEffect(() => {
+    const numSlides = bannerImages.length;
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % numSlides);
+    }, 10000);
+    return () => clearInterval(timer);
+  }, [bannerImages.length]);
+
+  const scrollToSection = useCallback((id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition =
+        elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth",
+      });
+    }
+  }, []);
+
+  const nextGalleryImage = useCallback(() => {
+    setCurrentGalleryImage((prev) => (prev + 1) % GALLERY_URLS.length);
+  }, []);
+
+  const prevGalleryImage = useCallback(() => {
+    setCurrentGalleryImage(
+      (prev) => (prev - 1 + GALLERY_URLS.length) % GALLERY_URLS.length
+    );
+  }, []);
+
+  // Render the main content with props
+  const renderMainContent = () => (
+    <MainContent
+      isScrolled={isScrolled}
+      currentSlide={currentSlide}
+      setCurrentSlide={setCurrentSlide}
+      currentGalleryImage={currentGalleryImage}
+      setCurrentGalleryImage={setCurrentGalleryImage}
+      expandedDescriptions={expandedDescriptions}
+      toggleDescription={toggleDescription}
+      mobileMenuOpen={mobileMenuOpen}
+      setMobileMenuOpen={setMobileMenuOpen}
+      aboutDropdownOpen={aboutDropdownOpen}
+      setAboutDropdownOpen={setAboutDropdownOpen}
+      mobileAboutOpen={mobileAboutOpen}
+      setMobileAboutOpen={setMobileAboutOpen}
+      dropdownTimeoutRef={dropdownTimeoutRef}
+      teamSlide={teamSlide}
+      setTeamSlide={setTeamSlide}
+      bannerImages={bannerImages}
+      galleryImages={galleryImages}
+      scrollToSection={scrollToSection}
+      nextGalleryImage={nextGalleryImage}
+      prevGalleryImage={prevGalleryImage}
+    />
+  );
 
   // Loading fallback for lazy loaded pages
   const PageLoader = () => (
@@ -975,7 +1005,7 @@ function App() {
           <Route path="/thank-you" element={<ThankYouPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:id" element={<BlogPostPage />} />
-          <Route path="/" element={<MainContent />} />
+          <Route path="/" element={renderMainContent()} />
         </Routes>
       </Suspense>
     </Router>
