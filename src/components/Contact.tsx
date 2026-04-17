@@ -1,12 +1,17 @@
 import React, { useMemo, useState } from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 import ContactMap from "./ContactMap";
 import type { ContactSubmission } from "../types/contact";
 import { useLanguage } from "../contexts/LanguageContext";
 
 const STORAGE_KEY = "contactFormDraft";
-const ACCESS_KEY = "3a3bc6f4-794b-4588-9dc4-b5ea1eb8be5b";
+
+// EmailJS configuration
+const EMAILJS_SERVICE_ID = "service_o50os2e";
+const EMAILJS_TEMPLATE_ID = "template_qgcsugb";
+const EMAILJS_PUBLIC_KEY = "14sbBVXwFnNtb9abA";
 
 const initialFormState: ContactSubmission = {
   name: "",
@@ -88,24 +93,6 @@ export default function ContactSection() {
     setIsSubmitting(true);
     setStatusMessage(t('contact.submitting'));
 
-    // Create clean FormData with only necessary fields
-    const formData = new FormData();
-    formData.append("access_key", ACCESS_KEY);
-    formData.append("name", formValues.name.trim());
-    formData.append("phone", formValues.phone.trim());
-    formData.append("email", formValues.email.trim());
-    formData.append("message", formValues.message.trim());
-
-    // Add recipient email (where the form will be sent)
-    formData.append("from_name", formValues.name.trim());
-    formData.append("subject", `Mesaj nou de la ${formValues.name.trim()} - THE SQUARE Contact Form`);
-
-    // Add honeypot field (empty string for real users)
-    formData.append("botcheck", "");
-
-    // Add consent confirmation
-    formData.append("consent", "true");
-
     const submission: ContactSubmission = {
       name: formValues.name.trim(),
       phone: formValues.phone.trim(),
@@ -114,14 +101,19 @@ export default function ContactSection() {
     };
 
     try {
-      const response = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData,
-      });
+      const result = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name: submission.name,
+          from_email: submission.email,
+          phone: submission.phone,
+          message: submission.message,
+        },
+        EMAILJS_PUBLIC_KEY
+      );
 
-      const data = await response.json();
-
-      if (response.ok && data.success) {
+      if (result.status === 200) {
         setStatusMessage(t('contact.success'));
 
         if (typeof window !== "undefined") {
@@ -138,11 +130,11 @@ export default function ContactSection() {
           navigate("/thank-you", { state: { submission } });
         }, 1500);
       } else {
-        console.error("API Error:", data);
-        setStatusMessage(data.message || t('contact.error'));
+        console.error("EmailJS Error:", result);
+        setStatusMessage(t('contact.error'));
       }
     } catch (error) {
-      console.error("Network error:", error);
+      console.error("EmailJS error:", error);
       setStatusMessage(t('contact.error'));
     } finally {
       setIsSubmitting(false);

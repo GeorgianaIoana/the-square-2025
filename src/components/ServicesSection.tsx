@@ -19,6 +19,7 @@ const getServices = (t: (key: string) => string) => [
     icon: <Book />,
     features: [
       t('services.adults.feature1'),
+      t('services.adults.freeSession'),
       t('services.adults.feature2'),
       t('services.adults.feature3'),
       t('services.adults.feature4'),
@@ -30,6 +31,7 @@ const getServices = (t: (key: string) => string) => [
     icon: <Pen />,
     features: [
       t('services.kids.feature1'),
+      t('services.kids.freeSession'),
       t('services.kids.feature2'),
       t('services.kids.feature3'),
       t('services.kids.feature4'),
