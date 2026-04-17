@@ -348,13 +348,19 @@ export default function ContactSection() {
                   )}
                 </button>
                 {statusMessage && (
-                  <p
-                    className="mt-4 text-sm text-[#233d36]"
+                  <div
+                    className={`mt-6 px-4 py-3 rounded-lg text-sm font-medium flex items-center justify-center gap-2 animate-fade-in ${
+                      statusMessage.includes('✅')
+                        ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                        : statusMessage.includes('❌')
+                        ? 'bg-red-50 text-red-700 border border-red-200'
+                        : 'bg-[#233d36]/10 text-[#233d36] border border-[#233d36]/20'
+                    }`}
                     aria-live="polite"
                     role="status"
                   >
-                    {statusMessage}
-                  </p>
+                    {statusMessage.replace(/[✅❌]\s*/g, '')}
+                  </div>
                 )}
               </div>
             </form>
