@@ -35,6 +35,7 @@ const getServices = (t: (key: string) => string) => [
       t('services.kids.feature2'),
       t('services.kids.feature3'),
       t('services.kids.feature4'),
+      { text: t('services.kids.siblingDiscount'), highlight: true },
     ],
   },
   {
@@ -69,6 +70,7 @@ const getServices = (t: (key: string) => string) => [
       t('services.individualKids.feature2'),
       t('services.individualKids.feature3'),
       t('services.individualKids.feature4'),
+      { text: t('services.individualKids.siblingDiscount'), highlight: true },
     ],
   },
   {
@@ -218,11 +220,11 @@ export default function ServicesSection() {
           {t('services.title')}
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-10 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-10 justify-items-center items-stretch">
           {displayedServices.map((service, index) => (
             <div
               key={index}
-              className="font-archivo tracking-[0.1em] bg-[#badad5] w-full max-w-[400px] rounded-lg p-6 sm:p-8 shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-[#a6b6e0]"
+              className="font-archivo tracking-[0.1em] bg-[#badad5] w-full max-w-[400px] rounded-lg p-6 sm:p-8 shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-[#a6b6e0] flex flex-col"
             >
               <div className="flex items-center mb-4">
                 <div className="w-8 h-8 text-[#233d36] mr-3">
@@ -237,16 +239,24 @@ export default function ServicesSection() {
               <p className="font-serif tracking-[0.05em] text-2xl sm:text-3xl text-[#233d36] mb-6">
                 {service.price}
               </p>
-              <ul className="font-archivo tracking-[0.1em] space-y-3 mb-6 text-sm sm:text-base text-[#233d36]">
-                {service.features.map((feature, i) => (
-                  <li key={i} className="flex items-center font-archivo">
-                    <Star className="w-4 h-4 sm:w-5 sm:h-5 mr-2 text-[#233d36] flex-shrink-0" />
-                    <span className="font-archivo">{feature}</span>
-                  </li>
-                ))}
+              <ul className="font-archivo tracking-[0.1em] space-y-3 mb-6 text-sm sm:text-base text-[#233d36] flex-grow">
+                {service.features.map((feature, i) => {
+                  const isHighlight = typeof feature === 'object' && feature.highlight;
+                  const text = typeof feature === 'object' ? feature.text : feature;
+                  return (
+                    <li key={i} className="flex items-center font-archivo">
+                      <Star
+                        className={`w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0 ${
+                          isHighlight ? 'text-yellow-500 fill-yellow-500' : 'text-[#233d36]'
+                        }`}
+                      />
+                      <span className={`font-archivo ${isHighlight ? 'font-semibold' : ''}`}>{text}</span>
+                    </li>
+                  );
+                })}
               </ul>
               <button
-                className="font-archivo tracking-[0.1em] w-full bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] py-3 rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all duration-300 shadow-lg active:scale-95"
+                className="font-archivo tracking-[0.1em] w-full bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] py-3 rounded-xl font-bold hover:shadow-xl hover:scale-105 transition-all duration-300 shadow-lg active:scale-95 mt-auto"
                 onClick={() => {
                   const contactSection = document.getElementById("contact");
                   if (contactSection) {
