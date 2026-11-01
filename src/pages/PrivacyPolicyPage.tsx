@@ -301,15 +301,19 @@ export default function PrivacyPolicy() {
             </p>
             <ul className="list-disc list-inside ml-4 mt-2">
               <li>
-                Formularul de contact, programările și înscrierea unui copil
-                sub 16 ani se fac doar de către părinte sau tutorele legal, cu
-                datele de contact ale acestuia.
+                Datele unui copil sub 16 ani ne sunt furnizate de părinte sau
+                de tutorele legal, care completează formularul, face
+                programarea sau înscrierea în numele copilului, cu propriile
+                date de contact.
               </li>
               <li>
-                La înscriere, părintele sau tutorele legal semnează contractul
-                de înscriere și acordul privind prelucrarea datelor copilului.
-                Cu această ocazie verificăm identitatea și calitatea
-                semnatarului.
+                Comunicarea privind cursurile și activitățile copilului se
+                face cu părintele sau tutorele legal.
+              </li>
+              <li>
+                Părintele sau tutorele legal își poate retrage oricând acordul
+                și poate cere accesul la datele copilului sau ștergerea lor,
+                la adresa contact@thesquarechessclub.com.
               </li>
               <li>
                 Dacă aflăm că am primit date ale unui copil sub 16 ani fără
