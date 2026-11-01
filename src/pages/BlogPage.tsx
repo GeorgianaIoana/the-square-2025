@@ -40,7 +40,7 @@ export default function BlogPage() {
     if (ogDescription) ogDescription.setAttribute('content', description);
 
     const ogUrl = document.querySelector('meta[property="og:url"]');
-    if (ogUrl) ogUrl.setAttribute('content', 'https://thesquare.ro/blog');
+    if (ogUrl) ogUrl.setAttribute('content', 'https://www.thesquarechessclub.com/blog');
 
     // Cleanup - restore default title on unmount
     return () => {

@@ -9,7 +9,7 @@ export default defineConfig({
     react(),
     Pages(),
     PagesSitemap({
-      hostname: "https://thesquare.ro",
+      hostname: "https://www.thesquarechessclub.com",
       readable: true,
       exclude: ["/404"],
       changefreq: "weekly",

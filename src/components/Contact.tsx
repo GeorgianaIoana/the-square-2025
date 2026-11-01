@@ -103,6 +103,7 @@ export default function ContactSection() {
     formData.append("message", submission.message);
     formData.append("from_name", submission.name);
     formData.append("subject", `Mesaj nou de la ${submission.name} - THE SQUARE Contact Form`);
+    formData.append("consent", "true");
     formData.append("botcheck", "");
 
     try {

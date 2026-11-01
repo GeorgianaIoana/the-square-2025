@@ -26,7 +26,7 @@ const COOKIE_GROUPS: { title: string; description: string; rows: CookieRow[] }[]
         provider: "Calendly (calendly.com)",
         purpose:
           "Protecție anti-bot, setat doar când deschideți fereastra de programare Calendly.",
-        duration: "30 de minute",
+        duration: "1 oră",
       },
     ],
   },

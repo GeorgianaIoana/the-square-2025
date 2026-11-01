@@ -16,7 +16,7 @@ export default function BlogPostPage() {
   const currentBlogPosts = blogPosts[language] || blogPosts.ro;
   const post = currentBlogPosts.find((p) => p.id === parseInt(id || "0"));
 
-  const shareUrl = typeof window !== 'undefined' ? window.location.href : `https://thesquare.ro/blog/${id}`;
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : `https://www.thesquarechessclub.com/blog/${id}`;
   const shareTitle = post?.title || 'THE SQUARE Blog';
 
   const handleCopyLink = async () => {
@@ -55,10 +55,10 @@ export default function BlogPostPage() {
       if (ogDescription) ogDescription.setAttribute('content', description);
 
       const ogUrl = document.querySelector('meta[property="og:url"]');
-      if (ogUrl) ogUrl.setAttribute('content', `https://thesquare.ro/blog/${post.id}`);
+      if (ogUrl) ogUrl.setAttribute('content', `https://www.thesquarechessclub.com/blog/${post.id}`);
 
       const ogImage = document.querySelector('meta[property="og:image"]');
-      if (ogImage && post.image) ogImage.setAttribute('content', `https://thesquare.ro/${post.image}`);
+      if (ogImage && post.image) ogImage.setAttribute('content', `https://www.thesquarechessclub.com/${post.image}`);
 
       // Add article structured data
       const existingScript = document.querySelector('script[data-article-schema]');
@@ -72,7 +72,7 @@ export default function BlogPostPage() {
         "@type": "Article",
         "headline": post.title,
         "description": post.excerpt,
-        "image": post.image ? `https://thesquare.ro/${post.image}` : undefined,
+        "image": post.image ? `https://www.thesquarechessclub.com/${post.image}` : undefined,
         "author": {
           "@type": "Person",
           "name": post.author
@@ -82,13 +82,13 @@ export default function BlogPostPage() {
           "name": "THE SQUARE Chess Club",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://thesquare.ro/images/logo/Logo-square.svg"
+            "url": "https://www.thesquarechessclub.com/images/logo/Logo-square.svg"
           }
         },
         "datePublished": post.date,
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": `https://thesquare.ro/blog/${post.id}`
+          "@id": `https://www.thesquarechessclub.com/blog/${post.id}`
         }
       });
       document.head.appendChild(script);

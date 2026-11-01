@@ -1,7 +1,7 @@
 import { writeFileSync } from "fs";
 import { join } from "path";
 
-const siteUrl = "https://thesquarechessclub.com";
+const siteUrl = "https://www.thesquarechessclub.com";
 const routes = [
   {
     path: "/",

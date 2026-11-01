@@ -1,11 +1,11 @@
 # Robots.txt for THE SQUARE Chess Club
-# https://thesquare.ro
+# https://www.thesquarechessclub.com
 
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://thesquare.ro/sitemap.xml
+Sitemap: https://www.thesquarechessclub.com/sitemap.xml
 
 # Disallow admin/private areas and sensitive files
 Disallow: /api/
