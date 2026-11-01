@@ -36,19 +36,6 @@ const COOKIE_GROUPS: { title: string; description: string; rows: CookieRow[] }[]
       "Activează funcții suplimentare. Se plasează doar după ce vă dați acordul pentru categoria „Funcționale” sau, în cazul hărții, după ce alegeți să o afișați.",
     rows: [
       {
-        name: "TawkConnectionTime, twk_idm_key",
-        provider: "tawk.to (embed.tawk.to)",
-        purpose: "Mențin conversația din fereastra de chat live.",
-        duration: "Sesiune",
-      },
-      {
-        name: "twk_uuid_*, __tawkuuid",
-        provider: "tawk.to (embed.tawk.to)",
-        purpose:
-          "Recunosc vizitatorul care revine, pentru a păstra istoricul conversației.",
-        duration: "Până la 6 luni",
-      },
-      {
         name: "NID și alte cookie-uri Google",
         provider: "Google Maps (google.com)",
         purpose: "Afișarea hărții interactive cu locația clubului.",
@@ -199,17 +186,6 @@ export default function CookiePolicy() {
                 </a>
                 . Scriptul Calendly se încarcă pe site, iar cookie-urile
                 Calendly se plasează când deschideți fereastra de programare.
-              </li>
-              <li>
-                <strong>tawk.to</strong> (chat live) –{" "}
-                <a
-                  href="https://www.tawk.to/privacy-policy/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline hover:text-white"
-                >
-                  politica tawk.to
-                </a>
               </li>
               <li>
                 <strong>CookieYes</strong> (gestionarea consimțământului) –{" "}

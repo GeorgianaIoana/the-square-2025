@@ -10,7 +10,7 @@ type Processing = {
 
 const PROCESSING: Processing[] = [
   {
-    purpose: "Răspunsul la mesajele trimise prin formularul de contact, chat sau WhatsApp",
+    purpose: "Răspunsul la mesajele trimise prin formularul de contact sau WhatsApp",
     data: "Nume, telefon, email, conținutul mesajului",
     legalBasis:
       "Demersuri făcute la cererea dumneavoastră înainte de încheierea unui contract – art. 6 alin. (1) lit. b) GDPR",
@@ -68,11 +68,6 @@ const PROCESSORS: { name: string; role: string; location: string }[] = [
   {
     name: "Calendly LLC",
     role: "Programarea ședințelor",
-    location: "SUA",
-  },
-  {
-    name: "tawk.to inc.",
-    role: "Chat live pe site",
     location: "SUA",
   },
   {

@@ -5,7 +5,6 @@ import Contact from "./components/Contact";
 import Team from "./components/Team";
 import WhatsAppButton from "./components/WhatsAppButton";
 import LanguageSwitcher from "./components/LanguageSwitcher";
-import TawkToLanguage from "./components/TawkToLanguage";
 import TypeWriter from "./components/TypeWriter";
 import { ChevronRight, ChevronLeft, ChevronDown, Calendar as CalendarIcon, Users, Image as ImageIcon, MessageSquareQuote } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -869,7 +868,6 @@ const MainContent: React.FC<MainContentProps> = ({
         </div>
       </footer>
       <WhatsAppButton />
-      <TawkToLanguage />
     </div>
   );
 };
