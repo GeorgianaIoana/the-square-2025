@@ -4,48 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Google Consent Mode v2 - MUST run before GTM. Everything except security
-         storage stays denied until the visitor accepts the matching CookieYes category. -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('consent', 'default', {
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        analytics_storage: 'denied',
-        functionality_storage: 'denied',
-        personalization_storage: 'denied',
-        security_storage: 'granted',
-        wait_for_update: 2000
-      });
-      gtag('set', 'ads_data_redaction', true);
-      function syncCookieYesConsent() {
-        var consent = window.getCkyConsent && window.getCkyConsent();
-        if (!consent || !consent.categories) return;
-        var state = function (slug) { return consent.categories[slug] ? 'granted' : 'denied'; };
-        gtag('consent', 'update', {
-          ad_storage: state('advertisement'),
-          ad_user_data: state('advertisement'),
-          ad_personalization: state('advertisement'),
-          analytics_storage: state('analytics'),
-          functionality_storage: state('functional'),
-          personalization_storage: state('functional')
-        });
-      }
-      document.addEventListener('cookieyes_banner_load', syncCookieYesConsent);
-      document.addEventListener('cookieyes_consent_update', syncCookieYesConsent);
-    </script>
-    <!-- End Google Consent Mode v2 -->
-
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-PXVXRHVB');</script>
-    <!-- End Google Tag Manager -->
-
     <!-- Primary SEO Meta Tags -->
     <title>THE SQUARE - Cursuri de Șah București | Club Șah Copii și Adulți | Lecții cu Antrenori Profesioniști</title>
     <meta
@@ -339,10 +297,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/images/logo/square-logo.png" />
 
     <!-- Fonts -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&display=swap"
-      rel="stylesheet"
-    />
+    <link href="/fonts/fonts.css" rel="stylesheet" />
 
     <!-- CookieYes Cookie Consent - MUST LOAD FIRST -->
     <script
@@ -359,19 +314,6 @@
     <link rel="preload" as="image" href="/images/team/calin.jpg" />
     <link rel="preload" as="image" href="/images/team/georgiana.jpg" />
 
-    <!-- Preload critical fonts -->
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&display=swap"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
-    />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&display=swap"
-      />
-    </noscript>
 
     <!-- Performance optimizations -->
     <meta name="format-detection" content="telephone=no" />
@@ -379,26 +321,10 @@
     <meta name="msapplication-TileColor" content="#001a00" />
 
     <!-- Resource hints -->
-    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="dns-prefetch" href="//assets.calendly.com" />
-    <link rel="preconnect" href="https://assets.calendly.com" crossorigin />
     <link rel="dns-prefetch" href="//cdn-cookieyes.com" />
-    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
 
-    <!-- Calendly link widget begin -->
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-    <!-- Calendly link widget end -->
   </head>
   <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PXVXRHVB"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
-
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

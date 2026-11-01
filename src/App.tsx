@@ -12,6 +12,7 @@ import "swiper/css";
 import Testimonial from "./components/Testimonial";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { useLanguage } from "./contexts/LanguageContext";
+import { openCalendly } from "./utils/calendly";
 
 // Lazy load pages for better performance
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
@@ -20,14 +21,6 @@ const TermsAndConditions = lazy(() => import("./pages/TermsAndConditions"));
 const ThankYouPage = lazy(() => import("./components/ThankYouPage"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
-
-declare global {
-  interface Window {
-    Calendly?: {
-      initPopupWidget: (options: { url: string }) => void;
-    };
-  }
-}
 
 // Static data moved outside component to prevent recreation
 const BANNER_URLS = [
@@ -224,7 +217,7 @@ const MainContent: React.FC<MainContentProps> = ({
               <LanguageSwitcher />
 
               <button
-                onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/acsthesquarechessclub' })}
+                onClick={openCalendly}
                 className="ml-2 px-5 py-2 text-sm rounded-lg bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
               >
                 {t('nav.schedule')}
@@ -377,7 +370,7 @@ const MainContent: React.FC<MainContentProps> = ({
               <div className="max-w-md mx-auto">
                 <button
                   onClick={() => {
-                    window.Calendly?.initPopupWidget({ url: 'https://calendly.com/acsthesquarechessclub' });
+                    openCalendly();
                     setMobileMenuOpen(false);
                   }}
                   className="w-full bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] py-4 rounded-xl font-archivo font-bold text-base transition-all duration-300 hover:shadow-xl shadow-lg flex items-center justify-center gap-2 touch-manipulation"
@@ -424,7 +417,7 @@ const MainContent: React.FC<MainContentProps> = ({
                     </p>
                     <div className="flex justify-center w-full mt-8 mb-4 sm:my-0">
                       <button
-                        onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/acsthesquarechessclub' })}
+                        onClick={openCalendly}
                         className="sm:mt-[0px] text-center bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-6 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg font-archivo inline-flex items-center gap-2"
                       >
                         <CalendarIcon className="w-5 h-5" />

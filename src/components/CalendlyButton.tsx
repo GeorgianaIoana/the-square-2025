@@ -1,13 +1,6 @@
 import { Calendar } from "lucide-react";
 import { useLanguage } from "../contexts/LanguageContext";
-
-declare global {
-  interface Window {
-    Calendly?: {
-      initPopupWidget: (options: { url: string }) => void;
-    };
-  }
-}
+import { openCalendly } from "../utils/calendly";
 
 interface CalendlyButtonProps {
   className?: string;
@@ -21,14 +14,6 @@ export default function CalendlyButton({
   size = "md",
 }: CalendlyButtonProps) {
   const { language } = useLanguage();
-
-  const handleClick = () => {
-    if (window.Calendly) {
-      window.Calendly.initPopupWidget({
-        url: "https://calendly.com/acsthesquarechessclub",
-      });
-    }
-  };
 
   const baseStyles =
     "inline-flex items-center justify-center gap-2 font-archivo font-bold rounded-xl transition-all duration-300 cursor-pointer";
@@ -52,7 +37,7 @@ export default function CalendlyButton({
 
   return (
     <button
-      onClick={handleClick}
+      onClick={openCalendly}
       className={`${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`}
     >
       <Calendar className="w-5 h-5" />

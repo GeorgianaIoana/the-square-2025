@@ -44,7 +44,7 @@ describe('ContactSection', () => {
   it('renders the consent checkbox', () => {
     renderContact();
 
-    const checkbox = screen.getByRole('checkbox', { name: /Politicii de Confidențialitate/i });
+    const checkbox = screen.getByRole('checkbox', { name: /Politica de Confidențialitate/i });
     expect(checkbox).toBeInTheDocument();
     expect(checkbox).not.toBeChecked();
   });
@@ -52,7 +52,7 @@ describe('ContactSection', () => {
   it('renders the privacy policy link in the consent label', () => {
     renderContact();
 
-    const link = screen.getByRole('link', { name: /Politicii de Confidențialitate/i });
+    const link = screen.getByRole('link', { name: /Politica de Confidențialitate/i });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute('href', '/privacy-policy');
   });
@@ -76,7 +76,7 @@ describe('ContactSection', () => {
     const user = userEvent.setup();
     renderContact();
 
-    const checkbox = screen.getByRole('checkbox', { name: /Politicii de Confidențialitate/i });
+    const checkbox = screen.getByRole('checkbox', { name: /Politica de Confidențialitate/i });
     const submitBtn = screen.getByRole('button', { name: /Trimite/i });
 
     expect(submitBtn).toBeDisabled();
@@ -91,7 +91,7 @@ describe('ContactSection', () => {
     const user = userEvent.setup();
     renderContact();
 
-    const checkbox = screen.getByRole('checkbox', { name: /Politicii de Confidențialitate/i });
+    const checkbox = screen.getByRole('checkbox', { name: /Politica de Confidențialitate/i });
     const submitBtn = screen.getByRole('button', { name: /Trimite/i });
 
     await user.click(checkbox);
@@ -164,7 +164,7 @@ describe('ContactSection', () => {
     await user.type(screen.getByLabelText(/Număr de telefon/i), '0741234567');
     await user.type(screen.getByLabelText(/Email/i), 'ion@example.com');
     await user.type(screen.getByLabelText(/Mesaj/i), 'Salut!');
-    await user.click(screen.getByRole('checkbox', { name: /Politicii de Confidențialitate/i }));
+    await user.click(screen.getByRole('checkbox', { name: /Politica de Confidențialitate/i }));
 
     await user.click(screen.getByRole('button', { name: /Trimite/i }));
 
@@ -195,7 +195,7 @@ describe('ContactSection', () => {
     await user.type(screen.getByLabelText(/Numele tău/i), 'Ion');
     await user.type(screen.getByLabelText(/Număr de telefon/i), '0741234567');
     await user.type(screen.getByLabelText(/Email/i), 'ion@example.com');
-    await user.click(screen.getByRole('checkbox', { name: /Politicii de Confidențialitate/i }));
+    await user.click(screen.getByRole('checkbox', { name: /Politica de Confidențialitate/i }));
 
     await user.click(screen.getByRole('button', { name: /Trimite/i }));
 
@@ -213,7 +213,7 @@ describe('ContactSection', () => {
     await user.type(screen.getByLabelText(/Numele tău/i), 'Ion');
     await user.type(screen.getByLabelText(/Număr de telefon/i), '0741234567');
     await user.type(screen.getByLabelText(/Email/i), 'ion@example.com');
-    await user.click(screen.getByRole('checkbox', { name: /Politicii de Confidențialitate/i }));
+    await user.click(screen.getByRole('checkbox', { name: /Politica de Confidențialitate/i }));
 
     await user.click(screen.getByRole('button', { name: /Trimite/i }));
 

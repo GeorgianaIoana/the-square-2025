@@ -149,9 +149,9 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       'contact.submitting': 'Se trimite...',
       'contact.success': '✅ Mulțumim! Mesajul a fost trimis cu succes.',
       'contact.error': '❌ A apărut o problemă de rețea. Încearcă din nou.',
-      'contact.consent': 'Am citit și sunt de acord cu prelucrarea datelor conform',
-      'contact.consentLink': 'Politicii de Confidențialitate',
-      'contact.consentRequired': 'Te rugăm să accepți Politica de Confidențialitate.',
+      'contact.consent': 'Am luat la cunoștință',
+      'contact.consentLink': 'Politica de Confidențialitate',
+      'contact.consentRequired': 'Te rugăm să confirmi că ai luat la cunoștință Politica de Confidențialitate.',
       
       // Footer
       'footer.copyright': '© 2025 THE SQUARE. Developed by THE SQUARE.',
@@ -335,9 +335,9 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       'contact.submitting': 'Sending...',
       'contact.success': '✅ Thank you! Your message has been sent successfully.',
       'contact.error': '❌ Something went wrong. Please try again.',
-      'contact.consent': 'I have read and agree to the processing of my data in accordance with the',
+      'contact.consent': 'I have read and acknowledge the',
       'contact.consentLink': 'Privacy Policy',
-      'contact.consentRequired': 'Please accept the Privacy Policy to continue.',
+      'contact.consentRequired': 'Please confirm that you have read the Privacy Policy.',
 
       // Footer
       'footer.copyright': '© 2025 THE SQUARE. All rights reserved.',

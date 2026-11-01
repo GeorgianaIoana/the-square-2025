@@ -52,7 +52,7 @@ describe('Contact Form - Manual Testing Scenarios', () => {
     await user.type(screen.getByLabelText(/Mesaj/i), 'Test message');
 
     // Check consent
-    const checkbox = screen.getByRole('checkbox', { name: /Politicii de Confidențialitate/i });
+    const checkbox = screen.getByRole('checkbox', { name: /Politica de Confidențialitate/i });
     await user.click(checkbox);
 
     // Submit button should now be enabled
@@ -80,7 +80,7 @@ describe('Contact Form - Manual Testing Scenarios', () => {
     await user.type(screen.getByLabelText(/Mesaj/i), 'Salut! Vreau să mă înscriu la cursuri.');
 
     // Check consent
-    const checkbox = screen.getByRole('checkbox', { name: /Politicii de Confidențialitate/i });
+    const checkbox = screen.getByRole('checkbox', { name: /Politica de Confidențialitate/i });
     await user.click(checkbox);
 
     // Submit form
@@ -131,7 +131,7 @@ describe('Contact Form - Manual Testing Scenarios', () => {
     await user.type(screen.getByLabelText(/Numele tău/i), 'Ion');
     await user.type(screen.getByLabelText(/Număr de telefon/i), '0741234567');
     await user.type(screen.getByLabelText(/Email/i), 'ion@example.com');
-    await user.click(screen.getByRole('checkbox', { name: /Politicii de Confidențialitate/i }));
+    await user.click(screen.getByRole('checkbox', { name: /Politica de Confidențialitate/i }));
     await user.click(screen.getByRole('button', { name: /Trimite/i }));
 
     // Should show error message

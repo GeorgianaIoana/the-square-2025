@@ -23,7 +23,7 @@ const COOKIE_GROUPS: { title: string; description: string; rows: CookieRow[] }[]
       },
       {
         name: "__cf_bm",
-        provider: "Calendly (calendly.com)",
+        provider: "Cloudflare, pentru Calendly (calendly.com)",
         purpose:
           "Protecție anti-bot, setat doar când deschideți fereastra de programare Calendly.",
         duration: "1 oră",
@@ -184,8 +184,8 @@ export default function CookiePolicy() {
                 >
                   politica Calendly
                 </a>
-                . Scriptul Calendly se încarcă pe site, iar cookie-urile
-                Calendly se plasează când deschideți fereastra de programare.
+                . Scriptul Calendly se încarcă doar când apăsați un buton de
+                programare, iar cookie-urile Calendly se plasează abia atunci.
               </li>
               <li>
                 <strong>CookieYes</strong> (gestionarea consimțământului) –{" "}

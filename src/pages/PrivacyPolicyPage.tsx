@@ -61,9 +61,9 @@ const PROCESSORS: { name: string; role: string; location: string }[] = [
     location: "SUA",
   },
   {
-    name: "Web3Forms",
-    role: "Transmiterea mesajelor trimise prin formularul de contact",
-    location: "În afara SEE",
+    name: "Web3Forms (web3forms.com)",
+    role: "Transmiterea mesajelor trimise prin formularul de contact; găzduire pe Amazon Web Services",
+    location: "India (operator); transfer pe baza clauzelor contractuale standard",
   },
   {
     name: "Calendly LLC",
@@ -72,13 +72,18 @@ const PROCESSORS: { name: string; role: string; location: string }[] = [
   },
   {
     name: "Google Ireland Ltd. / Google LLC",
-    role: "Google Tag Manager, Google Maps",
+    role: "Google Maps (doar dacă alegeți să afișați harta)",
     location: "UE / SUA",
   },
   {
     name: "CookieYes Limited",
     role: "Gestionarea consimțământului pentru cookie-uri",
     location: "Regatul Unit",
+  },
+  {
+    name: "Lichess.org (Asociația Lichess, Franța)",
+    role: "Furnizarea puzzle-ului zilei; browserul dumneavoastră se conectează direct la Lichess, care primește adresa IP",
+    location: "UE",
   },
 ];
 
@@ -110,6 +115,8 @@ export default function PrivacyPolicy() {
               <strong>Operatorul datelor:</strong>
               <br />
               Denumire: ACS The Square
+              <br />
+              CIF: 50954939
               <br />
               Adresă: Strada Corbeni 34, București, Sector 2, România
               <br />

@@ -3,14 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Calendar as CalendarIcon, ChevronDown, Users, Image as ImageIcon, MessageSquareQuote } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useLanguage } from "../contexts/LanguageContext";
-
-declare global {
-  interface Window {
-    Calendly?: {
-      initPopupWidget: (options: { url: string }) => void;
-    };
-  }
-}
+import { openCalendly } from "../utils/calendly";
 
 export default function Header() {
   const { t } = useLanguage();
@@ -182,7 +175,7 @@ export default function Header() {
             <LanguageSwitcher />
 
             <button
-              onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/acsthesquarechessclub' })}
+              onClick={openCalendly}
               className="ml-2 px-5 py-2 text-sm rounded-lg bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
             >
               {t('nav.schedule')}
@@ -337,7 +330,7 @@ export default function Header() {
             <div className="max-w-md mx-auto">
               <button
                 onClick={() => {
-                  window.Calendly?.initPopupWidget({ url: 'https://calendly.com/acsthesquarechessclub' });
+                  openCalendly();
                   setMobileMenuOpen(false);
                 }}
                 className="w-full bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] py-4 rounded-xl font-archivo font-bold text-base transition-all duration-300 hover:shadow-xl shadow-lg flex items-center justify-center gap-2 touch-manipulation"
