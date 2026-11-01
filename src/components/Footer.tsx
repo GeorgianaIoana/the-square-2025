@@ -1,7 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Footer: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <footer className="bg-[#001a00] border-t border-[#233d36]">
       <div className="mx-auto max-w-7xl overflow-hidden px-4 sm:px-6 pt-12 sm:pt-16 pb-6 sm:pb-10 lg:px-8">
@@ -13,19 +15,19 @@ const Footer: React.FC = () => {
             to="/privacy-policy"
             className="text-[#a6b6e0] hover:text-[#badad5]"
           >
-            Politica de Confidențialitate
+            {t('footer.privacy')}
           </Link>
           <Link
             to="/terms-and-conditions"
             className="text-[#a6b6e0] hover:text-[#badad5]"
           >
-            Termeni și Condiții
+            {t('footer.terms')}
           </Link>
           <Link
             to="/cookie-policy"
             className="text-[#a6b6e0] hover:text-[#badad5]"
           >
-            Politica Cookie
+            {t('footer.cookies')}
           </Link>
           <a href="#contact" className="text-[#a6b6e0] hover:text-[#badad5]">
             Contact
@@ -49,7 +51,7 @@ const Footer: React.FC = () => {
               >
                 <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
               </svg>
-              ANPC
+              {t('footer.anpc')}
             </a>
             <a
               href="https://ec.europa.eu/consumers/odr"
@@ -65,11 +67,11 @@ const Footer: React.FC = () => {
               >
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
               </svg>
-              SOL / ODR
+              {t('footer.sol')}
             </a>
           </div>
           <p className="text-[#a6b6e0]/70 text-xs font-archivo text-center max-w-md">
-            Soluționarea alternativă a litigiilor
+            {t('footer.disputeResolution')}
           </p>
         </div>
 
@@ -165,7 +167,7 @@ const Footer: React.FC = () => {
           </a>
         </div>
         <p className="text-[#a6b6e0] tracking-[0.1em] font-archivo text-xs hover:text-[#badad5] mt-10 text-center sm:text-sm/6">
-          &copy; 2025 THE SQUARE. Developed by THE SQUARE.
+          {t('footer.copyright')}
         </p>
       </div>
     </footer>

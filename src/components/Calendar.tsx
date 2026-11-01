@@ -1,7 +1,9 @@
 import { useState } from "react";
 import CalendlyButton from "./CalendlyButton";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const Calendar = () => {
+  const { t } = useLanguage();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -18,18 +20,18 @@ const Calendar = () => {
   ).getDate();
 
   const monthNames = [
-    "Ianuarie",
-    "Februarie",
-    "Martie",
-    "Aprilie",
-    "Mai",
-    "Iunie",
-    "Iulie",
-    "August",
-    "Septembrie",
-    "Octombrie",
-    "Noiembrie",
-    "Decembrie",
+    t('calendar.months.january'),
+    t('calendar.months.february'),
+    t('calendar.months.march'),
+    t('calendar.months.april'),
+    t('calendar.months.may'),
+    t('calendar.months.june'),
+    t('calendar.months.july'),
+    t('calendar.months.august'),
+    t('calendar.months.september'),
+    t('calendar.months.october'),
+    t('calendar.months.november'),
+    t('calendar.months.december'),
   ];
 
   const days = [];
@@ -72,8 +74,7 @@ const Calendar = () => {
     );
   };
 
-  const CONTACT_NOTE =
-    "Te rugăm să iei legătura cu noi pentru a stabili ora ședinței.";
+  const CONTACT_NOTE = t('calendar.contactNote');
 
   type CalendarEvent = {
     id: number;
@@ -88,16 +89,16 @@ const Calendar = () => {
     monday: [
       {
         id: 1,
-        name: "Lecții individuale pentru copii",
+        name: t('calendar.events.individualKids'),
         startTime: null,
-        location: "Corbeni 34, sector 2 sau Google Meet",
+        location: "Corbeni 34, sector 2 / Google Meet",
         note: CONTACT_NOTE,
       },
       {
         id: 2,
-        name: "Lecții individuale pentru adulți",
+        name: t('calendar.events.individualAdults'),
         startTime: null,
-        location: "Corbeni 34, sector 2 sau Google Meet",
+        location: "Corbeni 34, sector 2 / Google Meet",
         note: CONTACT_NOTE,
       },
     ],
@@ -105,23 +106,23 @@ const Calendar = () => {
     tuesday: [
       {
         id: 1,
-        name: "Grupă adulți începători",
+        name: t('calendar.events.adultsBeginner'),
         startTime: "18:00",
         endTime: "19:00",
         location: "Corbeni 34, sector 2",
       },
       {
         id: 2,
-        name: "Lecții individuale pentru copii",
+        name: t('calendar.events.individualKids'),
         startTime: null,
-        location: "Corbeni 34, sector 2 sau Google Meet",
+        location: "Corbeni 34, sector 2 / Google Meet",
         note: CONTACT_NOTE,
       },
       {
         id: 3,
-        name: "Lecții individuale pentru adulți",
+        name: t('calendar.events.individualAdults'),
         startTime: null,
-        location: "Corbeni 34, sector 2 sau Google Meet",
+        location: "Corbeni 34, sector 2 / Google Meet",
         note: CONTACT_NOTE,
       },
     ],
@@ -129,23 +130,23 @@ const Calendar = () => {
     wednesday: [
       {
         id: 1,
-        name: "Grupă adulți online (Google Meet)",
+        name: t('calendar.events.adultsOnline'),
         startTime: "19:00",
         endTime: "20:20",
         location: "Google Meet",
       },
       {
         id: 2,
-        name: "Lecții individuale pentru copii",
+        name: t('calendar.events.individualKids'),
         startTime: null,
-        location: "Corbeni 34, sector 2 sau Google Meet",
+        location: "Corbeni 34, sector 2 / Google Meet",
         note: CONTACT_NOTE,
       },
       {
         id: 3,
-        name: "Lecții individuale pentru adulți",
+        name: t('calendar.events.individualAdults'),
         startTime: null,
-        location: "Corbeni 34, sector 2 sau Google Meet",
+        location: "Corbeni 34, sector 2 / Google Meet",
         note: CONTACT_NOTE,
       },
     ],
@@ -153,37 +154,37 @@ const Calendar = () => {
     thursday: [
       {
         id: 1,
-        name: "Centrul de excelență pentru copii cu Vajda Levente",
+        name: t('calendar.events.excellenceCenter'),
         startTime: "16:30",
         endTime: "17:30",
         location: "Corbeni 34, sector 2",
       },
       {
         id: 2,
-        name: "Grupă adulți",
+        name: t('calendar.events.adultsGroup'),
         startTime: "18:30",
         endTime: "19:50",
         location: "Corbeni 34, sector 2",
       },
       {
         id: 3,
-        name: "Grupă adulți",
+        name: t('calendar.events.adultsGroup'),
         startTime: "20:00",
         endTime: "21:20",
         location: "Corbeni 34, sector 2",
       },
       {
         id: 4,
-        name: "Lecții individuale pentru copii",
+        name: t('calendar.events.individualKids'),
         startTime: null,
-        location: "Corbeni 34, sector 2 sau Google Meet",
+        location: "Corbeni 34, sector 2 / Google Meet",
         note: CONTACT_NOTE,
       },
       {
         id: 5,
-        name: "Lecții individuale pentru adulți",
+        name: t('calendar.events.individualAdults'),
         startTime: null,
-        location: "Corbeni 34, sector 2 sau Google Meet",
+        location: "Corbeni 34, sector 2 / Google Meet",
         note: CONTACT_NOTE,
       },
     ],
@@ -191,23 +192,23 @@ const Calendar = () => {
     friday: [
       {
         id: 1,
-        name: "Centrul de excelență pentru copii cu Vajda Levente",
+        name: t('calendar.events.excellenceCenter'),
         startTime: "18:00",
         endTime: "19:30",
         location: "Corbeni 34, sector 2",
       },
       {
         id: 2,
-        name: "Lecții individuale pentru copii",
+        name: t('calendar.events.individualKids'),
         startTime: null,
-        location: "Corbeni 34, sector 2 sau Google Meet",
+        location: "Corbeni 34, sector 2 / Google Meet",
         note: CONTACT_NOTE,
       },
       {
         id: 3,
-        name: "Lecții individuale pentru adulți",
+        name: t('calendar.events.individualAdults'),
         startTime: null,
-        location: "Corbeni 34, sector 2 sau Google Meet",
+        location: "Corbeni 34, sector 2 / Google Meet",
         note: CONTACT_NOTE,
       },
     ],
@@ -215,23 +216,23 @@ const Calendar = () => {
     saturday: [
       {
         id: 1,
-        name: "Te invităm să urmărești evenimentele și competițiile noastre pe pagina de Instagram / Facebook",
+        name: t('calendar.events.followSocial'),
         startTime: "15:00",
         endTime: "18:00",
         location: "Stamina Workspace, Constantin Mille 18",
       },
       {
         id: 2,
-        name: "Lecții individuale pentru copii",
+        name: t('calendar.events.individualKids'),
         startTime: null,
-        location: "Corbeni 34, sector 2 sau Google Meet",
+        location: "Corbeni 34, sector 2 / Google Meet",
         note: CONTACT_NOTE,
       },
       {
         id: 3,
-        name: "Lecții individuale pentru adulți",
+        name: t('calendar.events.individualAdults'),
         startTime: null,
-        location: "Corbeni 34, sector 2 sau Google Meet",
+        location: "Corbeni 34, sector 2 / Google Meet",
         note: CONTACT_NOTE,
       },
     ],
@@ -239,23 +240,23 @@ const Calendar = () => {
     sunday: [
       {
         id: 1,
-        name: "Te invităm să urmărești evenimentele și competițiile noastre pe pagina de Instagram / Facebook",
+        name: t('calendar.events.followSocial'),
         startTime: "15:00",
         endTime: "18:00",
         location: "Stamina Workspace, Constantin Mille 18",
       },
       {
         id: 2,
-        name: "Lecții individuale pentru adulți",
+        name: t('calendar.events.individualAdults'),
         startTime: null,
-        location: "Corbeni 34, sector 2 sau Google Meet",
+        location: "Corbeni 34, sector 2 / Google Meet",
         note: CONTACT_NOTE,
       },
       {
         id: 3,
-        name: "Lecții individuale pentru copii cu Vajda Levente",
+        name: t('calendar.events.individualKidsVajda'),
         startTime: null,
-        location: "Corbeni 34, sector 2 sau Google Meet",
+        location: "Corbeni 34, sector 2 / Google Meet",
         note: CONTACT_NOTE,
       },
     ],
@@ -338,7 +339,7 @@ const Calendar = () => {
         <div className="grid grid-cols-12 gap-6 px-4 sm:px-0 mt-[90px] mb-[90px] sm:mt-[75px] sm:mb-[75px]">
           <div className="col-span-12 lg:col-span-4 flex flex-col items-start lg:items-center relative mb-10 lg:mb-0 order-first lg:order-last">
             <h2 className="px-4 max-w-[270px] sm:max-w-[500px] sm:px-0 text-2xl font-semibold text-[#a6b6e0] mb-6 sm:mb-10 font-archivo">
-              Programul pentru{" "}
+              {t('calendar.scheduleFor')}{" "}
               <time dateTime={selectedDate.toISOString()}>
                 {selectedDate.toLocaleDateString("en-US", {
                   month: "long",
@@ -403,7 +404,15 @@ const Calendar = () => {
             </div>
 
             <div className="grid grid-cols-7 gap-5 sm:gap-8 mb-4">
-              {["Lun", "Mar", "Mie", "Joi", "Vin", "Sâm", "Dum"].map((day) => (
+              {[
+                t('calendar.days.mon'),
+                t('calendar.days.tue'),
+                t('calendar.days.wed'),
+                t('calendar.days.thu'),
+                t('calendar.days.fri'),
+                t('calendar.days.sat'),
+                t('calendar.days.sun')
+              ].map((day) => (
                 <div
                   key={day}
                   className="text-center text-base sm:text-lg font-medium text-[#a6b6e0] py-2 sm:py-3"

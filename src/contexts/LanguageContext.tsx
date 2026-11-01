@@ -50,6 +50,8 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       'nav.blog': 'Blog',
       'nav.contact': 'Contact',
       'nav.enroll': 'Înscrie-te la primul tău curs!',
+      'nav.tournament': 'Concurs',
+      'nav.schedule': 'Programează-te',
       
       // Banner
       'banner.title1': 'Antrenează-te cu profesioniști',
@@ -167,6 +169,59 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       'blog.newsletter.subscribe': 'Abonează-te',
       'blog.newsletter.submitting': 'Se trimite...',
       'blog.newsletter.success': 'Ne bucurăm că îți plac articolele noastre. Așteptăm părerile tale despre ele. Mulțumim!',
+
+      // Thank You Page
+      'thankYou.title': 'Mulțumim pentru mesaj!',
+      'thankYou.message': 'Mesajul tău a fost trimis cu succes. Echipa noastră îți va răspunde în cel mai scurt timp posibil.',
+      'thankYou.contactDirectly': 'Contactează-ne direct',
+      'thankYou.whatNext': 'Ce urmează?',
+      'thankYou.whatNextDescription': 'Vom analiza mesajul tău și îți vom răspunde în maximum 24 de ore. Dacă ai întrebări urgente, nu ezita să ne contactezi direct.',
+      'thankYou.backHome': 'Înapoi la pagina principală',
+      'thankYou.sendAnother': 'Trimite alt mesaj',
+
+      // Daily Puzzle
+      'puzzle.title': 'Puzzle-ul tău zilnic',
+      'puzzle.instruction': 'Este la mutare culoarea din dreptul tău. Mult succes!',
+      'puzzle.wrongMove': 'Dacă răspunsul nu este corect, mutarea ta se va retrage.',
+      'puzzle.correctMove': 'Dacă mutarea este corectă, exercițiul va continua cu mutarea adversarului.',
+      'puzzle.success': 'Felicitări! Ești pe drumul cel bun! Tocmai ai obținut o lecție gratuită la cursul nostru online. Te rog să ne trimiți poza cu acest mesaj pe WhatsApp sau pe mail. Mult succes la antrenament!',
+      'puzzle.sendWhatsApp': 'Trimite mesaj pe WhatsApp',
+
+      // Footer Policy Links
+      'footer.anpc': 'ANPC',
+      'footer.sol': 'SOL / ODR',
+      'footer.disputeResolution': 'Soluționarea alternativă a litigiilor',
+
+      // Calendar
+      'calendar.days.mon': 'Lun',
+      'calendar.days.tue': 'Mar',
+      'calendar.days.wed': 'Mie',
+      'calendar.days.thu': 'Joi',
+      'calendar.days.fri': 'Vin',
+      'calendar.days.sat': 'Sâm',
+      'calendar.days.sun': 'Dum',
+      'calendar.months.january': 'Ianuarie',
+      'calendar.months.february': 'Februarie',
+      'calendar.months.march': 'Martie',
+      'calendar.months.april': 'Aprilie',
+      'calendar.months.may': 'Mai',
+      'calendar.months.june': 'Iunie',
+      'calendar.months.july': 'Iulie',
+      'calendar.months.august': 'August',
+      'calendar.months.september': 'Septembrie',
+      'calendar.months.october': 'Octombrie',
+      'calendar.months.november': 'Noiembrie',
+      'calendar.months.december': 'Decembrie',
+      'calendar.contactNote': 'Te rugăm să iei legătura cu noi pentru a stabili ora ședinței.',
+      'calendar.events.individualKids': 'Lecții individuale pentru copii',
+      'calendar.events.individualAdults': 'Lecții individuale pentru adulți',
+      'calendar.events.adultsBeginner': 'Grupă adulți începători',
+      'calendar.events.adultsOnline': 'Grupă adulți online (Google Meet)',
+      'calendar.events.adultsGroup': 'Grupă adulți',
+      'calendar.events.excellenceCenter': 'Centrul de excelență pentru copii cu Vajda Levente',
+      'calendar.events.individualKidsVajda': 'Lecții individuale pentru copii cu Vajda Levente',
+      'calendar.events.followSocial': 'Te invităm să urmărești evenimentele și competițiile noastre pe pagina de Instagram / Facebook',
+      'calendar.scheduleFor': 'Programul pentru',
     },
     en: {
       // Navigation
@@ -181,6 +236,8 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       'nav.blog': 'Blog',
       'nav.contact': 'Contact',
       'nav.enroll': 'Join Your First Course!',
+      'nav.tournament': 'Tournament',
+      'nav.schedule': 'Book Now',
 
       // Banner
       'banner.title1': 'Train with Professional Coaches',
@@ -298,6 +355,59 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       'blog.newsletter.subscribe': 'Subscribe',
       'blog.newsletter.submitting': 'Sending...',
       'blog.newsletter.success': 'Thank you for subscribing! We look forward to sharing our best content with you.',
+
+      // Thank You Page
+      'thankYou.title': 'Thank you for your message!',
+      'thankYou.message': 'Your message has been sent successfully. Our team will respond to you as soon as possible.',
+      'thankYou.contactDirectly': 'Contact us directly',
+      'thankYou.whatNext': 'What happens next?',
+      'thankYou.whatNextDescription': 'We will review your message and respond within 24 hours. If you have urgent questions, feel free to contact us directly.',
+      'thankYou.backHome': 'Back to home page',
+      'thankYou.sendAnother': 'Send another message',
+
+      // Daily Puzzle
+      'puzzle.title': 'Your Daily Puzzle',
+      'puzzle.instruction': 'It is your turn to move. Good luck!',
+      'puzzle.wrongMove': 'If the answer is incorrect, your move will be taken back.',
+      'puzzle.correctMove': 'If the move is correct, the exercise will continue with the opponent\'s move.',
+      'puzzle.success': 'Congratulations! You are on the right track! You have just earned a free lesson for our online course. Please send us a screenshot of this message on WhatsApp or email. Good luck with your training!',
+      'puzzle.sendWhatsApp': 'Send message on WhatsApp',
+
+      // Footer Policy Links
+      'footer.anpc': 'ANPC',
+      'footer.sol': 'SOL / ODR',
+      'footer.disputeResolution': 'Alternative dispute resolution',
+
+      // Calendar
+      'calendar.days.mon': 'Mon',
+      'calendar.days.tue': 'Tue',
+      'calendar.days.wed': 'Wed',
+      'calendar.days.thu': 'Thu',
+      'calendar.days.fri': 'Fri',
+      'calendar.days.sat': 'Sat',
+      'calendar.days.sun': 'Sun',
+      'calendar.months.january': 'January',
+      'calendar.months.february': 'February',
+      'calendar.months.march': 'March',
+      'calendar.months.april': 'April',
+      'calendar.months.may': 'May',
+      'calendar.months.june': 'June',
+      'calendar.months.july': 'July',
+      'calendar.months.august': 'August',
+      'calendar.months.september': 'September',
+      'calendar.months.october': 'October',
+      'calendar.months.november': 'November',
+      'calendar.months.december': 'December',
+      'calendar.contactNote': 'Please contact us to schedule your session.',
+      'calendar.events.individualKids': 'Individual lessons for kids',
+      'calendar.events.individualAdults': 'Individual lessons for adults',
+      'calendar.events.adultsBeginner': 'Adult beginners group',
+      'calendar.events.adultsOnline': 'Adults online group (Google Meet)',
+      'calendar.events.adultsGroup': 'Adults group',
+      'calendar.events.excellenceCenter': 'Excellence Center for kids with Vajda Levente',
+      'calendar.events.individualKidsVajda': 'Individual lessons for kids with Vajda Levente',
+      'calendar.events.followSocial': 'Follow our events and competitions on Instagram / Facebook',
+      'calendar.scheduleFor': 'Schedule for',
     },
   };
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { CheckCircle, ArrowLeft, Mail, Phone, MapPin } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import type { ContactSubmission } from "../types/contact";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const getStoredSubmission = (): ContactSubmission | null => {
   if (typeof window === "undefined") {
@@ -20,6 +21,7 @@ const getStoredSubmission = (): ContactSubmission | null => {
 };
 
 const ThankYouPage = () => {
+  const { t } = useLanguage();
   const location = useLocation();
   const locationState = location.state as { submission?: ContactSubmission } | null;
   const [submission, setSubmission] = useState<ContactSubmission | null>(
@@ -51,17 +53,16 @@ const ThankYouPage = () => {
           </div>
 
           <h1 className="text-3xl md:text-4xl font-bold text-[#233d36] font-archivo tracking-[0.1em] mb-4">
-            Mulțumim pentru mesaj!
+            {t('thankYou.title')}
           </h1>
 
           <p className="text-lg text-[#233d36] font-archivo tracking-[0.05em] mb-8 leading-relaxed">
-            Mesajul tău a fost trimis cu succes. Echipa noastră îți va răspunde
-            în cel mai scurt timp posibil.
+            {t('thankYou.message')}
           </p>
 
           <div className="bg-white/60 rounded-xl p-6 mb-8">
             <h3 className="text-xl font-semibold text-[#233d36] font-archivo tracking-[0.1em] mb-4">
-              Contactează-ne direct
+              {t('thankYou.contactDirectly')}
             </h3>
             <div className="space-y-3 text-[#233d36]">
               <div className="flex items-center justify-center">
@@ -87,11 +88,10 @@ const ThankYouPage = () => {
 
           <div className="bg-[#233d36] rounded-xl p-6 mb-8">
             <h4 className="text-lg font-semibold text-[#badad5] font-archivo tracking-[0.1em] mb-2">
-              Ce urmează?
+              {t('thankYou.whatNext')}
             </h4>
             <p className="text-[#badad5] font-archivo tracking-[0.05em] text-sm leading-relaxed">
-              Vom analiza mesajul tău și îți vom răspunde în maximum 24 de ore.
-              Dacă ai întrebări urgente, nu ezita să ne contactezi direct.
+              {t('thankYou.whatNextDescription')}
             </p>
           </div>
 
@@ -101,14 +101,14 @@ const ThankYouPage = () => {
               className="inline-flex items-center justify-center px-6 py-3 bg-[#233d36] text-[#badad5] font-semibold rounded-lg hover:bg-[#001a00] transition-colors duration-300 font-archivo tracking-[0.1em]"
             >
               <ArrowLeft className="w-5 h-5 mr-2" />
-              Înapoi la pagina principală
+              {t('thankYou.backHome')}
             </Link>
 
             <Link
               to="/#contact"
               className="inline-flex items-center justify-center px-6 py-3 bg-white/80 text-[#233d36] font-semibold rounded-lg hover:bg-white transition-colors duration-300 font-archivo tracking-[0.1em]"
             >
-              Trimite alt mesaj
+              {t('thankYou.sendAnother')}
             </Link>
           </div>
         </div>

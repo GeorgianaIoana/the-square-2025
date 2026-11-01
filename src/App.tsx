@@ -209,7 +209,7 @@ const MainContent: React.FC<MainContentProps> = ({
                   isScrolled ? "text-white" : "text-[#a6b6e0]"
                 }`}
               >
-                Concurs
+                {t('nav.tournament')}
               </a>
               <button
                 onClick={() => scrollToSection("contact")}
@@ -228,7 +228,7 @@ const MainContent: React.FC<MainContentProps> = ({
                 onClick={() => window.Calendly?.initPopupWidget({ url: 'https://calendly.com/acsthesquarechessclub' })}
                 className="ml-2 px-5 py-2 text-sm rounded-lg bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
               >
-                Programează-te
+                {t('nav.schedule')}
               </button>
             </div>
 
@@ -362,7 +362,7 @@ const MainContent: React.FC<MainContentProps> = ({
                   onClick={() => setMobileMenuOpen(false)}
                   className="block w-full text-left px-5 py-4 rounded-xl text-[#badad5] hover:bg-[#233d36] active:bg-[#233d36] transition-colors font-archivo text-base sm:text-lg font-medium touch-manipulation"
                 >
-                  Concurs
+                  {t('nav.tournament')}
                 </a>
                 <button
                   onClick={() => { scrollToSection("contact"); setMobileMenuOpen(false); }}
@@ -384,7 +384,7 @@ const MainContent: React.FC<MainContentProps> = ({
                   className="w-full bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] py-4 rounded-xl font-archivo font-bold text-base transition-all duration-300 hover:shadow-xl shadow-lg flex items-center justify-center gap-2 touch-manipulation"
                 >
                   <CalendarIcon className="w-5 h-5" />
-                  Programează-te
+                  {t('nav.schedule')}
                 </button>
               </div>
             </div>
@@ -429,7 +429,7 @@ const MainContent: React.FC<MainContentProps> = ({
                         className="sm:mt-[0px] text-center bg-gradient-to-r from-[#badad5] to-[#a6b6e0] text-[#233d36] px-6 sm:px-8 py-3 rounded-xl font-bold text-sm sm:text-base tracking-wide transition-all duration-300 hover:shadow-xl hover:scale-105 shadow-lg font-archivo inline-flex items-center gap-2"
                       >
                         <CalendarIcon className="w-5 h-5" />
-                        Programează-te
+                        {t('nav.schedule')}
                       </button>
                     </div>
                   </div>

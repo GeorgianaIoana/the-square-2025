@@ -5,11 +5,10 @@ import "@lichess-org/chessground/assets/chessground.brown.css";
 import "@lichess-org/chessground/assets/chessground.cburnett.css";
 import "./custom-green-board.css";
 import { Chess } from "chess.js";
+import { useLanguage } from "../contexts/LanguageContext";
 
 const PUZZLE_STORAGE_KEY = "the-square-daily-puzzle";
 const PUZZLE_CACHE_DURATION_MS = 1000 * 60 * 60 * 12; // 12 hours
-const SUCCESS_MESSAGE =
-  "Felicitări! Ești pe drumul cel bun! Tocmai ai obținut o lecție gratuită la cursul nostru online. Te rog să ne trimiți poza cu acest mesaj pe WhatsApp sau pe mail. Mult succes la antrenament!";
 const SUCCESS_STATE_STORAGE_KEY = "the-square-daily-puzzle-success";
 const SUCCESS_DURATION_MS = 60 * 60 * 1000; // 1 hour
 
@@ -115,6 +114,7 @@ const clearStoredSuccessState = () => {
 };
 
 const DailyPuzzle: React.FC = () => {
+  const { t } = useLanguage();
   const chessRef = useRef<Chess | null>(null);
   const groundRef = useRef<any>(null);
   const solutionMovesRef = useRef<string[]>([]);
@@ -465,17 +465,16 @@ const DailyPuzzle: React.FC = () => {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-6 md:mb-8">
             <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#b8d9d4] font-archivo">
-              Puzzle-ul tău zilnic
+              {t('puzzle.title')}
             </h2>
             <p className="text-[#b8d9d4] text-sm sm:text-base md:text-lg font-archivo mt-2">
-              Este la mutare culoarea din dreptul tău. Mult succes!
+              {t('puzzle.instruction')}
             </p>{" "}
             <p className="text-[#b8d9d4] text-sm sm:text-base md:text-lg font-archivo mt-2">
-              Dacă răspunsul nu este corect, mutarea ta se va retrage.
+              {t('puzzle.wrongMove')}
             </p>
             <p className="text-[#b8d9d4] text-sm sm:text-base md:text-lg font-archivo mt-2">
-              Dacă mutarea este corectă, exercițiul va continua cu mutarea
-              adversarului.
+              {t('puzzle.correctMove')}
             </p>
           </div>
 
@@ -510,7 +509,7 @@ const DailyPuzzle: React.FC = () => {
           {isSolved && (
             <div className="bg-[#233d36] border border-[#badad5]/30 rounded-xl shadow-lg p-6 sm:p-8 text-center space-y-4">
               <p className="text-[#b8d9d4] text-sm sm:text-base md:text-lg font-archivo leading-relaxed">
-                {SUCCESS_MESSAGE}
+                {t('puzzle.success')}
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 font-archivo">
                 <a
@@ -519,7 +518,7 @@ const DailyPuzzle: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#badad5] text-[#233d36] font-semibold transition-transform duration-200 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#badad5]"
                 >
-                  <span>Trimite mesaj pe WhatsApp</span>
+                  <span>{t('puzzle.sendWhatsApp')}</span>
                 </a>
                 <a
                   href="mailto:contact@thesquarechessclub.com?subject=Puzzle%20zilnic%20rezolvat&body=Bună!%20Am%20rezolvat%20puzzle-ul%20zilnic%20și%20trimit%20dovada%20pentru%20lecția%20gratuită."
