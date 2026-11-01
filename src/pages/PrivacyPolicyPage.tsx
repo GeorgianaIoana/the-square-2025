@@ -47,13 +47,6 @@ const PROCESSING: Processing[] = [
     retention: "Până la retragerea consimțământului (dezabonare)",
   },
   {
-    purpose: "Statistici privind utilizarea site-ului (Google Analytics)",
-    data: "Identificatori online, date despre dispozitiv și navigare",
-    legalBasis:
-      "Consimțământ, exprimat prin bannerul de cookie-uri – art. 6 alin. (1) lit. a) GDPR",
-    retention: "Maximum 14 luni",
-  },
-  {
     purpose: "Securitatea site-ului și prevenirea abuzurilor (de exemplu, a spamului prin formular)",
     data: "Adresă IP, date tehnice de acces",
     legalBasis: "Interes legitim – art. 6 alin. (1) lit. f) GDPR",
@@ -84,7 +77,7 @@ const PROCESSORS: { name: string; role: string; location: string }[] = [
   },
   {
     name: "Google Ireland Ltd. / Google LLC",
-    role: "Google Tag Manager, Google Analytics, Google Maps",
+    role: "Google Tag Manager, Google Maps",
     location: "UE / SUA",
   },
   {

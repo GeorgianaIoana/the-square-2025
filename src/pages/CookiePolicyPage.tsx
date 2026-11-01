@@ -56,25 +56,6 @@ const COOKIE_GROUPS: { title: string; description: string; rows: CookieRow[] }[]
       },
     ],
   },
-  {
-    title: "Cookie-uri analitice",
-    description:
-      "Ne ajută să înțelegem cum este folosit site-ul (pagini vizitate, durata vizitei), pe baza unor date agregate. Se plasează doar după ce vă dați acordul pentru categoria „Analitice”.",
-    rows: [
-      {
-        name: "_ga",
-        provider: "Google Analytics (prin Google Tag Manager)",
-        purpose: "Deosebește vizitatorii unici, în scop statistic.",
-        duration: "2 ani",
-      },
-      {
-        name: "_ga_<ID>",
-        provider: "Google Analytics (prin Google Tag Manager)",
-        purpose: "Păstrează starea sesiunii de navigare, în scop statistic.",
-        duration: "2 ani",
-      },
-    ],
-  },
 ];
 
 export default function CookiePolicy() {
@@ -133,7 +114,7 @@ export default function CookiePolicy() {
               3. Ce cookie-uri folosim
             </h2>
             <p className="mb-6">
-              <strong>Nu folosim cookie-uri de publicitate sau de marketing</strong>{" "}
+              <strong>Nu folosim cookie-uri analitice, de publicitate sau de marketing</strong>{" "}
               și nu vă afișăm reclame personalizate. Mai jos găsiți toate
               cookie-urile care pot fi plasate prin intermediul site-ului.
             </p>
@@ -196,7 +177,7 @@ export default function CookiePolicy() {
             </p>
             <ul className="list-disc list-inside ml-4 mt-2">
               <li>
-                <strong>Google</strong> (Tag Manager, Analytics, Maps) –{" "}
+                <strong>Google</strong> (Maps) –{" "}
                 <a
                   href="https://policies.google.com/technologies/cookies"
                   target="_blank"
